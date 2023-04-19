@@ -1,0 +1,39 @@
+@use '../../../../styles/mixins.scss' as mx;
+@use '../../../../styles/vars.scss' as v;
+
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+
+  width: 100vw;
+  height: v.$footer-height;
+
+  border-top: 1px solid v.$secondary40;
+  background-color: v.$neutral80;
+
+
+  & .wrapper {
+    @include mx.wrapper;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .footer-info {
+    color: v.$primary;
+  }
+
+  .footer-pay {
+    display: flex;
+  }
+
+  .footer-pay-cards {
+    display: flex;
+    gap: 5px;
+
+    & img {
+      width: 30px;
+    }
+  }
+}
