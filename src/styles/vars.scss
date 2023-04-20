@@ -1,3 +1,4 @@
+$header-height: 90px;
 $footer-height: 190px;
 
 $primary: #11397E;
@@ -5,6 +6,7 @@ $primary: #11397E;
 $secondary40: #D0D9DF;
 
 $neutral80: #F5F5F5;
+$neutral70: rgba(116, 118, 122, 0.2);
 
 @media (max-width: 768px) {
   $footer-height: 190px;

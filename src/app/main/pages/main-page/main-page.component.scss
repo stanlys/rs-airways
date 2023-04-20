@@ -1,0 +1,15 @@
+@use '../../../../styles/mixins.scss' as mx;
+@use '../../../../styles/vars.scss' as v;
+
+:host {
+  display: flex;
+  padding-top: v.$header-height;
+  margin-bottom: 77px;
+  width: 100vw;
+  height: calc(100vh - v.$footer-height);
+
+  background-image: url(../../../../assets/Background.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
+}
