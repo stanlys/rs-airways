@@ -1,0 +1,35 @@
+.header {
+  @apply px-6 sm:px-2 md:px-4 lg:px-10 xl:px-[156px];
+}
+
+.date-format-container,
+.btn.currency,
+.btn.flight {
+  @apply hidden sm:inline-flex;
+}
+
+.icon.flight {
+  @apply sm:hidden;
+}
+
+.date-format {
+  width: 140px;
+}
+
+.btn.sign-in {
+  min-width: 32px;
+
+  .icon.person {
+    margin-right: unset;
+  }
+}
+
+@media (min-width: 640px) {
+  .btn.sign-in {
+    min-width: 64px;
+
+    .icon.person {
+      margin-right: 8px;
+    }
+  }
+}
