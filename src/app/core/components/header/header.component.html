@@ -3,40 +3,9 @@
     <img src="assets/logo.svg" alt="logo" srcset="" />
   </a>
   <span class="spacer flex-auto"></span>
-
-  <button class="flight btn" routerLink="/booking" routerLinkActive="router-link-active" mat-button>
-    Book flights
-  </button>
-  <button class="flight icon sm:hidden" mat-icon-button aria-label="button with cart icon">
-    <mat-icon fontSet="material-icons-outlined">airplane_ticket</mat-icon>
-  </button>
-
-  <button class="date-format-container" mat-flat-button>
-    <mat-select class="date-format" #dateFormatSelect [placeholder]="selectedDateFormat">
-      <mat-option
-        *ngFor="let dateFormat of dateFormats"
-        [value]="dateFormat"
-        (click)="selectDateFormat(dateFormatSelect.value)"
-      >
-        {{ dateFormat }}
-      </mat-option>
-    </mat-select>
-  </button>
-
-  <button class="currency btn" mat-flat-button [matMenuTriggerFor]="currencyMenu">{{ selectedCurrency }}</button>
-  <mat-menu #currencyMenu="matMenu">
-    <button *ngFor="let cur of currencies" mat-menu-item (click)="selectCurrency(cur)">{{ cur }}</button>
-  </mat-menu>
-
-  <button class="sign-in btn" mat-flat-button>
-    <mat-icon class="person icon" fontSet="material-icons-outlined">person</mat-icon>
-    <span>Sign In</span>
-  </button>
-  <button mat-icon-button class="sign-in icon" aria-label="button with cart icon">
-    <mat-icon fontSet="material-icons-outlined">person</mat-icon>
-  </button>
-
-  <button mat-icon-button class="cart icon" aria-label="button with cart icon">
-    <mat-icon fontSet="material-icons-outlined">shopping_basket</mat-icon>
-  </button>
+  <app-booking />
+  <app-date-format-selector />
+  <app-currency-menu />
+  <app-sign-in />
+  <app-cart />
 </mat-toolbar>

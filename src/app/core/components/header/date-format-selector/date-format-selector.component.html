@@ -1,0 +1,11 @@
+<button class="date-format-container" mat-flat-button>
+  <mat-select class="date-format" #dateFormatSelect [placeholder]="selectedDateFormat">
+    <mat-option
+      *ngFor="let dateFormat of dateFormats"
+      [value]="dateFormat"
+      (click)="selectDateFormat(dateFormatSelect.value)"
+    >
+      {{ dateFormat }}
+    </mat-option>
+  </mat-select>
+</button>

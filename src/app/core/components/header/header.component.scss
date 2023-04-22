@@ -1,20 +1,3 @@
 .header {
   @apply px-6 sm:px-2 md:px-4 lg:px-10 xl:px-[156px];
 }
-
-.date-format-container,
-.btn.currency,
-.btn.flight, .btn.sign-in {
-  @apply hidden sm:inline-flex;
-}
-
-.icon.flight, .icon.sign-in {
-  @apply sm:hidden;
-}
-
-.date-format {
-  width: 140px;
-}
-
-// TODO: ensure header stays sticky / fixed
-// TODO: update header bgc depending on route between #fff and #74767A 20%
