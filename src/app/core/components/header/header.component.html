@@ -1,4 +1,4 @@
-<mat-toolbar class="header gap-2 md:gap-6 lg:gap-10">
+<mat-toolbar class="header sticky top-0 gap-2 md:gap-6 lg:gap-10">
   <a routerLink="/" routerLinkActive="router-link-active" class="logo" aria-label="button with logo">
     <img src="assets/logo.svg" alt="logo" srcset="" />
   </a>
@@ -30,8 +30,12 @@
 
   <button class="sign-in btn" mat-flat-button>
     <mat-icon class="person icon" fontSet="material-icons-outlined">person</mat-icon>
-    <span class="hidden sm:inline-flex">Sign In</span>
+    <span>Sign In</span>
   </button>
+  <button mat-icon-button class="sign-in icon" aria-label="button with cart icon">
+    <mat-icon fontSet="material-icons-outlined">person</mat-icon>
+  </button>
+
   <button mat-icon-button class="cart icon" aria-label="button with cart icon">
     <mat-icon fontSet="material-icons-outlined">shopping_basket</mat-icon>
   </button>

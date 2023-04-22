@@ -4,11 +4,11 @@
 
 .date-format-container,
 .btn.currency,
-.btn.flight {
+.btn.flight, .btn.sign-in {
   @apply hidden sm:inline-flex;
 }
 
-.icon.flight {
+.icon.flight, .icon.sign-in {
   @apply sm:hidden;
 }
 
@@ -16,20 +16,5 @@
   width: 140px;
 }
 
-.btn.sign-in {
-  min-width: 32px;
-
-  .icon.person {
-    margin-right: unset;
-  }
-}
-
-@media (min-width: 640px) {
-  .btn.sign-in {
-    min-width: 64px;
-
-    .icon.person {
-      margin-right: 8px;
-    }
-  }
-}
+// TODO: ensure header stays sticky / fixed
+// TODO: update header bgc depending on route between #fff and #74767A 20%
