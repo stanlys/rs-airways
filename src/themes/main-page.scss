@@ -2,22 +2,22 @@
   background: top / contain no-repeat url('/assets/bg-main.jpg');
 
   .header.mat-toolbar {
-    background-color: rgba(116, 118, 122, 0.2) !important;
+    background-color: rgba(116, 118, 122, 0.2);
 
     .mat-icon,
     .mdc-button,
     .mat-mdc-select-placeholder,
     .mat-mdc-select-value-text {
-      color: #fff !important;
+      color: #fff;
     }
 
     .mat-mdc-unelevated-button {
-      background-color: rgba(241, 243, 246, 0.15) !important;
-      border: 1px solid #cecece !important;
+      background-color: rgba(241, 243, 246, 0.15);
+      border: 1px solid #cecece;
     }
   }
 }
 
 .header .mat-mdc-select-placeholder {
-  transition: none !important;
+  transition: none;
 }
