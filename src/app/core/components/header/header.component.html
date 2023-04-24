@@ -2,9 +2,10 @@
   <a routerLink="/" routerLinkActive="router-link-active" class="logo" aria-label="button with logo">
     <img src="assets/logo.svg" alt="logo" srcset="" />
   </a>
-  <span *ngIf="!mainPage" class="spacer flex-auto xl:hidden"></span>
-  <span *ngIf="mainPage; else progressIndicator" class="spacer flex-auto"></span>
-  <app-booking />
+  <ng-container *ngIf="mainPage; else progressIndicator">
+    <span class="spacer flex-auto"></span>
+    <app-booking />
+  </ng-container>
   <app-date-format-selector />
   <app-currency-menu />
   <app-sign-in />
@@ -12,5 +13,6 @@
 </mat-toolbar>
 
 <ng-template #progressIndicator>
+  <span class="spacer flex-auto xl:hidden"></span>
   <app-progress-indicator />
 </ng-template>
