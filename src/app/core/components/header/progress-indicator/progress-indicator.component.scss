@@ -1,8 +1,7 @@
 :host {
-  @apply hidden xl:flex;
+  @apply hidden xl:flex flex-auto;
 }
 
-.mat-stepper-horizontal .mat-horizontal-content-container {
-  display: none;
-  background-color: black;
+.stepper {
+  @apply flex-auto;
 }
