@@ -8,12 +8,16 @@ import { filter } from 'rxjs';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
+  public mainPage = false;
+
   constructor(router: Router) {
     router.events.pipe(filter((e) => e instanceof NavigationEnd)).subscribe((e) => {
       if (e instanceof NavigationEnd && e.urlAfterRedirects.includes('main')) {
         document.body.classList.add('main-page');
+        this.mainPage = true;
       } else {
         document.body.classList.remove('main-page');
+        this.mainPage = false;
       }
     });
   }

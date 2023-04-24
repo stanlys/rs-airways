@@ -1,0 +1,14 @@
+.header {
+  .mat-horizontal-content-container {
+    display: none;
+    background-color: black;
+  }
+
+  .mat-horizontal-stepper-header {
+    height: unset;
+  }
+
+  .mat-stepper-horizontal {
+    background-color: unset;
+  }
+}
