@@ -1,0 +1,42 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+@import 'default/colors';
+@import 'default/typography';
+
+@mixin shadow() {
+  background: rgba(206, 206, 206, 0.11);
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 16px;
+}
+
+$my-primary: mat.define-palette($brand-primary, 50, 100, 500);
+
+$my-error: mat.define-palette($brand-error, 0, 0, 0);
+
+$my-accent: mat.define-palette($brand-accent, 0, 30, 30);
+
+$my-disable: mat.define-palette($brand-neutral, 100, 0, 30);
+
+$my-neutral: mat.define-palette($brand-secondary, 90, 0, 100);
+
+$rs-airline-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $my-primary,
+      accent: $my-accent,
+      warn: $my-error,
+      disable: $my-disable,
+      forms: $my-neutral,
+    ),
+    typography: $fontConfig,
+  )
+);
+
+@include mat.all-component-themes($rs-airline-theme);
+
+@mixin button_border() {
+  border: 1px solid #cecece;
+  border-radius: 4px;
+}
