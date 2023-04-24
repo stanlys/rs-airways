@@ -8,7 +8,7 @@ import { filter } from 'rxjs';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  public mainPage = false;
+  public mainPage = true;
 
   constructor(router: Router) {
     router.events.pipe(filter((e) => e instanceof NavigationEnd)).subscribe((e) => {
