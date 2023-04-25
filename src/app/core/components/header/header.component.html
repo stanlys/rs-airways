@@ -10,12 +10,10 @@
       </ng-container>
       <app-date-format-selector />
       <app-currency-menu />
-      <span (click)="loggedIn = !loggedIn">
-        <ng-container *ngIf="!loggedIn; else account">
-          <app-sign-in />
-        </ng-container>
-      </span>
-      <app-cart [loggedIn]="loggedIn" />
+      <ng-container *ngIf="(loggedIn | async) === false; else account">
+        <app-sign-in />
+      </ng-container>
+      <app-cart />
     </div>
   </div>
 </mat-toolbar>

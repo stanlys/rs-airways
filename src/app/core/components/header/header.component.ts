@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -10,9 +11,9 @@ import { filter } from 'rxjs';
 export class HeaderComponent {
   public mainPage = true;
 
-  public loggedIn = false;
+  public loggedIn = this.authService.loggedIn;
 
-  constructor(router: Router) {
+  constructor(router: Router, private authService: AuthService) {
     router.events.pipe(filter((e) => e instanceof NavigationEnd)).subscribe((e) => {
       if (e instanceof NavigationEnd && e.urlAfterRedirects.includes('main')) {
         document.body.classList.add('main-page');
@@ -24,6 +25,6 @@ export class HeaderComponent {
     });
   }
 
-  // TODO: implement auth
+  // TODO: display auth forms modal
   // public showAuth(): void {}
 }
