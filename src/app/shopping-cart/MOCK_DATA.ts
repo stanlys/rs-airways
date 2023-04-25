@@ -7,7 +7,16 @@ export interface IFlight {
   price: number;
 }
 
-export const SHOPPING_CART_COLUMNS = ['number', 'flights', 'typeTrip', 'dateTime', 'passengers', 'price', 'control'];
+export const SHOPPING_CART_COLUMNS = [
+  'checkbox',
+  'number',
+  'flights',
+  'typeTrip',
+  'dateTime',
+  'passengers',
+  'price',
+  'control',
+];
 
 export const FLIGHTS: IFlight[] = [
   {

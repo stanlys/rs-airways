@@ -1,6 +1,33 @@
 @import './../../../styles.scss';
 
+mat-card {
+  background: #ffffff;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+
+mat-card-title {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28px;
+  color: #11397e;
+}
+
 .mdc-data-table__header-row {
-  background: red !important;
+  background: gray !important;
   border: 0.5px solid #e9edf1;
+}
+
+.totalPrice {
+  background: linear-gradient(90deg, #11397e 0%, #005abc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 36px;
 }
