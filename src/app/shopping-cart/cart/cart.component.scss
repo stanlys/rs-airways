@@ -31,3 +31,14 @@ mat-card-title {
   font-size: 30px;
   line-height: 36px;
 }
+
+.payment_btn {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+
+  .btn {
+    width: 126px;
+    height: 60px;
+  }
+}

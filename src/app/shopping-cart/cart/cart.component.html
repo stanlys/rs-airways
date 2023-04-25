@@ -1,4 +1,4 @@
-<mat-card class="container mx-auto my-10 border border-indigo-600">
+<mat-card class="container mx-auto my-10 border p-4">
   <mat-card-header>
     <mat-card-title color="primary">Cart</mat-card-title>
   </mat-card-header>
@@ -55,6 +55,18 @@
       <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
     </table>
     <mat-divider> </mat-divider>
+    <mat-card-footer class="">
+      <div class="pt-11 flex justify-between align-baseline">
+        <mat-form-field appearance="fill">
+          <mat-label>Input</mat-label>
+          <input matInput />
+        </mat-form-field>
+        <div class="payment_btn">
+          <span> selected</span>
+          <button mat-raised-button class="btn">Payment</button>
+        </div>
+      </div>
+    </mat-card-footer>
   </mat-card-content>
 </mat-card>
 
