@@ -3,3 +3,7 @@
 .btn {
   @include button_border;
 }
+
+.test {
+  background-color: get-color($brand-secondary, 50);
+}

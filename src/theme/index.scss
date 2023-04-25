@@ -40,3 +40,7 @@ $rs-airline-theme: mat.define-light-theme(
   border: 1px solid #cecece;
   border-radius: 4px;
 }
+
+@function get-color($color, $key: '0') {
+  @return map-get($color, $key);
+}
