@@ -11,7 +11,7 @@ import { CartComponent } from './components/header/cart/cart.component';
 import { SignInComponent } from './components/header/sign-in/sign-in.component';
 import { BookingComponent } from './components/header/booking/booking.component';
 import { ProgressIndicatorComponent } from './components/header/progress-indicator/progress-indicator.component';
-import { AccountComponent } from './components/account/account.component';
+import { AccountComponent } from './components/header/account/account.component';
 
 @NgModule({
   declarations: [
