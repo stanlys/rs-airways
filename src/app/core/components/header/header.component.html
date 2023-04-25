@@ -1,18 +1,30 @@
-<mat-toolbar class="header sticky top-0 gap-2 md:gap-6 lg:gap-10 justify-center">
-  <a routerLink="/" routerLinkActive="router-link-active" class="logo" aria-label="button with logo">
-    <img src="assets/logo.svg" alt="logo" srcset="" />
-  </a>
-  <ng-container *ngIf="mainPage; else progressIndicator">
-    <span class="spacer flex-auto"></span>
-    <app-booking />
-  </ng-container>
-  <app-date-format-selector />
-  <app-currency-menu />
-  <app-sign-in />
-  <app-cart />
+<mat-toolbar class="header sticky top-0 justify-center">
+  <div class="content flex items-center max-w-[1128px] w-full justify-between">
+    <a routerLink="/" routerLinkActive="router-link-active" class="logo" aria-label="button with logo">
+      <img src="assets/logo.svg" alt="logo" srcset="" />
+    </a>
+    <div class="controls flex items-center">
+      <ng-container *ngIf="mainPage; else progressIndicator">
+        <span class="spacer flex-auto"></span>
+        <app-booking />
+      </ng-container>
+      <app-date-format-selector />
+      <app-currency-menu />
+      <span (click)="loggedIn = !loggedIn">
+        <ng-container *ngIf="!loggedIn; else account">
+          <app-sign-in />
+        </ng-container>
+      </span>
+      <app-cart [loggedIn]="loggedIn" />
+    </div>
+  </div>
 </mat-toolbar>
 
 <ng-template #progressIndicator>
-  <span class="spacer flex-auto xl:hidden"></span>
+  <span class="spacer flex-auto lg:hidden"></span>
   <app-progress-indicator />
+</ng-template>
+
+<ng-template #account>
+  <app-account />
 </ng-template>

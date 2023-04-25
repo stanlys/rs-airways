@@ -10,6 +10,8 @@ import { filter } from 'rxjs';
 export class HeaderComponent {
   public mainPage = true;
 
+  public loggedIn = false;
+
   constructor(router: Router) {
     router.events.pipe(filter((e) => e instanceof NavigationEnd)).subscribe((e) => {
       if (e instanceof NavigationEnd && e.urlAfterRedirects.includes('main')) {

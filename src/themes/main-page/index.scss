@@ -4,6 +4,10 @@
   .header.mat-toolbar {
     background-color: rgba(116, 118, 122, 0.2);
 
+    .controls {
+      @apply gap-2 md:gap-4 lg:gap-10;
+    }
+
     .mat-icon,
     .mdc-button,
     .mat-mdc-select-placeholder,

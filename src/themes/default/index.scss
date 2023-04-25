@@ -1,4 +1,10 @@
 .header {
+  height: 88px;
+
+  .controls {
+    gap: 1rem;
+  }
+
   .mat-horizontal-content-container {
     display: none;
     background-color: black;
