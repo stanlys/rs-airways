@@ -1,0 +1,22 @@
+@use '@angular/material' as mat;
+
+@import 'default';
+
+@include mat.core();
+
+@mixin shadow() {
+  background: rgba(206, 206, 206, 0.11);
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 16px;
+}
+
+@include mat.all-component-themes($rs-airline-theme);
+
+@mixin button_border() {
+  border: 1px solid #cecece;
+  border-radius: 4px;
+}
+
+@function get-color($color, $key: '0') {
+  @return map-get($color, $key);
+}
