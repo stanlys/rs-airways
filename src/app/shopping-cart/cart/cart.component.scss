@@ -1,23 +1,44 @@
-@import './../../../styles.scss';
+@use '@angular/material' as m;
+@use './../../../styles.scss';
+@use './../../../themes/default/colors' as c;
+@use './../../../themes/default/typography' as t;
+@use './../../../themes/util' as util;
+@use './../../../themes/default/mixins' as mix;
 
 mat-card {
-  background: #ffffff;
+  background: c.$white;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
 }
 
+// $my-typography: m.define-typography-config();
+// @debug $my-typography;
+
 mat-card-title {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 28px;
-  color: #11397e;
+  @include mix.title-large-typography();
+  color: c.$primary-color;
 }
 
 .mdc-data-table__header-row {
-  background: gray !important;
+  background: util.get-color(c.$brand-neutral, 80) !important;
   border: 0.5px solid #e9edf1;
+}
+
+.mat-mdc-header-cell {
+  @include mix.subtitle-medium();
+}
+
+.btn-addtrip {
+  background: util.get-color(c.$brand-secondary, 90);
+
+  .btn-addtrip-text {
+    color: c.$primary-color;
+  }
+}
+
+.selected {
+  @include mix.body-large();
+  color: util.get-color(c.$brand-neutral, 30);
 }
 
 .totalPrice {
@@ -25,11 +46,7 @@ mat-card-title {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 30px;
-  line-height: 36px;
+  @include mix.subtitle-large-typography();
 }
 
 .payment_btn {

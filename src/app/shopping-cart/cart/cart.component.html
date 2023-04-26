@@ -1,69 +1,81 @@
-<mat-card class="container mx-auto my-10 border p-4">
+<mat-card class="container mx-auto my-10 border p-4 mat-body-strong">
   <mat-card-header>
     <mat-card-title color="primary">Cart</mat-card-title>
   </mat-card-header>
-  <mat-card-content class="p-29">
+  <mat-card-content class="p-29 mt-8">
     <table class="border-collapse mx-auto w-full" mat-table [dataSource]="flights">
-      <ng-container matColumnDef="checkbox" stickyEnd>
-        <th mat-header-cell *matHeaderCellDef>&nbsp;</th>
-        <td mat-cell *matCellDef="let element">
-          <mat-checkbox></mat-checkbox>
+      <ng-container matColumnDef="checkbox" sticky>
+        <th mat-header-cell *matHeaderCellDef class="subtitle">
+          <mat-checkbox
+            color="primary"
+            (change)="$event ? toggleAllRows() : null"
+            [checked]="selection.hasValue() && isAllSelected()"
+          >
+          </mat-checkbox>
+        </th>
+        <td mat-cell *matCellDef="let element" class="w-4">
+          <mat-checkbox
+            color="primary"
+            [checked]="selection.isSelected(element)"
+            (change)="$event ? selection.toggle(element) : null"
+          ></mat-checkbox>
         </td>
-        <td mat-footer-cell *matFooterCellDef>&nbsp;</td>
       </ng-container>
       <ng-container matColumnDef="number">
         <th mat-header-cell *matHeaderCellDef class="table_head">No.</th>
         <td mat-cell *matCellDef="let el">{{ el.number }}</td>
-        <td mat-footer-cell *matFooterCellDef><button (click)="addTrip()">+ Add new trip</button></td>
       </ng-container>
       <ng-container matColumnDef="flights">
         <th mat-header-cell *matHeaderCellDef>Flight</th>
         <td mat-cell *matCellDef="let el">{{ el.flights }}</td>
-        <td mat-footer-cell *matFooterCellDef></td>
       </ng-container>
       <ng-container matColumnDef="typeTrip">
         <th mat-header-cell *matHeaderCellDef>Type trip</th>
         <td mat-cell *matCellDef="let el">{{ el.typeTrip }}</td>
-        <td mat-footer-cell *matFooterCellDef></td>
       </ng-container>
       <ng-container matColumnDef="dateTime">
         <th mat-header-cell *matHeaderCellDef>Date & Time</th>
         <td mat-cell *matCellDef="let el">{{ el.dateTime }}</td>
-        <td mat-footer-cell *matFooterCellDef></td>
       </ng-container>
       <ng-container matColumnDef="passengers">
         <th mat-header-cell *matHeaderCellDef>Passengers</th>
         <td mat-cell *matCellDef="let el">{{ el.passengers }}</td>
-        <td mat-footer-cell *matFooterCellDef>Total</td>
       </ng-container>
       <ng-container matColumnDef="price">
         <th mat-header-cell *matHeaderCellDef>Price</th>
         <td mat-cell *matCellDef="let el">{{ el.price | currency : '€' }}</td>
-        <td mat-footer-cell *matFooterCellDef class="totalPrice">{{ getTotalPrice() | currency : '€' }}</td>
       </ng-container>
       <ng-container matColumnDef="control" stickyEnd>
         <th mat-header-cell *matHeaderCellDef>&nbsp;</th>
-        <td mat-cell *matCellDef="let element">
-          <button mat-icon-button [matMenuTriggerFor]="menu">
+        <td mat-cell *matCellDef="let el">
+          <button mat-icon-button [matMenuTriggerFor]="menu" [matMenuTriggerData]="{ myobject: el }">
             <mat-icon>more_vert</mat-icon>
           </button>
         </td>
-        <td mat-footer-cell *matFooterCellDef>&nbsp;</td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-      <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
     </table>
     <mat-divider> </mat-divider>
     <mat-card-footer class="">
-      <div class="pt-11 flex justify-between align-baseline">
+      <div class="mt-4 mb-4 flex justify-between align-middle">
+        <button (click)="addTrip()" mat-button class="btn-addtrip">
+          <span class="btn-addtrip-text mx-8 my-4"> + Add new trip </span>
+        </button>
+        <span *ngIf="this.selection.selected.length > 0">
+          Total:
+          <span class="totalPrice"> {{ getTotalPrice() | currency : '€' }}</span>
+        </span>
+      </div>
+      <mat-divider> </mat-divider>
+      <div class="pt-11 flex justify-between align-baseline" *ngIf="this.selection.selected.length > 0">
         <mat-form-field appearance="fill">
           <mat-label>Input</mat-label>
           <input matInput />
         </mat-form-field>
         <div class="payment_btn">
-          <span> selected</span>
-          <button mat-raised-button class="btn">Payment</button>
+          <span class="selected"> {{ this.selection.selected.length }} selected</span>
+          <button mat-raised-button class="btn" color="primary">Payment</button>
         </div>
       </div>
     </mat-card-footer>
@@ -71,6 +83,13 @@
 </mat-card>
 
 <mat-menu #menu="matMenu">
-  <button mat-menu-item>Item 1</button>
-  <button mat-menu-item>Item 2</button>
+  <ng-template matMenuContent let-myobject="myobject">
+    <button mat-menu-item (click)="editWithCheckbox(myobject)">
+      <span class="pl-3"> Edit </span>
+    </button>
+    <mat-divider></mat-divider>
+    <button mat-menu-item (click)="deleteWithCheckbox(myobject)">
+      <span class="pl-3"> Delete </span>
+    </button>
+  </ng-template>
 </mat-menu>
