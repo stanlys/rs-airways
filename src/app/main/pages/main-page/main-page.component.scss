@@ -1,3 +1,14 @@
+@use '../../../../themes/default/mixins' as mx;
+@use '../../../../themes/util' as u;
+@use '../../../../themes/default/colors' as c;
+
+.btn {
+  @include mx.button_border;
+}
+
+.test {
+  background-color: u.get-color(c.$brand-secondary, 50);
+}
 @use '../../../../styles/mixins.scss' as mx;
 @use '../../../../styles/vars.scss' as v;
 
