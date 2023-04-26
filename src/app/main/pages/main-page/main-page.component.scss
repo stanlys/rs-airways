@@ -1,9 +1,11 @@
-@import '../../../../themes';
+@use '../../../../themes/default/mixins' as mx;
+@use '../../../../themes/util' as u;
+@use '../../../../themes/default/colors' as c;
 
 .btn {
-  @include button_border;
+  @include mx.button_border;
 }
 
 .test {
-  background-color: get-color($brand-secondary, 50);
+  background-color: u.get-color(c.$brand-secondary, 50);
 }
