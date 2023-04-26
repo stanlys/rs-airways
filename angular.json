@@ -24,7 +24,11 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": ["src/favicon.ico", "src/assets"],
+<<<<<<< HEAD
             "styles": ["src/styles.scss"],
+=======
+            "styles": ["@angular/material/prebuilt-themes/deeppurple-amber.css", "src/styles.scss"],
+>>>>>>> a60971060e6cba26c201a3abb4dcffc3e1b16189
             "scripts": []
           },
           "configurations": {
@@ -79,7 +83,11 @@
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": ["src/favicon.ico", "src/assets"],
+<<<<<<< HEAD
             "styles": ["@angular/material/prebuilt-themes/deeppurple-amber.css", "src/styles.scss"],
+=======
+            "styles": ["src/styles.scss"],
+>>>>>>> a60971060e6cba26c201a3abb4dcffc3e1b16189
             "scripts": []
           }
         },
