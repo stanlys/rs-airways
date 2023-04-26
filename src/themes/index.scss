@@ -10,4 +10,4 @@
   border-radius: 16px;
 }
 
-@include mat.all-component-themes(default.$rs-airline-theme);
+@include mat.button-theme(default.$rs-airline-theme);
