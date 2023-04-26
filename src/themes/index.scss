@@ -1,7 +1,6 @@
 @use '@angular/material' as mat;
 @use 'main-page';
-
-@import 'default';
+@use 'default' as default;
 
 @include mat.core();
 
@@ -11,4 +10,4 @@
   border-radius: 16px;
 }
 
-@include mat.all-component-themes($rs-airline-theme);
+@include mat.all-component-themes(default.$rs-airline-theme);

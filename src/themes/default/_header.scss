@@ -1,0 +1,19 @@
+.header.mat-toolbar {
+  height: 88px;
+
+  .controls {
+    gap: 1rem;
+  }
+
+  .mat-horizontal-content-container {
+    display: none;
+  }
+
+  .mat-horizontal-stepper-header {
+    height: unset;
+  }
+
+  .mat-stepper-horizontal {
+    background-color: unset;
+  }
+}

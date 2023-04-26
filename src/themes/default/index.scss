@@ -1,7 +1,7 @@
 @use '@angular/material' as mat;
-
 @use 'colors' as c;
 @use 'typography' as t;
+@use 'header';
 
 $my-primary: mat.define-palette(c.$brand-primary, 50, 100, 500);
 
@@ -25,24 +25,3 @@ $rs-airline-theme: mat.define-light-theme(
     typography: t.$fontConfig,
   )
 );
-
-.header {
-  height: 88px;
-
-  .controls {
-    gap: 1rem;
-  }
-
-  .mat-horizontal-content-container {
-    display: none;
-    background-color: black;
-  }
-
-  .mat-horizontal-stepper-header {
-    height: unset;
-  }
-
-  .mat-stepper-horizontal {
-    background-color: unset;
-  }
-}
