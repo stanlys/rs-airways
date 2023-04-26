@@ -1,0 +1,73 @@
+:host {
+  .main-page-form {
+    width: 580px;
+    height: 390px;
+  }
+  .switch-direction-btn-container {
+    display: flex;
+    position: relative;
+    width: 100%;
+  }
+  .switch-direction-btn {
+    position: absolute;
+    box-shadow : none;
+    border: solid 1px gray;
+    background-color: white;
+
+    right: 0;
+    top: -15px;
+    z-index: 10;
+  }
+
+  .border-outline {
+    width: 532px;
+    // height: 56px;
+
+    // .mdc-text-field {
+    //   border: solid 1px blue !important;
+    //   border-radius: 4px !important;
+    // }
+
+    // .mat-mdc-text-field-wrapper {
+    //   border: 1px solid gray;
+    //   border-radius: 4px;
+    // }
+  }
+
+  // ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+  //   background-color: #fff;
+
+  //   .mdc-text-field {
+  //     border: solid 1px gray !important;
+  //     border-radius: 4px !important;
+  //   }
+  // }
+  // ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+  //   border-radius: 4px;
+  //   padding: 0.75em 0.75em 0 0.75em;
+  //   border: 1px solid #f94747;
+  // }
+
+}
+
+// .mdc-text-field {
+//   border: solid 1px gray !important;
+//   border-radius: 4px !important;
+// }
+
+.passengers-option {
+  display: flex;
+  padding: 0 16px;
+  height: 56px;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.passenger-amount {
+  button {
+    background-color: gray;
+    z-index: 10;
+    cursor: cell;
+  }
+}

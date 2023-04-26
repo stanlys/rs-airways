@@ -12,4 +12,10 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: top;
+
+  .wrapper {
+    @include mx.wrapper;
+    padding-top: 20px;
+  }
+
 }
