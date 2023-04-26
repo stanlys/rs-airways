@@ -17,6 +17,8 @@ export class CartComponent {
 
   private count = 0;
 
+  public promocode = '';
+
   public getTotalPrice(): number {
     return this.selection.selected.map((flight) => flight.price).reduce((acc, value) => acc + value, 0);
   }
@@ -52,6 +54,11 @@ export class CartComponent {
   public deleteWithCheckbox(flight: IFlight): void {
     this.count += 1;
     console.log('Delete - ', flight);
+  }
+
+  public applyPromoCode(): void {
+    this.count += 1;
+    console.log('Promocode - ', this.promocode);
   }
 
   private checkboxLabel(row?: IFlight): string {

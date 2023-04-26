@@ -30,10 +30,10 @@ mat-card-title {
 
 .btn-addtrip {
   background: util.get-color(c.$brand-secondary, 90);
+}
 
-  .btn-addtrip-text {
-    color: c.$primary-color;
-  }
+.btn-primary-color {
+  color: c.$primary-color;
 }
 
 .selected {

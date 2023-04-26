@@ -60,7 +60,7 @@
     <mat-card-footer class="">
       <div class="mt-4 mb-4 flex justify-between align-middle">
         <button (click)="addTrip()" mat-button class="btn-addtrip">
-          <span class="btn-addtrip-text mx-8 my-4"> + Add new trip </span>
+          <span class="btn-primary-color mx-8 my-4"> + Add new trip </span>
         </button>
         <span *ngIf="this.selection.selected.length > 0">
           Total:
@@ -71,7 +71,8 @@
       <div class="pt-11 flex justify-between align-baseline" *ngIf="this.selection.selected.length > 0">
         <mat-form-field appearance="fill">
           <mat-label>Input</mat-label>
-          <input matInput />
+          <input matInput [(ngModel)]="promocode" />
+          <button mat-button matSuffix (click)="applyPromoCode()"><span class="btn-primary-color">APPLY</span></button>
         </mat-form-field>
         <div class="payment_btn">
           <span class="selected"> {{ this.selection.selected.length }} selected</span>
