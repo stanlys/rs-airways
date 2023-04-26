@@ -1,0 +1,27 @@
+@use '@angular/material' as mat;
+
+@import 'colors';
+@import 'typography';
+
+$my-primary: mat.define-palette($brand-primary, 50, 100, 500);
+
+$my-error: mat.define-palette($brand-error, 0, 0, 0);
+
+$my-accent: mat.define-palette($brand-accent, 0, 30, 30);
+
+$my-disable: mat.define-palette($brand-neutral, 100, 0, 30);
+
+$my-neutral: mat.define-palette($brand-secondary, 90, 0, 100);
+
+$rs-airline-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $my-primary,
+      accent: $my-accent,
+      warn: $my-error,
+      disable: $my-disable,
+      forms: $my-neutral,
+    ),
+    typography: $fontConfig,
+  )
+);
