@@ -9,6 +9,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   exports: [
@@ -22,6 +25,9 @@ import { MatStepperModule } from '@angular/material/stepper';
     MatMenuModule,
     MatSelectModule,
     MatStepperModule,
+    MatTabsModule,
+    MatDividerModule,
+    MatProgressSpinnerModule,
   ],
 })
 export class MaterialModule {}

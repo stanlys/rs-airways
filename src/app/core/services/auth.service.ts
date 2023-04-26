@@ -28,8 +28,10 @@ export class AuthService {
   }
 
   // TODO: implement signup
-  // public signup(): void {
-  // }
+  public signup(): void {
+    console.log(this);
+    console.log('signing up!');
+  }
 
   private determineLoginStatus(): void {
     const tokenItem = localStorage.getItem(this.tokenKey);

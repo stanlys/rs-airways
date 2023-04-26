@@ -1,0 +1,28 @@
+<div class="modal-background h-full w-full z-10 top-0 left-0 absolute bg-black bg-opacity-10" (click)="close()"></div>
+
+<div class="modal-container h-full w-full top-0 left-0 absolute">
+  <div class="modal-inner relative max-w-[534px] mx-auto top-[52px] z-20">
+    <div class="spacer h-10"></div>
+    <mat-icon
+      class="self-end opacity-25 hover:opacity-100 cursor-pointer absolute right-0 sm:right-3 top-2 sm:top-6 z-10"
+      aria-hidden="false"
+      aria-label="close icon"
+      fontIcon="close"
+      (click)="close()"
+    ></mat-icon>
+    <div class="modal-content auth rounded-lg overflow-hidden max-w-[494px] w-full">
+      <mat-card>
+        <mat-card-content>
+          <mat-tab-group class="px-4 py-2">
+            <mat-tab class="h-[586px]" label="Log in">
+              <app-login-tab (closeModal)="close()" />
+            </mat-tab>
+            <mat-tab label="Sign up">
+              <app-signup-tab (closeModal)="close()" />
+            </mat-tab>
+          </mat-tab-group>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

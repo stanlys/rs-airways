@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { AuthService } from '../../../services/auth.service';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-sign-in',
@@ -7,9 +6,11 @@ import { AuthService } from '../../../services/auth.service';
   styleUrls: ['./sign-in.component.scss'],
 })
 export class SignInComponent {
-  constructor(private authService: AuthService) {}
+  @Input() public authModalActive!: boolean;
 
-  public login(): void {
-    this.authService.login();
+  @Output() public authDisplay = new EventEmitter<boolean>();
+
+  public toggleAuth(): void {
+    this.authDisplay.emit(!this.authModalActive);
   }
 }

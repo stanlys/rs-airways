@@ -1,0 +1,39 @@
+<div class="flex items-center w-full">
+  <mat-divider class="flex-auto"></mat-divider>
+  <span class="p-3 text-xs">or sign up with your email</span>
+  <mat-divider class="flex-auto"></mat-divider>
+</div>
+
+<form class="form auth-tab flex flex-col gap-5 w-full" (ngSubmit)="onSubmit()" [formGroup]="form">
+  <mat-form-field *ngIf="form.controls['login'] as control" class="form-field" appearance="fill">
+    <mat-label>Email</mat-label>
+    <input name="login" [formControl]="control" matInput type="text" />
+    <mat-hint *ngIf="control.errors?.['required']">Please enter email</mat-hint>
+    <mat-error *ngIf="control.errors?.['email']">Must be correct email</mat-error>
+    <mat-error *ngIf="control.errors?.['minlength']">Must be at least 3 characters</mat-error>
+    <mat-error *ngIf="control.errors?.['maxlength']">Must be at most 16 characters</mat-error>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="form.controls['password'] as control" class="form-field" appearance="fill">
+    <mat-label>Password</mat-label>
+    <input name="password" [formControl]="control" matInput type="password" />
+    <mat-icon matSuffix>info_outline</mat-icon>
+    <mat-hint *ngIf="control.errors?.['required']">Please enter password</mat-hint>
+    <mat-error *ngIf="control.errors?.['minlength']">Must be at least 6 characters</mat-error>
+    <mat-error *ngIf="control.errors?.['maxlength']">Must be at most 32 characters</mat-error>
+    <mat-error *ngIf="control.errors?.['passwordStrength'] as message" class="err strength"
+      >Must have {{ message }}</mat-error
+    >
+  </mat-form-field>
+
+  <button class="btn submit" mat-raised-button color="primary" type="submit" [disabled]="!form.valid">
+    <ng-container *ngIf="(isLoading$ | async) !== true; else loader">Sign up</ng-container>
+  </button>
+</form>
+
+<ng-template #loader>
+  <div class="flex gap-4 items-center">
+    <mat-spinner style="height: 20px; width: 20px" color="accent"></mat-spinner>
+    <span>Processing...</span>
+  </div>
+</ng-template>

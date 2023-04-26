@@ -1,0 +1,44 @@
+<div class="flex items-center w-full">
+  <mat-divider class="flex-auto"></mat-divider>
+  <span class="p-3 text-xs">or log in with your email</span>
+  <mat-divider class="flex-auto"></mat-divider>
+</div>
+
+<form class="form auth-tab flex flex-col gap-5 w-full" (ngSubmit)="onSubmit()" [formGroup]="form">
+  <mat-form-field *ngIf="form.controls['login'] as control" class="form-field" appearance="fill">
+    <mat-label>Email</mat-label>
+    <input name="login" [formControl]="control" matInput type="text" />
+    <mat-error *ngIf="control.errors?.['email']">Please enter correct email</mat-error>
+    <mat-error *ngIf="control.errors?.['maxlength']">The login can't exceed 16 characters</mat-error>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="form.controls['password'] as control" class="form-field" appearance="fill">
+    <mat-label>Password</mat-label>
+    <input name="password" [formControl]="control" matInput [type]="hidePassword ? 'password' : 'text'" />
+    <mat-icon matSuffix (click)="hidePassword = !hidePassword">
+      {{ hidePassword ? 'visibility' : 'visibility_off' }}
+    </mat-icon>
+    <mat-error *ngIf="control.errors?.['maxlength']">The login can't exceed 32 characters</mat-error>
+    <mat-error *ngIf="control.errors?.['passwordStrength'] as message" class="err strength"
+      >The password must have {{ message }}</mat-error
+    >
+  </mat-form-field>
+
+  <button class="btn password-recovery" color="primary">Forgot password?</button>
+  <button
+    class="btn submit"
+    mat-raised-button
+    color="primary"
+    type="submit"
+    [disabled]="!form.valid || (isLoading$ | async)"
+  >
+    <ng-container *ngIf="(isLoading$ | async) !== true; else loader">Log in</ng-container>
+  </button>
+</form>
+
+<ng-template #loader>
+  <div class="flex gap-4 items-center">
+    <mat-spinner style="height: 20px; width: 20px" color="accent"></mat-spinner>
+    <span>Processing...</span>
+  </div>
+</ng-template>

@@ -13,6 +13,8 @@ export class HeaderComponent {
 
   public loggedIn = this.authService.loggedIn;
 
+  public authModalActive = true;
+
   constructor(router: Router, private authService: AuthService) {
     router.events.pipe(filter((e) => e instanceof NavigationEnd)).subscribe((e) => {
       if (e instanceof NavigationEnd && e.urlAfterRedirects.includes('main')) {
@@ -24,7 +26,4 @@ export class HeaderComponent {
       }
     });
   }
-
-  // TODO: display auth forms modal
-  // public showAuth(): void {}
 }

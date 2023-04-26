@@ -12,6 +12,9 @@ import { SignInComponent } from './components/header/sign-in/sign-in.component';
 import { BookingComponent } from './components/header/booking/booking.component';
 import { ProgressIndicatorComponent } from './components/header/progress-indicator/progress-indicator.component';
 import { AccountComponent } from './components/header/account/account.component';
+import { AuthComponent } from './components/auth/auth.component';
+import { LoginTabComponent } from './components/auth/login-tab/login-tab.component';
+import { SignupTabComponent } from './components/auth/signup-tab/signup-tab.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +27,9 @@ import { AccountComponent } from './components/header/account/account.component'
     BookingComponent,
     ProgressIndicatorComponent,
     AccountComponent,
+    AuthComponent,
+    LoginTabComponent,
+    SignupTabComponent,
   ],
   imports: [CommonModule, SharedModule, ReactiveFormsModule],
   exports: [HeaderComponent, FooterComponent],

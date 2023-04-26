@@ -1,0 +1,19 @@
+.auth.modal-content {
+  .mat-mdc-tab-body-content {
+    overflow: hidden;
+  }
+}
+
+.form.auth-tab {
+  .form-field {
+    width: 100%;
+  }
+
+  .err.strength {
+    width: 75%;
+  }
+
+  .btn.password-recovery {
+    align-self: flex-end;
+  }
+}

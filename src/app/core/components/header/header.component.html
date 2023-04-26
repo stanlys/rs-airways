@@ -3,20 +3,27 @@
     <a routerLink="/" routerLinkActive="router-link-active" class="logo" aria-label="button with logo">
       <img src="assets/logo.svg" alt="logo" srcset="" />
     </a>
+
     <div class="controls flex items-center">
       <ng-container *ngIf="mainPage; else progressIndicator">
         <span class="spacer flex-auto"></span>
         <app-booking />
       </ng-container>
+
       <app-date-format-selector />
+
       <app-currency-menu />
+
       <ng-container *ngIf="(loggedIn | async) === false; else account">
-        <app-sign-in />
+        <app-sign-in [authModalActive]="authModalActive" (authDisplay)="authModalActive = $event" />
       </ng-container>
+
       <app-cart />
     </div>
   </div>
 </mat-toolbar>
+
+<app-auth *ngIf="authModalActive" (closeModal)="authModalActive = false" />
 
 <ng-template #progressIndicator>
   <span class="spacer flex-auto lg:hidden"></span>
