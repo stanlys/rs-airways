@@ -1,3 +1,5 @@
+@use 'mixins' as mx;
+
 .header.mat-toolbar {
   height: 88px;
 
@@ -15,5 +17,9 @@
 
   .mat-stepper-horizontal {
     background-color: unset;
+  }
+
+  .mat-mdc-unelevated-button {
+    @include mx.button_border;
   }
 }
