@@ -58,7 +58,7 @@
     </table>
     <mat-divider> </mat-divider>
     <mat-card-footer>
-      <div class="mt-4 mb-4 flex justify-between align-middle">
+      <div class="mt-4 mb-4 flex justify-between align-middle flex-col md:flex-row">
         <button (click)="addTrip()" mat-button class="btn-addtrip">
           <span class="btn-primary-color mx-8 my-4"> + Add new trip </span>
         </button>
@@ -68,7 +68,10 @@
         </span>
       </div>
       <mat-divider> </mat-divider>
-      <div class="pt-11 flex justify-between align-baseline" *ngIf="this.selection.selected.length > 0">
+      <div
+        class="pt-11 flex justify-between align-baseline flex-col md:flex-row"
+        *ngIf="this.selection.selected.length > 0"
+      >
         <mat-form-field appearance="fill">
           <mat-label>Input</mat-label>
           <input matInput [(ngModel)]="promocode" />
