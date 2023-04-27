@@ -6,7 +6,8 @@
     overflow: hidden;
   }
 
-  .btn {
+  .mdc-button,
+  .mat-button-toggle {
     font-weight: 500;
   }
 
@@ -33,5 +34,10 @@
 
   .anchor[color='primary'] {
     color: c.$primary-color;
+  }
+
+  .mat-button-toggle-group-appearance-standard,
+  .mat-button-toggle-group-appearance-standard .mat-button-toggle + .mat-button-toggle {
+    border-color: #74767a;
   }
 }

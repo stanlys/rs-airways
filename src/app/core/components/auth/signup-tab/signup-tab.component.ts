@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subject, delay, of } from 'rxjs';
 
+import { MatButtonToggleGroup } from '@angular/material/button-toggle';
 import { passwordStrengthValidator } from '../../../directives/password-strength-validator.directive';
 import { AuthService } from '../../../services/auth.service';
 
@@ -12,6 +13,7 @@ interface SignupForm {
   lastName: FormControl<string | null>;
   birthDate: FormControl<Date | null>;
   confirm: FormControl<boolean | null>;
+  gender: FormControl<string | null>;
 }
 
 @Component({
@@ -46,6 +48,7 @@ export class SignupTabComponent {
       lastName: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z]+')]),
       birthDate: new FormControl(null, [Validators.required]),
       confirm: new FormControl(null, [Validators.required]),
+      gender: new FormControl('', [Validators.required]),
     });
   }
 
@@ -62,7 +65,7 @@ export class SignupTabComponent {
       .pipe(delay(300))
       .subscribe(() => {
         this.isLoading$.next(false);
-        this.close();
+        // this.close();
       });
   }
 }
