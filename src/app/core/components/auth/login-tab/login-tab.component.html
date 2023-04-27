@@ -14,8 +14,18 @@
 
   <mat-form-field *ngIf="form.controls['password'] as control" class="form-field" appearance="fill">
     <mat-label>Password</mat-label>
-    <input name="password" [formControl]="control" matInput [type]="hidePassword ? 'password' : 'text'" />
-    <mat-icon matSuffix (click)="hidePassword = !hidePassword">
+    <input
+      name="password"
+      [formControl]="control"
+      matInput
+      #passwordInput="matInput"
+      [type]="hidePassword ? 'password' : 'text'"
+    />
+    <mat-icon
+      [ngClass]="['icon', !passwordInput.focused ? 'text-[#cecece]' : '']"
+      matSuffix
+      (click)="hidePassword = !hidePassword"
+    >
       {{ hidePassword ? 'visibility' : 'visibility_off' }}
     </mat-icon>
     <mat-error *ngIf="control.errors?.['maxlength']">The login can't exceed 32 characters</mat-error>
@@ -24,16 +34,18 @@
     >
   </mat-form-field>
 
-  <button class="btn password-recovery" color="primary">Forgot password?</button>
-  <button
-    class="btn submit"
-    mat-raised-button
-    color="primary"
-    type="submit"
-    [disabled]="!form.valid || (isLoading$ | async)"
-  >
-    <ng-container *ngIf="(isLoading$ | async) !== true; else loader">Log in</ng-container>
-  </button>
+  <div class="buttons flex flex-col gap-4">
+    <button class="btn password-recovery" mat-button color="primary">Forgot password?</button>
+    <button
+      class="btn submit"
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="!form.valid || (isLoading$ | async)"
+    >
+      <ng-container *ngIf="(isLoading$ | async) !== true; else loader">Log in</ng-container>
+    </button>
+  </div>
 </form>
 
 <ng-template #loader>
