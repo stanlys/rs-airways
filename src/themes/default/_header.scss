@@ -1,4 +1,5 @@
 @use 'mixins' as mx;
+@use 'colors' as c;
 
 .header.mat-toolbar {
   height: 88px;
@@ -11,15 +12,22 @@
     display: none;
   }
 
-  .mat-horizontal-stepper-header {
-    height: unset;
-  }
-
   .mat-stepper-horizontal {
     background-color: unset;
   }
 
-  .mat-mdc-unelevated-button {
+  .mat-mdc-unelevated-button,
+  .date-format-container {
     @include mx.button_border;
+    height: 40px;
   }
+
+  .date-format-container .mdc-button__label {
+    width: 100%;
+  }
+}
+
+.date-format-panel.mat-mdc-select-panel {
+  position: absolute !important;
+  width: unset !important;
 }
