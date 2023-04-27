@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Subject, delay, of, tap } from 'rxjs';
+import { Subject, delay, of } from 'rxjs';
 
 import { passwordStrengthValidator } from '../../../directives/password-strength-validator.directive';
 import { AuthService } from '../../../services/auth.service';

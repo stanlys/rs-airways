@@ -2,3 +2,8 @@
   border: 1px solid #cecece;
   border-radius: 4px;
 }
+
+@mixin input-outline() {
+  outline: 1px solid #cecece;
+  border-radius: 4px;
+}

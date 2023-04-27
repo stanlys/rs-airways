@@ -1,0 +1,33 @@
+@use 'mixins' as mx;
+@use 'colors' as c;
+
+.auth.modal-content {
+  .mat-mdc-tab-body-content {
+    overflow: hidden;
+  }
+
+  .btn {
+    font-weight: 500;
+  }
+
+  .mat-mdc-tab-labels,
+  .mdc-text-field {
+    @include mx.button_border;
+  }
+
+  .mdc-tab[aria-selected='true'] {
+    @include mx.input-outline;
+  }
+
+  .mdc-line-ripple {
+    display: none;
+  }
+
+  .mat-mdc-form-field.ng-touched.ng-invalid .mdc-text-field {
+    border-color: c.$error-color;
+  }
+
+  .btn.password-recovery {
+    align-self: flex-end;
+  }
+}
