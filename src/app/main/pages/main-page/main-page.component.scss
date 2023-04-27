@@ -1,16 +1,16 @@
 @use '../../../../themes/default/mixins' as mx;
 @use '../../../../themes/util' as u;
 @use '../../../../themes/default/colors' as c;
-
-.btn {
-  @include mx.button_border;
-}
-
-.test {
-  background-color: u.get-color(c.$brand-secondary, 50);
-}
-@use '../../../../styles/mixins.scss' as mx;
+@use '../../../../styles/mixins.scss' as m;
 @use '../../../../styles/vars.scss' as v;
+
+// .btn {
+//   @include mx.button_border;
+// }
+
+// .test {
+//   background-color: u.get-color(c.$brand-secondary, 50);
+// }
 
 :host {
   display: flex;
@@ -25,8 +25,7 @@
   background-position: top;
 
   .wrapper {
-    @include mx.wrapper;
+    @include m.wrapper;
     padding-top: 20px;
   }
-
 }

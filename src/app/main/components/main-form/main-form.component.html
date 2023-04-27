@@ -7,30 +7,42 @@
       </mat-radio-group>
 
       <div class="flight-root">
-        <mat-form-field appearance="outline" [hideRequiredMarker]="true" class="border-outline">
+        <mat-form-field appearance="fill" [hideRequiredMarker]="true">
           <mat-label>From</mat-label>
           <input
             type="text"
             placeholder="Choose your departure point"
             aria-label="From"
-            matInput
+            matNativeControl
             [formControl]="myControl"
             [matAutocomplete]="auto"
           />
-          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+          <mat-autocomplete
+            autoActiveFirstOption
+            #auto="matAutocomplete"
+            hideSingleSelectionIndicator="true"
+            [displayWith]="showAirport"
+          >
             <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-              {{ option }}
+              <div class="city">{{ option.city }} ({{ option.code }})</div>
+              <div class="other">{{ option.name }} {{ option.country }}</div>
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
 
         <div class="switch-direction-btn-container">
-          <button mat-mini-fab class="switch-direction-btn" color="basic" aria-label="Switch-direction-icon">
+          <button
+            type="button"
+            mat-mini-fab
+            class="switch-direction-btn"
+            color="basic"
+            aria-label="Switch-direction-icon"
+          >
             <img src="../../../../assets/Vector.svg" alt="Switch direction icon" />
           </button>
         </div>
 
-        <mat-form-field appearance="fill" [hideRequiredMarker]="true" [floatLabel]="'always'" class="border-outline">
+        <mat-form-field appearance="fill" [hideRequiredMarker]="true" [floatLabel]="'always'">
           <mat-label>Destination</mat-label>
           <input
             type="text"
@@ -39,7 +51,6 @@
             matInput
             [formControl]="myControl"
             [matAutocomplete]="auto"
-            class="border-outline"
           />
           <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
             <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
@@ -49,66 +60,78 @@
         </mat-form-field>
       </div>
 
-      <mat-form-field appearance="fill" class="example-form-field">
-        <mat-label>Enter a date range</mat-label>
-        <mat-date-range-input [rangePicker]="rangePicker">
-          <input matStartDate placeholder="Start date" />
-          <input matEndDate placeholder="End date" />
-        </mat-date-range-input>
-        <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
-        <mat-datepicker-toggle matIconSuffix [for]="rangePicker"></mat-datepicker-toggle>
-        <mat-date-range-picker #rangePicker>
-          <mat-date-range-picker-actions>
-            <mat-divider></mat-divider>
-            <button mat-button matDateRangePickerCancel>Cancel</button>
-            <button mat-raised-button color="primary" matDateRangePickerApply>Apply</button>
-          </mat-date-range-picker-actions>
-        </mat-date-range-picker>
-      </mat-form-field>
+      <div class="date-passengers-container">
+        <mat-form-field appearance="fill" class="flight-dates">
+          <mat-label>Enter a date range</mat-label>
+          <mat-date-range-input [rangePicker]="rangePicker">
+            <input matStartDate placeholder="Start date" />
+            <input matEndDate placeholder="End date" />
+          </mat-date-range-input>
+          <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="rangePicker"></mat-datepicker-toggle>
+          <mat-date-range-picker #rangePicker>
+            <mat-date-range-picker-actions>
+              <mat-divider></mat-divider>
+              <button mat-button matDateRangePickerCancel>Cancel</button>
+              <button mat-raised-button color="primary" matDateRangePickerApply>Apply</button>
+            </mat-date-range-picker-actions>
+          </mat-date-range-picker>
+        </mat-form-field>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Passengers</mat-label>
-        <mat-select>
-          <mat-option value="" style="display: none"></mat-option>
-          <div class="passengers-option">
-            <div class="passenger-type">
-              <div class="passenger-name">Adult</div>
-              <div class="passenger-description">14+ years</div>
-            </div>
-            <div class="passenger-amount">
-              <button>-</button>
-              <span>2</span>
-              <button>+</button>
-            </div>
-          </div>
+        <mat-form-field appearance="fill" class="passengers-select">
+          <mat-label>Passengers</mat-label>
+          <mat-select multiple="true">
+            <mat-select-trigger> 2 Adult, 1 Infant</mat-select-trigger>
 
-          <div class="passengers-option">
-            <div class="passenger-type">
-              <div class="passenger-name">Adult</div>
-              <div class="passenger-description">14+ years</div>
-            </div>
-            <div class="passenger-amount">
-              <button>-</button>
-              <span>2</span>
-              <button>+</button>
-            </div>
-          </div>
+            <ng-template #matOption let-type="type" let-description="description" let-amount="amount">
+              <div class="passengers-option">
+                <div class="passenger-type">
+                  <div class="passenger-name">{{ type }}</div>
+                  <div class="passenger-description">{{ description }}</div>
+                </div>
+                <div class="passenger-amount" [ngClass]="{ disabled: amount === 0 }">
+                  <button matPrefix [disabled]="amount === 0">-</button>
+                  <div class="passenger-amount-content">{{ amount }}</div>
+                  <!-- <input type="number" matInput [value]="amount" class="w-3" /> -->
+                  <button matSuffix>+</button>
+                </div>
+              </div>
+            </ng-template>
 
-          <div class="passengers-option">
-            <div class="passenger-type">
-              <div class="passenger-name">Adult</div>
-              <div class="passenger-description">14+ years</div>
-            </div>
-            <div class="passenger-amount">
-              <button>-</button>
-              <span>2</span>
-              <button>+</button>
-            </div>
-          </div>
-        </mat-select>
-      </mat-form-field>
+            <mat-option
+              role="option"
+              selected="true"
+              *ngTemplateOutlet="matOption; context: { type: 'Adult', description: '14+ years', amount: 1 }"
+            ></mat-option>
+            <mat-option
+              role="option"
+              *ngTemplateOutlet="matOption; context: { type: 'Child', description: '2-14 years', amount: 1 }"
+            ></mat-option>
+            <mat-option
+              role="option"
+              *ngTemplateOutlet="matOption; context: { type: 'Infant', description: '0-2 years', amount: 0 }"
+            ></mat-option>
 
-      <button mat-flat-button type="submit" color="primary">Search</button>
+            <!-- <div class="passengers-option">
+                <div class="passenger-type">
+                  <div class="passenger-name">Child</div>
+                  <div class="passenger-description">2 - 14 years</div>
+                </div>
+                <div class="passenger-amount">
+                  <button>-</button>
+                  <span>2</span>
+                  <button>+</button>
+                </div>
+              </div> -->
+
+            <mat-option style="display: none"> </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <mat-card-actions class="flex-row justify-end">
+        <button mat-flat-button type="submit" color="primary">Search</button>
+      </mat-card-actions>
     </form>
   </mat-card-content>
 </mat-card>
