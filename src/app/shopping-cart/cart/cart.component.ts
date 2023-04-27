@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
+import { selectFlights } from 'src/app/reducers/reducer/shopping-cart.reducer';
+import { Store } from '@ngrx/store';
 import { FLIGHTS, SHOPPING_CART_COLUMNS } from '../MOCK_DATA';
 import { IFlight } from '../interfaces';
 
@@ -12,13 +14,22 @@ import { IFlight } from '../interfaces';
 export class CartComponent {
   public displayedColumns: string[] = SHOPPING_CART_COLUMNS;
 
-  public flights = new MatTableDataSource<IFlight>(FLIGHTS);
+  private flightsData: Array<IFlight> = [];
+
+  public flights = new MatTableDataSource<IFlight>(this.flightsData);
 
   public selection = new SelectionModel<IFlight>(true, []);
 
   private count = 0;
 
   public promocode = '';
+
+  constructor(private store: Store) {
+    store.select(selectFlights).subscribe((data) => {
+      this.flightsData = data;
+      return true;
+    });
+  }
 
   public getTotalPrice(): number {
     return this.selection.selected.map((flight) => flight.price).reduce((acc, value) => acc + value, 0);
