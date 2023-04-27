@@ -24,6 +24,15 @@ mat-card-title {
   border: 0.5px solid #e9edf1;
 }
 
+.mat-column-checkbox {
+  width: 10px;
+  border-right: 1px solid currentColor;
+}
+
+.mat-column-control {
+  width: 10px;
+}
+
 .mat-mdc-header-cell {
   @include mix.subtitle-medium();
 }
