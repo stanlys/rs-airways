@@ -12,3 +12,4 @@
 
 @include mat.button-theme(default.$rs-airline-theme);
 @include mat.icon-theme(default.$rs-airline-theme);
+@include mat.progress-spinner-theme(default.$rs-airline-theme);
