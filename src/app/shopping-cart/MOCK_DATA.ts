@@ -1,11 +1,4 @@
-export interface IFlight {
-  number: string;
-  flights: string[];
-  typeTrip: string;
-  dateTime: string;
-  passengers: string[];
-  price: number;
-}
+import { IFlight } from './interfaces';
 
 export const SHOPPING_CART_COLUMNS = [
   'checkbox',

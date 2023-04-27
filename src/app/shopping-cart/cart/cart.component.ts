@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
-import { FLIGHTS, IFlight, SHOPPING_CART_COLUMNS } from '../MOCK_DATA';
+import { FLIGHTS, SHOPPING_CART_COLUMNS } from '../MOCK_DATA';
+import { IFlight } from '../interfaces';
 
 @Component({
   selector: 'app-cart',
