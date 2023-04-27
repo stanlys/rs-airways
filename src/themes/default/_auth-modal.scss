@@ -30,4 +30,8 @@
   .btn.password-recovery {
     align-self: flex-end;
   }
+
+  .anchor[color='primary'] {
+    color: c.$primary-color;
+  }
 }

@@ -11,6 +11,7 @@ interface SignupForm {
   firstName: FormControl<string | null>;
   lastName: FormControl<string | null>;
   birthDate: FormControl<Date | null>;
+  confirm: FormControl<boolean | null>;
 }
 
 @Component({
@@ -44,6 +45,7 @@ export class SignupTabComponent {
       firstName: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z]+')]),
       lastName: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z]+')]),
       birthDate: new FormControl(null, [Validators.required]),
+      confirm: new FormControl(null, [Validators.required]),
     });
   }
 
