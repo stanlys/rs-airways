@@ -1,1 +1,22 @@
-<p>airport-field works!</p>
+<mat-form-field appearance="fill" [hideRequiredMarker]="true" class="airport">
+  <mat-label>From</mat-label>
+  <input
+    type="text"
+    placeholder="Choose your departure point"
+    aria-label="From"
+    matNativeControl
+    [formControl]="myControl"
+    [matAutocomplete]="auto"
+  />
+  <mat-autocomplete
+    autoActiveFirstOption
+    #auto="matAutocomplete"
+    hideSingleSelectionIndicator="true"
+    [displayWith]="showAirport"
+  >
+    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+      <div class="city">{{ option.city }} ({{ option.code }})</div>
+      <div class="other">{{ option.name }} {{ option.country }}</div>
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>

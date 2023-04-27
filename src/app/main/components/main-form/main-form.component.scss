@@ -7,7 +7,7 @@
     display: flex;
     max-width: 580px;
     min-width: 300px;
-    height: 390px;
+    min-height: 390px;
     padding: 8px;
   }
 
@@ -43,92 +43,14 @@
 .date-passengers-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
-
-  .flight-dates {
-    @aply w-full;
-    @aply sm:w-311px;
-
-    display: flex;
-    // width: calc(65% - 10px);
-
-  }
-  .passengers-select {
-    @aply w-full;
-    @aply sm:w-201px;
-
-    display: flex;
-    // width: calc(35% - 10px);
-  }
+  justify-content: space-between;
+  // gap: 20px;
 }
-
-// .passengers-option {
-//   display: flex;
-//   padding: 0 16px;
-//   height: 56px;
-//   width: 100%;
-//   justify-content: space-between;
-//   align-items: center;
-// }
 
 .passengers-option {
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
   padding: 10px 16px;
-
-  .passenger-type {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-
-    .passenger-name {
-      color: c.$primary-color;
-      font-size: 16px;
-    }
-    .passenger-name.disabled {
-      color: map-get(c.$brand-neutral, 0);
-    }
-    .passenger-description {
-      color: map-get(c.$brand-neutral, 30);
-      font-size: 14px;
-    }
-  }
-
-  .passenger-amount {
-    display: flex;
-    width: 50%;
-    justify-content: space-between;
-    align-items: center;
-
-    input {
-
-    }
-
-    .passenger-amount-content {
-      color: c.$primary-color;
-    }
-    .passenger-amount-content.disabled {
-      opacity: 0.5;
-    }
-
-    button {
-      width: 20px;
-      // background-color: gray;
-      z-index: 10;
-      cursor: pointer;
-
-
-      &:hover {
-        color: map-get(c.$brand-neutral, 20);
-      }
-
-      &:disabled {
-        color: map-get(c.$brand-neutral, 30);
-        cursor: auto;
-      }
-
-    }
-  }
 }
 
