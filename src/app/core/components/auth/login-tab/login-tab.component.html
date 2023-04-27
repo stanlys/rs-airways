@@ -1,10 +1,10 @@
 <div class="flex items-center w-full">
   <mat-divider class="flex-auto"></mat-divider>
-  <span class="p-3 text-xs">or log in with your email</span>
+  <span class="p-3 text-xs my-6">or log in with your email</span>
   <mat-divider class="flex-auto"></mat-divider>
 </div>
 
-<form class="form auth-tab flex flex-col gap-5 w-full" (ngSubmit)="onSubmit()" [formGroup]="form">
+<form class="form auth-tab flex flex-col w-full" (ngSubmit)="onSubmit()" [formGroup]="form">
   <mat-form-field *ngIf="form.controls['login'] as control" class="form-field" appearance="fill">
     <mat-label>Email</mat-label>
     <input name="login" [formControl]="control" matInput type="text" />
