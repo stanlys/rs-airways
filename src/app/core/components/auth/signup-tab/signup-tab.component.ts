@@ -10,7 +10,7 @@ interface SignupForm {
   password: FormControl<string | null>;
   firstName: FormControl<string | null>;
   lastName: FormControl<string | null>;
-  birthDate: FormControl<string | null>;
+  birthDate: FormControl<Date | null>;
 }
 
 @Component({
@@ -25,8 +25,10 @@ export class SignupTabComponent {
 
   @Output() public closeModal = new EventEmitter<void>();
 
+  public maxDate = new Date();
+
   constructor(fb: FormBuilder, private authService: AuthService) {
-    this.form = fb.group({
+    this.form = fb.group<SignupForm>({
       login: new FormControl('', [
         Validators.required,
         Validators.email,
@@ -39,9 +41,9 @@ export class SignupTabComponent {
         Validators.maxLength(32),
         passwordStrengthValidator(),
       ]),
-      firstName: new FormControl('', [Validators.required]),
-      lastName: new FormControl('', [Validators.required]),
-      birthDate: new FormControl('', [Validators.required]),
+      firstName: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z]+')]),
+      lastName: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z]+')]),
+      birthDate: new FormControl(null, [Validators.required]),
     });
   }
 
@@ -52,18 +54,12 @@ export class SignupTabComponent {
   public onSubmit(): void {
     this.authService.signup();
 
-    this.form.reset();
-
     this.isLoading$.next(true);
 
     of(false)
-      .pipe(
-        delay(300),
-        tap(() => {
-          this.isLoading$.next(false);
-        })
-      )
+      .pipe(delay(300))
       .subscribe(() => {
+        this.isLoading$.next(false);
         this.close();
       });
   }

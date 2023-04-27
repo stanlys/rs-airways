@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Subject, delay, of, tap } from 'rxjs';
+import { Subject, delay, of } from 'rxjs';
 
 import { AuthService } from '../../../services/auth.service';
 
@@ -37,18 +37,12 @@ export class LoginTabComponent {
   public onSubmit(): void {
     this.authService.login();
 
-    this.form.reset();
-
     this.isLoading$.next(true);
 
     of(false)
-      .pipe(
-        delay(300),
-        tap(() => {
-          this.isLoading$.next(false);
-        })
-      )
+      .pipe(delay(300))
       .subscribe(() => {
+        this.isLoading$.next(false);
         this.close();
       });
   }

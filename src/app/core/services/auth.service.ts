@@ -28,8 +28,8 @@ export class AuthService {
   }
 
   // TODO: implement signup
+  // eslint-disable-next-line class-methods-use-this
   public signup(): void {
-    console.log(this);
     console.log('signing up!');
   }
 
