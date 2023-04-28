@@ -58,7 +58,7 @@ export class SignupTabComponent {
       birthDate: new FormControl(null, Validators.required),
       confirm: new FormControl(null, Validators.required),
       gender: new FormControl('', Validators.required),
-      citizenship: new FormControl('', Validators.required),
+      citizenship: new FormControl(''),
       countryCode: new FormControl(this.countryCodes[0]),
       phoneNumber: new FormControl('', [Validators.required, Validators.maxLength(15), Validators.pattern('\\d+')]),
     });
