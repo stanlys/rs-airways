@@ -1,0 +1,71 @@
+<div class="social-network-buttons flex flex-col gap-4 mt-9 mb-8">
+  <button class="btn" mat-stroked-button>
+    <div class="btn-label flex gap-2">
+      <img src="/assets/google_icon.svg" alt="" />
+      <span>Continue with Google</span>
+    </div>
+  </button>
+  <button class="btn" mat-stroked-button>
+    <div class="btn-label flex gap-2">
+      <img src="/assets/facebook_icon.svg" alt="" />
+      <span>Continue with Facebook</span>
+    </div>
+  </button>
+</div>
+
+<div class="flex items-center w-full my-6">
+  <mat-divider class="flex-auto"></mat-divider>
+  <span class="px-3 text-xs">or log in with your email</span>
+  <mat-divider class="flex-auto"></mat-divider>
+</div>
+
+<form class="form auth-tab flex flex-col w-full" (ngSubmit)="onSubmit()" [formGroup]="form">
+  <mat-form-field *ngIf="form.controls['login'] as control" class="form-field" appearance="fill">
+    <mat-label>Email</mat-label>
+    <input name="login" [formControl]="control" matInput type="text" />
+    <mat-error *ngIf="control.errors?.['email']">Please enter correct email</mat-error>
+    <mat-error *ngIf="control.errors?.['maxlength']">The login can't exceed 16 characters</mat-error>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="form.controls['password'] as control" class="form-field" appearance="fill">
+    <mat-label>Password</mat-label>
+    <input
+      name="password"
+      [formControl]="control"
+      matInput
+      #passwordInput="matInput"
+      [type]="hidePassword ? 'password' : 'text'"
+    />
+    <mat-icon
+      [ngClass]="['icon', !passwordInput.focused ? 'text-[#cecece]' : '']"
+      matSuffix
+      (click)="hidePassword = !hidePassword"
+    >
+      {{ hidePassword ? 'visibility' : 'visibility_off' }}
+    </mat-icon>
+    <mat-error *ngIf="control.errors?.['maxlength']">The login can't exceed 32 characters</mat-error>
+    <mat-error *ngIf="control.errors?.['passwordStrength'] as message" class="err strength"
+      >The password must have {{ message }}</mat-error
+    >
+  </mat-form-field>
+
+  <div class="buttons flex flex-col gap-4">
+    <button class="btn password-recovery" mat-button color="primary" type="button">Forgot password?</button>
+    <button
+      class="btn submit"
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="!form.valid || (isLoading$ | async)"
+    >
+      <ng-container *ngIf="(isLoading$ | async) !== true; else loader">Log in</ng-container>
+    </button>
+  </div>
+</form>
+
+<ng-template #loader>
+  <div class="flex gap-4 items-center">
+    <mat-spinner style="height: 20px; width: 20px" color="accent"></mat-spinner>
+    <span>Processing...</span>
+  </div>
+</ng-template>

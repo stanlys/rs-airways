@@ -1,10 +1,3 @@
-@use '../../../../styles/vars.scss' as v;
-:host {
-  display: flex;
-  width: 100vw;
-  height: v.$header-height;
-
-  position: fixed;
-
-  background: v.$neutral70;
+.spacer {
+  max-width: 337px;
 }

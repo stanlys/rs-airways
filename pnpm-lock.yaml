@@ -34,6 +34,12 @@ dependencies:
   '@ngrx/store':
     specifier: ^15.4.0
     version: 15.4.0(@angular/core@15.2.7)(rxjs@7.8.0)
+  country-list:
+    specifier: ^2.3.0
+    version: 2.3.0
+  country-telephone-data:
+    specifier: ^0.6.3
+    version: 0.6.3
   rxjs:
     specifier: ~7.8.0
     version: 7.8.0
@@ -72,6 +78,12 @@ devDependencies:
   '@ngrx/eslint-plugin':
     specifier: ^15.4.0
     version: 15.4.0(eslint@8.38.0)(typescript@4.9.5)
+  '@types/country-list':
+    specifier: ^2.1.1
+    version: 2.1.1
+  '@types/country-telephone-data':
+    specifier: ^0.6.1
+    version: 0.6.1
   '@types/jasmine':
     specifier: ~4.3.1
     version: 4.3.1
@@ -3154,6 +3166,14 @@ packages:
       '@types/node': 18.15.11
     dev: true
 
+  /@types/country-list@2.1.1:
+    resolution: {integrity: sha512-maNkQzgLbyoi5mwwAL0KCb6l5/rn02N9y/CIBf4AYPrJ0pU2AvUTQ5LOw6GA4AAPrtiL44LWiwXzybUAUUYA3Q==}
+    dev: true
+
+  /@types/country-telephone-data@0.6.1:
+    resolution: {integrity: sha512-GjrvfnS+mFyEj1wOr5L7KKWHAcFgNxilP/AnNdQj2EM0R7c9rlM8OC+Pf2H5KHiMDbH/XjApJgdnjN/WYbzWew==}
+    dev: true
+
   /@types/eslint-scope@3.7.4:
     resolution: {integrity: sha512-9K4zoImiZc3HlIp6AVUDE4CWYx22a+lhSZMYNpbjW04+YF0KWj4pJXnEMjdnFTiQibFFmElcsasJXDbdI/EPhA==}
     dependencies:
@@ -4575,6 +4595,14 @@ packages:
       path-type: 4.0.0
       yaml: 1.10.2
     dev: true
+
+  /country-list@2.3.0:
+    resolution: {integrity: sha512-qZk66RlmQm7fQjMYWku1AyjlKPogjPEorAZJG88owPExoPV8EsyCcuFLvO2afTXHEhi9liVOoyd+5A6ZS5QwaA==}
+    dev: false
+
+  /country-telephone-data@0.6.3:
+    resolution: {integrity: sha512-3tQLA0vec+NDVlcaHhXGqILq/oQRsv4fRi4EedCfJqUuJUjQGdcSPM8r2IJIT2kZ5yWbiOCkXMgy7YTo8FNS2w==}
+    dev: false
 
   /critters@0.0.16:
     resolution: {integrity: sha512-JwjgmO6i3y6RWtLYmXwO5jMd+maZt8Tnfu7VVISmEWyQqfLpB8soBswf8/2bu6SBXxtKA68Al3c+qIG1ApT68A==}

@@ -33,3 +33,14 @@
 // .mat-pseudo-checkbox .mat-mdc-option-pseudo-checkbox .mat-pseudo-checkbox-full {
 //   display: none;
 // }
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  background-color: #f5f5f5;
+}
