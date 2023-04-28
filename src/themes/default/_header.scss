@@ -3,6 +3,7 @@
 
 .header.mat-toolbar {
   height: 88px;
+  background-color: #fff;
 
   .controls {
     gap: 1rem;
@@ -24,6 +25,10 @@
 
   .date-format-container .mdc-button__label {
     width: 100%;
+  }
+
+  .mat-mdc-unelevated-button {
+    background-color: rgba(241, 243, 246, 0.15);
   }
 }
 
