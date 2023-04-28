@@ -33,7 +33,7 @@
 
   <mat-form-field *ngIf="form.controls['firstName'] as control" class="form-field" appearance="fill">
     <mat-label>First name</mat-label>
-    <input name="firstName" [formControl]="control" matInput #firstNameInput="matInput" type="firstName" />
+    <input name="firstName" [formControl]="control" matInput #firstNameInput="matInput" type="text" />
     <mat-icon
       [ngClass]="['icon', !firstNameInput.focused ? 'text-[#74767A]' : '']"
       matSuffix
@@ -46,7 +46,7 @@
 
   <mat-form-field *ngIf="form.controls['lastName'] as control" class="form-field" appearance="fill">
     <mat-label>Last name</mat-label>
-    <input name="lastName" [formControl]="control" matInput #lastNameInput="matInput" type="lastName" />
+    <input name="lastName" [formControl]="control" matInput #lastNameInput="matInput" type="text" />
     <mat-icon
       [ngClass]="['icon', !lastNameInput.focused ? 'text-[#74767A]' : '']"
       matSuffix
@@ -97,6 +97,27 @@
     >
   </div>
 
+  <div class="phone-number flex gap-2">
+    <mat-form-field *ngIf="form.controls['countryCode'] as control" class="form-field" appearance="fill">
+      <mat-label>Country code</mat-label>
+      <mat-select name="countryCode" [formControl]="control">
+        <mat-option *ngFor="let code of countryCodes" [value]="code">
+          {{ code }}
+        </mat-option>
+      </mat-select>
+      <mat-hint *ngIf="control.errors?.['required']">Required</mat-hint>
+      <mat-error *ngIf="control.errors?.['pattern']">Invalid character</mat-error>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="form.controls['phoneNumber'] as control" class="form-field" appearance="fill">
+      <mat-label>Mobile phone number</mat-label>
+      <input name="phoneNumber" placeholder="e.g. 1111111111" [formControl]="control" matInput type="text" />
+      <mat-hint *ngIf="control.errors?.['required']">Required</mat-hint>
+      <mat-error *ngIf="control.errors?.['pattern']">Invalid character</mat-error>
+      <mat-error *ngIf="control.errors?.['maxlength']">Must not exceed 15 digits</mat-error>
+    </mat-form-field>
+  </div>
+
   <mat-form-field appearance="fill" *ngIf="form.controls['citizenship'] as control">
     <mat-label>Citizenship</mat-label>
     <mat-select formControlName="citizenship">
@@ -107,9 +128,13 @@
     <mat-hint *ngIf="control.errors?.['required']">Required</mat-hint>
   </mat-form-field>
 
-  <!-- TODO: disable invalid form when done
-      [disabled]="!form.valid || (isLoading$ | async)" -->
-  <button class="btn submit mt-6" mat-raised-button color="primary" type="submit">
+  <button
+    class="btn submit mt-6"
+    mat-raised-button
+    color="primary"
+    type="submit"
+    [disabled]="!form.valid || (isLoading$ | async)"
+  >
     <ng-container *ngIf="(isLoading$ | async) !== true; else loader">Sign up</ng-container>
   </button>
 </form>

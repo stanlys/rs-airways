@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { getNames } from 'country-list';
+import countryList from 'country-list';
+import countryTelData from 'country-telephone-data';
 import { Subject, delay, of } from 'rxjs';
-
 import { passwordStrengthValidator } from '../../../directives/password-strength-validator.directive';
 import { AuthService } from '../../../services/auth.service';
 
@@ -15,6 +15,8 @@ interface SignupForm {
   confirm: FormControl<boolean | null>;
   gender: FormControl<string | null>;
   citizenship: FormControl<string | null>;
+  countryCode: FormControl<string | null>;
+  phoneNumber: FormControl<string | null>;
 }
 
 @Component({
@@ -31,7 +33,11 @@ export class SignupTabComponent {
 
   public maxDate = new Date();
 
-  public countryNames = getNames();
+  public countryNames = countryList.getNames();
+
+  public countryCodes = countryTelData.allCountries.map(
+    ({ name, dialCode }) => `${name.split(' (')[0]} (+${dialCode})`
+  );
 
   constructor(fb: FormBuilder, private authService: AuthService) {
     this.form = fb.group<SignupForm>({
@@ -49,10 +55,12 @@ export class SignupTabComponent {
       ]),
       firstName: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z]+')]),
       lastName: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z]+')]),
-      birthDate: new FormControl(null, [Validators.required]),
-      confirm: new FormControl(null, [Validators.required]),
-      gender: new FormControl('', [Validators.required]),
-      citizenship: new FormControl('', [Validators.required]),
+      birthDate: new FormControl(null, Validators.required),
+      confirm: new FormControl(null, Validators.required),
+      gender: new FormControl('', Validators.required),
+      citizenship: new FormControl('', Validators.required),
+      countryCode: new FormControl(this.countryCodes[0]),
+      phoneNumber: new FormControl('', [Validators.required, Validators.maxLength(15), Validators.pattern('\\d+')]),
     });
   }
 
@@ -61,8 +69,6 @@ export class SignupTabComponent {
   }
 
   public onSubmit(): void {
-    console.log(this.form.value);
-
     this.authService.signup();
 
     this.isLoading$.next(true);
@@ -71,7 +77,7 @@ export class SignupTabComponent {
       .pipe(delay(300))
       .subscribe(() => {
         this.isLoading$.next(false);
-        // this.close();
+        this.close();
       });
   }
 }
