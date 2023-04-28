@@ -13,7 +13,7 @@ export class HeaderComponent {
 
   public loggedIn = this.authService.loggedIn;
 
-  public authModalActive = true;
+  public authModalActive = false;
 
   constructor(router: Router, private authService: AuthService) {
     router.events.pipe(filter((e) => e instanceof NavigationEnd)).subscribe((e) => {
