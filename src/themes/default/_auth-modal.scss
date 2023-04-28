@@ -16,6 +16,12 @@
     @include mx.button_border;
   }
 
+  .mdc-text-field,
+  .mdc-tab[aria-selected='true'],
+  .social-network-buttons .btn {
+    background-color: #f4f6f9;
+  }
+
   .mdc-tab[aria-selected='true'] {
     @include mx.input-outline;
   }
@@ -30,6 +36,7 @@
 
   .btn.password-recovery {
     align-self: flex-end;
+    font-size: 14px;
   }
 
   .anchor[color='primary'] {
@@ -39,5 +46,10 @@
   .mat-button-toggle-group-appearance-standard,
   .mat-button-toggle-group-appearance-standard .mat-button-toggle + .mat-button-toggle {
     border-color: #74767a;
+  }
+
+  .social-network-buttons .btn {
+    height: 56px;
+    color: #49454f;
   }
 }
