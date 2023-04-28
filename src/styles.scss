@@ -9,11 +9,6 @@
     display: none;
   }
 
-    .mdc-text-field {
-    border: solid 1px gray;
-    border-radius: 4px;
-  }
-
     // ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
   //   background-color: #fff;
 
@@ -28,6 +23,11 @@
   //   border: 1px solid #f94747;
   // }
 
+}
+
+.mdc-text-field-wrapper {
+  border: solid 1px gray;
+  border-radius: 4px;
 }
 
 // .mat-pseudo-checkbox .mat-mdc-option-pseudo-checkbox .mat-pseudo-checkbox-full {

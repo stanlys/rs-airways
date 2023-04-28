@@ -4,8 +4,15 @@
   @apply flex w-full sm:w-5/12;
 }
 .passengers-select {
-  @apply flex w-full;
-  padding: 10px;
+  @apply flex w-full sm:pl-2.5;
+  // padding-left: 10px;
+}
+
+.passengers-option {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  padding: 10px 16px;
 }
 
 .passenger-type {
