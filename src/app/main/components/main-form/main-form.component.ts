@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import { Component, OnChanges, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -18,8 +18,8 @@ export class MainFormComponent {
         to: fb.control('', Validators.required),
       }),
       dates: fb.group({
-        from: fb.control(new Date(), Validators.required),
-        to: fb.control(new Date(), Validators.required),
+        from: fb.control(null, Validators.required),
+        to: fb.control(null, Validators.required),
       }),
       passengers: fb.group({
         adult: fb.control(1, [Validators.required, Validators.min(1)]),

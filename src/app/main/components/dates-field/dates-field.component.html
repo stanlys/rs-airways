@@ -1,16 +1,16 @@
-<mat-form-field [formGroup]="datesForm" appearance="fill" class="flight-dates">
+<mat-form-field [formGroup]="datesForm" appearance="fill" class="flight-dates" hideRequiredMarker>
   <mat-label>Enter a date range</mat-label>
   <mat-date-range-input [rangePicker]="rangePicker">
-    <input matStartDate placeholder="Start date" />
-    <input matEndDate placeholder="End date" />
+    <input matStartDate placeholder="Start date" formControlName="from" />
+    <input matEndDate placeholder="End date" formControlName="to" />
   </mat-date-range-input>
-  <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+  <mat-hint>{{ dateFormatHint }}</mat-hint>
   <mat-datepicker-toggle matIconSuffix [for]="rangePicker"></mat-datepicker-toggle>
   <mat-date-range-picker #rangePicker>
     <mat-date-range-picker-actions>
       <mat-divider></mat-divider>
       <button mat-button matDateRangePickerCancel>Cancel</button>
-      <button mat-raised-button color="primary" matDateRangePickerApply>Apply</button>
+      <button mat-button matDateRangePickerApply (click)="onDatesSet()">Ok</button>
     </mat-date-range-picker-actions>
   </mat-date-range-picker>
 </mat-form-field>

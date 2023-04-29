@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FormGroup, FormGroupDirective } from '@angular/forms';
+import { FormControl, FormGroup, FormGroupDirective } from '@angular/forms';
 
 @Component({
   selector: 'app-dates-field',
@@ -9,11 +9,24 @@ import { FormGroup, FormGroupDirective } from '@angular/forms';
 export class DatesFieldComponent {
   @Input() public formGroupName!: string;
 
+  public dateFormatHint = 'MM/DD/YYYY - MM/DD/YYYY';
+
   public datesForm!: FormGroup;
+
+  public dateFrom!: FormControl;
+
+  public dateTo!: FormControl;
 
   constructor(private parentForm: FormGroupDirective) {}
 
   public ngOnInit(): void {
     this.datesForm = this.parentForm.control.get(this.formGroupName) as FormGroup;
+
+    this.dateFrom = this.datesForm.get('from') as FormControl;
+    this.dateTo = this.datesForm.get('to') as FormControl;
+  }
+
+  public onDatesSet(): void {
+    console.log(this.datesForm.value);
   }
 }
