@@ -47,7 +47,7 @@ export class AirportFieldComponent implements OnInit {
 
   // eslint-disable-next-line class-methods-use-this
   public showAirport(airport: Airport): string {
-    return airport && airport.city ? `${airport.city} ${airport.name ? airport.name : ''}, ${airport.code}` : '';
+    return airport && airport.city ? `${airport.city} ${airport.name ? airport.name : ''}, ${airport.IATA}` : '';
   }
 
   private _filter(value: string | Airport): Airport[] {
