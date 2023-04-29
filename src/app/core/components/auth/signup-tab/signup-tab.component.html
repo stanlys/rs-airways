@@ -81,20 +81,20 @@
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
 
-  <div class="checkbox-container flex flex-col" *ngIf="form.controls['confirm'] as control">
+  <div class="checkbox-container flex flex-col relative pb-6" *ngIf="form.controls['confirm'] as control">
     <mat-checkbox #confirmCheckbox formControlName="confirm" color="primary">
       <span>I agree to Airway's </span>
       <a class="anchor" href="" target="_blank" rel="noopener noreferrer" color="primary">Privacy Policy</a>
       <span> and </span>
       <a class="anchor" href="" target="_blank" rel="noopener noreferrer" color="primary">Terms of Use</a>
     </mat-checkbox>
-    <mat-hint class="ml-4 text-xs" *ngIf="control.errors?.['required'] && !ngForm.submitted">Required</mat-hint>
-    <mat-error class="ml-4 text-xs" *ngIf="(control.touched || ngForm.submitted) && !confirmCheckbox.checked"
+    <mat-hint class="ml-4 text-xs absolute bottom-1" *ngIf="control.errors?.['required'] && !ngForm.submitted">Required</mat-hint>
+    <mat-error class="ml-4 text-xs absolute bottom-1" *ngIf="(control.touched || ngForm.submitted) && !confirmCheckbox.checked"
       >Must agree with the terms</mat-error
     >
   </div>
 
-  <div class="gender-toggle-container flex flex-col my-4" *ngIf="form.controls['gender'] as control">
+  <div class="gender-toggle-container flex flex-col pb-6 relative" *ngIf="form.controls['gender'] as control">
     <mat-button-toggle-group formControlName="gender" aria-label="User gender">
       <mat-button-toggle #firstOpt aria-label="Male" class="flex-auto flex gap-2" value="male">
         <mat-icon *ngIf="firstOpt.checked" aria-hidden="false" aria-label="check icon" fontIcon="check"></mat-icon>
@@ -106,8 +106,8 @@
       </mat-button-toggle>
     </mat-button-toggle-group>
 
-    <mat-hint class="ml-4 text-xs" *ngIf="control.errors?.['required'] && !ngForm.submitted">Required</mat-hint>
-    <mat-error class="ml-4 text-xs" *ngIf="(control.touched || ngForm.submitted) && !control.value"
+    <mat-hint class="ml-4 text-xs absolute bottom-1" *ngIf="control.errors?.['required'] && !ngForm.submitted">Required</mat-hint>
+    <mat-error class="ml-4 text-xs absolute bottom-1" *ngIf="(control.touched || ngForm.submitted) && !control.value"
       >Must select gender</mat-error
     >
   </div>
