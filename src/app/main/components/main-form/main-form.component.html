@@ -1,31 +1,16 @@
 <mat-card class="main-page-form">
   <mat-card-content>
-    <form class="search-form">
-      <mat-radio-group aria-label="Select an option" color="primary">
-        <mat-radio-button value="0" checked="true" color="primary">Round Trip</mat-radio-button>
-        <mat-radio-button value="1" color="primary">One Way</mat-radio-button>
+    <form class="search-form" (ngSubmit)="onSubmit()" [formGroup]="searchForm">
+      <mat-radio-group formControlName="oneWay" aria-label="Select an option" color="primary">
+        <mat-radio-button value="false" [checked]="true" color="primary">Round Trip</mat-radio-button>
+        <mat-radio-button value="true" color="primary">One Way</mat-radio-button>
       </mat-radio-group>
 
-      <div class="flight-root">
-        <app-airport-field></app-airport-field>
-
-        <div class="switch-direction-btn-container">
-          <button
-            type="button"
-            mat-mini-fab
-            class="switch-direction-btn"
-            color="basic"
-            aria-label="Switch-direction-icon"
-          >
-            <img src="../../../../assets/Vector.svg" alt="Switch direction icon" />
-          </button>
-        </div>
-        <app-airport-field></app-airport-field>
-      </div>
+      <app-flight-route formGroupName="airport"></app-flight-route>
 
       <div class="date-passengers-container">
-        <app-dates-field></app-dates-field>
-        <app-passengers-field></app-passengers-field>
+        <app-dates-field formGroupName="dates"></app-dates-field>
+        <app-passengers-field formGroupName="passengers"></app-passengers-field>
       </div>
 
       <mat-card-actions class="flex-row justify-end">

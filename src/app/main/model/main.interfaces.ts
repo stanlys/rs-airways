@@ -12,10 +12,14 @@ export interface Passengers {
 }
 
 export interface FlightSearchRequest {
-  from: Airport;
-  to: Airport;
-  oneWay: boolean;
-  dateFrom: Date;
-  dateTo: Date;
+  airport: {
+    from: Airport;
+    to: Airport;
+  };
+  dates: {
+    dateFrom: Date;
+    dateTo: Date;
+  };
   passengers: Passengers;
+  oneWay: boolean;
 }

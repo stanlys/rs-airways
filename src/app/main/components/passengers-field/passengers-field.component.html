@@ -1,6 +1,6 @@
-<mat-form-field appearance="fill" class="passengers-select">
+<mat-form-field [formGroup]="passengersForm" appearance="fill" class="passengers-select">
   <mat-label>Passengers</mat-label>
-  <mat-select multiple="true">
+  <mat-select multiple="true" (closed)="onSelect()">
     <mat-select-trigger> 2 Adult, 1 Infant</mat-select-trigger>
 
     <ng-template #matOption let-type="type" let-description="description" let-amount="amount">

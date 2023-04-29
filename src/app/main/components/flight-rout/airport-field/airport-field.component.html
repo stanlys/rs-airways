@@ -1,11 +1,17 @@
-<mat-form-field appearance="fill" [hideRequiredMarker]="true" class="airport">
-  <mat-label>From</mat-label>
+<mat-form-field
+  [formGroup]="parentForm"
+  class="airport"
+  appearance="fill"
+  [hideRequiredMarker]="true"
+  [floatLabel]="'always'"
+>
+  <mat-label>{{ direction }}</mat-label>
   <input
     type="text"
-    placeholder="Choose your departure point"
-    aria-label="From"
-    matNativeControl
-    [formControl]="myControl"
+    placeholder="{{ placeholder }}"
+    aria-label="direction"
+    matInput
+    [formControl]="airportForm"
     [matAutocomplete]="auto"
   />
   <mat-autocomplete
