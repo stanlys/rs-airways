@@ -1,5 +1,24 @@
+@use '../../../../themes/default/colors' as c;
+@use '../../../../themes/util' as u;
+
 :host {
   display: flex;
   flex-direction: column;
   gap: 2px;
+}
+
+.switch-direction-btn-container {
+  display: flex;
+  position: relative;
+  width: 100%;
+}
+.switch-direction-btn {
+  position: absolute;
+  box-shadow : none;
+  border: solid 1px u.get-color(c.$brand-neutral, 30);
+  background-color: white;
+
+  right: 20px;
+  top: -20px;
+  z-index: 10;
 }

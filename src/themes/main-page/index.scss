@@ -23,28 +23,22 @@
     }
   }
 
-  // .mat-mdc-tab-body-content {
-  //   overflow: hidden;
-  // }
+  .flight-route {
+    .mat-mdc-form-field-subscript-wrapper {
+      display: none;
+    }
+  }
 
-  .mdc-button,
-  .mat-button-toggle {
+  .mdc-button {
     font-weight: 500;
   }
 
-  .mat-mdc-tab-labels,
   .mdc-text-field {
     @include mx.button_border;
   }
 
   .mdc-text-field {
-  // .mdc-tab[aria-selected='true'],
-  // .social-network-buttons .btn {
     background-color: #f4f6f9;
-  }
-
-  .mdc-tab[aria-selected='true'] {
-    @include mx.input-outline;
   }
 
   .mdc-line-ripple {
@@ -54,25 +48,6 @@
   .mat-mdc-form-field.ng-touched.ng-invalid .mdc-text-field {
     border-color: c.$error-color;
   }
-
-  // .btn.password-recovery {
-  //   align-self: flex-end;
-  //   font-size: 14px;
-  // }
-
-  // .anchor[color='primary'] {
-  //   color: c.$primary-color;
-  // }
-
-  // .mat-button-toggle-group-appearance-standard,
-  // .mat-button-toggle-group-appearance-standard .mat-button-toggle + .mat-button-toggle {
-  //   border-color: #74767a;
-  // }
-
-  // .social-network-buttons .btn {
-  //   height: 56px;
-  //   color: #49454f;
-  // }
 }
 
 .header .mat-mdc-select-placeholder {

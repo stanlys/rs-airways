@@ -7,7 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: './main-form.component.html',
   styleUrls: ['./main-form.component.scss'],
 })
-export class MainFormComponent implements OnChanges {
+export class MainFormComponent {
   public searchForm: FormGroup;
 
   constructor(private fb: FormBuilder) {
@@ -27,11 +27,6 @@ export class MainFormComponent implements OnChanges {
         infant: fb.control(0, Validators.required),
       }),
     });
-  }
-
-  public ngOnChanges(): void {
-    // this.searchForm.valueChanges.subscribe((value) => )
-    console.log(this.searchForm.valid);
   }
 
   public onSubmit(): void {

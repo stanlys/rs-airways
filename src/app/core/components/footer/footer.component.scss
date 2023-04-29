@@ -9,76 +9,73 @@
   align-items: space-between;
   gap: 30px;
 
-
   width: 100vw;
   height: v.$footer-height;
 
   border-top: 1px solid v.$secondary40;
   background-color: v.$neutral80;
+}
 
+.wrapper {
+  @include mx.wrapper;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 30px;
+}
 
-  .wrapper {
-    @include mx.wrapper;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 30px;
+.footer-info {
+  color: v.$primary;
+}
+
+.footer-pay {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.footer-pay-cards {
+  display: flex;
+  gap: 5px;
+
+  & img {
+    width: 30px;
   }
+}
 
-  .footer-info {
-    color: v.$primary;
-  }
+.dev-info {
+  @include mx.wrapper;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
 
-  .footer-pay {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-  }
+  font-size: 12px;
+  color: v.$secondary40;
 
-  .footer-pay-cards {
+  & a {
     display: flex;
     gap: 5px;
+    align-items: center;
 
     & img {
-      width: 30px;
+      width: 20px;
     }
+
+    &:hover {
+      color: v.$primary;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    justify-content: center;
   }
 
   .dev-info {
-    @include mx.wrapper;
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-
-    font-size: 12px;
-    color: v.$secondary40;
-
-    & a {
-      display: flex;
-      gap: 5px;
-      align-items: center;
-
-      & img {
-        width: 20px;
-      }
-
-      &:hover {
-        color: v.$primary;
-      }
-    }
-  }
-
-  @media (max-width: 768px) {
-    font-size: 12px;
-    .wrapper {
-      justify-content: center;
-    }
-
-    .dev-info {
-      justify-content: center;
-      flex-wrap: wrap;
-      font-size: 10px;
-    }
+    justify-content: center;
+    flex-wrap: wrap;
+    font-size: 10px;
   }
 }
