@@ -11,8 +11,6 @@ import { AIRPORTS } from '../../../model/mock-list.model';
   styleUrls: ['./airport-field.component.scss'],
 })
 export class AirportFieldComponent implements OnInit {
-  // @Input() public formControlName!: string;
-
   @Input() public direction = '';
 
   @Input() public placeholder = '';
