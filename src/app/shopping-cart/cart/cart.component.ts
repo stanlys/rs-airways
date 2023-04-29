@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
+import { addFlightToCart, deleteFlightFromCart } from 'src/app/reducers/actions/shopping-cart.action';
 import { selectFlights } from 'src/app/reducers/reducer/shopping-cart.reducer';
 import { Store } from '@ngrx/store';
-import { FLIGHTS, SHOPPING_CART_COLUMNS } from '../MOCK_DATA';
+import { SHOPPING_CART_COLUMNS } from '../MOCK_DATA';
 import { IFlight } from '../interfaces';
 
 @Component({
@@ -14,9 +15,9 @@ import { IFlight } from '../interfaces';
 export class CartComponent {
   public displayedColumns: string[] = SHOPPING_CART_COLUMNS;
 
-  private flightsData: Array<IFlight> = [];
+  // private flightsData: Array<IFlight> = [];
 
-  public flights = new MatTableDataSource<IFlight>(this.flightsData);
+  public flights = new MatTableDataSource<IFlight>([]);
 
   public selection = new SelectionModel<IFlight>(true, []);
 
@@ -25,8 +26,8 @@ export class CartComponent {
   public promocode = '';
 
   constructor(private store: Store) {
-    store.select(selectFlights).subscribe((data) => {
-      this.flightsData = data;
+    this.store.select(selectFlights).subscribe((data) => {
+      this.flights.data = data;
       return true;
     });
   }
@@ -36,12 +37,23 @@ export class CartComponent {
   }
 
   public addTrip(): void {
-    console.log('add new trip to ', this.flights);
+    this.store.dispatch(
+      addFlightToCart({
+        flight: {
+          number: `FR198${Math.round(Math.random() * 20)}`,
+          dateTime: '01-05-2023',
+          typeTrip: 'Round trip',
+          flights: ['111'],
+          passengers: ['3333'],
+          price: Math.round(Math.random() * 1000),
+        },
+      })
+    );
   }
 
-  public showControlMenu(): void {
-    console.log('control menu ', this.flights);
-  }
+  // public showControlMenu(): void {
+  //   console.log('control menu ', this.flights);
+  // }
 
   public isAllSelected(): boolean {
     const numSelected = this.selection.selected.length;
@@ -65,7 +77,7 @@ export class CartComponent {
 
   public deleteWithCheckbox(flight: IFlight): void {
     this.count += 1;
-    console.log('Delete - ', flight);
+    this.store.dispatch(deleteFlightFromCart({ flight }));
   }
 
   public applyPromoCode(): void {
