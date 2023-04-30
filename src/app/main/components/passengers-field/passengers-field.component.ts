@@ -1,6 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormGroupDirective } from '@angular/forms';
+import { PASSENGERS } from '../../model/main.interfaces';
 
 @Component({
   selector: 'app-passengers-field',
@@ -10,15 +10,29 @@ import { FormGroup, FormGroupDirective } from '@angular/forms';
 export class PassengersFieldComponent implements OnInit {
   public passengersForm!: FormGroup;
 
+  public adult = PASSENGERS.adult;
+
+  public child = PASSENGERS.child;
+
+  public infant = PASSENGERS.infant;
+
   constructor(private parentForm: FormGroupDirective) {}
 
   public ngOnInit(): void {
     this.passengersForm = this.parentForm.control.get('passengers') as FormGroup;
+    console.log(this.passengersForm.value);
+  }
+
+  public onClosed(): void {
+    console.log(this.passengersForm.value);
   }
 
   public onSelect(): void {
-    this.passengersForm.value.adult = 3;
-    this.passengersForm.value.infant = 1;
-    console.log(this.passengersForm.value);
+    console.log('selestion cgange', this.passengersForm);
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  public trigger(): Array<string> {
+    return ['2 Adult', '3 Child', '1 Infant'];
   }
 }

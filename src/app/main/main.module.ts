@@ -12,6 +12,7 @@ import { DatesFieldComponent } from './components/dates-field/dates-field.compon
 import { PassengersFieldComponent } from './components/passengers-field/passengers-field.component';
 import { CustomNumberInputComponent } from './components/custom-number-input/custom-number-input.component';
 import { FlightRouteComponent } from './components/flight-rout/flight-route.component';
+import PassengerInputComponent from './components/passengers-field/passenger-input/passenger-input.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { FlightRouteComponent } from './components/flight-rout/flight-route.comp
     PassengersFieldComponent,
     CustomNumberInputComponent,
     FlightRouteComponent,
+    PassengerInputComponent,
   ],
   imports: [CommonModule, MainRoutingModule, MaterialModule, SharedModule, ReactiveFormsModule],
 })

@@ -1,0 +1,61 @@
+@use '../../../../../themes/default/colors' as c;
+
+.passengers-option {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  padding: 10px 16px;
+}
+
+.passenger-type {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+
+  .passenger-name {
+    color: c.$primary-color;
+    font-size: 16px;
+  }
+  .passenger-name.disabled {
+    color: map-get(c.$brand-neutral, 0);
+  }
+  .passenger-description {
+    color: map-get(c.$brand-neutral, 30);
+    font-size: 14px;
+  }
+}
+
+.passenger-amount {
+  display: flex;
+  width: 50%;
+  justify-content: space-between;
+  align-items: center;
+
+  input {
+
+  }
+
+  .passenger-amount-content {
+    color: c.$primary-color;
+  }
+  .passenger-amount-content.disabled {
+    opacity: 0.5;
+  }
+
+  button {
+    width: 20px;
+    z-index: 10;
+    cursor: pointer;
+
+
+    &:hover {
+      color: c.$primary-color;
+    }
+
+    &:disabled {
+      color: map-get(c.$brand-neutral, 30);
+      cursor: auto;
+    }
+
+  }
+}

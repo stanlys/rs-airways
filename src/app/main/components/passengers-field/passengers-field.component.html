@@ -1,37 +1,16 @@
 <mat-form-field [formGroup]="passengersForm" appearance="fill" class="passengers-select">
   <mat-label>Passengers</mat-label>
-  <mat-select multiple="true" (closed)="onSelect()">
+  <mat-select multiple (closed)="onClosed()" (selectionChange)="onSelect()">
     <mat-select-trigger> 2 Adult, 1 Infant</mat-select-trigger>
 
-    <ng-template #matOption let-type="type" let-description="description" let-amount="amount">
-      <div class="passengers-option">
-        <div class="passenger-type">
-          <div class="passenger-name">{{ type }}</div>
-          <div class="passenger-description">{{ description }}</div>
-        </div>
-        <div class="passenger-amount" [ngClass]="{ disabled: amount === 0 }">
-          <button matPrefix [disabled]="amount === 0">-</button>
-          <div class="passenger-amount-content">{{ amount }}</div>
-          <!-- <input type="number" matInput [value]="amount" class="w-3" /> -->
-          <button matSuffix>+</button>
-        </div>
-      </div>
+    <ng-template role="option" #matOption let-input="input">
+      <app-passenger-input [passenger]="input"></app-passenger-input>
     </ng-template>
 
-    <mat-option
-      role="option"
-      selected="true"
-      *ngTemplateOutlet="matOption; context: { type: 'Adult', description: '14+ years', amount: 1 }"
-    ></mat-option>
-    <mat-option
-      role="option"
-      *ngTemplateOutlet="matOption; context: { type: 'Child', description: '2-14 years', amount: 1 }"
-    ></mat-option>
-    <mat-option
-      role="option"
-      *ngTemplateOutlet="matOption; context: { type: 'Infant', description: '0-2 years', amount: 0 }"
-    ></mat-option>
+    <mat-option selected *ngTemplateOutlet="matOption; context: { input: adult }"></mat-option>
+    <mat-option *ngTemplateOutlet="matOption; context: { input: child }"></mat-option>
+    <mat-option *ngTemplateOutlet="matOption; context: { input: infant }"></mat-option>
 
-    <mat-option style="display: none"> </mat-option>
+    <mat-option style="display: none" selected> </mat-option>
   </mat-select>
 </mat-form-field>

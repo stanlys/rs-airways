@@ -11,6 +11,40 @@ export interface Passengers {
   infant: number;
 }
 
+export type PassengerInfo = {
+  name: string;
+  description: string;
+  inputName: string;
+  defaultAmount: number;
+};
+
+export type PassengersInfo = {
+  adult: PassengerInfo;
+  child: PassengerInfo;
+  infant: PassengerInfo;
+};
+
+export const PASSENGERS: PassengersInfo = {
+  adult: {
+    name: 'Adult',
+    description: '14+ years',
+    inputName: 'adult',
+    defaultAmount: 1,
+  },
+  child: {
+    name: 'Child',
+    description: '2-14 years',
+    inputName: 'child',
+    defaultAmount: 0,
+  },
+  infant: {
+    name: 'Infant',
+    description: '0-2 years',
+    inputName: 'infant',
+    defaultAmount: 1,
+  },
+};
+
 export interface FlightSearchRequest {
   airport: {
     from: Airport;
