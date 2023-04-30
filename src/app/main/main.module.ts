@@ -10,7 +10,6 @@ import { SharedModule } from '../shared/shared.module';
 import { AirportFieldComponent } from './components/flight-rout/airport-field/airport-field.component';
 import { DatesFieldComponent } from './components/dates-field/dates-field.component';
 import { PassengersFieldComponent } from './components/passengers-field/passengers-field.component';
-import { CustomNumberInputComponent } from './components/custom-number-input/custom-number-input.component';
 import { FlightRouteComponent } from './components/flight-rout/flight-route.component';
 import PassengerInputComponent from './components/passengers-field/passenger-input/passenger-input.component';
 
@@ -21,7 +20,6 @@ import PassengerInputComponent from './components/passengers-field/passenger-inp
     AirportFieldComponent,
     DatesFieldComponent,
     PassengersFieldComponent,
-    CustomNumberInputComponent,
     FlightRouteComponent,
     PassengerInputComponent,
   ],

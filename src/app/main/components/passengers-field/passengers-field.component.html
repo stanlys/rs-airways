@@ -7,7 +7,7 @@
       <app-passenger-input [passenger]="input"></app-passenger-input>
     </ng-template>
 
-    <mat-option selected *ngTemplateOutlet="matOption; context: { input: adult }"></mat-option>
+    <mat-option *ngTemplateOutlet="matOption; context: { input: adult }"></mat-option>
     <mat-option *ngTemplateOutlet="matOption; context: { input: child }"></mat-option>
     <mat-option *ngTemplateOutlet="matOption; context: { input: infant }"></mat-option>
 
