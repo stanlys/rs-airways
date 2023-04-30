@@ -32,7 +32,8 @@
   align-items: center;
 
   input {
-
+    width: 30px;
+    text-align: center;
   }
 
   .passenger-amount-content {
@@ -47,7 +48,6 @@
     z-index: 10;
     cursor: pointer;
 
-
     &:hover {
       color: c.$primary-color;
     }
@@ -56,6 +56,5 @@
       color: map-get(c.$brand-neutral, 30);
       cursor: auto;
     }
-
   }
 }

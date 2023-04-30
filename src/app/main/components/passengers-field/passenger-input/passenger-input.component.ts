@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective } from '@angular/forms';
 import { PassengerInfo } from '../../../model/main.interfaces';
 
@@ -10,8 +10,6 @@ import { PassengerInfo } from '../../../model/main.interfaces';
 export default class PassengerInputComponent implements OnInit {
   @Input() public passenger!: PassengerInfo;
 
-  // @Output() public addPassenger = new EventEmitter();
-
   public passengersForm!: FormGroup;
 
   public passengerInput!: FormControl;
@@ -22,6 +20,9 @@ export default class PassengerInputComponent implements OnInit {
     this.passengersForm = this.parentForm.control;
 
     this.passengerInput = this.passengersForm.get(this.passenger.inputName) as FormControl;
+    setTimeout(() => {
+      this.passengerInput.disable();
+    }, 0);
   }
 
   public add(): void {
@@ -40,7 +41,7 @@ export default class PassengerInputComponent implements OnInit {
     return this.passengerInput.value === 0;
   }
 
-  // public isSelected(): boolean {
-  //   return this.passengerInput.value === 0 || this.passengerInput.untouched;
-  // }
+  public disableInput(): void {
+    this.passengerInput.disable();
+  }
 }

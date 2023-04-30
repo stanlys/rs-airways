@@ -1,6 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-form',
@@ -10,7 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class MainFormComponent {
   public searchForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private router: Router) {
     this.searchForm = fb.group({
       oneWay: fb.control(false, Validators.required),
       airport: fb.group({
@@ -21,15 +22,26 @@ export class MainFormComponent {
         from: fb.control(null, Validators.required),
         to: fb.control(null, Validators.required),
       }),
-      passengers: fb.group({
-        adult: fb.control(0, [Validators.required, Validators.min(1)]),
-        child: fb.control(0, [Validators.required]),
-        infant: fb.control(0, Validators.required),
-      }),
+      passengers: fb.group(
+        {
+          adult: fb.control(0, [Validators.required, Validators.pattern(/^[0-9]+(?!.)/), Validators.min(1)]),
+          child: fb.control(0, [Validators.required, Validators.pattern(/^[0-9]+(?!.)/)]),
+          infant: fb.control(0, [Validators.required, Validators.pattern(/^[0-9]+(?!.)/)]),
+        },
+        Validators.required
+      ),
     });
   }
 
-  public onSubmit(): void {
+  public async onSubmit(): Promise<void> {
+    console.log('submit', this.searchForm.valid);
+
+    if (!this.searchForm.valid) return;
+
+    if (this.searchForm.valid) return;
+
+    await this.router.navigate(['/booking']);
+
     console.log(this.searchForm.value);
   }
 }

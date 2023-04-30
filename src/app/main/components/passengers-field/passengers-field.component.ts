@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormGroup, FormGroupDirective } from '@angular/forms';
+import { FormGroup, FormGroupDirective, ValidatorFn, Validators } from '@angular/forms';
 import { MatOption } from '@angular/material/core';
 import { MatSelect } from '@angular/material/select';
 import { Passengers, PASSENGERS } from '../../model/main.interfaces';
@@ -36,14 +36,6 @@ export class PassengersFieldComponent implements OnInit {
     });
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  public onClosed(): void {}
-
-  // eslint-disable-next-line class-methods-use-this
-  public onSelect(): void {
-    console.log('selestion cgange');
-  }
-
   private updateTrigger(): void {
     const value = this.passengersForm.value as Passengers;
     if (!value) return;
@@ -58,7 +50,12 @@ export class PassengersFieldComponent implements OnInit {
     const result = [adult ? `${adult} Adult ` : '', child ? `${child} Child ` : '', infant ? `${infant} Infant` : ''];
 
     this.trigger = result.filter((str) => str !== '').join(', ');
-
-    console.log(this.passengersForm.valid);
   }
+
+  // private passengersValidarion(): boolean {
+  //   const value = this.passengersForm.value as Passengers;
+  //   if (!value) return false;
+
+  //   const { adult, child, infant } = value;
+  // }
 }
