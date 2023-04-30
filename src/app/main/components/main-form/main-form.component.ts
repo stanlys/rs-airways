@@ -22,7 +22,7 @@ export class MainFormComponent {
         to: fb.control(null, Validators.required),
       }),
       passengers: fb.group({
-        adult: fb.control(1, [Validators.required, Validators.min(1)]),
+        adult: fb.control(0, [Validators.required, Validators.min(1)]),
         child: fb.control(0, [Validators.required]),
         infant: fb.control(0, Validators.required),
       }),

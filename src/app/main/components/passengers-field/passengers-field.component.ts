@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormGroupDirective } from '@angular/forms';
-import { PASSENGERS } from '../../model/main.interfaces';
+import { MatOption } from '@angular/material/core';
+import { MatSelect } from '@angular/material/select';
+import { Passengers, PASSENGERS } from '../../model/main.interfaces';
 
 @Component({
   selector: 'app-passengers-field',
@@ -8,6 +10,10 @@ import { PASSENGERS } from '../../model/main.interfaces';
   styleUrls: ['./passengers-field.component.scss'],
 })
 export class PassengersFieldComponent implements OnInit {
+  @ViewChild('option') public option!: MatOption;
+
+  @ViewChild('selectForm') public selectForm!: MatSelect;
+
   public passengersForm!: FormGroup;
 
   public adult = PASSENGERS.adult;
@@ -16,23 +22,43 @@ export class PassengersFieldComponent implements OnInit {
 
   public infant = PASSENGERS.infant;
 
+  public defaultValue = 'Passengers';
+
+  public trigger = 'Passengers';
+
   constructor(private parentForm: FormGroupDirective) {}
 
   public ngOnInit(): void {
     this.passengersForm = this.parentForm.control.get('passengers') as FormGroup;
-    console.log(this.passengersForm.value);
-  }
-
-  public onClosed(): void {
-    console.log(this.passengersForm.value);
-  }
-
-  public onSelect(): void {
-    console.log('selestion cgange', this.passengersForm);
+    this.passengersForm.valueChanges.subscribe(() => {
+      this.option.select();
+      this.updateTrigger();
+    });
   }
 
   // eslint-disable-next-line class-methods-use-this
-  public trigger(): Array<string> {
-    return ['2 Adult', '3 Child', '1 Infant'];
+  public onClosed(): void {}
+
+  // eslint-disable-next-line class-methods-use-this
+  public onSelect(): void {
+    console.log('selestion cgange');
+  }
+
+  private updateTrigger(): void {
+    const value = this.passengersForm.value as Passengers;
+    if (!value) return;
+
+    const { adult, child, infant } = value;
+
+    if (adult + child + infant === 0) {
+      this.option.deselect();
+      return;
+    }
+
+    const result = [adult ? `${adult} Adult ` : '', child ? `${child} Child ` : '', infant ? `${infant} Infant` : ''];
+
+    this.trigger = result.filter((str) => str !== '').join(', ');
+
+    console.log(this.passengersForm.valid);
   }
 }

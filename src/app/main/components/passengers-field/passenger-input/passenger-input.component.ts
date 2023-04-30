@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective } from '@angular/forms';
 import { PassengerInfo } from '../../../model/main.interfaces';
 
@@ -9,6 +9,8 @@ import { PassengerInfo } from '../../../model/main.interfaces';
 })
 export default class PassengerInputComponent implements OnInit {
   @Input() public passenger!: PassengerInfo;
+
+  // @Output() public addPassenger = new EventEmitter();
 
   public passengersForm!: FormGroup;
 

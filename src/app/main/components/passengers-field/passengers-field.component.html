@@ -1,9 +1,9 @@
-<mat-form-field [formGroup]="passengersForm" appearance="fill" class="passengers-select">
+<mat-form-field class="passengers-select" [formGroup]="passengersForm" appearance="fill">
   <mat-label>Passengers</mat-label>
-  <mat-select multiple (closed)="onClosed()" (selectionChange)="onSelect()">
-    <mat-select-trigger> 2 Adult, 1 Infant</mat-select-trigger>
+  <mat-select #selectForm multiple>
+    <mat-select-trigger>{{ trigger }}</mat-select-trigger>
 
-    <ng-template role="option" #matOption let-input="input">
+    <ng-template #matOption let-input="input">
       <app-passenger-input [passenger]="input"></app-passenger-input>
     </ng-template>
 
@@ -11,6 +11,6 @@
     <mat-option *ngTemplateOutlet="matOption; context: { input: child }"></mat-option>
     <mat-option *ngTemplateOutlet="matOption; context: { input: infant }"></mat-option>
 
-    <mat-option style="display: none" selected> </mat-option>
+    <mat-option #option style="display: none" selected> </mat-option>
   </mat-select>
 </mat-form-field>

@@ -29,7 +29,7 @@ export const PASSENGERS: PassengersInfo = {
     name: 'Adult',
     description: '14+ years',
     inputName: 'adult',
-    defaultAmount: 1,
+    defaultAmount: 0,
   },
   child: {
     name: 'Child',
@@ -41,7 +41,7 @@ export const PASSENGERS: PassengersInfo = {
     name: 'Infant',
     description: '0-2 years',
     inputName: 'infant',
-    defaultAmount: 1,
+    defaultAmount: 0,
   },
 };
 
