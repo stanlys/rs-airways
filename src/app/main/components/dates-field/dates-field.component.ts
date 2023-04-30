@@ -17,6 +17,8 @@ export class DatesFieldComponent {
 
   public dateTo!: FormControl;
 
+  public today = new Date();
+
   constructor(private parentForm: FormGroupDirective) {}
 
   public ngOnInit(): void {
@@ -24,9 +26,5 @@ export class DatesFieldComponent {
 
     this.dateFrom = this.datesForm.get('from') as FormControl;
     this.dateTo = this.datesForm.get('to') as FormControl;
-  }
-
-  public onDatesSet(): void {
-    console.log(this.datesForm.value);
   }
 }

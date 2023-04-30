@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormGroup, FormGroupDirective, ValidatorFn, Validators } from '@angular/forms';
-import { MatOption } from '@angular/material/core';
+// eslint-disable-next-line max-classes-per-file
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, FormGroupDirective, NgForm } from '@angular/forms';
+import { ErrorStateMatcher, MatOption } from '@angular/material/core';
 import { MatSelect } from '@angular/material/select';
 import { Passengers, PASSENGERS } from '../../model/main.interfaces';
 
@@ -10,6 +11,8 @@ import { Passengers, PASSENGERS } from '../../model/main.interfaces';
   styleUrls: ['./passengers-field.component.scss'],
 })
 export class PassengersFieldComponent implements OnInit {
+  @Input() public formGroupName!: string;
+
   @ViewChild('option') public option!: MatOption;
 
   @ViewChild('selectForm') public selectForm!: MatSelect;
@@ -29,7 +32,7 @@ export class PassengersFieldComponent implements OnInit {
   constructor(private parentForm: FormGroupDirective) {}
 
   public ngOnInit(): void {
-    this.passengersForm = this.parentForm.control.get('passengers') as FormGroup;
+    this.passengersForm = this.parentForm.control.get(this.formGroupName) as FormGroup;
     this.passengersForm.valueChanges.subscribe(() => {
       this.option.select();
       this.updateTrigger();
@@ -52,10 +55,8 @@ export class PassengersFieldComponent implements OnInit {
     this.trigger = result.filter((str) => str !== '').join(', ');
   }
 
-  // private passengersValidarion(): boolean {
-  //   const value = this.passengersForm.value as Passengers;
-  //   if (!value) return false;
-
-  //   const { adult, child, infant } = value;
-  // }
+  public onClose(): void {
+    this.passengersForm.markAsTouched();
+    console.log('passengerForm', this.passengersForm.valid);
+  }
 }

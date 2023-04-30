@@ -2,6 +2,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { passengersValidator } from '../../directives/passengers-validator.directive';
 
 @Component({
   selector: 'app-main-form',
@@ -22,14 +23,11 @@ export class MainFormComponent {
         from: fb.control(null, Validators.required),
         to: fb.control(null, Validators.required),
       }),
-      passengers: fb.group(
-        {
-          adult: fb.control(0, [Validators.required, Validators.pattern(/^[0-9]+(?!.)/), Validators.min(1)]),
-          child: fb.control(0, [Validators.required, Validators.pattern(/^[0-9]+(?!.)/)]),
-          infant: fb.control(0, [Validators.required, Validators.pattern(/^[0-9]+(?!.)/)]),
-        },
-        Validators.required
-      ),
+      passengers: fb.group({
+        adult: fb.control<number>(0, [Validators.required, Validators.min(1), passengersValidator]),
+        child: fb.control<number>(0, [Validators.required]),
+        infant: fb.control<number>(0, [Validators.required]),
+      }),
     });
   }
 

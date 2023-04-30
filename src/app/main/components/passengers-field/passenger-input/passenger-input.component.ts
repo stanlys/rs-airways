@@ -14,15 +14,17 @@ export default class PassengerInputComponent implements OnInit {
 
   public passengerInput!: FormControl;
 
+  public inputValue = 0;
+
   constructor(private parentForm: FormGroupDirective) {}
 
   public ngOnInit(): void {
     this.passengersForm = this.parentForm.control;
 
     this.passengerInput = this.passengersForm.get(this.passenger.inputName) as FormControl;
-    setTimeout(() => {
-      this.passengerInput.disable();
-    }, 0);
+    this.passengerInput.valueChanges.subscribe((v) => {
+      this.inputValue = v as number;
+    });
   }
 
   public add(): void {

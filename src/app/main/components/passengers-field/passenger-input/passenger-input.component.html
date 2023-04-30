@@ -5,7 +5,7 @@
   </div>
   <div class="passenger-amount" [ngClass]="{ disabled: isDisabled() }">
     <button (click)="substract()" matPrefix>-</button>
-    <input matInput class="w-3" [formControlName]="passenger.inputName" />
+    <div class="input w-3">{{ inputValue }}</div>
     <button (click)="add()" matSuffix>+</button>
   </div>
 </div>
