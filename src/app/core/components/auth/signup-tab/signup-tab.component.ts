@@ -70,7 +70,6 @@ export class SignupTabComponent {
   }
 
   public onSubmit(): void {
-    // TODO: transform phone code to \+\d+ when submitting
     const dateOfBirth = this.form.value.dateOfBirth?.toISOString() as string;
     const countryCode = this.form.value.countryCode?.replace(/[^+\d]/g, '') as string;
     const data = { ...this.form.value, dateOfBirth, countryCode };
