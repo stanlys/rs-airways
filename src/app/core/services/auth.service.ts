@@ -29,7 +29,7 @@ export class AuthService {
 
     this.http
       .post<{ token: string }>(url, body, this.httpOptions)
-      .pipe(timeout(3000), catchError(this.handleError('getResponse', {})))
+      .pipe(timeout(3000), catchError(this.handleError('login', {})))
       .subscribe((res) => this.handleToken(res));
   }
 
@@ -48,7 +48,7 @@ export class AuthService {
 
     this.http
       .post<{ token: string }>(url, body, this.httpOptions)
-      .pipe(timeout(3000), catchError(this.handleError('getResponse', {})))
+      .pipe(timeout(3000), catchError(this.handleError('signup', {})))
       .subscribe((res) => this.handleToken(res));
   }
 
