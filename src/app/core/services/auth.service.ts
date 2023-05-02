@@ -66,9 +66,7 @@ export class AuthService {
     return (error: Error | undefined): Observable<T> => {
       console.error(operation, error);
 
-      const message = 'Incorrect credentials';
-
-      this.snackBar.open(message, 'Close', {
+      this.snackBar.open('Incorrect credentials', 'Close', {
         duration: 3000,
       });
 
