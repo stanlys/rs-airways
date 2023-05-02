@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, catchError, of, timeout } from 'rxjs';
 
@@ -18,7 +19,7 @@ export class AuthService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
 
-  constructor(private router: Router, private http: HttpClient) {
+  constructor(private router: Router, private http: HttpClient, private snackBar: MatSnackBar) {
     this.determineLoginStatus();
   }
 
@@ -28,10 +29,8 @@ export class AuthService {
 
     this.http
       .post<{ token: string }>(url, body, this.httpOptions)
-      .pipe(timeout(3000), catchError(AuthService.handleError('getResponse', {})))
+      .pipe(timeout(3000), catchError(this.handleError('getResponse', {})))
       .subscribe((res) => this.handleToken(res));
-
-    localStorage.setItem(this.tokenKey, '');
   }
 
   public logout(): void {
@@ -49,7 +48,7 @@ export class AuthService {
 
     this.http
       .post<{ token: string }>(url, body, this.httpOptions)
-      .pipe(timeout(3000), catchError(AuthService.handleError('getResponse', {})))
+      .pipe(timeout(3000), catchError(this.handleError('getResponse', {})))
       .subscribe((res) => this.handleToken(res));
   }
 
@@ -63,9 +62,15 @@ export class AuthService {
     }
   }
 
-  private static handleError<T>(operation = 'operation', result?: T) {
+  private handleError<T>(operation = 'operation', result?: T) {
     return (error: Error | undefined): Observable<T> => {
       console.error(operation, error);
+
+      const message = 'Incorrect credentials';
+
+      this.snackBar.open(message, 'Close', {
+        duration: 3000,
+      });
 
       return of(result as T);
     };

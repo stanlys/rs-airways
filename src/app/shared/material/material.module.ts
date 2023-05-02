@@ -15,6 +15,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   exports: [
@@ -35,6 +36,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatNativeDateModule,
     MatCheckboxModule,
     MatButtonToggleModule,
+    MatSnackBarModule,
   ],
 })
 export class MaterialModule {}
