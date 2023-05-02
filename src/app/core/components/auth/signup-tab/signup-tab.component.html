@@ -20,9 +20,9 @@
 </div>
 
 <form class="form auth-tab flex flex-col w-full" #ngForm="ngForm" (ngSubmit)="onSubmit()" [formGroup]="form">
-  <mat-form-field *ngIf="form.controls['login'] as control" class="form-field" appearance="fill">
+  <mat-form-field *ngIf="form.controls['email'] as control" class="form-field" appearance="fill">
     <mat-label>Email</mat-label>
-    <input name="login" [formControl]="control" matInput type="text" />
+    <input name="email" [formControl]="control" matInput type="text" />
     <mat-hint *ngIf="control.errors?.['required']">Required</mat-hint>
     <mat-error *ngIf="control.errors?.['email']">Must be correct email</mat-error>
     <mat-error *ngIf="control.errors?.['minlength']">Must be at least 3 characters</mat-error>
@@ -72,9 +72,9 @@
     <mat-error *ngIf="control.errors?.['pattern']">Invalid character</mat-error>
   </mat-form-field>
 
-  <mat-form-field *ngIf="form.controls['birthDate'] as control" appearance="fill">
+  <mat-form-field *ngIf="form.controls['dateOfBirth'] as control" appearance="fill">
     <mat-label>{{ control.value !== null ? 'Date' : 'Date of birth' }}</mat-label>
-    <input name="birthDate" [formControl]="control" matInput [matDatepicker]="picker" [max]="maxDate" />
+    <input name="dateOfBirth" [formControl]="control" matInput [matDatepicker]="picker" [max]="maxDate" />
     <mat-hint *ngIf="control.errors?.['required']">Required</mat-hint>
     <mat-error *ngIf="control.touched && control.invalid">Invalid date</mat-error>
     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
@@ -88,8 +88,12 @@
       <span> and </span>
       <a class="anchor" href="" target="_blank" rel="noopener noreferrer" color="primary">Terms of Use</a>
     </mat-checkbox>
-    <mat-hint class="ml-4 text-xs absolute bottom-1" *ngIf="control.errors?.['required'] && !ngForm.submitted">Required</mat-hint>
-    <mat-error class="ml-4 text-xs absolute bottom-1" *ngIf="(control.touched || ngForm.submitted) && !confirmCheckbox.checked"
+    <mat-hint class="ml-4 text-xs absolute bottom-1" *ngIf="control.errors?.['required'] && !ngForm.submitted"
+      >Required</mat-hint
+    >
+    <mat-error
+      class="ml-4 text-xs absolute bottom-1"
+      *ngIf="(control.touched || ngForm.submitted) && !confirmCheckbox.checked"
       >Must agree with the terms</mat-error
     >
   </div>
@@ -106,7 +110,9 @@
       </mat-button-toggle>
     </mat-button-toggle-group>
 
-    <mat-hint class="ml-4 text-xs absolute bottom-1" *ngIf="control.errors?.['required'] && !ngForm.submitted">Required</mat-hint>
+    <mat-hint class="ml-4 text-xs absolute bottom-1" *ngIf="control.errors?.['required'] && !ngForm.submitted"
+      >Required</mat-hint
+    >
     <mat-error class="ml-4 text-xs absolute bottom-1" *ngIf="(control.touched || ngForm.submitted) && !control.value"
       >Must select gender</mat-error
     >
@@ -115,7 +121,7 @@
   <div class="phone-number flex gap-2">
     <mat-form-field *ngIf="form.controls['countryCode'] as control" class="form-field" appearance="fill">
       <mat-label>Country code</mat-label>
-      <mat-select name="countryCode" [formControl]="control">
+      <mat-select name="countryCode" [formControl]="control" [placeholder]="this.countryCodes[0]">
         <mat-option *ngFor="let code of countryCodes" [value]="code">
           {{ code }}
         </mat-option>
@@ -124,9 +130,9 @@
       <mat-error *ngIf="control.errors?.['pattern']">Invalid character</mat-error>
     </mat-form-field>
 
-    <mat-form-field *ngIf="form.controls['phoneNumber'] as control" class="form-field" appearance="fill">
+    <mat-form-field *ngIf="form.controls['phone'] as control" class="form-field" appearance="fill">
       <mat-label>Mobile phone number</mat-label>
-      <input name="phoneNumber" placeholder="e.g. 1111111111" [formControl]="control" matInput type="text" />
+      <input name="phone" placeholder="e.g. 1111111111" [formControl]="control" matInput type="text" />
       <mat-hint *ngIf="control.errors?.['required']">Required</mat-hint>
       <mat-error *ngIf="control.errors?.['pattern']">Invalid character</mat-error>
       <mat-error *ngIf="control.errors?.['maxlength']">Must not exceed 15 digits</mat-error>

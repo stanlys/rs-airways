@@ -20,9 +20,9 @@
 </div>
 
 <form class="form auth-tab flex flex-col w-full" (ngSubmit)="onSubmit()" [formGroup]="form">
-  <mat-form-field *ngIf="form.controls['login'] as control" class="form-field" appearance="fill">
+  <mat-form-field *ngIf="form.controls['email'] as control" class="form-field" appearance="fill">
     <mat-label>Email</mat-label>
-    <input name="login" [formControl]="control" matInput type="text" />
+    <input name="email" [formControl]="control" matInput type="text" />
     <mat-error *ngIf="control.errors?.['email']">Please enter correct email</mat-error>
     <mat-error *ngIf="control.errors?.['maxlength']">The login can't exceed 16 characters</mat-error>
   </mat-form-field>

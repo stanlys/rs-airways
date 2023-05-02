@@ -3,9 +3,10 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Subject, delay, of } from 'rxjs';
 
 import { AuthService } from '../../../services/auth.service';
+import { LoginRequest } from '../../../models/requests.models';
 
 interface LoginForm {
-  login: FormControl<string | null>;
+  email: FormControl<string | null>;
   password: FormControl<string | null>;
 }
 
@@ -25,7 +26,7 @@ export class LoginTabComponent {
 
   constructor(fb: FormBuilder, private authService: AuthService) {
     this.form = fb.group({
-      login: new FormControl('', [Validators.maxLength(16)]),
+      email: new FormControl('', [Validators.maxLength(16)]),
       password: new FormControl('', [Validators.maxLength(32)]),
     });
   }
@@ -35,7 +36,7 @@ export class LoginTabComponent {
   }
 
   public onSubmit(): void {
-    this.authService.login();
+    this.authService.login(this.form.value as LoginRequest);
 
     this.isLoading$.next(true);
 
