@@ -15,34 +15,33 @@ export type PassengerInfo = {
   name: string;
   description: string;
   inputName: string;
-  defaultAmount: number;
+  defaultAmount?: number;
 };
 
-export type PassengersInfo = {
-  adult: PassengerInfo;
-  child: PassengerInfo;
-  infant: PassengerInfo;
-};
-
-export const PASSENGERS: PassengersInfo = {
-  adult: {
+export const PASSENGERS: PassengerInfo[] = [
+  {
     name: 'Adult',
     description: '14+ years',
     inputName: 'adult',
     defaultAmount: 0,
   },
-  child: {
+  {
     name: 'Child',
     description: '2-14 years',
     inputName: 'child',
     defaultAmount: 0,
   },
-  infant: {
+  {
     name: 'Infant',
     description: '0-2 years',
     inputName: 'infant',
     defaultAmount: 0,
   },
+];
+
+export type PassSelectOption = {
+  name: string;
+  amount: number;
 };
 
 export interface FlightSearchRequest {

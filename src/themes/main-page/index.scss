@@ -48,6 +48,14 @@
   .mat-mdc-form-field.ng-touched.ng-invalid .mdc-text-field {
     border-color: c.$error-color;
   }
+
+  .mat-pseudo-checkbox.mat-mdc-option-pseudo-checkbox.mat-pseudo-checkbox-full {
+    display: none;
+  }
+
+  .mat-mdc-option .mdc-list-item__primary-text {
+    width: 100%;
+  }
 }
 
 .header .mat-mdc-select-placeholder {

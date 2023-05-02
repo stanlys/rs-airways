@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective } from '@angular/forms';
+import { MatOption } from '@angular/material/core';
 import { PassengerInfo } from '../../../model/main.interfaces';
 
 @Component({
@@ -9,6 +10,10 @@ import { PassengerInfo } from '../../../model/main.interfaces';
 })
 export default class PassengerInputComponent implements OnInit {
   @Input() public passenger!: PassengerInfo;
+
+  // @Input() public option!: MatOption;
+
+  // @Output() public optionSelect = new EventEmitter<boolean>();
 
   public passengersForm!: FormGroup;
 
@@ -22,28 +27,25 @@ export default class PassengerInputComponent implements OnInit {
     this.passengersForm = this.parentForm.control;
 
     this.passengerInput = this.passengersForm.get(this.passenger.inputName) as FormControl;
-    this.passengerInput.valueChanges.subscribe((v) => {
-      this.inputValue = v as number;
-    });
+    // this.passengerInput.valueChanges.subscribe((v) => {
+    //   // this.inputValue = v as number;
+    //   console.log('v', v, this.inputValue, this.passengerInput.value);
+    //   // this.updateOptionSelect();
+    //   // console.log('update', this.option.selected, this.option.id);
+    // });
   }
 
   public add(): void {
-    const val = this.passengerInput.value as number;
-    this.passengerInput.setValue(val + 1);
+    this.inputValue += 1;
+    this.passengerInput.setValue(this.inputValue);
   }
 
   public substract(): void {
-    const val = this.passengerInput.value as number;
-    if (val === 0) return;
-    this.passengerInput.setValue(val - 1);
-    this.passengersForm.updateValueAndValidity();
+    this.inputValue = this.inputValue > 1 ? this.inputValue - 1 : 0;
+    this.passengerInput.setValue(this.inputValue);
   }
 
   public isDisabled(): boolean {
     return this.passengerInput.value === 0;
-  }
-
-  public disableInput(): void {
-    this.passengerInput.disable();
   }
 }

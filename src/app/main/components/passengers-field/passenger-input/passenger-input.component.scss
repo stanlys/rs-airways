@@ -1,10 +1,14 @@
 @use '../../../../../themes/default/colors' as c;
 
+:host {
+  width: 100%;
+}
+
 .passengers-option {
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
-  padding: 10px 16px;
+  padding: 10px 0px;
 }
 
 .passenger-type {

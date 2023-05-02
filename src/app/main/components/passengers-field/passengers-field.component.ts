@@ -1,9 +1,8 @@
-// eslint-disable-next-line max-classes-per-file
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, FormGroupDirective, NgForm } from '@angular/forms';
-import { ErrorStateMatcher, MatOption } from '@angular/material/core';
-import { MatSelect } from '@angular/material/select';
-import { Passengers, PASSENGERS } from '../../model/main.interfaces';
+import { Component, Input, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
+import { MatOption } from '@angular/material/core';
+import { selectRequiredOption } from '../../directives/passengers-validator.directive';
+import { PASSENGERS, PassSelectOption } from '../../model/main.interfaces';
 
 @Component({
   selector: 'app-passengers-field',
@@ -13,50 +12,43 @@ import { Passengers, PASSENGERS } from '../../model/main.interfaces';
 export class PassengersFieldComponent implements OnInit {
   @Input() public formGroupName!: string;
 
-  @ViewChild('option') public option!: MatOption;
-
-  @ViewChild('selectForm') public selectForm!: MatSelect;
+  @ViewChildren('option') public options!: QueryList<MatOption>;
 
   public passengersForm!: FormGroup;
 
-  public adult = PASSENGERS.adult;
+  public passSelect = new FormControl('', [Validators.required, selectRequiredOption()]);
 
-  public child = PASSENGERS.child;
+  public passengers = PASSENGERS;
 
-  public infant = PASSENGERS.infant;
-
-  public defaultValue = 'Passengers';
-
-  public trigger = 'Passengers';
+  public trigger = '';
 
   constructor(private parentForm: FormGroupDirective) {}
 
   public ngOnInit(): void {
     this.passengersForm = this.parentForm.control.get(this.formGroupName) as FormGroup;
-    this.passengersForm.valueChanges.subscribe(() => {
-      this.option.select();
-      this.updateTrigger();
-    });
   }
 
   private updateTrigger(): void {
-    const value = this.passengersForm.value as Passengers;
-    if (!value) return;
+    const result = this.options.map((item) => item.value as PassSelectOption);
 
-    const { adult, child, infant } = value;
+    if (!result) return;
 
-    if (adult + child + infant === 0) {
-      this.option.deselect();
-      return;
-    }
-
-    const result = [adult ? `${adult} Adult ` : '', child ? `${child} Child ` : '', infant ? `${infant} Infant` : ''];
-
-    this.trigger = result.filter((str) => str !== '').join(', ');
+    this.trigger = result
+      .filter((item) => !!item.amount)
+      .map((item) => `${item.amount} ${item.name}`)
+      .join(', ');
   }
 
-  public onClose(): void {
-    this.passengersForm.markAsTouched();
-    console.log('passengerForm', this.passengersForm.valid);
+  public onSelect(id: number): void {
+    const option = this.options.get(id);
+
+    if (!option) return;
+    const val = option.value as PassSelectOption;
+    if (val.amount > 0) {
+      option.select();
+    } else {
+      option.deselect();
+    }
+    this.updateTrigger();
   }
 }

@@ -35,11 +35,8 @@ export class MainFormComponent {
     console.log('submit', this.searchForm.valid);
 
     if (!this.searchForm.valid) return;
-
-    if (this.searchForm.valid) return;
+    console.log(this.searchForm.value);
 
     await this.router.navigate(['/booking']);
-
-    console.log(this.searchForm.value);
   }
 }

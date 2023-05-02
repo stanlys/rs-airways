@@ -14,7 +14,15 @@
       </div>
 
       <mat-card-actions class="flex-row justify-end">
-        <button mat-flat-button type="submit" color="primary">Search</button>
+        <button
+          mat-flat-button
+          type="submit"
+          color="primary"
+          [disabled]="searchForm.invalid"
+          style="width: 126px; height: 60px"
+        >
+          Search
+        </button>
       </mat-card-actions>
     </form>
   </mat-card-content>

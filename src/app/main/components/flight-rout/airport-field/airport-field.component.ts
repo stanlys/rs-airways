@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective } from '@angular/forms';
 import { Observable, startWith, map } from 'rxjs';
 import { Airport } from '../../../model/main.interfaces';
-import { AIRPORTS } from '../../../model/mock-list.model';
+import { AIRPORTS } from '../../../model/mock-airports-list.model';
 
 @Component({
   selector: 'app-airport-field',
