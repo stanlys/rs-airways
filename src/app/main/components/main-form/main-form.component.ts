@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { passengersValidator } from '../../directives/passengers-validator.directive';
+import { FlightSearchRequest } from '../../model/main.interfaces';
+import { SearchService } from '../../services/search.service';
 
 @Component({
   selector: 'app-main-form',
@@ -12,7 +14,7 @@ import { passengersValidator } from '../../directives/passengers-validator.direc
 export class MainFormComponent {
   public searchForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(private fb: FormBuilder, private router: Router, private search: SearchService) {
     this.searchForm = fb.group({
       oneWay: fb.control(false, Validators.required),
       airport: fb.group({
@@ -31,12 +33,14 @@ export class MainFormComponent {
     });
   }
 
-  public async onSubmit(): Promise<void> {
+  public onSubmit(): void {
     console.log('submit', this.searchForm.valid);
 
     if (!this.searchForm.valid) return;
-    console.log(this.searchForm.value);
 
-    await this.router.navigate(['/booking']);
+    this.search.update(this.searchForm.value as FlightSearchRequest);
+    console.log('search', this.search.request);
+
+    this.router.navigate(['/booking']).catch(console.error);
   }
 }

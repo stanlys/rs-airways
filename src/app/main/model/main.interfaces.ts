@@ -18,6 +18,24 @@ export type PassengerInfo = {
   defaultAmount?: number;
 };
 
+export type PassSelectOption = {
+  name: string;
+  amount: number;
+};
+
+export interface FlightSearchRequest {
+  airport: {
+    from: Airport;
+    to: Airport;
+  };
+  dates: {
+    dateFrom: Date;
+    dateTo?: Date;
+  };
+  passengers: Passengers;
+  oneWay: boolean;
+}
+
 export const PASSENGERS: PassengerInfo[] = [
   {
     name: 'Adult',
@@ -38,21 +56,3 @@ export const PASSENGERS: PassengerInfo[] = [
     defaultAmount: 0,
   },
 ];
-
-export type PassSelectOption = {
-  name: string;
-  amount: number;
-};
-
-export interface FlightSearchRequest {
-  airport: {
-    from: Airport;
-    to: Airport;
-  };
-  dates: {
-    dateFrom: Date;
-    dateTo: Date;
-  };
-  passengers: Passengers;
-  oneWay: boolean;
-}
