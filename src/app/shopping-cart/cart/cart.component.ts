@@ -7,6 +7,7 @@ import { Store } from '@ngrx/store';
 import { SHOPPING_CART_COLUMNS } from '../MOCK_DATA';
 import { IFlight } from '../interfaces';
 
+
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -14,8 +15,6 @@ import { IFlight } from '../interfaces';
 })
 export class CartComponent {
   public displayedColumns: string[] = SHOPPING_CART_COLUMNS;
-
-  // private flightsData: Array<IFlight> = [];
 
   public flights = new MatTableDataSource<IFlight>([]);
 

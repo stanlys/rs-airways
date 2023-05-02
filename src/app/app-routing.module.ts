@@ -16,6 +16,14 @@ const routes: Routes = [
     loadChildren: () => import('./booking/booking.module').then((m) => m.BookingModule),
   },
   {
+    path: 'cart',
+    loadChildren: () => import('./cart/cart.module').then((m) => m.CartModule),
+  },
+  {
+    path: 'profile',
+    loadChildren: () => import('./account/account.module').then((m) => m.AccountModule),
+  },
+  {
     path: 'shopping-cart',
     loadChildren: () => import('./shopping-cart/shopping-cart.module').then((m) => m.ShoppingCartModule),
   },

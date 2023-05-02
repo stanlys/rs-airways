@@ -1,0 +1,38 @@
+@use 'mixins' as mx;
+@use 'colors' as c;
+
+.header.mat-toolbar {
+  height: 88px;
+  background-color: #fff;
+
+  .controls {
+    gap: 1rem;
+  }
+
+  .mat-horizontal-content-container {
+    display: none;
+  }
+
+  .mat-stepper-horizontal {
+    background-color: unset;
+  }
+
+  .mat-mdc-unelevated-button,
+  .date-format-container {
+    @include mx.button_border;
+    height: 40px;
+  }
+
+  .date-format-container .mdc-button__label {
+    width: 100%;
+  }
+
+  .mat-mdc-unelevated-button {
+    background-color: rgba(241, 243, 246, 0.15);
+  }
+}
+
+.date-format-panel.mat-mdc-select-panel {
+  position: absolute !important;
+  width: unset !important;
+}
