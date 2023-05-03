@@ -1,0 +1,6 @@
+$header-height: 88px;
+$footer-height: 120px;
+
+@media (max-width: 768px) {
+  $footer-height: 190px;
+}

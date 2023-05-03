@@ -1,12 +1,12 @@
-@use '../../../../themes/default/mixins' as mx;
 @use '../../../../themes/util' as u;
 @use '../../../../themes/default/colors' as c;
-@use '../../../../styles/mixins.scss' as m;
-@use '../../../../styles/vars.scss' as v;
+@use '../../../../themes/default/mixins' as m;
+@use '../../../../themes/default/vars' as v;
 
 
 :host {
   display: flex;
+  padding: 0 1rem;
   padding-bottom: 250px;
   width: 100vw;
   height: calc(100vh - v.$header-height - v.$footer-height);
