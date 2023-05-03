@@ -23,53 +23,37 @@ export class DatesFieldComponent {
 
   public today = new Date();
 
-  constructor(public parentForm: FormGroupDirective) {}
+  constructor(public parentForm: FormGroupDirective, private cd: ChangeDetectorRef) {}
 
   public ngOnInit(): void {
     this.datesForm = this.parentForm.control.get(this.formGroupName) as FormGroup;
 
-    this.dateFrom = this.datesForm.get('from') as FormControl;
-    this.dateTo = this.datesForm.get('to') as FormControl;
-    this.date = this.datesForm.get('oneWay') as FormControl;
-    this.updateValidators();
+    this.dateFrom = this.datesForm.get('from') as FormControl<Date>;
+    this.dateTo = this.datesForm.get('to') as FormControl<Date>;
+    this.date = this.datesForm.get('oneWay') as FormControl<Date>;
 
-    this.parentForm.control
-      .get('oneWay')
-      ?.valueChanges.pipe()
-      .subscribe((v) => {
-        this.isOneWay = v as boolean;
-        console.log(this.isOneWay);
+    this.parentForm.control.get('oneWay')?.valueChanges.subscribe((v) => {
+      this.isOneWay = v as boolean;
 
-        setTimeout(() => {
-          this.updateValidators();
-          this.updateHint();
-        }, 0);
-      });
+      this.updateValidators(this.isOneWay);
+      this.updateHint(this.isOneWay);
+      this.cd.detectChanges();
+    });
   }
 
-  private updateHint(): void {
-    this.dateFormatHint = this.isOneWay ? 'MM/DD/YYYY' : 'MM/DD/YYYY - MM/DD/YYYY';
+  private updateHint(flag: boolean): void {
+    this.dateFormatHint = flag ? 'MM/DD/YYYY' : 'MM/DD/YYYY - MM/DD/YYYY';
   }
 
-  private updateValidators(): void {
-    console.log('update validators', this.isOneWay);
-
-    if (!this.isOneWay) {
+  private updateValidators(flag: boolean): void {
+    if (!flag) {
       this.date.clearValidators();
       this.dateTo.setValidators(Validators.required);
       this.dateFrom.setValidators(Validators.required);
-
-      console.log('range');
     } else {
       this.date.setValidators(Validators.required);
       this.dateTo.clearValidators();
       this.dateFrom.clearValidators();
-
-      console.log('single');
     }
-
-    this.date.updateValueAndValidity();
-    this.dateTo.updateValueAndValidity();
-    this.dateFrom.updateValueAndValidity();
   }
 }
