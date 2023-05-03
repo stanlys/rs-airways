@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { passengersValidator } from '../../directives/passengers-validator.directive';
 import { Airport, FlightSearchRequest } from '../../model/main.interfaces';
@@ -13,12 +13,6 @@ import { SearchService } from '../../services/search.service';
 })
 export class MainFormComponent {
   public searchForm: FormGroup;
-
-  // private isOneWay = false;
-
-  // private oneWayForm!: FormControl;
-
-  // private datesForm!: FormGroup;
 
   constructor(private fb: FormBuilder, private router: Router, private search: SearchService) {
     this.searchForm = fb.group({
@@ -41,12 +35,9 @@ export class MainFormComponent {
   }
 
   public onSubmit(): void {
-    console.log('submit', this.searchForm.valid);
-
     if (!this.searchForm.valid) return;
 
     this.search.update(this.searchForm.value as FlightSearchRequest);
-    console.log('search', this.search.request);
 
     this.router.navigate(['/booking']).catch(console.error);
   }

@@ -19,7 +19,6 @@ export class FlightRouteComponent implements OnInit {
   }
 
   public switchDirection(): void {
-    console.log('switchDirection click');
     const fromForm = this.flightRouteForm.get('from');
     const toForm = this.flightRouteForm.get('to');
     if (!fromForm || !toForm) return;
@@ -28,7 +27,5 @@ export class FlightRouteComponent implements OnInit {
       from: toForm.value as Airport,
       to: fromForm.value as Airport,
     });
-
-    console.log(this.flightRouteForm.value);
   }
 }

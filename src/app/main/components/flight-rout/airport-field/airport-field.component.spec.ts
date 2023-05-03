@@ -8,9 +8,8 @@ describe('AirportFieldComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AirportFieldComponent ]
-    })
-    .compileComponents();
+      declarations: [AirportFieldComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(AirportFieldComponent);
     component = fixture.componentInstance;

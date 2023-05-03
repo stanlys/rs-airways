@@ -1,6 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective } from '@angular/forms';
-import { MatOption } from '@angular/material/core';
 import { PassengerInfo } from '../../../model/main.interfaces';
 
 @Component({
@@ -10,10 +9,6 @@ import { PassengerInfo } from '../../../model/main.interfaces';
 })
 export default class PassengerInputComponent implements OnInit {
   @Input() public passenger!: PassengerInfo;
-
-  // @Input() public option!: MatOption;
-
-  // @Output() public optionSelect = new EventEmitter<boolean>();
 
   public passengersForm!: FormGroup;
 
@@ -27,12 +22,6 @@ export default class PassengerInputComponent implements OnInit {
     this.passengersForm = this.parentForm.control;
 
     this.passengerInput = this.passengersForm.get(this.passenger.inputName) as FormControl;
-    // this.passengerInput.valueChanges.subscribe((v) => {
-    //   // this.inputValue = v as number;
-    //   console.log('v', v, this.inputValue, this.passengerInput.value);
-    //   // this.updateOptionSelect();
-    //   // console.log('update', this.option.selected, this.option.id);
-    // });
   }
 
   public add(): void {

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { STORAGE_KEY_PREFIX } from '../../shared/constants';
 import { FlightSearchRequest } from '../model/main.interfaces';
 
@@ -41,8 +41,6 @@ export class SearchService {
 
   constructor(private router: Router) {
     this.init();
-
-    console.log(this.request);
   }
 
   public update(value: FlightSearchRequest): void {

@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 
 @Component({
@@ -6,7 +6,7 @@ import { FormControl, FormGroup, FormGroupDirective, Validators } from '@angular
   templateUrl: './dates-field.component.html',
   styleUrls: ['./dates-field.component.scss'],
 })
-export class DatesFieldComponent {
+export class DatesFieldComponent implements OnInit {
   @Input() public formGroupName!: string;
 
   public dateFormatHint = 'MM/DD/YYYY - MM/DD/YYYY';
