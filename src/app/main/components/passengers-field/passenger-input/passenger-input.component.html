@@ -1,0 +1,11 @@
+<div class="passengers-option" [formGroup]="passengersForm">
+  <div class="passenger-type">
+    <div class="passenger-name">{{ passenger.name }}</div>
+    <div class="passenger-description">{{ passenger.description }}</div>
+  </div>
+  <div class="passenger-amount" [ngClass]="{ disabled: isDisabled() }">
+    <button (click)="substract()" matPrefix>-</button>
+    <div class="input w-3">{{ inputValue }}</div>
+    <button (click)="add()" matSuffix>+</button>
+  </div>
+</div>

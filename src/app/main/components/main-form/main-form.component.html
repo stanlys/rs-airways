@@ -1,0 +1,29 @@
+<mat-card class="main-page-form">
+  <mat-card-content>
+    <form class="search-form" (ngSubmit)="onSubmit()" [formGroup]="searchForm">
+      <mat-radio-group formControlName="oneWay" color="primary">
+        <mat-radio-button [value]="false" [checked]="true" color="primary">Round Trip</mat-radio-button>
+        <mat-radio-button [value]="true" color="primary">One Way</mat-radio-button>
+      </mat-radio-group>
+
+      <app-flight-route formGroupName="airport" class="flight-route"></app-flight-route>
+
+      <div class="date-passengers-container">
+        <app-dates-field formGroupName="dates"></app-dates-field>
+        <app-passengers-field formGroupName="passengers"></app-passengers-field>
+      </div>
+
+      <mat-card-actions class="flex-row justify-end">
+        <button
+          mat-flat-button
+          type="submit"
+          color="primary"
+          [disabled]="searchForm.invalid"
+          style="width: 126px; height: 60px"
+        >
+          Search
+        </button>
+      </mat-card-actions>
+    </form>
+  </mat-card-content>
+</mat-card>

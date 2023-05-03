@@ -7,3 +7,9 @@
   outline: 1px solid #cecece;
   border-radius: 4px;
 }
+
+@mixin wrapper {
+  width: 100%;
+  max-width: 1128px;
+  margin: 0 auto;
+}

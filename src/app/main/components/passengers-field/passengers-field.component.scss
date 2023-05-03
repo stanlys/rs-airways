@@ -1,0 +1,10 @@
+@use '../../../../themes/default/colors' as c;
+
+:host{
+  @apply flex w-full sm:w-5/12;
+}
+
+.passengers-select {
+  @apply flex w-full sm:pl-2.5;
+}
+

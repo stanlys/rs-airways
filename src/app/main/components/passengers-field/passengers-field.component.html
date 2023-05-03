@@ -1,0 +1,21 @@
+<ng-container [formGroup]="passengersForm">
+  <mat-form-field class="passengers-select" appearance="fill" hideRequiredMarker="true">
+    <mat-label>Passengers</mat-label>
+    <mat-select [formControl]="passSelect" multiple [disableRipple]="true">
+      <mat-select-trigger>{{ trigger }}</mat-select-trigger>
+
+      <mat-option
+        #option
+        *ngFor="let p of passengers; let id = index"
+        [value]="{
+          name: p.name,
+          amount: passengersForm.get(p.inputName)?.value
+        }"
+        (onSelectionChange)="onSelect(id)"
+      >
+        <app-passenger-input [passenger]="p"></app-passenger-input>
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="passSelect.hasError('required')">Choose at least 1 Adult</mat-error>
+  </mat-form-field>
+</ng-container>

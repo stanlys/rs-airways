@@ -1,0 +1,25 @@
+@use '@angular/material' as mat;
+@use '../../../../themes/default/colors' as c;
+:host {
+  padding: 10px;
+
+  .main-page-form {
+    display: flex;
+    max-width: 580px;
+    min-width: 300px;
+    min-height: 390px;
+    padding: 8px;
+  }
+
+  .search-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .date-passengers-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+}
