@@ -4,9 +4,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import { addFlightToCart, deleteFlightFromCart } from 'src/app/reducers/actions/shopping-cart.action';
 import { selectFlights } from 'src/app/reducers/reducer/shopping-cart.reducer';
 import { Store } from '@ngrx/store';
+import { Router } from '@angular/router';
 import { SHOPPING_CART_COLUMNS } from '../MOCK_DATA';
 import { IFlight } from '../interfaces';
-
 
 @Component({
   selector: 'app-cart',
@@ -20,11 +20,9 @@ export class CartComponent {
 
   public selection = new SelectionModel<IFlight>(true, []);
 
-  private count = 0;
-
   public promocode = '';
 
-  constructor(private store: Store) {
+  constructor(private store: Store, private router: Router) {
     this.store.select(selectFlights).subscribe((data) => {
       this.flights.data = data;
       return true;
@@ -50,10 +48,6 @@ export class CartComponent {
     );
   }
 
-  // public showControlMenu(): void {
-  //   console.log('control menu ', this.flights);
-  // }
-
   public isAllSelected(): boolean {
     const numSelected = this.selection.selected.length;
     const numRows = this.flights.data.length;
@@ -65,29 +59,19 @@ export class CartComponent {
       this.selection.clear();
       return;
     }
-
     this.selection.select(...this.flights.data);
   }
 
-  public editWithCheckbox(flight: IFlight): void {
-    this.count += 1;
-    console.log('Edit - ', flight);
+  public async editWithCheckbox(flight: IFlight): Promise<void> {
+    console.log('click edit');
+    await this.router.navigate(['/edit'], { queryParams: { flight } });
   }
 
   public deleteWithCheckbox(flight: IFlight): void {
-    this.count += 1;
     this.store.dispatch(deleteFlightFromCart({ flight }));
   }
 
   public applyPromoCode(): void {
-    this.count += 1;
     console.log('Promocode - ', this.promocode);
-  }
-
-  private checkboxLabel(row?: IFlight): string {
-    if (!row) {
-      return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
-    }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.number}`;
   }
 }
