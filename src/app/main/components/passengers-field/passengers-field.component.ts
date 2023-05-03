@@ -1,8 +1,29 @@
-import { Component, Input, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { Component, Input, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { MatOption } from '@angular/material/core';
 import { selectRequiredOption } from '../../directives/passengers-validator.directive';
-import { PASSENGERS, PassSelectOption } from '../../model/main.interfaces';
+import { PassengerInfo, PassSelectOption } from '../../model/main.interfaces';
+
+const PASSENGERS: PassengerInfo[] = [
+  {
+    name: 'Adult',
+    description: '14+ years',
+    inputName: 'adult',
+    defaultAmount: 0,
+  },
+  {
+    name: 'Child',
+    description: '2-14 years',
+    inputName: 'child',
+    defaultAmount: 0,
+  },
+  {
+    name: 'Infant',
+    description: '0-2 years',
+    inputName: 'infant',
+    defaultAmount: 0,
+  },
+];
 
 @Component({
   selector: 'app-passengers-field',

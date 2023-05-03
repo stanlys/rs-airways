@@ -1,4 +1,4 @@
-import { Airport } from './main.interfaces';
+import { Airport } from './model/main.interfaces';
 
 export const AIRPORTS: Airport[] = [
   {

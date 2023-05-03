@@ -36,24 +36,3 @@ export interface FlightSearchRequest {
   passengers: Passengers;
   oneWay: boolean;
 }
-
-export const PASSENGERS: PassengerInfo[] = [
-  {
-    name: 'Adult',
-    description: '14+ years',
-    inputName: 'adult',
-    defaultAmount: 0,
-  },
-  {
-    name: 'Child',
-    description: '2-14 years',
-    inputName: 'child',
-    defaultAmount: 0,
-  },
-  {
-    name: 'Infant',
-    description: '0-2 years',
-    inputName: 'infant',
-    defaultAmount: 0,
-  },
-];
