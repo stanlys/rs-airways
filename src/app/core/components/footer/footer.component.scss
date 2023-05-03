@@ -4,7 +4,6 @@
 @use '../../../../themes/default/mixins' as m;
 @use '../../../../themes/default/vars' as v;
 
-
 :host {
   display: flex;
   flex-direction: column;
@@ -75,7 +74,7 @@
 
 @media (max-width: 768px) {
   :host {
-    gap:0.5rem;
+    gap: 0.5rem;
     font-size: 12px;
   }
 
