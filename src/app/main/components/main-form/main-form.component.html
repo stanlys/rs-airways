@@ -1,7 +1,7 @@
 <mat-card class="main-page-form">
   <mat-card-content>
     <form class="search-form" (ngSubmit)="onSubmit()" [formGroup]="searchForm">
-      <mat-radio-group formControlName="oneWay" aria-label="Select an option" color="primary">
+      <mat-radio-group formControlName="oneWay" color="primary">
         <mat-radio-button value="false" [checked]="true" color="primary">Round Trip</mat-radio-button>
         <mat-radio-button value="true" color="primary">One Way</mat-radio-button>
       </mat-radio-group>

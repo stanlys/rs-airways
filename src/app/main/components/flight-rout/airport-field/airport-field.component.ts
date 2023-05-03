@@ -32,7 +32,6 @@ export class AirportFieldComponent implements OnInit {
   public ngOnInit(): void {
     this.parentForm = this.parentFormGroup.control;
     this.airportForm = this.parentFormGroup.control.get(this.formName) as FormControl;
-    console.log(this.airportForm.value);
 
     this.filteredOptions = this.airportForm.valueChanges.pipe(
       startWith(''),

@@ -29,8 +29,9 @@ export interface FlightSearchRequest {
     to: Airport;
   };
   dates: {
-    dateFrom: Date;
+    dateFrom?: Date;
     dateTo?: Date;
+    date?: Date;
   };
   passengers: Passengers;
   oneWay: boolean;

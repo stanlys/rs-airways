@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { passengersValidator } from '../../directives/passengers-validator.directive';
 import { FlightSearchRequest } from '../../model/main.interfaces';
@@ -14,6 +14,12 @@ import { SearchService } from '../../services/search.service';
 export class MainFormComponent {
   public searchForm: FormGroup;
 
+  // private isOneWay = false;
+
+  // private oneWayForm!: FormControl;
+
+  // private datesForm!: FormGroup;
+
   constructor(private fb: FormBuilder, private router: Router, private search: SearchService) {
     this.searchForm = fb.group({
       oneWay: fb.control(false, Validators.required),
@@ -24,6 +30,7 @@ export class MainFormComponent {
       dates: fb.group({
         from: fb.control(null, Validators.required),
         to: fb.control(null, Validators.required),
+        oneWay: fb.control(null),
       }),
       passengers: fb.group({
         adult: fb.control<number>(0, [Validators.required, Validators.min(1), passengersValidator]),
