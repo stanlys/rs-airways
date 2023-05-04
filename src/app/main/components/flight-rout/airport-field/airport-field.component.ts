@@ -2,7 +2,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective } from '@angular/forms';
 import { Observable, map, startWith } from 'rxjs';
-import { AIRPORTS } from '../../../MOCK-DATA-airports-list.model';
+import { AIRPORTS } from '../../../mock-airports-list';
 import { Airport } from '../../../models/main.interfaces';
 
 @Component({
