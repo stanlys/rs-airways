@@ -22,17 +22,3 @@ export type PassSelectOption = {
   name: string;
   amount: number;
 };
-
-export interface FlightSearchRequest {
-  airport: {
-    from: Airport;
-    to: Airport;
-  };
-  dates: {
-    dateFrom?: Date;
-    dateTo?: Date;
-    date?: Date;
-  };
-  passengers: Passengers;
-  oneWay: boolean;
-}

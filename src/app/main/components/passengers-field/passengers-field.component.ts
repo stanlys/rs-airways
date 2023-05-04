@@ -2,7 +2,7 @@ import { Component, Input, OnInit, QueryList, ViewChildren } from '@angular/core
 import { FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { MatOption } from '@angular/material/core';
 import { selectRequiredOption } from '../../directives/passengers-validator.directive';
-import { PassengerInfo, PassSelectOption } from '../../model/main.interfaces';
+import { PassSelectOption, PassengerInfo } from '../../models/main.interfaces';
 
 const PASSENGERS: PassengerInfo[] = [
   {

@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { STORAGE_KEY_PREFIX } from '../../shared/constants';
-import { FlightSearchRequest } from '../model/main.interfaces';
+import { FlightSearchRequest } from '../models/flight-search-request.model';
 
 const initRequest: FlightSearchRequest = {
   oneWay: false,

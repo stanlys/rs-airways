@@ -3,8 +3,9 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { passengersValidator } from '../../directives/passengers-validator.directive';
-import { Airport, FlightSearchRequest } from '../../model/main.interfaces';
 import { SearchService } from '../../services/search.service';
+import { FlightSearchRequest } from '../../models/flight-search-request.model';
+import { Airport } from '../../models/main.interfaces';
 
 @Component({
   selector: 'app-main-form',

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormGroupDirective } from '@angular/forms';
-import { Airport } from '../../model/main.interfaces';
+import { Airport } from '../../models/main.interfaces';
 
 @Component({
   selector: 'app-flight-route',

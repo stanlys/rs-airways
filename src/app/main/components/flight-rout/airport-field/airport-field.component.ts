@@ -1,9 +1,9 @@
 /* eslint-disable no-underscore-dangle */
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective } from '@angular/forms';
-import { Observable, startWith, map } from 'rxjs';
+import { Observable, map, startWith } from 'rxjs';
 import { AIRPORTS } from '../../../MOCK-DATA-airports-list.model';
-import { Airport } from '../../../model/main.interfaces';
+import { Airport } from '../../../models/main.interfaces';
 
 @Component({
   selector: 'app-airport-field',
