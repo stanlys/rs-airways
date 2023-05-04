@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective } from '@angular/forms';
 import { Observable, map, startWith } from 'rxjs';
 import { AIRPORTS } from '../../../mock-airports-list';
-import { Airport } from '../../../models/main.interfaces';
+import { AirportForm } from '../../../models/main.interfaces';
 
 @Component({
   selector: 'app-airport-field',
@@ -17,9 +17,9 @@ export class AirportFieldComponent implements OnInit {
 
   @Input() public formName = '';
 
-  @Output() public enter = new EventEmitter<Airport>();
+  @Output() public enter = new EventEmitter<AirportForm>();
 
-  public filteredOptions: Observable<Airport[]> | undefined;
+  public filteredOptions: Observable<AirportForm[]> | undefined;
 
   public options = AIRPORTS;
 
@@ -45,11 +45,11 @@ export class AirportFieldComponent implements OnInit {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  public showAirport(airport: Airport): string {
+  public showAirport(airport: AirportForm): string {
     return airport && airport.city ? `${airport.city} ${airport.name ? airport.name : ''}, ${airport.IATA}` : '';
   }
 
-  private _filter(value: string | Airport): Airport[] {
+  private _filter(value: string | AirportForm): AirportForm[] {
     const filterValue = typeof value === 'string' ? value.toLowerCase() : value.city.toLowerCase();
 
     return this.options.filter((option) => option.city.toLowerCase().includes(filterValue));

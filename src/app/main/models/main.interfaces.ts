@@ -1,8 +1,15 @@
-export interface Airport {
+export interface AirportForm {
   city: string;
   IATA: string;
   name?: string;
   country: string;
+}
+
+export interface AirportRes {
+  key: string;
+  country: string;
+  city: string;
+  name: string;
 }
 
 export interface Passengers {
@@ -18,7 +25,26 @@ export type PassengerInfo = {
   defaultAmount?: number;
 };
 
-export type PassSelectOption = {
+export interface PassSelectOption {
   name: string;
   amount: number;
-};
+}
+
+export interface Price {
+  eur: number;
+  usd: number;
+  rub: number;
+  pln: number;
+}
+
+export interface Flight {
+  avaible: number;
+  flightNumber: string;
+  timeMins: number;
+  form: AirportRes;
+  to: AirportRes;
+  takeoffDate: string;
+  landingDate: string;
+  prices: Record<string, Price>;
+  price: Price;
+}

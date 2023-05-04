@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormGroupDirective } from '@angular/forms';
-import { Airport } from '../../models/main.interfaces';
+import { AirportForm } from '../../models/main.interfaces';
 
 @Component({
   selector: 'app-flight-route',
@@ -24,8 +24,8 @@ export class FlightRouteComponent implements OnInit {
     if (!fromForm || !toForm) return;
 
     this.flightRouteForm.setValue({
-      from: toForm.value as Airport,
-      to: fromForm.value as Airport,
+      from: toForm.value as AirportForm,
+      to: fromForm.value as AirportForm,
     });
   }
 }

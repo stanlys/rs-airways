@@ -1,6 +1,6 @@
-import { Airport } from './models/main.interfaces';
+import { AirportForm } from './models/main.interfaces';
 
-export const AIRPORTS: Airport[] = [
+export const AIRPORTS: AirportForm[] = [
   {
     name: 'John F. Kennedy International Airport',
     city: 'New York',
