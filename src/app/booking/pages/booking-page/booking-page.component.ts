@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+
 import { ControlService } from '../../../core/services/control.service';
 
 @Component({

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject, catchError, of, timeout } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, catchError, of, timeout } from 'rxjs';
 
 import { API_BASE_URL, STORAGE_KEY_PREFIX } from '../../shared/constants';
 import { FlightSearchRequest, FlightSearchResponse } from '../models/flight-search.model';
@@ -9,9 +9,9 @@ import { FlightSearchRequest, FlightSearchResponse } from '../models/flight-sear
   providedIn: 'root',
 })
 export class SearchService {
-  public requestData = new Subject<FlightSearchRequest>();
+  public requestData$ = new Subject<FlightSearchRequest>();
 
-  public flights = new Subject<FlightSearchResponse>();
+  public flights$ = new Subject<FlightSearchResponse>();
 
   private readonly searchKey = `${STORAGE_KEY_PREFIX}-searchRequest`;
 
@@ -20,14 +20,15 @@ export class SearchService {
   }
 
   public update(v: FlightSearchRequest): void {
-    this.requestData.next(v);
+    this.requestData$.next(v);
 
     localStorage.setItem(this.searchKey, JSON.stringify(v));
 
     this.search(v).subscribe((res) => {
       console.log(res);
+
       if (res != null) {
-        this.flights.next(res);
+        this.flights$.next(res);
       }
     });
   }
@@ -36,7 +37,7 @@ export class SearchService {
     const request = localStorage.getItem(this.searchKey);
 
     if (request) {
-      this.requestData.next(JSON.parse(request) as FlightSearchRequest);
+      this.requestData$ = new BehaviorSubject(JSON.parse(request) as FlightSearchRequest);
     }
   }
 
