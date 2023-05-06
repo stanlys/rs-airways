@@ -3,15 +3,16 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject, catchError, of, timeout } from 'rxjs';
 
 import { API_BASE_URL, STORAGE_KEY_PREFIX } from '../../shared/constants';
-import { FlightSearchRequest, FlightSearchResponse } from '../models/flight-search.model';
+import { FlightSearchFormValue, FlightSearchRequest, FlightSearchResponse } from '../models/flight-search.model';
+import { defaultFlights } from '../mock-flights-response';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SearchService {
-  public requestData$ = new Subject<FlightSearchRequest>();
+  public requestData$ = new Subject<FlightSearchFormValue>();
 
-  public flights$ = new Subject<FlightSearchResponse>();
+  public flights$ = new BehaviorSubject<FlightSearchResponse>(defaultFlights);
 
   private readonly searchKey = `${STORAGE_KEY_PREFIX}-searchRequest`;
 
@@ -19,12 +20,13 @@ export class SearchService {
     this.init();
   }
 
-  public update(v: FlightSearchRequest): void {
+  public update(v: FlightSearchFormValue): void {
     this.requestData$.next(v);
-
     localStorage.setItem(this.searchKey, JSON.stringify(v));
 
-    this.search(v).subscribe((res) => {
+    const reqData = SearchService.transformFormValueToReqScheme(v);
+
+    this.search(reqData).subscribe((res) => {
       console.log(res);
 
       if (res != null) {
@@ -37,7 +39,7 @@ export class SearchService {
     const request = localStorage.getItem(this.searchKey);
 
     if (request) {
-      this.requestData$ = new BehaviorSubject(JSON.parse(request) as FlightSearchRequest);
+      this.requestData$ = new BehaviorSubject(JSON.parse(request) as FlightSearchFormValue);
     }
   }
 
@@ -53,5 +55,23 @@ export class SearchService {
     return this.http
       .post<FlightSearchResponse>(url, v)
       .pipe(timeout(3000), catchError(SearchService.handleError('search', null)));
+  }
+
+  private static transformFormValueToReqScheme(v: FlightSearchFormValue): FlightSearchRequest {
+    const { airport, dates } = v;
+    const { from, to } = airport;
+    const { IATA: fromKey } = from;
+    const { IATA: toKey } = to;
+    const forwardDate = dates.from.toISOString();
+    const backDate = dates.to?.toISOString();
+
+    const requestData: FlightSearchRequest = {
+      fromKey,
+      toKey,
+      forwardDate,
+      backDate,
+    };
+
+    return requestData;
   }
 }

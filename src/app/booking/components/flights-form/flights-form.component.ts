@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { passengersValidator } from '../../../main/directives/passengers-validator.directive';
-import { FlightSearchFormValue, FlightSearchRequest } from '../../../main/models/flight-search.model';
 import { AirportForm } from '../../../main/models/main.interfaces';
 import { SearchService } from '../../../main/services/search.service';
+import { FlightSearchFormValue } from '../../../main/models/flight-search.model';
 
 @Component({
   selector: 'app-flights-form',
@@ -16,7 +16,7 @@ export class FlightsFormComponent {
 
   public airportForm: FormGroup;
 
-  constructor(fb: FormBuilder, private router: Router, private search: SearchService) {
+  constructor(fb: FormBuilder, private router: Router, private searchService: SearchService) {
     this.searchForm = fb.group({
       oneWay: fb.control<boolean>(false, Validators.required),
       airport: fb.group({
@@ -39,22 +39,7 @@ export class FlightsFormComponent {
   }
 
   public onSubmit(): void {
-    const { airport, dates } = this.searchForm.value as FlightSearchFormValue;
-    const { from, to } = airport;
-    const { IATA: fromKey } = from;
-    const { IATA: toKey } = to;
-    const forwardDate = dates.from.toISOString();
-    const backDate = dates.to?.toISOString();
-
-    const requestData: FlightSearchRequest = {
-      fromKey,
-      toKey,
-      forwardDate,
-      backDate,
-    };
-
-    this.search.update(requestData);
-
+    this.searchService.update(this.searchForm.value as FlightSearchFormValue);
     this.router.navigate(['/booking']).catch(console.error);
   }
 }

@@ -5,11 +5,12 @@ export interface AirportForm {
   country: string;
 }
 
-export interface AirportRes {
+interface AirportRes {
   key: string;
   country: string;
   city: string;
   name: string;
+  gmt: string;
 }
 
 export interface Passengers {
@@ -30,21 +31,26 @@ export interface PassSelectOption {
   amount: number;
 }
 
-export interface Price {
+interface Price {
   eur: number;
   usd: number;
   rub: number;
   pln: number;
 }
 
-export interface Flight {
+interface Seats {
+  total: number;
   avaible: number;
+}
+
+export interface Flight {
+  seats: Seats;
   flightNumber: string;
   timeMins: number;
   form: AirportRes;
   to: AirportRes;
   takeoffDate: string;
   landingDate: string;
-  prices: Record<string, Price>;
   price: Price;
+  otherFlights?: Record<string, Flight>;
 }
