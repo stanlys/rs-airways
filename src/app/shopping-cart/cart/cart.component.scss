@@ -11,9 +11,6 @@ mat-card {
   border-radius: 8px;
 }
 
-// $my-typography: m.define-typography-config();
-// @debug $my-typography;
-
 mat-card-title {
   @include mix.title-large-typography();
   color: c.$primary-color;

@@ -63,7 +63,6 @@ export class CartComponent {
   }
 
   public async editWithCheckbox(flight: IFlight): Promise<void> {
-    console.log('click edit');
     await this.router.navigate(['/edit'], { queryParams: { flight } });
   }
 
