@@ -1,9 +1,9 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
-import { selectFlights } from 'src/app/reducers/reducer/shopping-cart.reducer';
 import { Store } from '@ngrx/store';
 import { MatSort } from '@angular/material/sort';
+import { selectFlightsToProfile } from 'src/app/reducers/reducer/user-flight-history.reducer';
 import { IFlight } from '../interfaces';
 import { SHOPPING_CART_COLUMNS } from '../interfaces/columns';
 
@@ -22,7 +22,7 @@ export class UserAccountComponent implements AfterViewInit {
   @ViewChild(MatSort, { static: false }) public sort!: MatSort;
 
   constructor(private store: Store) {
-    this.store.select(selectFlights).subscribe((data) => {
+    this.store.select(selectFlightsToProfile).subscribe((data) => {
       this.flights.data = data;
       return true;
     });
