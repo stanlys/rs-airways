@@ -7,7 +7,7 @@ import { SearchService } from '../../../main/services/search.service';
   styleUrls: ['./second-menu.component.scss'],
 })
 export class SecondMenuComponent {
-  public showSearchForm = false;
+  public showSearchForm = true;
 
   constructor(private searchService: SearchService) {
     this.searchService.requestData$.subscribe((v) => {});

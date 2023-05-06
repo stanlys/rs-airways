@@ -9,8 +9,8 @@
       <app-flight-route formGroupName="airport" class="flight-route"></app-flight-route>
 
       <div class="date-passengers-container">
-        <app-dates-field formGroupName="dates"></app-dates-field>
-        <app-passengers-field formGroupName="passengers"></app-passengers-field>
+        <app-dates-field [name]="'dates'"></app-dates-field>
+        <app-passengers-field [name]="'passengers'"></app-passengers-field>
       </div>
 
       <mat-card-actions class="flex-row justify-end">

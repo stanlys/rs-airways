@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective } from '@angular/forms';
-import { PassengerInfo } from '../../../models/main.interfaces';
+import { PassengerInfo } from '../../../../main/models/main.interfaces';
 
 @Component({
   selector: 'app-passenger-input',

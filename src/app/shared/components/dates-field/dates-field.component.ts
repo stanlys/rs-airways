@@ -7,7 +7,7 @@ import { FormControl, FormGroup, FormGroupDirective, Validators } from '@angular
   styleUrls: ['./dates-field.component.scss'],
 })
 export class DatesFieldComponent implements OnInit {
-  @Input() public formGroupName!: string;
+  @Input() public name!: string;
 
   public dateFormatHint = 'MM/DD/YYYY - MM/DD/YYYY';
 
@@ -26,7 +26,7 @@ export class DatesFieldComponent implements OnInit {
   constructor(public parentForm: FormGroupDirective, private cd: ChangeDetectorRef) {}
 
   public ngOnInit(): void {
-    this.datesForm = this.parentForm.control.get(this.formGroupName) as FormGroup;
+    this.datesForm = this.parentForm.control.get(this.name) as FormGroup;
 
     this.dateFrom = this.datesForm.get('from') as FormControl<Date>;
     this.dateTo = this.datesForm.get('to') as FormControl<Date>;

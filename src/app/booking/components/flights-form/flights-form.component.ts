@@ -1,20 +1,20 @@
-/* eslint-disable no-underscore-dangle */
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
-import { passengersValidator } from '../../directives/passengers-validator.directive';
-import { FlightSearchFormValue, FlightSearchRequest } from '../../models/flight-search.model';
-import { AirportForm } from '../../models/main.interfaces';
-import { SearchService } from '../../services/search.service';
+import { passengersValidator } from '../../../main/directives/passengers-validator.directive';
+import { FlightSearchFormValue, FlightSearchRequest } from '../../../main/models/flight-search.model';
+import { AirportForm } from '../../../main/models/main.interfaces';
+import { SearchService } from '../../../main/services/search.service';
 
 @Component({
-  selector: 'app-main-form',
-  templateUrl: './main-form.component.html',
-  styleUrls: ['./main-form.component.scss'],
+  selector: 'app-flights-form',
+  templateUrl: './flights-form.component.html',
+  styleUrls: ['./flights-form.component.scss'],
 })
-export class MainFormComponent {
+export class FlightsFormComponent {
   public searchForm: FormGroup;
+
+  public airportForm: FormGroup;
 
   constructor(fb: FormBuilder, private router: Router, private search: SearchService) {
     this.searchForm = fb.group({
@@ -34,6 +34,8 @@ export class MainFormComponent {
         infant: fb.control<number>(0, Validators.required),
       }),
     });
+
+    this.airportForm = this.searchForm.get('airport') as FormGroup;
   }
 
   public onSubmit(): void {

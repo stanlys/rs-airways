@@ -2,8 +2,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective } from '@angular/forms';
 import { Observable, map, startWith } from 'rxjs';
-import { AIRPORTS } from '../../../mock-airports-list';
-import { AirportForm } from '../../../models/main.interfaces';
+
+import { AirportForm } from '../../../main/models/main.interfaces';
+import { AIRPORTS } from '../../../main/mock-airports-list';
 
 @Component({
   selector: 'app-airport-field',
@@ -21,7 +22,7 @@ export class AirportFieldComponent implements OnInit {
 
   public filteredOptions: Observable<AirportForm[]> | undefined;
 
-  public options = AIRPORTS;
+  public options = [...AIRPORTS];
 
   public parentForm!: FormGroup;
 

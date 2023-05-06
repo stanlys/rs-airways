@@ -1,8 +1,9 @@
 import { Component, Input, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { MatOption } from '@angular/material/core';
-import { selectRequiredOption } from '../../directives/passengers-validator.directive';
-import { PassSelectOption, PassengerInfo } from '../../models/main.interfaces';
+
+import { selectRequiredOption } from '../../../main/directives/passengers-validator.directive';
+import { PassengerInfo, PassSelectOption } from '../../../main/models/main.interfaces';
 
 const PASSENGERS: PassengerInfo[] = [
   {
@@ -31,7 +32,7 @@ const PASSENGERS: PassengerInfo[] = [
   styleUrls: ['./passengers-field.component.scss'],
 })
 export class PassengersFieldComponent implements OnInit {
-  @Input() public formGroupName!: string;
+  @Input() public name!: string;
 
   @ViewChildren('option') public options!: QueryList<MatOption>;
 
@@ -46,7 +47,7 @@ export class PassengersFieldComponent implements OnInit {
   constructor(private parentForm: FormGroupDirective) {}
 
   public ngOnInit(): void {
-    this.passengersForm = this.parentForm.control.get(this.formGroupName) as FormGroup;
+    this.passengersForm = this.parentForm.control.get(this.name) as FormGroup;
   }
 
   private updateTrigger(): void {

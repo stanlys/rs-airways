@@ -3,6 +3,7 @@
 @use 'typography' as t;
 @use 'header';
 @use 'auth-modal';
+@use 'text-field';
 
 $my-primary: mat.define-palette(c.$brand-primary, 50, 100, 500);
 
