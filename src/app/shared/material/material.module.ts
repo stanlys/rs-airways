@@ -16,6 +16,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   exports: [
@@ -36,7 +37,8 @@ import { MatTableModule } from '@angular/material/table';
     MatNativeDateModule,
     MatCheckboxModule,
     MatButtonToggleModule,
-    MatTableModule
+    MatTableModule,
+    MatSortModule,
   ],
 })
 export class MaterialModule {}

@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
 import { addFlightToCart, deleteFlightFromCart } from 'src/app/reducers/actions/shopping-cart.action';
 import { selectFlights } from 'src/app/reducers/reducer/shopping-cart.reducer';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
+import { MatSort } from '@angular/material/sort';
 import { addFlightToProfile } from 'src/app/reducers/actions/user-flight-history.action';
 import { IFlight } from '../interfaces';
 import { SHOPPING_CART_COLUMNS } from '../interfaces/columns';
@@ -14,7 +16,7 @@ import { SHOPPING_CART_COLUMNS } from '../interfaces/columns';
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss'],
 })
-export class CartComponent {
+export class CartComponent implements AfterViewInit {
   public displayedColumns: string[] = SHOPPING_CART_COLUMNS;
 
   public flights = new MatTableDataSource<IFlight>([]);
@@ -23,17 +25,24 @@ export class CartComponent {
 
   public promocode = '';
 
-  constructor(private store: Store, private router: Router) {
+  @ViewChild(MatSort, { static: false }) public sort!: MatSort;
+
+  constructor(private store: Store, private router: Router, private liveAnnouncer: LiveAnnouncer) {
     this.store.select(selectFlights).subscribe((data) => {
       this.flights.data = data;
       return true;
     });
   }
 
+  public ngAfterViewInit(): void {
+    this.flights.sort = this.sort;
+  }
+
   public getTotalPrice(): number {
     return this.selection.selected.map((flight) => flight.price).reduce((acc, value) => acc + value, 0);
   }
 
+  // временное решение для тестирования
   public addTrip(): void {
     this.store.dispatch(
       addFlightToCart({
@@ -72,7 +81,7 @@ export class CartComponent {
   }
 
   public applyPromoCode(): void {
-    console.log('Promocode - ', this.promocode);
+    this.promocode += 1;
   }
 
   public pay(): void {
