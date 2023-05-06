@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
-import { deleteFlightFromCart } from 'src/app/reducers/actions/shopping-cart.action';
 import { selectFlights } from 'src/app/reducers/reducer/shopping-cart.reducer';
 import { Store } from '@ngrx/store';
-import { Router } from '@angular/router';
-import { SHOPPING_CART_COLUMNS } from '../MOCK_DATA';
 import { IFlight } from '../interfaces';
+import { SHOPPING_CART_COLUMNS } from '../interfaces/columns';
 
 @Component({
   selector: 'app-user-account',
@@ -14,13 +12,13 @@ import { IFlight } from '../interfaces';
   styleUrls: ['./user-account.component.scss'],
 })
 export class UserAccountComponent {
-  public displayedColumns: string[] = SHOPPING_CART_COLUMNS.filter((el) => el !== 'control');
+  public displayedColumns: string[] = SHOPPING_CART_COLUMNS;
 
   public flights = new MatTableDataSource<IFlight>([]);
 
   public selection = new SelectionModel<IFlight>(true, []);
 
-  constructor(private store: Store, private router: Router) {
+  constructor(private store: Store) {
     this.store.select(selectFlights).subscribe((data) => {
       this.flights.data = data;
       return true;
@@ -43,13 +41,5 @@ export class UserAccountComponent {
       return;
     }
     this.selection.select(...this.flights.data);
-  }
-
-  public async editWithCheckbox(flight: IFlight): Promise<void> {
-    await this.router.navigate(['/edit'], { queryParams: { flight } });
-  }
-
-  public deleteWithCheckbox(flight: IFlight): void {
-    this.store.dispatch(deleteFlightFromCart({ flight }));
   }
 }

@@ -5,8 +5,8 @@ import { addFlightToCart, deleteFlightFromCart } from 'src/app/reducers/actions/
 import { selectFlights } from 'src/app/reducers/reducer/shopping-cart.reducer';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
-import { SHOPPING_CART_COLUMNS } from '../MOCK_DATA';
 import { IFlight } from '../interfaces';
+import { SHOPPING_CART_COLUMNS } from '../interfaces/columns';
 
 @Component({
   selector: 'app-cart',
