@@ -79,7 +79,7 @@
         </mat-form-field>
         <div class="payment_btn">
           <span class="selected"> {{ this.selection.selected.length }} selected</span>
-          <button mat-raised-button class="btn" color="primary">Payment</button>
+          <button mat-raised-button class="btn" color="primary" (click)="pay()">Payment</button>
         </div>
       </div>
     </mat-card-footer>

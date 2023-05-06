@@ -48,7 +48,9 @@
       <ng-container matColumnDef="control" stickyEnd>
         <th mat-header-cell *matHeaderCellDef>&nbsp;</th>
         <td mat-cell *matCellDef="let el">
-          <button color="primary" mat-button [routerLink]="['/', 'detail']" [queryParams]="el">View Detail</button>
+          <button color="primary" mat-raised-button [routerLink]="['/', 'detail']" [queryParams]="el">
+            View Detail
+          </button>
         </td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

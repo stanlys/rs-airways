@@ -5,6 +5,7 @@ import { addFlightToCart, deleteFlightFromCart } from 'src/app/reducers/actions/
 import { selectFlights } from 'src/app/reducers/reducer/shopping-cart.reducer';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
+import { addFlightToProfile } from 'src/app/reducers/actions/user-flight-history.action';
 import { IFlight } from '../interfaces';
 import { SHOPPING_CART_COLUMNS } from '../interfaces/columns';
 
@@ -72,5 +73,13 @@ export class CartComponent {
 
   public applyPromoCode(): void {
     console.log('Promocode - ', this.promocode);
+  }
+
+  public pay(): void {
+    this.selection.selected.forEach((fligth) => {
+      this.store.dispatch(deleteFlightFromCart({ flight: fligth }));
+      this.store.dispatch(addFlightToProfile({ flight: fligth }));
+    });
+    this.selection.clear();
   }
 }
