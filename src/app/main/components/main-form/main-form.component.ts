@@ -40,6 +40,8 @@ export class MainFormComponent {
     const { from, to } = airport;
     const { IATA: fromKey } = from;
     const { IATA: toKey } = to;
+
+    console.log(this.searchForm.value);
     const forwardDate = dates.from.toISOString();
     const backDate = dates.to?.toISOString();
 

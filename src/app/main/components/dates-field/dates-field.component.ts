@@ -19,7 +19,7 @@ export class DatesFieldComponent implements OnInit {
 
   public dateTo!: FormControl;
 
-  public date!: FormControl;
+  // public date!: FormControl;
 
   public today = new Date();
 
@@ -30,7 +30,7 @@ export class DatesFieldComponent implements OnInit {
 
     this.dateFrom = this.datesForm.get('from') as FormControl<Date>;
     this.dateTo = this.datesForm.get('to') as FormControl<Date>;
-    this.date = this.datesForm.get('oneWay') as FormControl<Date>;
+    // this.date = this.datesForm.get('from') as FormControl<Date>;
 
     this.parentForm.control.get('oneWay')?.valueChanges.subscribe((v) => {
       this.isOneWay = v as boolean;
@@ -47,13 +47,13 @@ export class DatesFieldComponent implements OnInit {
 
   private updateValidators(flag: boolean): void {
     if (!flag) {
-      this.date.clearValidators();
+      // this.date.clearValidators();
       this.dateTo.setValidators(Validators.required);
-      this.dateFrom.setValidators(Validators.required);
+      // this.dateFrom.setValidators(Validators.required);
     } else {
-      this.date.setValidators(Validators.required);
+      // this.date.setValidators(Validators.required);
       this.dateTo.clearValidators();
-      this.dateFrom.clearValidators();
+      // this.dateFrom.clearValidators();
     }
   }
 }

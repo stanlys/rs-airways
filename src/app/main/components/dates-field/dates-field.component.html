@@ -21,7 +21,7 @@
   <ng-template [ngSwitchCase]="true">
     <mat-form-field [formGroup]="datesForm" class="flight-dates" appearance="fill" hideRequiredMarker="true">
       <mat-label>Date</mat-label>
-      <input matInput [matDatepicker]="picker" [min]="today" formControlName="oneWay" />
+      <input matInput [matDatepicker]="picker" [min]="today" formControlName="from" />
       <mat-hint>{{ dateFormatHint }}</mat-hint>
       <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>

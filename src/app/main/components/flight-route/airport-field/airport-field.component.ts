@@ -1,7 +1,8 @@
 /* eslint-disable no-underscore-dangle */
+import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective } from '@angular/forms';
-import { Observable, map, startWith } from 'rxjs';
+import { Observable, map, startWith, debounceTime } from 'rxjs';
 import { AIRPORTS } from '../../../mock-airports-list';
 import { AirportForm } from '../../../models/main.interfaces';
 
@@ -27,7 +28,7 @@ export class AirportFieldComponent implements OnInit {
 
   public airportForm!: FormControl;
 
-  constructor(private parentFormGroup: FormGroupDirective) {}
+  constructor(private parentFormGroup: FormGroupDirective, private http: HttpClient) {}
 
   public ngOnInit(): void {
     this.parentForm = this.parentFormGroup.control;
@@ -35,6 +36,7 @@ export class AirportFieldComponent implements OnInit {
 
     this.filteredOptions = this.airportForm.valueChanges.pipe(
       startWith(''),
+      debounceTime(500),
       map((value) => {
         if (!value) {
           return this.options;
