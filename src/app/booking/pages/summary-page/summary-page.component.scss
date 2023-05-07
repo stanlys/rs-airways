@@ -1,0 +1,8 @@
+@use '../../../../themes/util' as u;
+@use '../../../../themes/default/colors' as c;
+@use '../../../../themes/default/mixins' as m;
+
+.card-header {
+  background: u.get-color(c.$brand-secondary, 80);
+  padding: 1.25em;
+}
