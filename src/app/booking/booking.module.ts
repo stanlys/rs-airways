@@ -6,9 +6,10 @@ import { BookingPageComponent } from './pages/booking-page/booking-page.componen
 import { SharedModule } from '../shared/shared.module';
 import { SummaryPageComponent } from './pages/summary-page/summary-page.component';
 import { InformationAboutPassengerComponent } from './components/information-about-passenger/information-about-passenger.component';
+import { SummaryPassengerCardComponent } from './components/summary-passenger-card/summary-passenger-card.component';
 
 @NgModule({
-  declarations: [BookingPageComponent, SummaryPageComponent, InformationAboutPassengerComponent],
+  declarations: [BookingPageComponent, SummaryPageComponent, InformationAboutPassengerComponent, SummaryPassengerCardComponent],
   imports: [CommonModule, BookingRoutingModule, SharedModule],
 })
 export class BookingModule {}

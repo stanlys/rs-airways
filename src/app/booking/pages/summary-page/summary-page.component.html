@@ -4,37 +4,9 @@
     <span class="page_title"> Summary </span>
   </div>
   <div class="grid justify-end grid-cols-1 gap-10 md:grid-cols-2">
-    <div>
-      <mat-card>
-        <mat-card-header class="card-header">
-          <mat-card-title>
-            <div class="flex gap-4"><span class="flight_number">FR 1925</span><span>Dublin - Warsaw</span></div>
-          </mat-card-title>
-          <mat-card-subtitle class="body_large subtitle"><span>Week</span><span>time</span></mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content>
-          <app-information-about-passenger
-            *ngFor="let passenger of passengers"
-            [passenger]="passenger"
-          ></app-information-about-passenger>
-        </mat-card-content>
-        <mat-divider></mat-divider>
-        <mat-card-footer class="flex justify-between p-10">
-          <span>TOTAL</span>
-          <span>551 </span>
-        </mat-card-footer>
-      </mat-card>
-    </div>
-    <div>
-      <mat-card class="p-10">
-        3
-        <mat-divider></mat-divider>
-        <mat-card-footer class="flex justify-between">
-          <span>TOTAL</span>
-          <span>551 </span>
-        </mat-card-footer>
-      </mat-card>
-    </div>
+    <ng-container *ngFor="let flight of flights">
+      <app-summary-passenger-card [flight]="flight"></app-summary-passenger-card>
+    </ng-container>
     <div class="md:col-start-2">
       <mat-card class="p-10">
         3
