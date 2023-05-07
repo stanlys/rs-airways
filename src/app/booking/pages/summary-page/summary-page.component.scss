@@ -3,6 +3,28 @@
 @use '../../../../themes/default/mixins' as m;
 
 .card-header {
+  border-top: 3px solid #11397e;
+  border-radius: 8px 8px 0px 0px;
   background: u.get-color(c.$brand-secondary, 80);
   padding: 1.25em;
+}
+
+.page_title {
+  @include m.title-large-typography();
+  color: c.$primary-color;
+}
+
+.flight_number {
+  @include m.title-medium-typography();
+  color: c.$primary-color;
+}
+
+.body_large {
+  @include m.body-large-typography();
+  color: c.$black;
+}
+
+.subtitle {
+  display: flex;
+  gap: 1.25em;
 }

@@ -1,0 +1,8 @@
+@use '../../../../themes/util' as u;
+@use '../../../../themes/default/colors' as c;
+@use '../../../../themes/default/mixins' as m;
+
+.body_large {
+  @include m.body-large-typography();
+  color: c.$black;
+}
