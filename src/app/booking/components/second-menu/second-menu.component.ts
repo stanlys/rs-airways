@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Component, OnDestroy } from '@angular/core';
+import { Subject, takeUntil } from 'rxjs';
 
 import { FlightSearchFormValue } from '../../../main/models/flight-search.model';
 import { SearchService } from '../../../main/services/search.service';
@@ -37,7 +37,7 @@ import { SearchService } from '../../../main/services/search.service';
   templateUrl: './second-menu.component.html',
   styleUrls: ['./second-menu.component.scss'],
 })
-export class SecondMenuComponent {
+export class SecondMenuComponent implements OnDestroy {
   public showSearchForm = true;
 
   public requestData$: Subject<FlightSearchFormValue>;
@@ -48,25 +48,32 @@ export class SecondMenuComponent {
 
   public toCity?: string;
 
+  public fromDate?: string | Date;
+
+  public toDate?: string | Date;
+
   public passengerAmount = 0;
-
-  public toDate?: string;
-
-  public fromDate?: string;
 
   public oneWay = false;
 
+  private destroy$ = new Subject<void>();
+
   constructor(private searchService: SearchService) {
     this.requestData$ = this.searchService.requestData$;
-    this.searchService.requestData$.subscribe((v) => {
+    this.searchService.requestData$.pipe(takeUntil(this.destroy$)).subscribe((v) => {
       this.requestData = v;
       this.oneWay = v.oneWay;
       this.fromCity = v.airport.from.city;
       this.toCity = v.airport.to.city;
-      this.toDate = v.dates.to as unknown as string;
-      this.fromDate = v.dates.from as unknown as string;
+      this.fromDate = new Date(v.dates.from);
+      this.toDate = v.dates.to ? new Date(v.dates.to) : undefined;
       this.passengerAmount = Object.values(v.passengers).reduce((a: number, b: number) => a + b, 0) as number;
       console.log(v);
     });
+  }
+
+  public ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

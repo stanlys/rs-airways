@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Subject, delay, of } from 'rxjs';
+import { Subject, delay, of, take } from 'rxjs';
 
-import { AuthService } from '../../../services/auth.service';
 import { LoginRequest } from '../../../models/requests.models';
+import { AuthService } from '../../../services/auth.service';
 
 interface LoginForm {
   email: FormControl<string | null>;
@@ -40,8 +40,9 @@ export class LoginTabComponent {
 
     this.isLoading$.next(true);
 
+    // TODO: use actual login delay
     of(false)
-      .pipe(delay(300))
+      .pipe(take(1), delay(300))
       .subscribe(() => {
         this.isLoading$.next(false);
         this.close();

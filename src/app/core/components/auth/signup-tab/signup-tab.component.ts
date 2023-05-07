@@ -3,7 +3,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import countryList from 'country-list';
 import countryTelData from 'country-telephone-data';
-import { Subject, delay, of } from 'rxjs';
+import { Subject, delay, of, take } from 'rxjs';
 import { passwordStrengthValidator } from '../../../directives/password-strength-validator.directive';
 import { RegistrationRequest } from '../../../models/requests.models';
 import { AuthService } from '../../../services/auth.service';
@@ -78,8 +78,9 @@ export class SignupTabComponent {
 
     this.isLoading$.next(true);
 
+    // TODO: use actual signup delay
     of(false)
-      .pipe(delay(300))
+      .pipe(take(1), delay(300))
       .subscribe(() => {
         this.isLoading$.next(false);
         this.close();

@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject, catchError, of, timeout } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, catchError, of, take, timeout } from 'rxjs';
 
 import { API_BASE_URL, STORAGE_KEY_PREFIX } from '../../shared/constants';
-import { FlightSearchFormValue, FlightSearchRequest, FlightSearchResponse } from '../models/flight-search.model';
 import { defaultFlights } from '../mock-flights-response';
+import { FlightSearchFormValue, FlightSearchRequest, FlightSearchResponse } from '../models/flight-search.model';
 
 @Injectable({
   providedIn: 'root',
@@ -54,7 +54,7 @@ export class SearchService {
     const url = `${API_BASE_URL}search/flight`;
     return this.http
       .post<FlightSearchResponse>(url, v)
-      .pipe(timeout(3000), catchError(SearchService.handleError('search', null)));
+      .pipe(take(1), timeout(3000), catchError(SearchService.handleError('search', null)));
   }
 
   private static transformFormValueToReqScheme(v: FlightSearchFormValue): FlightSearchRequest {

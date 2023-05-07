@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, catchError, of, timeout } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, of, take, timeout } from 'rxjs';
 
 import { API_BASE_URL, STORAGE_KEY_PREFIX } from '../../shared/constants';
 import { LoginRequest, RegistrationRequest } from '../models/requests.models';
@@ -29,7 +29,7 @@ export class AuthService {
 
     this.http
       .post<{ token: string }>(url, body, this.httpOptions)
-      .pipe(timeout(3000), catchError(this.handleError('login', {})))
+      .pipe(take(1), timeout(3000), catchError(this.handleError('login', {})))
       .subscribe((res) => this.handleToken(res));
   }
 
@@ -48,7 +48,7 @@ export class AuthService {
 
     this.http
       .post<{ token: string }>(url, body, this.httpOptions)
-      .pipe(timeout(3000), catchError(this.handleError('signup', {})))
+      .pipe(take(1), timeout(3000), catchError(this.handleError('signup', {})))
       .subscribe((res) => this.handleToken(res));
   }
 

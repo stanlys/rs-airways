@@ -1,12 +1,13 @@
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-dates-field',
   templateUrl: './dates-field.component.html',
   styleUrls: ['./dates-field.component.scss'],
 })
-export class DatesFieldComponent implements OnInit {
+export class DatesFieldComponent implements OnInit, OnDestroy {
   @Input() public name!: string;
 
   public dateFormatHint = 'MM/DD/YYYY - MM/DD/YYYY';
@@ -23,6 +24,8 @@ export class DatesFieldComponent implements OnInit {
 
   public today = new Date();
 
+  public destroy$ = new Subject<void>();
+
   constructor(public parentForm: FormGroupDirective, private cd: ChangeDetectorRef) {}
 
   public ngOnInit(): void {
@@ -32,13 +35,21 @@ export class DatesFieldComponent implements OnInit {
     this.dateTo = this.datesForm.get('to') as FormControl<Date>;
     this.date = this.datesForm.get('oneWay') as FormControl<Date>;
 
-    this.parentForm.control.get('oneWay')?.valueChanges.subscribe((v) => {
-      this.isOneWay = v as boolean;
+    this.parentForm.control
+      .get('oneWay')
+      ?.valueChanges.pipe(takeUntil(this.destroy$))
+      .subscribe((v) => {
+        this.isOneWay = v as boolean;
 
-      this.updateValidators(this.isOneWay);
-      this.updateHint(this.isOneWay);
-      this.cd.detectChanges();
-    });
+        this.updateValidators(this.isOneWay);
+        this.updateHint(this.isOneWay);
+        this.cd.detectChanges();
+      });
+  }
+
+  public ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   private updateHint(flag: boolean): void {
