@@ -4,6 +4,7 @@
 @use 'header';
 @use 'auth-modal';
 @use 'text-field';
+@use 'main-page-form';
 
 $my-primary: mat.define-palette(c.$brand-primary, 50, 100, 500);
 
