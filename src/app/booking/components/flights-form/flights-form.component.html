@@ -1,8 +1,12 @@
-<form class="flex items-start" (ngSubmit)="onSubmit()" #form="ngForm" [formGroup]="searchForm">
+<form
+  class="flex flex-wrap bg-white lg:h-[96px] items-end justify-center gap-5"
+  #form="ngForm"
+  [formGroup]="searchForm"
+>
   <ng-container [formGroup]="airportForm">
     <app-airport-field [formName]="'from'" [direction]="'From'" [placeholder]="'Choose your starting location'" />
     <app-airport-field [formName]="'to'" [direction]="'To'" [placeholder]="'Choose your destination'" />
   </ng-container>
-  <app-dates-field [name]="'dates'"></app-dates-field>
+  <app-dates-field [showFormatHint]="false" [name]="'dates'"></app-dates-field>
   <app-passengers-field [name]="'passengers'"></app-passengers-field>
 </form>

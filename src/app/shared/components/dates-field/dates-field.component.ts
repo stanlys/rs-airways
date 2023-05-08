@@ -10,6 +10,8 @@ import { Subject, takeUntil } from 'rxjs';
 export class DatesFieldComponent implements OnInit, OnDestroy {
   @Input() public name!: string;
 
+  @Input() public showFormatHint = true;
+
   public dateFormatHint = 'MM/DD/YYYY - MM/DD/YYYY';
 
   public isOneWay = false;

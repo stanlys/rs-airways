@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject, catchError, of, take, timeout } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, of, take, timeout } from 'rxjs';
 
 import { API_BASE_URL, STORAGE_KEY_PREFIX } from '../../shared/constants';
 import { defaultFlights } from '../mock-flights-response';
@@ -10,7 +10,7 @@ import { FlightSearchFormValue, FlightSearchRequest, FlightSearchResponse } from
   providedIn: 'root',
 })
 export class SearchService {
-  public requestData$ = new Subject<FlightSearchFormValue>();
+  public requestData$ = new BehaviorSubject<FlightSearchFormValue | null>(null);
 
   public flights$ = new BehaviorSubject<FlightSearchResponse>(defaultFlights);
 
@@ -24,11 +24,9 @@ export class SearchService {
     this.requestData$.next(v);
     localStorage.setItem(this.searchKey, JSON.stringify(v));
 
-    const reqData = SearchService.transformFormValueToReqScheme(v);
+    const data = SearchService.transformFormValueToReqScheme(v);
 
-    this.search(reqData).subscribe((res) => {
-      console.log(res);
-
+    this.searchRequest(data).subscribe((res) => {
       if (res != null) {
         this.flights$.next(res);
       }
@@ -39,7 +37,7 @@ export class SearchService {
     const request = localStorage.getItem(this.searchKey);
 
     if (request) {
-      this.requestData$ = new BehaviorSubject(JSON.parse(request) as FlightSearchFormValue);
+      this.requestData$.next(JSON.parse(request) as FlightSearchFormValue);
     }
   }
 
@@ -50,7 +48,7 @@ export class SearchService {
     };
   }
 
-  private search(v: FlightSearchRequest): Observable<FlightSearchResponse | null> {
+  private searchRequest(v: FlightSearchRequest): Observable<FlightSearchResponse | null> {
     const url = `${API_BASE_URL}search/flight`;
     return this.http
       .post<FlightSearchResponse>(url, v)

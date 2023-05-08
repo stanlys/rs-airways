@@ -6,7 +6,7 @@
         <input matStartDate placeholder="Start date" formControlName="from" />
         <input matEndDate placeholder="End date" formControlName="to" />
       </mat-date-range-input>
-      <mat-hint>{{ dateFormatHint }}</mat-hint>
+      <mat-hint *ngIf="showFormatHint">{{ dateFormatHint }}</mat-hint>
       <mat-datepicker-toggle matIconSuffix [for]="rangePicker"></mat-datepicker-toggle>
       <mat-date-range-picker #rangePicker>
         <mat-date-range-picker-actions>
