@@ -1,12 +1,14 @@
-<mat-card class="p-6">
-  <<ng-container *ngFor="let passengers of flights">
-    <app-total-price-element></app-total-price-element>
+<mat-card class="p-6 pb-0">
+  <ng-container *ngFor="let summary of summaryByAge; let i = index">
+    <app-total-price-element
+      [fare]="summary.fare"
+      [tax]="summary.tax"
+      [caption]="getCaption(summary.count, i)"
+    ></app-total-price-element>
   </ng-container>
-  <!-- <app-total-price-element></app-total-price-element>
-  <app-total-price-element></app-total-price-element> -->
   <mat-divider></mat-divider>
-  <mat-card-footer class="flex justify-between p-2">
-    <span>TOTAL</span>
-    <span>551 </span>
+  <mat-card-footer class="flex justify-between py-5">
+    <span class="total">TOTAL</span>
+    <span class="total price">551 </span>
   </mat-card-footer>
 </mat-card>

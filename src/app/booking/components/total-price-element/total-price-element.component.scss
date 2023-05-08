@@ -1,3 +1,9 @@
+@use '../../../../themes/default/mixins' as m;
+
 .price_element {
   padding: 40px 16px 72px;
+}
+
+.caption {
+  @include m.title-medium-typography();
 }

@@ -1,40 +1,26 @@
-import { AfterViewInit, Component, Input } from '@angular/core';
-import { ISummaryFlight } from '../../interface/flight';
+import { Component, Input, OnInit } from '@angular/core';
+import { ISummaryFare, ISummaryFlight } from '../../interface/flight';
+import { SummaryService } from '../../service/summary.service';
 
 @Component({
   selector: 'app-total-price',
   templateUrl: './total-price.component.html',
   styleUrls: ['./total-price.component.scss'],
 })
-export class TotalPriceComponent implements AfterViewInit {
+export class TotalPriceComponent implements OnInit {
   @Input() public flights!: Array<ISummaryFlight>;
 
-  public getSummaryByAge(): void {
-    const result: Array<number> = [];
-    const adult = new Map<string, { fare: number; tax: number }>();
-    const child = new Map();
-    const infant = new Map();
-    this.flights.forEach((flight) => {
-      flight.passengers.forEach((passenger) => {
-        if (passenger.age >= 18) {
-          if (adult.has(passenger.nameFull)) {
-            const price = adult.get(passenger.nameFull) || { tax: 0, fare: 0 };
-            adult.set(passenger.nameFull, { fare: price.fare + passenger.fare, tax: price.tax + passenger.tax });
-          } else {
-            adult.set(passenger.nameFull, { fare: passenger.fare, tax: passenger.tax });
-          }
-        } else if (passenger.age <= 7) {
-          infant.set(passenger.nameFull, { fare: passenger.fare, tax: passenger.tax });
-        } else {
-          child.set(passenger.nameFull, { fare: passenger.fare, tax: passenger.tax });
-        }
-      });
-      console.log(adult);
-    });
-    console.log(result);
+  public summaryByAge?: Array<ISummaryFare>;
+
+  private fares = ['Adult Fare', 'Child Fare', 'Infant Fare'];
+
+  constructor(public summaryService: SummaryService) {}
+
+  public ngOnInit(): void {
+    this.summaryByAge = this.summaryService.getSummaryByAge(this.flights);
   }
 
-  public ngAfterViewInit(): void {
-    this.getSummaryByAge();
+  public getCaption(count: number, index: number): string {
+    return `${count} x ${this.fares[index]}`;
   }
 }
