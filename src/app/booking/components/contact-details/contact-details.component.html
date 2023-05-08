@@ -1,0 +1,43 @@
+<div class="booking-title flex-column gap-2">
+  <h2 class="mat-title flex gap-4">
+    <img class="inline" src="../../../../assets/contact_details_icon.svg" alt="contacts icon" />
+    <span class="mat-title">Contact details</span>
+  </h2>
+  <p class="mat-small">We need contact details to be able to deliver the latest information regarding your flight.</p>
+</div>
+
+<mat-card class="w-full" formgroup="contact-details">
+  <mat-card-content>
+    <div class="card-content flex gap-10">
+      <div class="phone-number flex gap-5">
+        <mat-form-field class="form-field" appearance="fill">
+          <mat-label>Country code</mat-label>
+          <mat-select formControlName="countryCode" [placeholder]="this.countryCodes[0]">
+            <mat-option *ngFor="let code of countryCodes" [value]="code">
+              {{ code }}
+            </mat-option>
+          </mat-select>
+          <!-- <mat-hint *ngIf="control.errors?.['required']">Required</mat-hint> -->
+          <mat-error *ngIf="countryCodeField.hasError('pattern')">Invalid character</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-field" appearance="fill">
+          <mat-label>Mobile phone number</mat-label>
+          <input formControlName="phone" placeholder="e.g. 1111111111" matInput type="text" />
+          <!-- <mat-hint *ngIf="control.errors?.['required']">Required</mat-hint>
+          <mat-error *ngIf="control.errors?.['pattern']">Invalid character</mat-error>
+          <mat-error *ngIf="control.errors?.['maxlength']">Must not exceed 15 digits</mat-error> -->
+        </mat-form-field>
+      </div>
+
+      <mat-form-field class="form-field" appearance="fill">
+        <mat-label>Email</mat-label>
+        <input formControlName="email" matInput type="text" required="true" />
+        <mat-error *ngIf="emailField.hasError('required')">Required</mat-error>
+        <!-- <mat-error *ngIf="control.errors?.['email']">Must be correct email</mat-error> -->
+        <!-- <mat-error *ngIf="control.errors?.['minlength']">Must be at least 3 characters</mat-error> -->
+        <!-- <mat-error *ngIf="control.errors?.['maxlength']">Must not exceed 16 characters</mat-error> -->
+      </mat-form-field>
+    </div>
+  </mat-card-content>
+</mat-card>

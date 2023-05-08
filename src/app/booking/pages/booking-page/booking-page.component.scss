@@ -1,0 +1,9 @@
+@use '../../../../themes/default/mixins' as m;
+@use '../../../../themes/default/colors' as c;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  padding: 0 1rem;
+  @include m.wrapper
+}
