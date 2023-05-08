@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Subject, delay, of, take } from 'rxjs';
+import { Subject, delay, of } from 'rxjs';
 
 import { LoginRequest } from '../../../models/requests.models';
 import { AuthService } from '../../../services/auth.service';
@@ -42,7 +42,7 @@ export class LoginTabComponent {
 
     // TODO: use actual login delay
     of(false)
-      .pipe(take(1), delay(300))
+      .pipe(delay(300))
       .subscribe(() => {
         this.isLoading$.next(false);
         this.close();

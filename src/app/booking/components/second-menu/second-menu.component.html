@@ -1,26 +1,32 @@
 <div
   class="second-menu py-2 sm:py-0 sm:h-[88px] bg-[#fafafa] flex items-center flex-wrap p-2 xl:pl-[156px] gap-2 sm:gap-4 xl:gap-10"
 >
-  <div class="destination flex items-center gap-4">
-    <span>{{ fromCity }}</span>
-    <img *ngIf="toCity" src="/assets/return_trip.svg" alt="" srcset="" />
-    <span>{{ toCity }}</span>
-  </div>
-  <div class="return flex items-center gap-2">
-    <span>Return</span>
-    <span class="dot">•</span>
-    <span>{{ fromDate | date : 'mediumDate' }}</span>
-    <span>—</span>
-    <span>{{ toDate | date : 'mediumDate' }}</span>
-    <span class="dot">•</span>
-    <div class="passengers flex items-center">
-      <span>{{ passengerAmount }}</span>
-      <span><mat-icon fontIcon="person" /></span>
+  <ng-container *ngIf="requestData$ | async; else fallback">
+    <div class="destination flex items-center gap-4">
+      <span>{{ fromCity }}</span>
+      <img *ngIf="toCity" src="/assets/return_trip.svg" alt="" srcset="" />
+      <span>{{ toCity }}</span>
     </div>
-  </div>
-  <button class="edit btn" mat-button (click)="showSearchForm = !showSearchForm">Edit</button>
+    <div class="return flex items-center gap-2">
+      <span>Return</span>
+      <span class="dot">•</span>
+      <span>{{ fromDate | date : 'mediumDate' }}</span>
+      <span>—</span>
+      <span>{{ toDate | date : 'mediumDate' }}</span>
+      <span class="dot">•</span>
+      <div class="passengers flex items-center">
+        <span>{{ passengerAmount }}</span>
+        <span><mat-icon fontIcon="person" /></span>
+      </div>
+    </div>
+    <button class="edit btn" mat-button (click)="showSearchForm = !showSearchForm">Edit</button>
+  </ng-container>
 </div>
 
 <ng-container *ngIf="showSearchForm">
-  <app-flights-form />
+  <app-flights-form (hideForm)="showSearchForm = false" />
 </ng-container>
+
+<ng-template #fallback>
+  <span class="text-[#74767a] text-lg font-medium">No flight data found</span>
+</ng-template>
