@@ -1,0 +1,12 @@
+<mat-card class="p-6">
+  <<ng-container *ngFor="let passengers of flights">
+    <app-total-price-element></app-total-price-element>
+  </ng-container>
+  <!-- <app-total-price-element></app-total-price-element>
+  <app-total-price-element></app-total-price-element> -->
+  <mat-divider></mat-divider>
+  <mat-card-footer class="flex justify-between p-2">
+    <span>TOTAL</span>
+    <span>551 </span>
+  </mat-card-footer>
+</mat-card>

@@ -8,19 +8,12 @@
       <app-summary-passenger-card [flight]="flight"></app-summary-passenger-card>
     </ng-container>
     <div class="md:col-start-2">
-      <mat-card class="p-10">
-        3
-        <mat-divider></mat-divider>
-        <mat-card-footer class="flex justify-between p-10">
-          <span>TOTAL</span>
-          <span>551 </span>
-        </mat-card-footer>
-      </mat-card>
+      <app-total-price [flights]="flights"></app-total-price>
     </div>
   </div>
   <div class="flex gap-5 flex-wrap mt-4 md:mt-10 flex-row justify-end">
-    <button mat-button color="primary">Back</button>
-    <button mat-stroked-button color="primary">Add to order cart</button>
-    <button mat-raised-button color="primary">Buy now</button>
+    <button mat-button color="primary" class="btn">Back</button>
+    <button mat-stroked-button color="primary" class="btn">Add to order cart</button>
+    <button mat-raised-button color="primary" class="btn">Buy now</button>
   </div>
 </div>

@@ -7,18 +7,27 @@ export const SUMMARY_PASSENGER_TEST: Array<IPassenger> = [
     cabinBag: 1,
     luggage: 1,
     seat: '19E',
+    age: 18,
+    fare: 83,
+    tax: 45.5,
   },
   {
     nameFull: 'Lili Potter',
     cabinBag: 1,
     luggage: 1,
     seat: '20E',
+    age: 16,
+    fare: 53,
+    tax: 45.04,
   },
   {
     nameFull: 'James Potter',
     cabinBag: 1,
     luggage: 1,
     seat: '21E',
+    fare: 44,
+    tax: 5.5,
+    age: 3,
   },
 ];
 
