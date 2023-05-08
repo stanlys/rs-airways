@@ -4,7 +4,8 @@
 @use 'header';
 @use 'auth-modal';
 @use 'text-field';
-@use 'main-page-form';
+@use 'main-page';
+@use 'booking-page';
 
 $my-primary: mat.define-palette(c.$brand-primary, 50, 100, 500);
 
