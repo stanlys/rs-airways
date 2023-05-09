@@ -9,9 +9,18 @@ import { InformationAboutPassengerComponent } from './components/information-abo
 import { SummaryPassengerCardComponent } from './components/summary-passenger-card/summary-passenger-card.component';
 import { TotalPriceElementComponent } from './components/total-price-element/total-price-element.component';
 import { TotalPriceComponent } from './components/total-price/total-price.component';
+import { CurrencySymbolService } from './service/currency-symbol.service';
 
 @NgModule({
-  declarations: [BookingPageComponent, SummaryPageComponent, InformationAboutPassengerComponent, SummaryPassengerCardComponent, TotalPriceElementComponent, TotalPriceComponent],
+  declarations: [
+    BookingPageComponent,
+    SummaryPageComponent,
+    InformationAboutPassengerComponent,
+    SummaryPassengerCardComponent,
+    TotalPriceElementComponent,
+    TotalPriceComponent,
+  ],
   imports: [CommonModule, BookingRoutingModule, SharedModule],
+  providers: [CurrencySymbolService],
 })
 export class BookingModule {}

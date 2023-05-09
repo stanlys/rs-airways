@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { SUMMART_FLIGHT, SUMMARY_PASSENGER_TEST } from './MOCK_DATA_summary_page';
 
 @Component({
@@ -10,4 +11,16 @@ export class SummaryPageComponent {
   public passengers = SUMMARY_PASSENGER_TEST;
 
   public flights = SUMMART_FLIGHT;
+
+  constructor(private store: Store) {}
+
+  public addtoCart(): void {
+    // добавление в store
+    console.log('Add to cart ', this.flights);
+  }
+
+  public buyNow(): void {
+    // добавление в store
+    console.log('Buy now ', this.flights);
+  }
 }

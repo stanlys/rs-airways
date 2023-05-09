@@ -3,17 +3,17 @@
     <img alt="Summary" src="assets/Summary.svg" />
     <span class="page_title"> Summary </span>
   </div>
-  <div class="grid justify-end grid-cols-1 gap-10 md:grid-cols-2">
+  <div class="grid justify-end grid-cols-1 gap-10 lg:grid-cols-2">
     <ng-container *ngFor="let flight of flights">
       <app-summary-passenger-card [flight]="flight"></app-summary-passenger-card>
     </ng-container>
-    <div class="md:col-start-2">
+    <div class="lg:col-start-2">
       <app-total-price [flights]="flights"></app-total-price>
     </div>
   </div>
   <div class="flex gap-5 flex-wrap mt-4 md:mt-10 flex-row justify-end">
     <button mat-button color="primary" class="btn">Back</button>
-    <button mat-stroked-button color="primary" class="btn">Add to order cart</button>
-    <button mat-raised-button color="primary" class="btn">Buy now</button>
+    <button mat-stroked-button color="primary" class="btn" (click)="addtoCart()">Add to order cart</button>
+    <button mat-raised-button color="primary" class="btn" (click)="buyNow()">Buy now</button>
   </div>
 </div>

@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { CurrencySymbolService } from '../../service/currency-symbol.service';
 
 @Component({
   selector: 'app-total-price-element',
@@ -11,4 +12,6 @@ export class TotalPriceElementComponent {
   @Input() public fare!: number;
 
   @Input() public tax!: number;
+
+  constructor(public currencyService: CurrencySymbolService) {}
 }

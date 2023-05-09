@@ -23,19 +23,19 @@
 }
 
 @mixin title-medium-typography() {
-  $font-family: Roboto;
-  $font-weight: 700;
-  $font-size: 20px;
-  $line-height: 24px;
-  $letter-spacing: 0.5px;
+  font-family: Roboto;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
 }
 
 @mixin body-large-typography() {
-  $font-family: Roboto;
-  $font-weight: 400;
-  $font-size: 16px;
-  $line-height: 24px;
-  $letter-spacing: 0.5px;
+  font-family: Roboto;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
 }
 
 @mixin title-small-typography() {
