@@ -1,3 +1,9 @@
-.flights-form .mat-mdc-form-field-subscript-wrapper {
-  display: none;
+.flights-form {
+  .mat-mdc-form-field-subscript-wrapper {
+    display: none;
+  }
+
+  .flight-dates {
+    width: 260px;
+  }
 }

@@ -1,10 +1,10 @@
 <form
-  class="flights-form flex flex-wrap py-4 bg-white xl:h-[96px] items-center justify-center gap-5"
+  class="flights-form flex flex-wrap py-4 p-2 xl:pl-[156px] bg-white 2xl:h-[96px] items-center gap-5"
   #form="ngForm"
   [formGroup]="searchForm"
   (ngSubmit)="onSubmit()"
 >
-  <mat-checkbox class="checkbox" color="primary" formControlName="oneWay">One Way</mat-checkbox>
+  <mat-checkbox class="checkbox select-none" color="primary" formControlName="oneWay">One Way</mat-checkbox>
   <ng-container [formGroup]="airportForm">
     <app-airport-field [formName]="'fromLoc'" [direction]="'From'" [placeholder]="'Choose your starting location'" />
     <app-airport-field [formName]="'toLoc'" [direction]="'To'" [placeholder]="'Choose your destination'" />

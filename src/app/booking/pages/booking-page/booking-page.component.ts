@@ -17,8 +17,4 @@ export class BookingPageComponent {
   public forward(): void {
     this.controlService.stepper.next();
   }
-
-  public reset(): void {
-    this.controlService.stepper.reset();
-  }
 }

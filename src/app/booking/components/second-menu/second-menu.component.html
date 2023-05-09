@@ -4,7 +4,7 @@
   <ng-container *ngIf="requestData$ | async; else fallback">
     <div class="destination flex items-center gap-4">
       <span>{{ fromCity }}</span>
-      <img *ngIf="toCity" src="/assets/return_trip.svg" alt="" srcset="" />
+      <img [src]="toDate ? '/assets/return_trip.svg' : '/assets/one-way_trip.svg'" alt="" srcset="" />
       <span>{{ toCity }}</span>
     </div>
     <div class="return flex items-center gap-2">

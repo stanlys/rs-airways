@@ -1,6 +1,11 @@
-<div class="booking-page">
+<div class="booking-page flex flex-col">
   <app-second-menu />
-  <button mat-button (click)="back()" type="button">Back</button>
-  <button mat-button (click)="forward()" type="button">Next</button>
-  <button mat-button (click)="reset()" type="button">Reset</button>
+  <div class="calendar-container flex flex-col mt-10 mb-5">
+    <app-flights-calendar />
+    <app-flights-calendar [return]="true" />
+    <div class="controls self-end mt-10">
+      <button class="btn" mat-button color="primary" (click)="back()" type="button">Back</button>
+      <button class="btn" mat-flat-button color="primary" (click)="forward()" type="button">Continue</button>
+    </div>
+  </div>
 </div>

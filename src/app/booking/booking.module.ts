@@ -7,9 +7,10 @@ import { BookingRoutingModule } from './booking-routing.module';
 import { FlightsFormComponent } from './components/flights-form/flights-form.component';
 import { SecondMenuComponent } from './components/second-menu/second-menu.component';
 import { BookingPageComponent } from './pages/booking-page/booking-page.component';
+import { FlightsCalendarComponent } from './components/flights-calendar/flights-calendar.component';
 
 @NgModule({
-  declarations: [BookingPageComponent, SecondMenuComponent, FlightsFormComponent],
+  declarations: [BookingPageComponent, SecondMenuComponent, FlightsFormComponent, FlightsCalendarComponent],
   imports: [CommonModule, BookingRoutingModule, SharedModule, ReactiveFormsModule],
 })
 export class BookingModule {}

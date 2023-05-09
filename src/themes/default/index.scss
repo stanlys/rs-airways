@@ -6,6 +6,7 @@
 @use 'text-field';
 @use 'main-page';
 @use 'booking-page';
+@use 'common';
 
 $my-primary: mat.define-palette(c.$brand-primary, 50, 100, 500);
 
