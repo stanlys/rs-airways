@@ -5,7 +5,7 @@ import { Subject } from 'rxjs';
 import { passengersValidator } from '../../../main/directives/passengers-validator.directive';
 import { FlightSearchFormValue } from '../../../main/models/flight-search.model';
 import { AirportForm } from '../../../main/models/main.interfaces';
-import { SearchService } from '../../../main/services/search.service';
+import { SearchService } from '../../../shared/services/search.service';
 
 @Component({
   selector: 'app-flights-form',

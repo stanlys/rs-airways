@@ -3,10 +3,10 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
+import { SearchService } from '../../../shared/services/search.service';
 import { passengersValidator } from '../../directives/passengers-validator.directive';
 import { FlightSearchFormValue } from '../../models/flight-search.model';
 import { AirportForm } from '../../models/main.interfaces';
-import { SearchService } from '../../services/search.service';
 
 @Component({
   selector: 'app-main-form',

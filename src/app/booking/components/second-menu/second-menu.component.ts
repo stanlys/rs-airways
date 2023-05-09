@@ -2,7 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
 
 import { FlightSearchFormValue } from '../../../main/models/flight-search.model';
-import { SearchService } from '../../../main/services/search.service';
+import { SearchService } from '../../../shared/services/search.service';
 
 // TODO: remove comment
 // {
