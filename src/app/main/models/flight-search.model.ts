@@ -1,13 +1,14 @@
 import { AirportForm, Flight, Passengers } from './main.interfaces';
 
 interface FlightSearchFormValue {
+  isOneWay: boolean;
   airport: {
-    from: AirportForm;
-    to: AirportForm;
+    fromLoc: AirportForm;
+    toLoc: AirportForm;
   };
   dates: {
-    from: Date;
-    to?: Date;
+    fromDate: Date;
+    toDate: Date | null;
   };
   passengers: Passengers;
   oneWay: boolean;

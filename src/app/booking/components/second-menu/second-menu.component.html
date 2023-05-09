@@ -8,10 +8,10 @@
       <span>{{ toCity }}</span>
     </div>
     <div class="return flex items-center gap-2">
-      <span>Return</span>
+      <span>{{ toDate ? 'Return' : 'Arrive' }}</span>
       <span class="dot">•</span>
       <span>{{ fromDate | date : 'mediumDate' }}</span>
-      <span>—</span>
+      <span *ngIf="toDate">—</span>
       <span>{{ toDate | date : 'mediumDate' }}</span>
       <span class="dot">•</span>
       <div class="passengers flex items-center">
@@ -19,8 +19,8 @@
         <span><mat-icon fontIcon="person" /></span>
       </div>
     </div>
-    <button class="edit btn" mat-button (click)="showSearchForm = !showSearchForm">Edit</button>
   </ng-container>
+  <button class="edit btn" mat-button (click)="showSearchForm = !showSearchForm">Edit</button>
 </div>
 
 <ng-container *ngIf="showSearchForm">

@@ -4,6 +4,7 @@ import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
 import { FlightSearchFormValue } from '../../../main/models/flight-search.model';
 import { SearchService } from '../../../main/services/search.service';
 
+// TODO: remove comment
 // {
 //   "oneWay": false,
 //   "airport": {
@@ -38,7 +39,7 @@ import { SearchService } from '../../../main/services/search.service';
   styleUrls: ['./second-menu.component.scss'],
 })
 export class SecondMenuComponent implements OnDestroy {
-  public showSearchForm = true;
+  public showSearchForm = false;
 
   public requestData$: BehaviorSubject<FlightSearchFormValue | null>;
 
@@ -48,13 +49,15 @@ export class SecondMenuComponent implements OnDestroy {
 
   public toCity?: string;
 
-  public fromDate?: string | Date;
+  public fromDate?: Date | null;
 
-  public toDate?: string | Date;
+  public toDate?: Date | null;
+
+  public oneWayDate?: Date | null;
 
   public passengerAmount = 0;
 
-  public oneWay = false;
+  public isOneWay = false;
 
   private destroy$ = new Subject<void>();
 
@@ -63,11 +66,11 @@ export class SecondMenuComponent implements OnDestroy {
     this.searchService.requestData$.pipe(takeUntil(this.destroy$)).subscribe((v) => {
       if (v != null) {
         this.requestData = v;
-        this.oneWay = v.oneWay;
-        this.fromCity = v.airport.from.city;
-        this.toCity = v.airport.to.city;
-        this.fromDate = new Date(v.dates.from);
-        this.toDate = v.dates.to ? new Date(v.dates.to) : undefined;
+        this.isOneWay = v.isOneWay;
+        this.fromCity = v.airport.fromLoc.city;
+        this.toCity = v.airport.toLoc.city;
+        this.fromDate = new Date(v.dates.fromDate);
+        this.toDate = v.dates.toDate ? new Date(v.dates.toDate) : null;
         this.passengerAmount = Object.values(v.passengers).reduce((a: number, b: number) => a + b, 0) as number;
       }
     });

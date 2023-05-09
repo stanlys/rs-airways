@@ -33,9 +33,8 @@ export class DatesFieldComponent implements OnInit, OnDestroy {
   public ngOnInit(): void {
     this.datesForm = this.parentForm.control.get(this.name) as FormGroup;
 
-    this.dateFrom = this.datesForm.get('from') as FormControl<Date>;
-    this.dateTo = this.datesForm.get('to') as FormControl<Date>;
-    this.date = this.datesForm.get('oneWay') as FormControl<Date>;
+    this.dateFrom = this.datesForm.get('fromDate') as FormControl<Date>;
+    this.dateTo = this.datesForm.get('toDate') as FormControl<Date>;
 
     this.parentForm.control
       .get('oneWay')
@@ -60,11 +59,9 @@ export class DatesFieldComponent implements OnInit, OnDestroy {
 
   private updateValidators(flag: boolean): void {
     if (!flag) {
-      this.date.clearValidators();
       this.dateTo.setValidators(Validators.required);
       this.dateFrom.setValidators(Validators.required);
     } else {
-      this.date.setValidators(Validators.required);
       this.dateTo.clearValidators();
       this.dateFrom.clearValidators();
     }

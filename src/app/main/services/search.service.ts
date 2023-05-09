@@ -58,11 +58,11 @@ export class SearchService {
 
   private static transformFormValueToReqScheme(v: FlightSearchFormValue): FlightSearchRequest {
     const { airport, dates } = v;
-    const { from, to } = airport;
-    const { IATA: fromKey } = from;
-    const { IATA: toKey } = to;
-    const forwardDate = dates.from.toISOString();
-    const backDate = dates.to?.toISOString();
+    const { fromLoc, toLoc } = airport;
+    const { IATA: fromKey } = fromLoc;
+    const { IATA: toKey } = toLoc;
+    const forwardDate = dates.fromDate.toISOString();
+    const backDate = dates.toDate?.toISOString();
 
     const requestData: FlightSearchRequest = {
       fromKey,

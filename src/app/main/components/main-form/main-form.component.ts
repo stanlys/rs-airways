@@ -20,13 +20,12 @@ export class MainFormComponent {
     this.searchForm = fb.group({
       oneWay: fb.control<boolean>(false, Validators.required),
       airport: fb.group({
-        from: fb.control<AirportForm | null>(null, Validators.required),
-        to: fb.control<AirportForm | null>(null, Validators.required),
+        fromLoc: fb.control<AirportForm | null>(null, Validators.required),
+        toLoc: fb.control<AirportForm | null>(null, Validators.required),
       }),
       dates: fb.group({
-        from: fb.control<Date | null>(null, Validators.required),
-        to: fb.control<Date | null>(null, Validators.required),
-        oneWay: fb.control<Date | null>(null),
+        fromDate: fb.control<Date | null>(null, Validators.required),
+        toDate: fb.control<Date | null>(null, Validators.required),
       }),
       passengers: fb.group({
         adult: fb.control<number>(0, [Validators.required, Validators.min(1), passengersValidator]),
