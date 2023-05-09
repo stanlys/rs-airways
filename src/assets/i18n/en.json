@@ -1,0 +1,15 @@
+{
+  "MAIN": {
+    "SIGNIN": "SIGN IN",
+    "ONE_WAY": "One Way",
+    "ROUND_TRIP": "Round Trip",
+    "SEARCH": "Search",
+    "DATES": "Dates",
+    "CART": "Cart",
+    "LOGIN": "Log In"
+  },
+  "FOOTER": {
+    "RIGHTS": "All rights reserved.",
+    "PAYS": "We accept these payment methods"
+  }
+}
