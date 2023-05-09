@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, catchError, of, take, timeout } from 'rxjs';
 
-import { defaultFlights } from '../../main/mock-flights-response';
+import { defaultFlights as mockFlights } from '../../main/mock-flights-response';
 import { API_BASE_URL, STORAGE_KEY_PREFIX } from '../constants';
 import {
   FlightSearchFormValue,
@@ -17,7 +17,7 @@ export class SearchService {
   // TODO: declare search form model instead of requestData$ Subject or use ngrx store
   public requestData$ = new BehaviorSubject<FlightSearchFormValue | null>(null);
 
-  public flights$ = new BehaviorSubject<FlightSearchResponse>(defaultFlights);
+  public flights$ = new BehaviorSubject<FlightSearchResponse | null>(mockFlights);
 
   private readonly searchKey = `${STORAGE_KEY_PREFIX}-searchRequest`;
 

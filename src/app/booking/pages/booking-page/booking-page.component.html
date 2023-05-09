@@ -1,9 +1,14 @@
-<div class="booking-page flex flex-col">
-  <app-second-menu />
-  <div class="calendar-container flex flex-col mt-10 mb-5">
-    <app-flights-calendar />
-    <app-flights-calendar [return]="true" />
-    <div class="controls self-end mt-10">
+<div class="booking-page">
+  <app-second-menu (toggleSearchForm)="showSearchForm = !showSearchForm" />
+
+  <div *ngIf="flights$ | async as flights" class="calendar-container flex flex-col pt-10 mb-5 mx-auto relative">
+    <app-flights-form *ngIf="showSearchForm" (hideForm)="showSearchForm = false" />
+
+    <ng-container *ngFor="let flight of flights">
+      <app-flights-calendar [showSearchForm]="showSearchForm" [flight]="flight" />
+    </ng-container>
+
+    <div class="controls self-end mt-5 flex gap-10">
       <button class="btn" mat-button color="primary" (click)="back()" type="button">Back</button>
       <button class="btn" mat-flat-button color="primary" (click)="forward()" type="button">Continue</button>
     </div>

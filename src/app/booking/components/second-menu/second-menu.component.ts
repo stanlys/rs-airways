@@ -1,37 +1,8 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, Output } from '@angular/core';
 import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
 
 import { FlightSearchFormValue } from '../../../main/models/flight-search.model';
 import { SearchService } from '../../../shared/services/search.service';
-
-// TODO: remove comment
-// {
-//   "oneWay": false,
-//   "airport": {
-//       "from": {
-//           "name": "John F. Kennedy International Airport",
-//           "city": "New York",
-//           "country": "United States",
-//           "IATA": "JFK"
-//       },
-//       "to": {
-//           "name": "Los Angeles International Airport",
-//           "city": "Los Angeles",
-//           "country": "United States",
-//           "IATA": "LAX"
-//       }
-//   },
-//   "dates": {
-//       "from": "2023-05-05T21:00:00.000Z",
-//       "to": "2023-05-12T21:00:00.000Z",
-//       "oneWay": null
-//   },
-//   "passengers": {
-//       "adult": 2,
-//       "child": 0,
-//       "infant": 0
-//   }
-// }
 
 @Component({
   selector: 'app-second-menu',
@@ -39,8 +10,6 @@ import { SearchService } from '../../../shared/services/search.service';
   styleUrls: ['./second-menu.component.scss'],
 })
 export class SecondMenuComponent implements OnDestroy {
-  public showSearchForm = false;
-
   public requestData$: BehaviorSubject<FlightSearchFormValue | null>;
 
   public requestData?: FlightSearchFormValue;
@@ -58,6 +27,8 @@ export class SecondMenuComponent implements OnDestroy {
   public passengerAmount = 0;
 
   public isOneWay = false;
+
+  @Output() public toggleSearchForm = new EventEmitter<void>();
 
   private destroy$ = new Subject<void>();
 

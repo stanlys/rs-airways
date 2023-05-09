@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { ControlService } from '../../../core/services/control.service';
+import { SearchService } from '../../../shared/services/search.service';
 
 @Component({
   selector: 'app-booking-page',
@@ -8,7 +9,13 @@ import { ControlService } from '../../../core/services/control.service';
   styleUrls: ['./booking-page.component.scss'],
 })
 export class BookingPageComponent {
-  constructor(private controlService: ControlService) {}
+  public flights$;
+
+  public showSearchForm = true;
+
+  constructor(private controlService: ControlService, searchService: SearchService) {
+    this.flights$ = searchService.flights$.asObservable();
+  }
 
   public back(): void {
     this.controlService.stepper.previous();

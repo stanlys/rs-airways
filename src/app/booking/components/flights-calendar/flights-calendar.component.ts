@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Flight } from '../../../main/models/main.interfaces';
 
 @Component({
   selector: 'app-flights-calendar',
@@ -6,5 +7,9 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./flights-calendar.component.scss'],
 })
 export class FlightsCalendarComponent {
-  @Input() public return = false;
+  @Input() public flight!: Flight;
+
+  @Input() public showSearchForm!: boolean;
+
+  @Output() public hideForm = new EventEmitter<void>();
 }

@@ -1,1 +1,10 @@
-<p>flights-calendar works!</p>
+<div class="destination flex text-[#11397e] font-bold text-2xl gap-3">
+  <img class="icon" src="/assets/calendar-destination_icon.svg" alt="" srcset="" />
+  <div class="text">
+    <span>{{ flight.form.city }}</span>
+    <span> to </span>
+    <span>{{ flight.to.city }}</span>
+  </div>
+</div>
+
+<app-flight [flight]="flight" />
