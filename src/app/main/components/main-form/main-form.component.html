@@ -3,9 +3,9 @@
     <form class="search-form" (ngSubmit)="onSubmit()" [formGroup]="searchForm">
       <mat-radio-group formControlName="oneWay" color="primary">
         <mat-radio-button [value]="false" [checked]="true" color="primary">{{
-          'MAIN.ROUND_TRIP' | translate
+          'MAIN_FORM.ROUND_TRIP' | translate
         }}</mat-radio-button>
-        <mat-radio-button [value]="true" color="primary">{{ 'MAIN.ONE_WAY' | translate }}</mat-radio-button>
+        <mat-radio-button [value]="true" color="primary">{{ 'MAIN_FORM.ONE_WAY' | translate }}</mat-radio-button>
       </mat-radio-group>
 
       <app-flight-route formGroupName="airport" class="flight-route"></app-flight-route>

@@ -1,8 +1,8 @@
 <ng-container [formGroup]="flightRouteForm">
   <app-airport-field
     [formName]="'from'"
-    [direction]="'From'"
-    [placeholder]="'Choose your starting from'"
+    [direction]="getTranslateLabel().FROM"
+    [placeholder]="getTranslateLabel().LABEL_FROM"
   ></app-airport-field>
 
   <div class="switch-direction-btn-container">
@@ -20,7 +20,7 @@
 
   <app-airport-field
     [formName]="'to'"
-    [direction]="'Destination'"
-    [placeholder]="'Choose your destination'"
+    [direction]="getTranslateLabel().TO"
+    [placeholder]="getTranslateLabel().LABEL_TO"
   ></app-airport-field>
 </ng-container>

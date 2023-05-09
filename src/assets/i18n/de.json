@@ -1,0 +1,28 @@
+{
+  "MAIN": {
+    "SEARCH": "Suche",
+    "CART": "Warenkorb",
+    "LOGIN": "Einloggen"
+  },
+  "MAIN_FORM": {
+    "PASSENGER": "Passagiere",
+    "ONE_WAY": "Eine Richtung",
+    "ROUND_TRIP": "Hin- und Rückfahrt",
+    "DATES": "Daten",
+    "FROM": "WOHER",
+    "LABEL_FROM": "Wählen Sie Ihren Startpunkt aus",
+    "TO": "ZIEL",
+    "LABEL_TO": "Wählen Sie Ihr Ziel"
+  },
+  "HEADER": {
+    "SIGN_IN": "ANMELDEN",
+    "BOOKING": "Flüge buchen"
+  },
+  "FOOTER": {
+    "RIGHTS": "Alle Rechte vorbehalten.",
+    "PAYS": "Wir akzeptieren diese Zahlungsmethoden"
+  },
+  "ERRORS": {
+    "PASSENGER_ADULT": "Wählen Sie mindestens 1 Erwachsenen"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "MAIN": {
+    "SEARCH": "Szukaj",
+    "CART": "Koszyk",
+    "LOGIN": "Zaloguj się"
+  },
+  "MAIN_FORM": {
+    "PASSENGER": "Pasażerowie",
+    "ONE_WAY": "W jedną stronę",
+    "ROUND_TRIP": "Podróż w obie strony",
+    "DATES": "Daty",
+    "FROM": "FORMULARZ",
+    "LABEL_FROM": "Wybierz początek od",
+    "TO": "Miejsce docelowe",
+    "LABEL_TO": "Wybierz miejsce docelowe"
+  },
+  "HEADER": {
+    "SIGN_IN": "ZALOGUJ SIĘ",
+    "BOOKING": "Zarezerwuj loty"
+  },
+  "FOOTER": {
+    "RIGHTS": "Wszelkie prawa zastrzeżone.",
+    "PAYS": "Akceptujemy te metody płatności"
+  },
+  "ERRORS": {
+    "PASSENGER_ADULT": "Wybierz co najmniej 1 osobę dorosłą"
+  }
+}

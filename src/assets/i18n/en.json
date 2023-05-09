@@ -1,15 +1,33 @@
 {
   "MAIN": {
-    "SIGNIN": "SIGN IN",
-    "ONE_WAY": "One Way",
-    "ROUND_TRIP": "Round Trip",
     "SEARCH": "Search",
-    "DATES": "Dates",
     "CART": "Cart",
     "LOGIN": "Log In"
+  },
+  "MAIN_FORM": {
+    "PASSENGER": "Passengers",
+    "ONE_WAY": "One Way",
+    "ROUND_TRIP": "Round Trip",
+    "DATES": "Dates",
+    "FROM": "FORM",
+    "LABEL_FROM": "Choose your starting from",
+    "TO": "Destination",
+    "LABEL_TO": "Choose your destination"
+  },
+  "HEADER": {
+    "SIGN_IN": "SIGN IN",
+    "BOOKING": "Book flights"
   },
   "FOOTER": {
     "RIGHTS": "All rights reserved.",
     "PAYS": "We accept these payment methods"
+  },
+  "PASSENGER": {
+    "Adult": "Adult",
+    "Children": "Children",
+    "Infant": "Infant"
+  },
+  "ERRORS": {
+    "PASSENGER_ADULT": "Choose at least 1 Adult"
   }
 }
