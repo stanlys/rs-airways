@@ -1,4 +1,4 @@
-import { IPassenger } from './passenger';
+import { IPassenger } from './summary-passenger';
 
 export interface ISummaryFlight {
   number: string;

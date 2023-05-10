@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ISummaryFare, ISummaryFlight } from '../../interface/flight';
-import { SummaryService } from '../../service/summary.service';
-import { CurrencySymbolService } from '../../service/currency-symbol.service';
+import { ISummaryFare, ISummaryFlight } from '../../interfaces/summary-flight';
+import { CurrencySymbolService } from '../../services/currency-symbol.service';
+import { SummaryService } from '../../services/summary.service';
 
 @Component({
   selector: 'app-total-price',

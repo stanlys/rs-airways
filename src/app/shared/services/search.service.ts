@@ -33,6 +33,7 @@ export class SearchService {
 
     this.searchRequest(data).subscribe((res) => {
       if (res != null) {
+        console.log(res);
         this.flights$.next(res);
       }
     });

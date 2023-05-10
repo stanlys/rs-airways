@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { CurrencySymbolService } from '../../service/currency-symbol.service';
+import { CurrencySymbolService } from '../../services/currency-symbol.service';
 
 @Component({
   selector: 'app-total-price-element',

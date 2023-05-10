@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { INIT_SUMMARY_FARE, ISummaryFare, ISummaryFlight } from '../interface/flight';
-import { IPassenger } from '../interface/passenger';
+import { INIT_SUMMARY_FARE, ISummaryFare, ISummaryFlight } from '../interfaces/summary-flight';
+import { IPassenger } from '../interfaces/summary-passenger';
 
 @Injectable({
   providedIn: 'root',

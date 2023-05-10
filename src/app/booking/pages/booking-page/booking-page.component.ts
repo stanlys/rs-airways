@@ -11,7 +11,7 @@ import { SearchService } from '../../../shared/services/search.service';
 export class BookingPageComponent {
   public flights$;
 
-  public showSearchForm = true;
+  public showSearchForm = false;
 
   constructor(private controlService: ControlService, searchService: SearchService) {
     this.flights$ = searchService.flights$.asObservable();
