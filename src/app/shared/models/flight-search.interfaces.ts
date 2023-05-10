@@ -38,7 +38,7 @@ interface Price {
   pln: number;
 }
 
-interface Seats {
+export interface Seats {
   total: number;
   avaible: number;
 }

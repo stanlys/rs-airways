@@ -4,11 +4,7 @@ import { BehaviorSubject, Observable, catchError, of, take, timeout } from 'rxjs
 
 import { API_BASE_URL, STORAGE_KEY_PREFIX } from '../constants';
 import { defaultFlights as mockFlights } from '../mock-flights-response';
-import {
-  FlightSearchFormValue,
-  FlightSearchRequest,
-  FlightSearchResponse,
-} from '../models/flight-search.model';
+import { FlightSearchFormValue, FlightSearchRequest, FlightSearchResponse } from '../models/flight-search.model';
 
 @Injectable({
   providedIn: 'root',
@@ -33,7 +29,6 @@ export class SearchService {
 
     this.searchRequest(data).subscribe((res) => {
       if (res != null) {
-        console.log(res);
         this.flights$.next(res);
       }
     });

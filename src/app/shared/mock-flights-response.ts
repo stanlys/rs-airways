@@ -4,7 +4,7 @@ export const defaultFlights: FlightSearchResponse = [
   {
     seats: {
       total: 395,
-      avaible: 105,
+      avaible: 300,
     },
     flightNumber: 'GG-8370',
     timeMins: 191,

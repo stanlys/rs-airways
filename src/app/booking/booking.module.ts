@@ -15,6 +15,7 @@ import { TotalPriceComponent } from './components/summary-total-price/total-pric
 import { BookingPageComponent } from './pages/booking-page/booking-page.component';
 import { SummaryPageComponent } from './pages/summary-page/summary-page.component';
 import { CurrencySymbolService } from './services/currency-symbol.service';
+import { SeatsBgcDirective } from './directives/seats-bgc.directive';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { CurrencySymbolService } from './services/currency-symbol.service';
     FlightsFormComponent,
     FlightsCalendarComponent,
     FlightComponent,
+    SeatsBgcDirective,
   ],
   imports: [CommonModule, BookingRoutingModule, SharedModule, ReactiveFormsModule],
   providers: [CurrencySymbolService],
