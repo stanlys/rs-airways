@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
 
 import { passengersValidator } from '../../../main/directives/passengers-validator.directive';
-import { FlightSearchFormValue } from '../../../main/models/flight-search.model';
-import { AirportForm } from '../../../main/models/main.interfaces';
+import { AirportForm } from '../../../shared/models/flight-search.interfaces';
+import { FlightSearchFormValue } from '../../../shared/models/flight-search.model';
 import { SearchService } from '../../../shared/services/search.service';
 
 @Component({

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Flight } from '../../../main/models/main.interfaces';
+import { Flight } from '../../../shared/models/flight-search.interfaces';
 
 @Component({
   selector: 'app-flights-calendar',

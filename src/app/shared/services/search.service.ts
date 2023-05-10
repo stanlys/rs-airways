@@ -2,13 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, catchError, of, take, timeout } from 'rxjs';
 
-import { defaultFlights as mockFlights } from '../../main/mock-flights-response';
 import { API_BASE_URL, STORAGE_KEY_PREFIX } from '../constants';
+import { defaultFlights as mockFlights } from '../mock-flights-response';
 import {
   FlightSearchFormValue,
-  FlightSearchResponse,
   FlightSearchRequest,
-} from '../../main/models/flight-search.model';
+  FlightSearchResponse,
+} from '../models/flight-search.model';
 
 @Injectable({
   providedIn: 'root',

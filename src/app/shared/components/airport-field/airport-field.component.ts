@@ -3,8 +3,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective } from '@angular/forms';
 import { Observable, map, startWith } from 'rxjs';
 
-import { AirportForm } from '../../../main/models/main.interfaces';
-import { AIRPORTS } from '../../../main/mock-airports-list';
+import { AIRPORTS } from '../../mock-airports-list';
+import { AirportForm } from '../../models/flight-search.interfaces';
 
 @Component({
   selector: 'app-airport-field',

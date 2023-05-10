@@ -1,4 +1,4 @@
-import { AirportForm } from './models/main.interfaces';
+import { AirportForm } from './models/flight-search.interfaces';
 
 export const AIRPORTS: readonly AirportForm[] = [
   {

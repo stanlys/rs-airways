@@ -1,4 +1,4 @@
-import { AirportForm, Flight, Passengers } from './main.interfaces';
+import { AirportForm, Flight, Passengers } from './flight-search.interfaces';
 
 interface FlightSearchFormValue {
   isOneWay: boolean;

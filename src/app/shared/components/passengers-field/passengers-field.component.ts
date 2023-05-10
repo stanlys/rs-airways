@@ -3,7 +3,7 @@ import { FormControl, FormGroup, FormGroupDirective, Validators } from '@angular
 import { MatOption } from '@angular/material/core';
 
 import { selectRequiredOption } from '../../../main/directives/passengers-validator.directive';
-import { PassengerInfo, PassSelectOption } from '../../../main/models/main.interfaces';
+import { PassengerInfo, PassSelectOption } from '../../models/flight-search.interfaces';
 
 const PASSENGERS: PassengerInfo[] = [
   {

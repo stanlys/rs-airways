@@ -1,5 +1,5 @@
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
-import { PassSelectOption } from '../models/main.interfaces';
+import { PassSelectOption } from '../../shared/models/flight-search.interfaces';
 
 export function passengersValidator(): ValidatorFn {
   return (control: AbstractControl<number | null>): ValidationErrors | null => {

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnDestroy, Output } from '@angular/core';
 import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
 
-import { FlightSearchFormValue } from '../../../main/models/flight-search.model';
+import { FlightSearchFormValue } from '../../../shared/models/flight-search.model';
 import { SearchService } from '../../../shared/services/search.service';
 
 @Component({
