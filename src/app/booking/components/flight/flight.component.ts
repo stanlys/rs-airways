@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { Flight } from '../../../../shared/models/flight-search.interfaces';
+import { Flight } from '../../../shared/models/flight-search.interfaces';
 
 // TODO: remove comment
 // interface AirportRes {
