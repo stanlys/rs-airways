@@ -12,4 +12,6 @@ export class FlightsCalendarComponent {
   @Input() public showSearchForm!: boolean;
 
   @Output() public hideForm = new EventEmitter<void>();
+
+  @Input() public odd!: boolean;
 }

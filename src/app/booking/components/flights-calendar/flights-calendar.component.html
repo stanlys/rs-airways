@@ -1,5 +1,5 @@
 <div class="destination flex text-[#11397e] font-bold text-2xl gap-3 px-2">
-  <img class="icon" src="/assets/calendar-destination_icon.svg" alt="" srcset="" />
+  <img [ngClass]="['icon', odd ? 'rotate-180' : '']" src="/assets/calendar-destination_icon.svg" alt="" srcset="" />
   <div class="text">
     <span>{{ flight.form.city }}</span>
     <span> to </span>

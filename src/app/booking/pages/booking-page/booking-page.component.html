@@ -4,8 +4,8 @@
   <div *ngIf="flights$ | async as flights" class="calendar-container flex flex-col pt-10 mb-5 mx-auto relative">
     <app-flights-form *ngIf="showSearchForm" (hideForm)="showSearchForm = false" />
 
-    <ng-container *ngFor="let flight of flights">
-      <app-flights-calendar [showSearchForm]="showSearchForm" [flight]="flight" />
+    <ng-container *ngFor="let flight of flights; index as i; odd as odd">
+      <app-flights-calendar [odd]="odd" [showSearchForm]="showSearchForm" [flight]="flight" />
     </ng-container>
 
     <div class="controls self-end mt-5 flex gap-10">
