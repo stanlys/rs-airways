@@ -24,8 +24,8 @@ export class MainFormComponent {
         toLoc: fb.control<AirportForm | null>(null, Validators.required),
       }),
       dates: fb.group({
-        fromDate: fb.control<Date | null>(null, Validators.required),
-        toDate: fb.control<Date | null>(null, Validators.required),
+        takeoffDate: fb.control<Date | null>(null, Validators.required),
+        landingDate: fb.control<Date | null>(null, Validators.required),
       }),
       passengers: fb.group({
         adult: fb.control<number>(0, [Validators.required, Validators.min(1), passengersValidator]),

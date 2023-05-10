@@ -40,8 +40,8 @@ export class SecondMenuComponent implements OnDestroy {
         this.isOneWay = v.isOneWay;
         this.fromCity = v.airport.fromLoc.city;
         this.toCity = v.airport.toLoc.city;
-        this.fromDate = new Date(v.dates.fromDate);
-        this.toDate = v.dates.toDate ? new Date(v.dates.toDate) : null;
+        this.fromDate = new Date(v.dates.takeoffDate);
+        this.toDate = v.dates.landingDate ? new Date(v.dates.landingDate) : null;
         this.passengerAmount = Object.values(v.passengers).reduce((a: number, b: number) => a + b, 0) as number;
       }
     });

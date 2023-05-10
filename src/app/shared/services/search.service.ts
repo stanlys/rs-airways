@@ -61,8 +61,8 @@ export class SearchService {
     const { fromLoc, toLoc } = airport;
     const { IATA: fromKey } = fromLoc;
     const { IATA: toKey } = toLoc;
-    const forwardDate = dates.fromDate.toISOString();
-    const backDate = dates.toDate?.toISOString();
+    const forwardDate = dates.takeoffDate.toISOString();
+    const backDate = dates.landingDate?.toISOString();
 
     const requestData: FlightSearchRequest = {
       fromKey,

@@ -7,8 +7,8 @@ interface FlightSearchFormValue {
     toLoc: AirportForm;
   };
   dates: {
-    fromDate: Date;
-    toDate: Date | null;
+    takeoffDate: Date;
+    landingDate: Date | null;
   };
   passengers: Passengers;
   oneWay: boolean;

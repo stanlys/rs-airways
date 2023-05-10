@@ -1,6 +1,7 @@
-<div class="flight bg-white h-[130px] flex items-center rounded-lg">
+<div class="flight bg-white h-[130px] flex items-center rounded-lg px-10">
+  <div class="information mr-7 h-[76px] bg-stone-200">details</div>
   <span class="separator border-l-slate-200 border-l-2 border-dashed h-full"></span>
-  <div class="select flex gap-8 pl-7 pr-10">
+  <div class="select flex gap-8">
     <div class="info w-[133px] font-bold">
       <div appSeatsBgc [seats]="flight.seats" class="seats flex flex-col items-end rounded-sm py-1 px-2 text-xs">
         <span>{{ flight.seats.avaible }} seats&nbsp;</span>

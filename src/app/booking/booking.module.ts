@@ -4,7 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { SharedModule } from '../shared/shared.module';
 import { BookingRoutingModule } from './booking-routing.module';
-import { FlightComponent } from './components/flight/flight.component';
+import { FlightComponent } from './components/flights-flight/flight.component';
 import { FlightsCalendarComponent } from './components/flights-calendar/flights-calendar.component';
 import { FlightsFormComponent } from './components/flights-form/flights-form.component';
 import { SecondMenuComponent } from './components/flights-second-menu/second-menu.component';
