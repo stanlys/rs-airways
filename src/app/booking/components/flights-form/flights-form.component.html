@@ -1,5 +1,5 @@
 <form
-  class="flights-form flex flex-wrap flex-col sm:flex-row py-4 p-2 bg-white 2xl:h-[96px] sm:items-center justify-center 2xl:justify-start gap-5"
+  class="flights-form flex flex-wrap flex-col sm:flex-row py-4 p-2 bg-white sm:items-center justify-center 2xl:justify-start gap-5"
   #form="ngForm"
   [formGroup]="searchForm"
   (ngSubmit)="onSubmit()"
@@ -10,7 +10,7 @@
   </ng-container>
   <app-dates-field [showFormatHint]="false" [name]="'dates'" />
   <app-passengers-field [name]="'passengers'" />
-  <div class="controls flex flex-col items-center">
+  <div class="controls flex flex-col gap-5 sm:gap-2">
     <mat-checkbox class="checkbox select-none" color="primary" formControlName="oneWay">One Way</mat-checkbox>
     <button mat-flat-button color="primary" [disabled]="form.invalid">Apply</button>
   </div>

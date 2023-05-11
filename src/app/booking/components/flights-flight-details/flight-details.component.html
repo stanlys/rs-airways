@@ -1,5 +1,7 @@
-<div class="information h-[76px] flex items-center justify-between gap-5 w-full">
-  <div class="destination-container flex-grow flex justify-between items-center h-full gap-[30px]">
+<div class="details py-4 md:py-0 lg:h-[76px] flex flex-col lg:flex-row items-center justify-between gap-5 w-full">
+  <div
+    class="destination-container flex-grow self-stretch flex justify-between items-center h-full gap-4 sm:gap-[30px]"
+  >
     <div class="destination takeoff" *ngIf="flight.form as departure">
       <span class="date">{{ flight.takeoffDate | date : 'E, MMMM d y' }}</span>
       <div class="time-container">
@@ -9,7 +11,7 @@
       <span class="city">{{ departure.city }}</span>
     </div>
 
-    <div class="flight-time-container flex-grow flex items-center h-full">
+    <div class="flight-time-container flex flex-grow items-center h-full">
       <span class="divider border-t-2 bg-[#d0d9Df] flex-grow"></span>
       <div class="flight-time flex flex-col h-full items-center justify-between w-11">
         <span class="time">{{ flight.timeMins | flightTime }}</span>

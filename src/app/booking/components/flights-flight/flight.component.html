@@ -1,8 +1,11 @@
-<!-- TODO: write responsive styles for flight -->
-<div class="flight bg-white h-[130px] flex items-center justify-between rounded-lg px-10">
+<div
+  class="flight bg-white md:h-[130px] flex flex-col md:flex-row md:items-center md:justify-between rounded-lg px-4 sm:px-10"
+>
   <app-flight-details [odd]="odd" [flight]="flight" />
-  <div class="separator-container flex items-center h-full">
-    <span class="separator border-l-slate-200 border-l-2 border-dashed h-full"></span>
+  <div class="select-container flex flex-col md:flex-row items-center md:h-full">
+    <span
+      class="separator border-l-slate-200 border-t-2 md:border-t-0 md:border-l-2 border-dashed w-full md:w-0 md:h-full"
+    ></span>
     <app-flight-select [flight]="flight" />
   </div>
 </div>

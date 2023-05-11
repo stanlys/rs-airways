@@ -10,7 +10,6 @@ import { FlightSearchFormValue, FlightSearchRequest, FlightSearchResponse } from
   providedIn: 'root',
 })
 export class SearchService {
-  // TODO: declare search form model instead of requestData$ Subject or use ngrx store
   public requestData$ = new BehaviorSubject<FlightSearchFormValue | null>(null);
 
   public flights$ = new BehaviorSubject<FlightSearchResponse | null>(mockFlights);
