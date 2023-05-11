@@ -1,0 +1,47 @@
+:host {
+  width: 100%;
+  margin-right: 28px;
+}
+
+.destination {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.date,
+.time-zone,
+.city,
+.flight-number .description {
+  color: #74767a;
+}
+
+.time-zone {
+  font-size: 8px;
+}
+
+.city {
+  font-size: 12px;
+}
+
+.time-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.time-container .time {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.landing {
+  align-items: flex-end;
+}
+
+.flight-number {
+  font-size: 14px;
+  display: flex;
+  gap: 12px;
+}

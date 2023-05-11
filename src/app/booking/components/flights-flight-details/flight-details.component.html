@@ -1,1 +1,36 @@
-<div class="information mr-7 h-[76px] bg-stone-200">details</div>
+<div class="information h-[76px] flex items-center justify-between gap-5 w-full">
+  <div class="destination-container flex-grow flex justify-between items-center h-full gap-[30px]">
+    <div class="destination takeoff" *ngIf="flight.form as departure">
+      <span class="date">{{ flight.takeoffDate | date : 'E, MMMM d y' }}</span>
+      <div class="time-container">
+        <span class="time"> {{ flight.takeoffDate | date : 'h:mm' }}</span>
+        <span class="time-zone">UTC {{ departure.gmt }}</span>
+      </div>
+      <span class="city">{{ departure.city }}</span>
+    </div>
+
+    <div class="flight-time-container flex-grow flex items-center h-full">
+      <span class="divider border-t-2 bg-[#d0d9Df] flex-grow"></span>
+      <div class="flight-time flex flex-col h-full items-center justify-between w-11">
+        <span class="time">{{ flight.timeMins }}m</span>
+        <img src="/assets/flight-time_icon.svg" alt="" [ngClass]="['icon', odd ? '-scale-x-100' : '']" />
+        <span class="direct">Direct</span>
+      </div>
+      <span class="divider border-t-2 bg-[#d0d9Df] flex-grow"></span>
+    </div>
+
+    <div class="destination landing" *ngIf="flight.to as arrival">
+      <span class="date">{{ flight.landingDate | date : 'E, MMMM d y' }}</span>
+      <div class="time-container">
+        <span class="time-zone">UTC {{ arrival.gmt }}</span>
+        <span class="time"> {{ flight.landingDate | date : 'h:mm' }}</span>
+      </div>
+      <span class="city">{{ arrival.city }}</span>
+    </div>
+  </div>
+
+  <div class="flight-number">
+    <span class="description">Flight no.</span>
+    <span class="details">{{ flight.flightNumber }}</span>
+  </div>
+</div>

@@ -1,5 +1,8 @@
-<div class="flight bg-white h-[130px] flex items-center rounded-lg px-10">
-  <app-flight-details [flight]="flight" />
-  <span class="separator border-l-slate-200 border-l-2 border-dashed h-full"></span>
-  <app-flight-select [flight]="flight" />
+<!-- TODO: write responsive styles for flight -->
+<div class="flight bg-white h-[130px] flex items-center justify-between rounded-lg px-10">
+  <app-flight-details [odd]="odd" [flight]="flight" />
+  <div class="separator-container flex items-center h-full">
+    <span class="separator border-l-slate-200 border-l-2 border-dashed h-full"></span>
+    <app-flight-select [flight]="flight" />
+  </div>
 </div>
