@@ -36,23 +36,23 @@ export class MainFormComponent {
   }
 
   public onSubmit(): void {
-    const { airport, dates } = this.searchForm.value as FlightSearchFormValue;
-    const { from, to } = airport;
-    const { IATA: fromKey } = from;
-    const { IATA: toKey } = to;
+    // const { airport, dates } = this.searchForm.value as FlightSearchFormValue;
+    // const { from, to } = airport;
+    // const { IATA: fromKey } = from;
+    // const { IATA: toKey } = to;
 
-    console.log(this.searchForm.value);
-    const forwardDate = dates.from.toISOString();
-    const backDate = dates.to?.toISOString();
+    // console.log(this.searchForm.value);
+    // const forwardDate = dates.from.toISOString();
+    // const backDate = dates.to?.toISOString();
 
-    const requestData: FlightSearchRequest = {
-      fromKey,
-      toKey,
-      forwardDate,
-      backDate,
-    };
+    // const requestData: FlightSearchRequest = {
+    //   fromKey,
+    //   toKey,
+    //   forwardDate,
+    //   backDate,
+    // };
 
-    this.search.update(requestData);
+    this.search.update(this.searchForm.value as FlightSearchFormValue);
 
     this.router.navigate(['/booking']).catch(console.error);
   }

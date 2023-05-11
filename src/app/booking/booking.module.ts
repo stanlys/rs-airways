@@ -10,8 +10,8 @@ import { SummaryPassengerCardComponent } from './components/summary-passenger-ca
 import { TotalPriceElementComponent } from './components/total-price-element/total-price-element.component';
 import { TotalPriceComponent } from './components/total-price/total-price.component';
 import { CurrencySymbolService } from './service/currency-symbol.service';
-import { PassengersComponent } from './components/passengers/passengers.component';
-import { ContactDetailsComponent } from './components/contact-details/contact-details.component';
+import { PassengersComponent } from './components/booking-passengers/passengers.component';
+import { ContactDetailsComponent } from './components/booking-contact-details/contact-details.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,9 @@ import { ContactDetailsComponent } from './components/contact-details/contact-de
     SummaryPassengerCardComponent,
     TotalPriceElementComponent,
     TotalPriceComponent,
-  , PassengersComponent, ContactDetailsComponent],
+    PassengersComponent,
+    ContactDetailsComponent,
+  ],
   imports: [CommonModule, BookingRoutingModule, SharedModule],
   providers: [CurrencySymbolService],
 })
