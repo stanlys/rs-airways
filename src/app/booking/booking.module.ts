@@ -18,6 +18,7 @@ import { SummaryPageComponent } from './pages/summary-page/summary-page.componen
 import { CurrencySymbolService } from './services/currency-symbol.service';
 import { FlightSelectComponent } from './components/flights-flight-select/flight-select.component';
 import { FlightDetailsComponent } from './components/flights-flight-details/flight-details.component';
+import { FlightTimePipe } from './pipes/flight-time.pipe';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { FlightDetailsComponent } from './components/flights-flight-details/flig
     SeatsBgcDirective,
     FlightSelectComponent,
     FlightDetailsComponent,
+    FlightTimePipe,
   ],
   imports: [CommonModule, BookingRoutingModule, SharedModule, ReactiveFormsModule],
   providers: [CurrencySymbolService],
