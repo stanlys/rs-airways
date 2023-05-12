@@ -17,6 +17,7 @@
     <span>{{ date | date : 'dd LLL' }}</span>
     <span>{{ date | date : 'cccc' }}</span>
     <ng-container *ngIf="flights | findFlight : date as flight; else noFlight">
+      <!-- TODO: use appropriate currency -->
       <span>{{ flight.price.usd | currency : 'USD' }}</span>
     </ng-container>
   </div>

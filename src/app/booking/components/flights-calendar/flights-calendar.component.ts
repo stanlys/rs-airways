@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import dayjs from 'dayjs';
+
 import { Flight } from '../../../shared/models/flight-search.interfaces';
 
 @Component({
@@ -26,24 +28,20 @@ export class FlightsCalendarComponent implements OnInit {
   }
 
   public decrementDate(): void {
-    const firstDate = new Date(this.dates[0]);
-    firstDate.setDate(firstDate.getDate() - 1);
-    const dates = [firstDate, ...this.dates.slice(0, -1)];
-    this.dates = dates;
+    const firstDate = dayjs(this.dates[0]).subtract(1, 'day').toDate();
+    this.dates = [firstDate, ...this.dates.slice(0, -1)];
   }
 
   public incrementDate(): void {
-    const lastDate = new Date(this.dates[this.dates.length - 1]);
-    lastDate.setDate(lastDate.getDate() + 1);
-    const dates = [...this.dates.slice(1), lastDate];
-    this.dates = dates;
+    const lastDate = dayjs(this.dates[this.dates.length - 1])
+      .add(1, 'day')
+      .toDate();
+    this.dates = [...this.dates.slice(1), lastDate];
   }
 
   private generateStartingDates(): Date[] {
     return Array.from({ length: 5 }, (_, i) => {
-      const currentDate = new Date(this.flight.takeoffDate);
-      currentDate.setDate(currentDate.getDate() - 2 + i);
-      return currentDate;
+      return dayjs(this.flight.takeoffDate).subtract(2, 'day').add(i, 'day').toDate();
     });
   }
 }
