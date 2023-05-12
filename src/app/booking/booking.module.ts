@@ -19,6 +19,7 @@ import { CurrencySymbolService } from './services/currency-symbol.service';
 import { FlightSelectComponent } from './components/flights-flight-select/flight-select.component';
 import { FlightDetailsComponent } from './components/flights-flight-details/flight-details.component';
 import { FlightTimePipe } from './pipes/flight-time.pipe';
+import { FindFlightPipe } from './pipes/find-flight.pipe';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { FlightTimePipe } from './pipes/flight-time.pipe';
     FlightSelectComponent,
     FlightDetailsComponent,
     FlightTimePipe,
+    FindFlightPipe,
   ],
   imports: [CommonModule, BookingRoutingModule, SharedModule, ReactiveFormsModule],
   providers: [CurrencySymbolService],

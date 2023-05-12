@@ -52,5 +52,5 @@ export interface Flight {
   takeoffDate: string;
   landingDate: string;
   price: Price;
-  otherFlights?: Record<string, Flight>;
+  otherFlights?: Record<string, Flight> | Record<string, never>;
 }

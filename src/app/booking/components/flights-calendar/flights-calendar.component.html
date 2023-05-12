@@ -1,11 +1,27 @@
 <!-- TODO: show spinner when data is updating, add isLoading for this purpose -->
-<div class="destination flex justify-center md:justify-start text-[#11397e] font-bold text-2xl gap-3 px-2">
+<!-- TODO: move destination and calendar to subcomponents -->
+<div class="destination flex justify-center md:justify-start text-[#11397e] gap-3 px-2">
   <img [ngClass]="['icon', odd ? 'rotate-180' : '']" src="/assets/calendar-destination_icon.svg" alt="" srcset="" />
-  <div class="text">
+  <h2 class="heading">
     <span>{{ flight.form.city }}</span>
     <span> to </span>
     <span>{{ flight.to.city }}</span>
+  </h2>
+</div>
+
+<button mat-flat-button (click)="decrementDate()">Prev</button>
+<button mat-flat-button (click)="incrementDate()">Next</button>
+
+<div class="flex justify-between">
+  <div class="flex flex-col items-center" *ngFor="let date of dates">
+    <span>{{ date | date : 'dd LLL' }}</span>
+    <span>{{ date | date : 'cccc' }}</span>
+    <ng-container *ngIf="flights | findFlight : date as flight; else noFlight">
+      <span>{{ flight.price.usd | currency : 'USD' }}</span>
+    </ng-container>
   </div>
 </div>
 
 <app-flight [odd]="odd" [flight]="flight" />
+
+<ng-template #noFlight>No Flight</ng-template>

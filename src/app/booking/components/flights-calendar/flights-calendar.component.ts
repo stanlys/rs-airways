@@ -1,45 +1,12 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Flight } from '../../../shared/models/flight-search.interfaces';
-
-// TODO: remove comment
-// interface AirportRes {
-//   key: string;
-//   country: string;
-//   city: string;
-//   name: string;
-//   gmt: string;
-// }
-
-// interface Price {
-//   eur: number;
-//   usd: number;
-//   rub: number;
-//   pln: number;
-// }
-
-// interface Seats {
-//   total: number;
-//   avaible: number;
-// }
-
-// export interface Flight {
-//   seats: Seats;
-//   flightNumber: string;
-//   timeMins: number;
-//   form: AirportRes;
-//   to: AirportRes;
-//   takeoffDate: string;
-//   landingDate: string;
-//   price: Price;
-//   otherFlights?: Record<string, Flight>;
-// }
 
 @Component({
   selector: 'app-flights-calendar',
   templateUrl: './flights-calendar.component.html',
   styleUrls: ['./flights-calendar.component.scss'],
 })
-export class FlightsCalendarComponent {
+export class FlightsCalendarComponent implements OnInit {
   @Input() public flight!: Flight;
 
   @Input() public showSearchForm!: boolean;
@@ -47,4 +14,36 @@ export class FlightsCalendarComponent {
   @Output() public hideForm = new EventEmitter<void>();
 
   @Input() public odd!: boolean;
+
+  public dates: Date[] = [];
+
+  public flights: Flight[] = [];
+
+  public ngOnInit(): void {
+    this.dates = this.generateStartingDates();
+    const { otherFlights, ...flight } = this.flight;
+    this.flights = [...Object.values(otherFlights || {}), flight];
+  }
+
+  public decrementDate(): void {
+    const firstDate = new Date(this.dates[0]);
+    firstDate.setDate(firstDate.getDate() - 1);
+    const dates = [firstDate, ...this.dates.slice(0, -1)];
+    this.dates = dates;
+  }
+
+  public incrementDate(): void {
+    const lastDate = new Date(this.dates[this.dates.length - 1]);
+    lastDate.setDate(lastDate.getDate() + 1);
+    const dates = [...this.dates.slice(1), lastDate];
+    this.dates = dates;
+  }
+
+  private generateStartingDates(): Date[] {
+    return Array.from({ length: 5 }, (_, i) => {
+      const currentDate = new Date(this.flight.takeoffDate);
+      currentDate.setDate(currentDate.getDate() - 2 + i);
+      return currentDate;
+    });
+  }
 }
