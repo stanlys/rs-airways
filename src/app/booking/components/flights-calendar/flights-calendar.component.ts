@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import dayjs from 'dayjs';
 
-import { Subject } from 'rxjs';
 import { Flight } from '../../../shared/models/flight-search.interfaces';
 
 @Component({
@@ -18,7 +17,7 @@ export class FlightsCalendarComponent implements OnInit {
 
   @Input() public odd!: boolean;
 
-  public selectedFlight = new Subject<Flight>();
+  public selectedFlightNumber?: string;
 
   public dates: Date[] = [];
 
@@ -27,6 +26,7 @@ export class FlightsCalendarComponent implements OnInit {
   public ngOnInit(): void {
     this.dates = this.generateStartingDates();
     const { otherFlights, ...flight } = this.flight;
+    this.selectedFlightNumber = flight.flightNumber;
     this.flights = [...Object.values(otherFlights || {}), flight];
   }
 

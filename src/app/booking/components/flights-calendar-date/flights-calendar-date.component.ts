@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Flight } from '../../../shared/models/flight-search.interfaces';
 
 @Component({
@@ -6,12 +6,18 @@ import { Flight } from '../../../shared/models/flight-search.interfaces';
   templateUrl: './flights-calendar-date.component.html',
   styleUrls: ['./flights-calendar-date.component.scss'],
 })
-export class FlightsCalendarDateComponent {
+export class FlightsCalendarDateComponent implements OnInit {
   @Input() public date!: Date;
 
   @Input() public flight?: Flight;
 
-  @Input() public selected!: boolean;
+  @Input() public selectedFlightNumber?: string;
+
+  public selected?: boolean;
 
   @Input() public last!: boolean;
+
+  public ngOnInit(): void {
+    this.selected = this.flight?.flightNumber === this.selectedFlightNumber;
+  }
 }
