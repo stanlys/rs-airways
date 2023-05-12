@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { Flight } from '../../../shared/models/flight-search.interfaces';
 
 @Component({
@@ -6,7 +6,7 @@ import { Flight } from '../../../shared/models/flight-search.interfaces';
   templateUrl: './flights-calendar-date.component.html',
   styleUrls: ['./flights-calendar-date.component.scss'],
 })
-export class FlightsCalendarDateComponent implements OnInit {
+export class FlightsCalendarDateComponent implements OnChanges {
   @Input() public date!: Date;
 
   @Input() public flight?: Flight;
@@ -17,7 +17,15 @@ export class FlightsCalendarDateComponent implements OnInit {
 
   @Input() public last!: boolean;
 
-  public ngOnInit(): void {
+  @Output() public selectedChange = new EventEmitter<string>();
+
+  public ngOnChanges(): void {
     this.selected = this.flight?.flightNumber === this.selectedFlightNumber;
+  }
+
+  public select(): void {
+    if (this.flight != null) {
+      this.selectedChange.emit(this.flight.flightNumber);
+    }
   }
 }

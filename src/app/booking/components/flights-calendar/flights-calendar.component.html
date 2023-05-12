@@ -20,7 +20,8 @@
     [date]="date"
     [selectedFlightNumber]="selectedFlightNumber"
     [last]="last"
+    (selectedChange)="select($event)"
   />
 </div>
 
-<app-flight [odd]="odd" [flight]="flight" />
+<app-flight [odd]="odd" [flight]="(selectedFlight$ | async) ?? flight" />

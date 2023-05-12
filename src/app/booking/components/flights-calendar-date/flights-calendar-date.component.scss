@@ -19,8 +19,12 @@
   height: 100%;
 }
 
-.date-price.no-flight *:not(.weekday) {
+.date-price:not(.flight) *:not(.weekday) {
   color: #d0d9df;
+}
+
+.date-price.flight {
+  cursor: pointer;
 }
 
 .date,

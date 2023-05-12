@@ -1,14 +1,14 @@
-<div class="date-price flex flex-col items-center py-1" [ngClass]="{ 'no-flight': !flight, selected, last }">
+<div class="date-price flex flex-col items-center py-1" [ngClass]="{ flight, selected, last }" (click)="select()">
   <div class="date-container flex flex-col items-center">
     <span class="date">{{ date | date : 'dd LLL' }}</span>
     <span class="weekday">{{ date | date : 'cccc' }}</span>
   </div>
   <ng-container *ngIf="flight; else noFlight">
-    <!-- TODO: use appropriate currency -->
+    <!-- TODO: use the appropriate currency -->
     <span class="price h-full flex items-center">{{ flight.price.usd | currency : 'USD' }}</span>
   </ng-container>
 </div>
 
 <ng-template #noFlight>
-  <span class="">No Flight</span>
+  <span>No Flight</span>
 </ng-template>
