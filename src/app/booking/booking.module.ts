@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { TranslateModule } from '@ngx-translate/core';
 import { BookingRoutingModule } from './booking-routing.module';
 import { BookingPageComponent } from './pages/booking-page/booking-page.component';
 import { SharedModule } from '../shared/shared.module';
@@ -20,7 +21,7 @@ import { CurrencySymbolService } from './service/currency-symbol.service';
     TotalPriceElementComponent,
     TotalPriceComponent,
   ],
-  imports: [CommonModule, BookingRoutingModule, SharedModule],
+  imports: [CommonModule, BookingRoutingModule, SharedModule, TranslateModule],
   providers: [CurrencySymbolService],
 })
 export class BookingModule {}

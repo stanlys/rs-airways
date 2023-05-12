@@ -4,11 +4,11 @@
     <span class="caption">{{ fare + tax | currency : currencyService.getCurrencySymbol() }}</span>
   </div>
   <div class="flex justify-between pl-10">
-    <span>Fare </span>
+    <span>{{ 'SUMMARY.FARE' | translate }} </span>
     <span>{{ fare | number : '2.2-2' | currency : currencyService.getCurrencySymbol() }} </span>
   </div>
   <div class="flex justify-between pl-10">
-    <span>Tax & Service Charge </span>
+    <span>{{ 'SUMMARY.TAX' | translate }} </span>
     <span> {{ tax | number : '2.2-2' | currency : currencyService.getCurrencySymbol() }} </span>
   </div>
 </div>

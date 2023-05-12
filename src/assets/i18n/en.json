@@ -27,6 +27,21 @@
     "Children": "Children",
     "Infant": "Infant"
   },
+  "SUMMARY": {
+    "CAPTION": "Summary",
+    "BAG": "checked bag (total 23 kg) included",
+    "CABIN_BAG": "cabin bag + 1 personal item (max. 8 kg) included",
+    "SEAT": "Seat",
+    "ADULT": "Adult Fare",
+    "CHILD": "Child Fare",
+    "INFANT": "Infant Fare",
+    "FARE": "Fare",
+    "TAX": "Tax & Service Charge",
+    "TOTAL": "TOTAL",
+    "BTN_BACK": "Back",
+    "BTN_ADD": "Add to order cart",
+    "BTN_BUY": "Buy now"
+  },
   "ERRORS": {
     "PASSENGER_ADULT": "Choose at least 1 Adult"
   }
