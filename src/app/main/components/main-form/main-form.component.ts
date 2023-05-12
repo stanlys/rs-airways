@@ -25,7 +25,7 @@ export class MainFormComponent {
       dates: fb.group({
         from: fb.control<Date | null>(null, Validators.required),
         to: fb.control<Date | null>(null, Validators.required),
-        oneWay: fb.control<Date | null>(null),
+        // oneWay: fb.control<Date | null>(null),
       }),
       passengers: fb.group({
         adult: fb.control<number>(0, [Validators.required, Validators.min(1), passengersValidator]),

@@ -32,8 +32,8 @@ export class ContactDetailsComponent {
   }
 
   public ngOnInit(): void {
-    this.emailField = this.contactDetailsForm.controls['email'] as FormControl;
-    this.countryCodeField = this.contactDetailsForm.get('countryCode') as FormControl;
-    this.phoneNumberField = this.contactDetailsForm.get('phone') as FormControl;
+    this.emailField = this.contactDetailsForm.controls['email'] as FormControl<string>;
+    this.countryCodeField = this.contactDetailsForm.get('countryCode') as FormControl<string>;
+    this.phoneNumberField = this.contactDetailsForm.get('phone') as FormControl<string>;
   }
 }
