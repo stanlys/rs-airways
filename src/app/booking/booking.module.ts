@@ -20,6 +20,7 @@ import { FlightSelectComponent } from './components/flights-flight-select/flight
 import { FlightDetailsComponent } from './components/flights-flight-details/flight-details.component';
 import { FlightTimePipe } from './pipes/flight-time.pipe';
 import { FindFlightPipe } from './pipes/find-flight.pipe';
+import { FlightsCalendarDateComponent } from './components/flights-calendar-date/flights-calendar-date.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { FindFlightPipe } from './pipes/find-flight.pipe';
     FlightDetailsComponent,
     FlightTimePipe,
     FindFlightPipe,
+    FlightsCalendarDateComponent,
   ],
   imports: [CommonModule, BookingRoutingModule, SharedModule, ReactiveFormsModule],
   providers: [CurrencySymbolService],

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import dayjs from 'dayjs';
 
+import { Subject } from 'rxjs';
 import { Flight } from '../../../shared/models/flight-search.interfaces';
 
 @Component({
@@ -16,6 +17,8 @@ export class FlightsCalendarComponent implements OnInit {
   @Output() public hideForm = new EventEmitter<void>();
 
   @Input() public odd!: boolean;
+
+  public selectedFlight = new Subject<Flight>();
 
   public dates: Date[] = [];
 
