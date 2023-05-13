@@ -23,7 +23,11 @@
     "MOBILE_PHONE": "Mobile phone number",
     "COUNTRY_CODE": "Country code",
     "MALE": "Male",
-    "FEMALE": "Female"
+    "FEMALE": "Female",
+    "AGREE": "I agree to Airway's",
+    "AND": "and",
+    "POLICY": "Privacy Policy",
+    "TERMS": "Terms of Use"
   },
   "MAIN_FORM": {
     "PASSENGER": "Passengers",

@@ -85,10 +85,14 @@
 
   <div class="checkbox-container flex flex-col relative pb-6" *ngIf="form.controls['confirm'] as control">
     <mat-checkbox #confirmCheckbox formControlName="confirm" color="primary">
-      <span>I agree to Airway's </span>
-      <a class="anchor" href="" target="_blank" rel="noopener noreferrer" color="primary">Privacy Policy</a>
-      <span> and </span>
-      <a class="anchor" href="" target="_blank" rel="noopener noreferrer" color="primary">Terms of Use</a>
+      <span>{{ 'LOGIN_FORM.AGREE' | translate }} </span>
+      <a class="anchor" href="" target="_blank" rel="noopener noreferrer" color="primary">{{
+        'LOGIN_FORM.POLICY' | translate
+      }}</a>
+      <span> {{ 'LOGIN_FORM.AND' | translate }} </span>
+      <a class="anchor" href="" target="_blank" rel="noopener noreferrer" color="primary">{{
+        'LOGIN_FORM.TERMS' | translate
+      }}</a>
     </mat-checkbox>
     <mat-hint class="ml-4 text-xs absolute bottom-1" *ngIf="control.errors?.['required'] && !ngForm.submitted">{{
       'ERRORS.REQUIRED' | translate
