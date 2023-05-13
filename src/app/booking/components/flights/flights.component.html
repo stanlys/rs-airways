@@ -1,31 +1,13 @@
 <!-- TODO: show spinner when data is updating, add isLoading for this purpose -->
-<!-- TODO: move destination and calendar to subcomponents -->
 <!-- TODO: scroll the entire date group instead of one date -->
-<div class="destination flex justify-center md:justify-start text-[#11397e] gap-3 px-2">
-  <img [ngClass]="['icon', odd ? 'rotate-180' : '']" src="/assets/calendar-destination_icon.svg" alt="" srcset="" />
-  <h2 class="heading">
-    <span>{{ flight.form.city }}</span>
-    <span> to </span>
-    <span>{{ flight.to.city }}</span>
-  </h2>
-</div>
+<app-flights-calendar-destination [flight]="flight" [odd]="odd" />
 
-<div *ngIf="!confirmed" class="justify-between flex items-end relative">
-  <app-flights-calendar-date
-    *ngFor="let date of dates; index as i; last as last"
-    [flight]="flights | findFlight : date"
-    [date]="date"
-    [selectedFlightNumber]="selectedFlightNumber"
-    [last]="last"
-    (selectedChange)="select($event)"
-  />
-  <button class="btn prev calendar-control flex items-center justify-center" (click)="decrementDate()">
-    <img src="assets/chevron_left.svg" alt="" />
-  </button>
-  <button class="btn next calendar-control flex items-center justify-center" (click)="incrementDate()">
-    <img src="assets/chevron_right.svg" alt="" />
-  </button>
-</div>
+<app-flights-calendar
+  *ngIf="!confirmed"
+  class="justify-between flex items-end relative"
+  [flight]="flight"
+  (selectedFlightChange)="flight = $event"
+/>
 
 <app-flight
   [odd]="odd"

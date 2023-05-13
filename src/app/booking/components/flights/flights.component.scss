@@ -5,32 +5,3 @@
   gap: 8px;
   position: relative;
 }
-
-.heading {
-  margin: 0;
-  font-weight: 700;
-  font-size: 24px;
-}
-
-.btn.calendar-control {
-  $date-height: 70px;
-  position: absolute;
-  background-color: #e9edf1;
-  height: 24px;
-  width: 24px;
-  border-radius: 100%;
-  bottom: $date-height / 2;
-  transform: translateY(50%);
-}
-
-.btn.calendar-control:hover {
-  background-color: #d4d7db;
-}
-
-.btn.prev {
-  left: 0;
-}
-
-.btn.next {
-  right: 0;
-}
