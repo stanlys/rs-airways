@@ -1,7 +1,7 @@
 <div class="booking-page">
   <app-second-menu (toggleSearchForm)="showSearchForm = !showSearchForm" />
 
-  <div *ngIf="flights$ | async as flights" class="calendar-container flex flex-col pt-10 mb-5 mx-auto relative">
+  <div *ngIf="flights" class="calendar-container flex flex-col pt-10 mb-5 mx-auto relative">
     <app-flights-form *ngIf="showSearchForm" (hideForm)="showSearchForm = false" />
 
     <app-flights-calendar
@@ -9,11 +9,22 @@
       [odd]="odd"
       [showSearchForm]="showSearchForm"
       [flight]="flight"
+      [confirmed]="flightsConfirmed[i]"
+      (confirmedChange)="onFlightConfirmed(i, $event)"
     />
 
     <div class="controls self-center md:self-end mt-5 flex gap-10">
       <button class="btn" mat-button color="primary" (click)="back()" type="button">Back</button>
-      <button class="btn" mat-flat-button color="primary" (click)="forward()" type="button">Continue</button>
+      <button
+        [disabled]="!checkAllFlights()"
+        class="btn"
+        mat-flat-button
+        color="primary"
+        (click)="forward()"
+        type="button"
+      >
+        Continue
+      </button>
     </div>
   </div>
 </div>

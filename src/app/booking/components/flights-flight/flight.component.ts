@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { Flight } from '../../../shared/models/flight-search.interfaces';
 
@@ -11,4 +11,8 @@ export class FlightComponent {
   @Input() public flight!: Flight;
 
   @Input() public odd!: boolean;
+
+  @Input() public confirmed!: boolean;
+
+  @Output() public confirmedChange = new EventEmitter<boolean>();
 }

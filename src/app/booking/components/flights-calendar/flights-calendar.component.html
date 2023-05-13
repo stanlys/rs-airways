@@ -11,10 +11,7 @@
   </h2>
 </div>
 
-<button mat-flat-button (click)="decrementDate()">Prev</button>
-<button mat-flat-button (click)="incrementDate()">Next</button>
-
-<div class="flex justify-between items-end">
+<div *ngIf="!confirmed" class="justify-between flex items-end relative">
   <app-flights-calendar-date
     *ngFor="let date of dates; index as i; last as last"
     [flight]="flights | findFlight : date"
@@ -23,6 +20,17 @@
     [last]="last"
     (selectedChange)="select($event)"
   />
+  <button class="btn prev calendar-control flex items-center justify-center" (click)="decrementDate()">
+    <img src="assets/chevron_left.svg" alt="" />
+  </button>
+  <button class="btn next calendar-control flex items-center justify-center" (click)="incrementDate()">
+    <img src="assets/chevron_right.svg" alt="" />
+  </button>
 </div>
 
-<app-flight [odd]="odd" [flight]="(selectedFlight$ | async) ?? flight" />
+<app-flight
+  [odd]="odd"
+  [flight]="selectedFlight || flight"
+  [confirmed]="confirmed"
+  (confirmedChange)="confirmedChange.emit($event)"
+/>

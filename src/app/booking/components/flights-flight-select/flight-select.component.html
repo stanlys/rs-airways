@@ -1,18 +1,29 @@
-<div class="select flex py-4 md:py-0 md:pl-7 gap-8 relative">
-  <div class="info w-[133px] font-bold">
-    <div
-      appSeatsColor
-      [seats]="flight.seats"
-      class="seats flex flex-col items-center md:items-end rounded-sm py-1 px-2 text-xs"
-    >
-      <span>{{ flight.seats.avaible }} seats&nbsp;</span>
-      <span>available</span>
+<!-- TODO: provide proper currency code / locale depending on the selected language -->
+<ng-container *ngIf="!confirmed; else edit">
+  <div class="select flex py-4 md:py-0 md:pl-7 gap-8 relative">
+    <div class="info w-[133px] font-bold">
+      <div
+        appSeatsColor
+        [seats]="flight.seats"
+        class="seats flex flex-col items-center md:items-end rounded-sm py-1 px-2 text-xs"
+      >
+        <span>{{ flight.seats.avaible }} seats&nbsp;</span>
+        <span>available</span>
+      </div>
+      <div class="price mt-[6px] flex flex-col items-center md:items-end">
+        <span class="title text-[#74767a] text-xs">Price</span>
+        <span class="details text-[#11397e] text-3xl">{{ flight.price.usd | currency : 'USD' }}</span>
+      </div>
     </div>
-    <div class="price mt-[6px] flex flex-col items-center md:items-end">
-      <span class="title text-[#74767a] text-xs">Price</span>
-      <!-- TODO: provide proper currency code / locale depending on the selected language -->
-      <span class="details text-[#11397e] text-3xl">{{ flight.price.usd | currency : 'USD' }}</span>
-    </div>
+    <button class="btn select self-center" mat-stroked-button (click)="onClick()">Select</button>
   </div>
-  <button class="btn self-center" mat-stroked-button>Select</button>
-</div>
+</ng-container>
+
+<ng-template #edit>
+  <div class="select flex py-4 md:py-0 md:pl-7 gap-8 relative">
+    <div class="price mt-[6px] flex flex-col items-center md:items-end">
+      <span class="details text-3xl font-bold">{{ flight.price.usd | currency : 'USD' }}</span>
+    </div>
+    <button class="btn edit self-center" mat-button (click)="onClick()">Edit</button>
+  </div>
+</ng-template>
