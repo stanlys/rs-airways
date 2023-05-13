@@ -21,7 +21,10 @@
     "GOOGLE": "Авторизация через Google",
     "FACEBOOK": "Авторизация через Facebook",
     "PASSWORD": "Password",
-    "EMAIL": "E-mail"
+    "EMAIL": "E-mail",
+    "LOGIN_EMAIL": "или войдите с электронной почтой",
+    "PROCESS": "Загрузка...",
+    "FORGOT": "Забыли пароль?"
   },
   "HEADER": {
     "SIGN_IN": "ВХОД",

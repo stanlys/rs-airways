@@ -15,22 +15,22 @@
 
 <div class="flex items-center w-full my-6">
   <mat-divider class="flex-auto"></mat-divider>
-  <span class="px-3 text-xs">or sign up with your email</span>
+  <span class="px-3 text-xs">{{ 'LOGIN_FORM.SIGNUP_EMAIL' | translate }}</span>
   <mat-divider class="flex-auto"></mat-divider>
 </div>
 
 <form class="form auth-tab flex flex-col w-full" #ngForm="ngForm" (ngSubmit)="onSubmit()" [formGroup]="form">
   <mat-form-field *ngIf="form.controls['email'] as control" class="form-field" appearance="fill">
-    <mat-label>Email</mat-label>
+    <mat-label>{{ 'LOGIN_FORM.EMAIL' | translate }}</mat-label>
     <input name="email" [formControl]="control" matInput type="text" />
-    <mat-hint *ngIf="control.errors?.['required']">Required</mat-hint>
-    <mat-error *ngIf="control.errors?.['email']">Must be correct email</mat-error>
-    <mat-error *ngIf="control.errors?.['minlength']">Must be at least 3 characters</mat-error>
-    <mat-error *ngIf="control.errors?.['maxlength']">Must not exceed 16 characters</mat-error>
+    <mat-hint *ngIf="control.errors?.['required']">{{ 'ERRORS.REQUIRED' | translate }}</mat-hint>
+    <mat-error *ngIf="control.errors?.['email']">{{ 'ERRORS.CORRECT_EMAIL' | translate }}</mat-error>
+    <mat-error *ngIf="control.errors?.['minlength']"> {{ 'ERRORS.MUST_LEAST' | translate : 3 }}</mat-error>
+    <mat-error *ngIf="control.errors?.['maxlength']">{{ 'ERRORS.MUST_LEAST' | translate : 16 }}</mat-error>
   </mat-form-field>
 
   <mat-form-field *ngIf="form.controls['password'] as control" class="form-field" appearance="fill">
-    <mat-label>Password</mat-label>
+    <mat-label>{{ 'LOGIN_FORM.PASSWORD' | translate }}</mat-label>
     <input name="password" [formControl]="control" matInput #passwordInput="matInput" type="password" />
     <mat-icon
       [ngClass]="['icon', !passwordInput.focused ? 'text-[#74767A]' : '']"
@@ -38,16 +38,16 @@
       [color]="control.touched && control.errors ? 'warn' : control.valid && 'accent'"
       >{{ control.touched && control.errors ? 'info' : 'info_outline' }}</mat-icon
     >
-    <mat-hint *ngIf="control.errors?.['required']">Required</mat-hint>
-    <mat-error *ngIf="control.errors?.['minlength']">Must be at least 6 characters</mat-error>
-    <mat-error *ngIf="control.errors?.['maxlength']">Must not exceed 32 characters</mat-error>
+    <mat-hint *ngIf="control.errors?.['required']">{{ 'ERRORS.REQUIRED' | translate }}</mat-hint>
+    <mat-error *ngIf="control.errors?.['minlength']">{{ 'ERRORS.MUST_LEAST' | translate : 6 }}</mat-error>
+    <mat-error *ngIf="control.errors?.['maxlength']">{{ 'ERRORS.MUST_LEAST' | translate : 32 }}</mat-error>
     <mat-error *ngIf="control.errors?.['passwordStrength'] as message" class="err strength"
-      >Must have {{ message }}</mat-error
+      >{{ 'ERRORS.MUST' | translate }} {{ message }}</mat-error
     >
   </mat-form-field>
 
   <mat-form-field *ngIf="form.controls['firstName'] as control" class="form-field" appearance="fill">
-    <mat-label>First name</mat-label>
+    <mat-label>{{ 'LOGIN_FORM.FIRST_NAME' | translate }}</mat-label>
     <input name="firstName" [formControl]="control" matInput #firstNameInput="matInput" type="text" />
     <mat-icon
       [ngClass]="['icon', !firstNameInput.focused ? 'text-[#74767A]' : '']"
@@ -55,12 +55,12 @@
       [color]="control.touched && control.errors ? 'warn' : control.valid && 'accent'"
       >{{ control.touched && control.errors ? 'info' : 'info_outline' }}</mat-icon
     >
-    <mat-hint *ngIf="control.errors?.['required']">Required</mat-hint>
-    <mat-error *ngIf="control.errors?.['pattern']">Invalid character</mat-error>
+    <mat-hint *ngIf="control.errors?.['required']">{{ 'ERRORS.REQUIRED' | translate }}</mat-hint>
+    <mat-error *ngIf="control.errors?.['pattern']">{{ 'ERRORS.INVALID_CHARACTER' | translate }}</mat-error>
   </mat-form-field>
 
   <mat-form-field *ngIf="form.controls['lastName'] as control" class="form-field" appearance="fill">
-    <mat-label>Last name</mat-label>
+    <mat-label>{{ 'LOGIN_FORM.LAST_NAME' | translate }}</mat-label>
     <input name="lastName" [formControl]="control" matInput #lastNameInput="matInput" type="text" />
     <mat-icon
       [ngClass]="['icon', !lastNameInput.focused ? 'text-[#74767A]' : '']"
@@ -68,15 +68,17 @@
       [color]="control.touched && control.errors ? 'warn' : control.valid && 'accent'"
       >{{ control.touched && control.errors ? 'info' : 'info_outline' }}</mat-icon
     >
-    <mat-hint *ngIf="control.errors?.['required']">Required</mat-hint>
-    <mat-error *ngIf="control.errors?.['pattern']">Invalid character</mat-error>
+    <mat-hint *ngIf="control.errors?.['required']">{{ 'ERRORS.REQUIRED' | translate }}</mat-hint>
+    <mat-error *ngIf="control.errors?.['pattern']">{{ 'ERRORS.INVALID_CHARACTER' | translate }}</mat-error>
   </mat-form-field>
 
   <mat-form-field *ngIf="form.controls['dateOfBirth'] as control" appearance="fill">
-    <mat-label>{{ control.value !== null ? 'Date' : 'Date of birth' }}</mat-label>
+    <mat-label>{{
+      control.value !== null ? ('LOGIN_FORM.DATE' | translate) : ('LOGIN_FORM.DATE_BIRTH' | translate)
+    }}</mat-label>
     <input name="dateOfBirth" [formControl]="control" matInput [matDatepicker]="picker" [max]="maxDate" />
-    <mat-hint *ngIf="control.errors?.['required']">Required</mat-hint>
-    <mat-error *ngIf="control.touched && control.invalid">Invalid date</mat-error>
+    <mat-hint *ngIf="control.errors?.['required']">{{ 'ERRORS.REQUIRED' | translate }}</mat-hint>
+    <mat-error *ngIf="control.touched && control.invalid"> {{ 'ERRORS.INVALID_DATE' | translate }}</mat-error>
     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
@@ -88,13 +90,13 @@
       <span> and </span>
       <a class="anchor" href="" target="_blank" rel="noopener noreferrer" color="primary">Terms of Use</a>
     </mat-checkbox>
-    <mat-hint class="ml-4 text-xs absolute bottom-1" *ngIf="control.errors?.['required'] && !ngForm.submitted"
-      >Required</mat-hint
-    >
+    <mat-hint class="ml-4 text-xs absolute bottom-1" *ngIf="control.errors?.['required'] && !ngForm.submitted">{{
+      'ERRORS.REQUIRED' | translate
+    }}</mat-hint>
     <mat-error
       class="ml-4 text-xs absolute bottom-1"
       *ngIf="(control.touched || ngForm.submitted) && !confirmCheckbox.checked"
-      >Must agree with the terms</mat-error
+      >{{ 'ERRORS.AGREE_TERMS' | translate }}</mat-error
     >
   </div>
 
@@ -102,45 +104,45 @@
     <mat-button-toggle-group formControlName="gender" aria-label="User gender">
       <mat-button-toggle #firstOpt aria-label="Male" class="flex-auto flex gap-2" value="male">
         <mat-icon *ngIf="firstOpt.checked" aria-hidden="false" aria-label="check icon" fontIcon="check"></mat-icon>
-        <span class="pl-2">Male</span>
+        <span class="pl-2">{{ 'LOGIN_FORM.MALE' | translate }}</span>
       </mat-button-toggle>
       <mat-button-toggle #secondOpt aria-label="Female" class="flex-auto flex gap-2" value="female">
         <mat-icon *ngIf="secondOpt.checked" aria-hidden="false" aria-label="check icon" fontIcon="check"></mat-icon>
-        <span class="pl-2">Female</span>
+        <span class="pl-2">{{ 'LOGIN_FORM.FEMALE' | translate }}</span>
       </mat-button-toggle>
     </mat-button-toggle-group>
 
-    <mat-hint class="ml-4 text-xs absolute bottom-1" *ngIf="control.errors?.['required'] && !ngForm.submitted"
-      >Required</mat-hint
-    >
-    <mat-error class="ml-4 text-xs absolute bottom-1" *ngIf="(control.touched || ngForm.submitted) && !control.value"
-      >Must select gender</mat-error
-    >
+    <mat-hint class="ml-4 text-xs absolute bottom-1" *ngIf="control.errors?.['required'] && !ngForm.submitted">{{
+      'ERRORS.REQUIRED' | translate
+    }}</mat-hint>
+    <mat-error class="ml-4 text-xs absolute bottom-1" *ngIf="(control.touched || ngForm.submitted) && !control.value">{{
+      'ERRORS.SELECT_GENDER' | translate
+    }}</mat-error>
   </div>
 
   <div class="phone-number flex gap-2">
     <mat-form-field *ngIf="form.controls['countryCode'] as control" class="form-field" appearance="fill">
-      <mat-label>Country code</mat-label>
+      <mat-label>{{ 'LOGIN_FORM.COUNTRY_CODE' | translate }}</mat-label>
       <mat-select name="countryCode" [formControl]="control" [placeholder]="this.countryCodes[0]">
         <mat-option *ngFor="let code of countryCodes" [value]="code">
           {{ code }}
         </mat-option>
       </mat-select>
-      <mat-hint *ngIf="control.errors?.['required']">Required</mat-hint>
-      <mat-error *ngIf="control.errors?.['pattern']">Invalid character</mat-error>
+      <mat-hint *ngIf="control.errors?.['required']">{{ 'ERRORS.REQUIRED' | translate }}</mat-hint>
+      <mat-error *ngIf="control.errors?.['pattern']">{{ 'ERRORS.INVALID_CHARACTER' | translate }}</mat-error>
     </mat-form-field>
 
     <mat-form-field *ngIf="form.controls['phone'] as control" class="form-field" appearance="fill">
-      <mat-label>Mobile phone number</mat-label>
+      <mat-label>{{ 'LOGIN_FORM.MOBILE_PHONE' | translate }}</mat-label>
       <input name="phone" placeholder="e.g. 1111111111" [formControl]="control" matInput type="text" />
-      <mat-hint *ngIf="control.errors?.['required']">Required</mat-hint>
-      <mat-error *ngIf="control.errors?.['pattern']">Invalid character</mat-error>
-      <mat-error *ngIf="control.errors?.['maxlength']">Must not exceed 15 digits</mat-error>
+      <mat-hint *ngIf="control.errors?.['required']">{{ 'ERRORS.REQUIRED' | translate }}</mat-hint>
+      <mat-error *ngIf="control.errors?.['pattern']">{{ 'ERRORS.INVALID_CHARACTER' | translate }}</mat-error>
+      <mat-error *ngIf="control.errors?.['maxlength']">{{ 'ERRORS.EXCEED_15' | translate }}</mat-error>
     </mat-form-field>
   </div>
 
   <mat-form-field appearance="fill" *ngIf="form.controls['citizenship'] as control">
-    <mat-label>Citizenship</mat-label>
+    <mat-label>{{ 'LOGIN_FORM.CITIZENSHIP' | translate }}</mat-label>
     <mat-select formControlName="citizenship">
       <mat-option *ngFor="let name of countryNames" [value]="name">
         {{ name }}
@@ -155,13 +157,15 @@
     type="submit"
     [disabled]="!form.valid || (isLoading$ | async)"
   >
-    <ng-container *ngIf="(isLoading$ | async) !== true; else loader">Sign up</ng-container>
+    <ng-container *ngIf="(isLoading$ | async) !== true; else loader">{{
+      'LOGIN_FORM.SIGN_UP' | translate
+    }}</ng-container>
   </button>
 </form>
 
 <ng-template #loader>
   <div class="flex gap-4 items-center">
     <mat-spinner style="height: 20px; width: 20px" color="accent"></mat-spinner>
-    <span>Processing...</span>
+    <span>{{ 'LOGIN_FORM.PROCESS' | translate }}</span>
   </div>
 </ng-template>

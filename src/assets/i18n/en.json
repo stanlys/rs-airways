@@ -10,7 +10,20 @@
     "GOOGLE": "Continue with Google",
     "FACEBOOK": "Continue with Facebook",
     "PASSWORD": "Password",
-    "EMAIL": "E-mail"
+    "EMAIL": "E-mail",
+    "LOGIN_EMAIL": "or log in with your email",
+    "PROCESS": "Processing...",
+    "FORGOT": "Forgot password?",
+    "SIGNUP_EMAIL": "or sign up with your email",
+    "FIRST_NAME": "First name",
+    "LAST_NAME": "Last name",
+    "DATE": "Date",
+    "DATE_BIRTH": "Date of birth",
+    "CITIZENSHIP": "Citizenship",
+    "MOBILE_PHONE": "Mobile phone number",
+    "COUNTRY_CODE": "Country code",
+    "MALE": "Male",
+    "FEMALE": "Female"
   },
   "MAIN_FORM": {
     "PASSENGER": "Passengers",
@@ -55,6 +68,18 @@
     "BTN_BUY": "Buy now"
   },
   "ERRORS": {
-    "PASSENGER_ADULT": "Choose at least 1 Adult"
+    "PASSENGER_ADULT": "Choose at least 1 Adult",
+    "CORRECT_EMAIL": "Please enter correct email",
+    "LENGTH_16": "The login can't exceed 16 characters",
+    "LENGTH_32": "The login can't exceed 32 characters",
+    "EXCEED_15": "Must not exceed 15 digits",
+    "MUST_HAVE": "The password must have ",
+    "MUST": "Must have",
+    "REQUIRED": "Required",
+    "MUST_LEAST": "Must be at least {{length}} characters ",
+    "INVALID_CHARACTER": "Invalid character",
+    "INVALID_DATE": "Invalid date",
+    "SELECT_GENDER": "Must select gender",
+    "AGREE_TERMS": "Must agree with the terms"
   }
 }
