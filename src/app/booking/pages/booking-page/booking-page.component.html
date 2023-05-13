@@ -4,7 +4,7 @@
   <div *ngIf="flights" class="calendar-container flex flex-col pt-10 mb-5 mx-auto relative">
     <app-flights-form *ngIf="showSearchForm" (hideForm)="showSearchForm = false" />
 
-    <app-flights-calendar
+    <app-flights
       *ngFor="let flight of flights; index as i; odd as odd"
       [odd]="odd"
       [showSearchForm]="showSearchForm"
