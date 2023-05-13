@@ -12,7 +12,7 @@ import { InformationAboutPassengerComponent } from './components/summary-informa
 import { SummaryPassengerCardComponent } from './components/summary-passenger-card/summary-passenger-card.component';
 import { TotalPriceElementComponent } from './components/summary-total-price-element/total-price-element.component';
 import { TotalPriceComponent } from './components/summary-total-price/total-price.component';
-import { SeatsBgcDirective } from './directives/seats-bgc.directive';
+import { SeatsColorDirective } from './directives/seats-color.directive';
 import { BookingPageComponent } from './pages/booking-page/booking-page.component';
 import { SummaryPageComponent } from './pages/summary-page/summary-page.component';
 import { CurrencySymbolService } from './services/currency-symbol.service';
@@ -34,7 +34,7 @@ import { FlightsCalendarDateComponent } from './components/flights-calendar-date
     FlightsFormComponent,
     FlightsCalendarComponent,
     FlightComponent,
-    SeatsBgcDirective,
+    SeatsColorDirective,
     FlightSelectComponent,
     FlightDetailsComponent,
     FlightTimePipe,

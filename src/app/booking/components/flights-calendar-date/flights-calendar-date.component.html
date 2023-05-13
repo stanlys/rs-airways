@@ -1,4 +1,11 @@
-<div class="date-price flex flex-col items-center py-1" [ngClass]="{ flight, selected, last }" (click)="select()">
+<div
+  appSeatsColor
+  [seats]="flight?.seats"
+  [selected]="selected"
+  class="date-price flex flex-col items-center py-1"
+  [ngClass]="{ flight, selected, last }"
+  (click)="select()"
+>
   <div class="date-container flex flex-col items-center">
     <span class="date">{{ date | date : 'dd LLL' }}</span>
     <span class="weekday">{{ date | date : 'cccc' }}</span>
