@@ -14,9 +14,22 @@
     "TO": "НАЗНАЧЕНИЕ",
     "LABEL_TO": "Выберите место прилета"
   },
+
+  "LOGIN_FORM": {
+    "SIGN_UP": "Регистрация",
+    "LOG_IN": "Вход",
+    "GOOGLE": "Авторизация через Google",
+    "FACEBOOK": "Авторизация через Facebook",
+    "PASSWORD": "Password",
+    "EMAIL": "E-mail"
+  },
   "HEADER": {
     "SIGN_IN": "ВХОД",
-    "BOOKING": "Бронирование билетов"
+    "BOOKING": "Бронирование билетов",
+    "PROFILE": "Пользователь",
+    "FLIGHTS": "Рейсы",
+    "PASSENGER": "Пассажиры",
+    "PAYMENT": "Оплата"
   },
   "FOOTER": {
     "RIGHTS": "Все права защищены.",

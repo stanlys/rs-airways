@@ -4,6 +4,14 @@
     "CART": "Cart",
     "LOGIN": "Log In"
   },
+  "LOGIN_FORM": {
+    "SIGN_UP": "Sign up",
+    "LOG_IN": "Log in",
+    "GOOGLE": "Continue with Google",
+    "FACEBOOK": "Continue with Facebook",
+    "PASSWORD": "Password",
+    "EMAIL": "E-mail"
+  },
   "MAIN_FORM": {
     "PASSENGER": "Passengers",
     "ONE_WAY": "One Way",
@@ -16,7 +24,11 @@
   },
   "HEADER": {
     "SIGN_IN": "SIGN IN",
-    "BOOKING": "Book flights"
+    "BOOKING": "Book flights",
+    "PROFILE": "Profile",
+    "FLIGHTS": "Flights",
+    "PASSENGER": "Passengers",
+    "PAYMENT": "Review & Payment"
   },
   "FOOTER": {
     "RIGHTS": "All rights reserved.",
