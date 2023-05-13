@@ -6,7 +6,7 @@
   <p class="mat-small color-gray">
     We need contact details to be able to deliver the latest information regarding your flight.
   </p>
-  <div class="passengers-content flex-column gap-5">
+  <div class="passengers-cards flex flex-col gap-5">
     <app-booking-passenger-card
       *ngFor="let passenger of passengers; let i = index"
       [index]="i + 1"

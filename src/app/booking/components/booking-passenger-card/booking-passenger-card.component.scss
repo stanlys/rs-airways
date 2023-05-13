@@ -1,3 +1,48 @@
+@use '../../../../themes/default/colors' as c;
+@use '../../../../themes/util' as u;
+
+.passenger-card {
+  padding: 1rem 1.75rem;
+  gap: 1.5rem;
+}
+.passenger-card-content {
+  flex-wrap: wrap;
+}
+
+.gender-buttons-group {
+  height: 56px;
+}
+
+.mat-button-toggle-label-content {
+  display: flex;
+  gap: 11px;
+  justify-content: center;
+  align-items: center;
+}
+
+.mat-button-toggle,
+.mat-button-toggle-checked {
+  background-color: u.get-color(c.$brand-secondary, 90);
+}
+
+.gender-toggle-button {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gender-button-checked {
+  color: c.$primary-color;
+}
+
+.gender-button-checked-icon {
+  font-size: 0.8rem;
+  position: relative;
+  top: 5px;
+}
+
+
 /* Change the background color */
 .mat-slide-toggle-bar {
   background-color: #f1f1f1;
@@ -16,8 +61,4 @@
 .mat-slide-toggle-thumb {
   width: 24px;
   height: 24px;
-}
-
-.mat-card {
-  padding: 44px;
 }

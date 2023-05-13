@@ -5,5 +5,9 @@
   display: flex;
   flex-direction: column;
   padding: 0 1rem;
-  @include m.wrapper
+  @include m.wrapper;
+
+  @media (min-width: 1440px) {
+    padding: 0;
+  }
 }
