@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { STORAGE_KEY_PREFIX } from 'src/app/shared/constants';
 
@@ -7,7 +7,7 @@ import { STORAGE_KEY_PREFIX } from 'src/app/shared/constants';
   templateUrl: './change-language.component.html',
   styleUrls: ['./change-language.component.scss'],
 })
-export class ChangeLanguageComponent {
+export class ChangeLanguageComponent implements OnInit {
   public readonly languages = ['EN', 'RU', 'DE', 'PL'];
 
   public languageItemKey = `${STORAGE_KEY_PREFIX}-language`;
@@ -15,6 +15,10 @@ export class ChangeLanguageComponent {
   public selectedLanguage = localStorage.getItem(this.languageItemKey) || this.languages[0];
 
   constructor(public translate: TranslateService) {}
+
+  public ngOnInit(): void {
+    this.selectLanguage(this.selectedLanguage);
+  }
 
   public selectLanguage(v: string): void {
     this.selectedLanguage = v;
