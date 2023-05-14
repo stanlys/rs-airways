@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, catchError, of, take, timeout } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, catchError, of, take, timeout } from 'rxjs';
 
 import { API_BASE_URL, STORAGE_KEY_PREFIX } from '../constants';
 import { defaultFlights as mockFlights } from '../mock-flights-response';
@@ -16,11 +16,15 @@ export class SearchService {
 
   private readonly searchKey = `${STORAGE_KEY_PREFIX}-searchRequest`;
 
+  public isLoading$ = new Subject<boolean>();
+
   constructor(private http: HttpClient) {
     this.init();
   }
 
   public update(v: FlightSearchFormValue): void {
+    this.isLoading$.next(true);
+
     this.requestData$.next(v);
     localStorage.setItem(this.searchKey, JSON.stringify(v));
 
@@ -30,6 +34,8 @@ export class SearchService {
       if (res != null) {
         this.flights$.next(res);
       }
+
+      this.isLoading$.next(false);
     });
   }
 

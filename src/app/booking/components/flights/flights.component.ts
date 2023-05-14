@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+
 import { Flight } from '../../../shared/models/flight-search.interfaces';
 
 @Component({

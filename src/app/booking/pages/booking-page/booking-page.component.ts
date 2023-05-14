@@ -17,19 +17,25 @@ export class BookingPageComponent implements OnDestroy {
 
   public flightsConfirmed: boolean[] = [];
 
-  private flightsSub: Subscription;
+  private subs = new Subscription();
+
+  public isLoading$;
 
   constructor(private controlService: ControlService, searchService: SearchService) {
-    this.flightsSub = searchService.flights$.subscribe((v) => {
+    const flightsSub = searchService.flights$.subscribe((v) => {
       if (v != null) {
         this.flights = v;
         this.flightsConfirmed = <boolean[]>Array(v.length).fill(false);
       }
     });
+
+    this.subs.add(flightsSub);
+
+    this.isLoading$ = searchService.isLoading$;
   }
 
   public ngOnDestroy(): void {
-    this.flightsSub.unsubscribe();
+    this.subs.unsubscribe();
   }
 
   public back(): void {
