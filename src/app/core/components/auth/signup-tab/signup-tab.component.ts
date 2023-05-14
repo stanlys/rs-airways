@@ -1,22 +1,24 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import countryList from 'country-list';
 import countryTelData from 'country-telephone-data';
 import { Subject, delay, of } from 'rxjs';
 import { passwordStrengthValidator } from '../../../directives/password-strength-validator.directive';
+import { RegistrationRequest } from '../../../models/requests.models';
 import { AuthService } from '../../../services/auth.service';
 
 interface SignupForm {
-  login: FormControl<string | null>;
+  email: FormControl<string | null>;
   password: FormControl<string | null>;
   firstName: FormControl<string | null>;
   lastName: FormControl<string | null>;
-  birthDate: FormControl<Date | null>;
+  dateOfBirth: FormControl<Date | null>;
   confirm: FormControl<boolean | null>;
   gender: FormControl<string | null>;
   citizenship: FormControl<string | null>;
   countryCode: FormControl<string | null>;
-  phoneNumber: FormControl<string | null>;
+  phone: FormControl<string | null>;
 }
 
 @Component({
@@ -41,7 +43,7 @@ export class SignupTabComponent {
 
   constructor(fb: FormBuilder, private authService: AuthService) {
     this.form = fb.group<SignupForm>({
-      login: new FormControl('', [
+      email: new FormControl('', [
         Validators.required,
         Validators.email,
         Validators.minLength(3),
@@ -55,12 +57,12 @@ export class SignupTabComponent {
       ]),
       firstName: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z]+')]),
       lastName: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z]+')]),
-      birthDate: new FormControl(null, Validators.required),
+      dateOfBirth: new FormControl(null, Validators.required),
       confirm: new FormControl(null, Validators.required),
       gender: new FormControl('', Validators.required),
       citizenship: new FormControl(''),
-      countryCode: new FormControl(this.countryCodes[0]),
-      phoneNumber: new FormControl('', [Validators.required, Validators.maxLength(15), Validators.pattern('\\d+')]),
+      countryCode: new FormControl(''),
+      phone: new FormControl('', [Validators.required, Validators.maxLength(15), Validators.pattern('\\d+')]),
     });
   }
 
@@ -69,7 +71,10 @@ export class SignupTabComponent {
   }
 
   public onSubmit(): void {
-    this.authService.signup();
+    const dateOfBirth = this.form.value.dateOfBirth?.toISOString() as string;
+    const countryCode = this.form.value.countryCode?.replace(/[^+\d]/g, '') as string;
+    const data = { ...this.form.value, dateOfBirth, countryCode };
+    this.authService.signup(data as RegistrationRequest);
 
     this.isLoading$.next(true);
 

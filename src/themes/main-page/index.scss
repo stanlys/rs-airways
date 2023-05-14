@@ -1,3 +1,5 @@
+@use '../default/mixins' as mx;
+@use '../default/colors' as c;
 .main-page {
   background: top / contain no-repeat url('/assets/bg-main.jpg') #f5f5f5;
 
@@ -19,6 +21,40 @@
     .date-format-container {
       background-color: rgba(241, 243, 246, 0.15);
     }
+  }
+
+  .flight-route {
+    .mat-mdc-form-field-subscript-wrapper {
+      display: none;
+    }
+  }
+
+  .mdc-button {
+    font-weight: 500;
+  }
+
+  .mdc-text-field {
+    @include mx.button_border;
+  }
+
+  .mdc-text-field {
+    background-color: #f4f6f9;
+  }
+
+  .mdc-line-ripple {
+    display: none;
+  }
+
+  .mat-mdc-form-field.ng-touched.ng-invalid .mdc-text-field {
+    border-color: c.$error-color;
+  }
+
+  .mat-pseudo-checkbox.mat-mdc-option-pseudo-checkbox.mat-pseudo-checkbox-full {
+    display: none;
+  }
+
+  .mat-mdc-option .mdc-list-item__primary-text {
+    width: 100%;
   }
 }
 

@@ -1,11 +1,17 @@
-@use '../../../../themes/default/mixins' as mx;
 @use '../../../../themes/util' as u;
 @use '../../../../themes/default/colors' as c;
+@use '../../../../themes/default/mixins' as m;
+@use '../../../../themes/default/vars' as v;
 
-.btn {
-  @include mx.button_border;
-}
+:host {
+  display: flex;
+  padding: 0 1rem;
+  padding-bottom: 250px;
+  width: 100vw;
+  height: calc(100vh - v.$header-height - v.$footer-height);
 
-.test {
-  background-color: u.get-color(c.$brand-secondary, 50);
+  .wrapper {
+    @include m.wrapper;
+    padding-top: 20px;
+  }
 }

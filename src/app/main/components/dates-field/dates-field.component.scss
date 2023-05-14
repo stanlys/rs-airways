@@ -1,0 +1,9 @@
+:host {
+  @apply flex w-full sm:w-7/12;
+
+  .flight-dates {
+    display: flex;
+    width: 100%;
+    // padding-right: 10px;
+  }
+}

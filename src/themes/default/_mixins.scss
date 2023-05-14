@@ -8,6 +8,44 @@
   border-radius: 4px;
 }
 
+@mixin wrapper {
+  width: 100%;
+  max-width: 1128px;
+  margin: 0 auto;
+}
+
+@mixin title-large-typography() {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28px;
+}
+
+@mixin title-medium-typography() {
+  font-family: Roboto;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+}
+
+@mixin body-large-typography() {
+  font-family: Roboto;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+}
+
+@mixin title-small-typography() {
+  font-family: Roboto;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+}
+
 @mixin title-large-typography() {
   font-family: 'Roboto';
   font-style: normal;
