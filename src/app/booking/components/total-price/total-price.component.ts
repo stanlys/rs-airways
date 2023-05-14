@@ -14,8 +14,6 @@ export class TotalPriceComponent implements OnInit {
 
   public summaryByAge?: Array<ISummaryFare>;
 
-  // private fares = ['Adult Fare', 'Child Fare', 'Infant Fare'];
-
   constructor(
     public summaryService: SummaryService,
     public currencyService: CurrencySymbolService,
