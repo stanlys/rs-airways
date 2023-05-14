@@ -6,7 +6,7 @@
   <p class="mat-small">We need contact details to be able to deliver the latest information regarding your flight.</p>
 </div>
 
-<mat-card class="w-full" formgroup="contact-details">
+<mat-card class="booking-content w-full" formgroup="contact-details">
   <mat-card-content>
     <div class="card-content flex gap-10">
       <div class="phone-number flex gap-5">
@@ -25,8 +25,8 @@
           <mat-label>Mobile phone number</mat-label>
           <input formControlName="phone" placeholder="e.g. 1111111111" matInput type="text" />
           <!-- <mat-hint *ngIf="control.errors?.['required']">Required</mat-hint>
-          <mat-error *ngIf="control.errors?.['pattern']">Invalid character</mat-error>
-          <mat-error *ngIf="control.errors?.['maxlength']">Must not exceed 15 digits</mat-error> -->
+            <mat-error *ngIf="control.errors?.['pattern']">Invalid character</mat-error>
+            <mat-error *ngIf="control.errors?.['maxlength']">Must not exceed 15 digits</mat-error> -->
         </mat-form-field>
       </div>
 

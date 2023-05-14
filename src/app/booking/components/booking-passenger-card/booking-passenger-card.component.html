@@ -1,34 +1,35 @@
-<mat-card class="passenger-card w-full">
+<mat-card class="boking-content passenger-card w-full px-7 py-4 gap-6">
   <mat-card-header>
     <mat-card-title>{{ index }}. {{ title }} </mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <div class="passenger-card-content flex wrap gap-5">
-      <mat-form-field class="form-field w-full sm:w-[255px]" appearance="fill">
+    <div class="passenger-card-content flex flex-wrap gap-5 lg:flex-nowrap">
+      <mat-form-field class="form-field" appearance="fill">
         <mat-label>First name</mat-label>
         <input name="firstName" formControlName="firstName" matInput #firstNameInput="matInput" type="text" />
         <!-- <mat-icon
-          [ngClass]="['icon', !firstNameInput.focused ? 'text-[#74767A]' : '']"
-          matSuffix
-          [color]="firstNameInput.touched && control.errors ? 'warn' : control.valid && 'accent'"
-          >{{ control.touched && control.errors ? 'info' : 'info_outline' }}</mat-icon
-        > -->
-        <mat-icon matSuffix matTooltip="Info about the action">info_outline</mat-icon>
+            [ngClass]="['icon', !firstNameInput.focused ? 'text-[#74767A]' : '']"
+            matSuffix
+            [color]="firstNameInput.touched && control.errors ? 'warn' : control.valid && 'accent'"
+            >{{ control.touched && control.errors ? 'info' : 'info_outline' }}</mat-icon
+          > -->
+        <mat-icon matSuffix [matTooltip]="tooltip">info_outline</mat-icon>
         <!-- <mat-hint *ngIf="control.errors?.['required']">Required</mat-hint>
-        <mat-error *ngIf="control.errors?.['pattern']">Invalid character</mat-error> -->
+          <mat-error *ngIf="control.errors?.['pattern']">Invalid character</mat-error> -->
       </mat-form-field>
 
       <mat-form-field class="form-field" appearance="fill">
         <mat-label>Last name</mat-label>
-        <input name="firstName" formControlName="lastName" matInput #firstNameInput="matInput" type="text" />
+        <input name="lastName" formControlName="lastName" matInput #firstNameInput="matInput" type="text" />
         <!-- <mat-icon
-          [ngClass]="['icon', !firstNameInput.focused ? 'text-[#74767A]' : '']"
-          matSuffix
-          [color]="firstNameInput.touched && control.errors ? 'warn' : control.valid && 'accent'"
-          >{{ control.touched && control.errors ? 'info' : 'info_outline' }}</mat-icon
-        > -->
+            [ngClass]="['icon', !firstNameInput.focused ? 'text-[#74767A]' : '']"
+            matSuffix
+            [color]="firstNameInput.touched && control.errors ? 'warn' : control.valid && 'accent'"
+            >{{ control.touched && control.errors ? 'info' : 'info_outline' }}</mat-icon
+          > -->
+        <mat-icon matSuffix [matTooltip]="tooltip" matTooltipPosition="right">info_outline</mat-icon>
         <!-- <mat-hint *ngIf="control.errors?.['required']">Required</mat-hint>
-        <mat-error *ngIf="control.errors?.['pattern']">Invalid character</mat-error> -->
+          <mat-error *ngIf="control.errors?.['pattern']">Invalid character</mat-error> -->
       </mat-form-field>
 
       <mat-button-toggle-group
@@ -59,13 +60,19 @@
       <mat-form-field class="form-field" appearance="fill">
         <mat-label>Choose a date</mat-label>
         <input matInput [matDatepicker]="picker" />
-        <mat-hint>MM/DD/YYYY</mat-hint>
+        <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
     </div>
-    <mat-slide-toggle>Slide me!</mat-slide-toggle>
+
+    <mat-slide-toggle #switchButton *ngIf="title !== 'Infant'" color="primary">
+      <div class="flex pl-2 sm:pl-5 justify-start items-center min-w-[150px] sm:min-w-[255px]">
+        <mat-icon class="min-w-[32px]">wheelchair_pickup</mat-icon>
+        <span class="pl-2">Need special assistance?</span>
+      </div>
+    </mat-slide-toggle>
   </mat-card-content>
   <!-- <mat-card-actions *ngIf="title !== 'Infant'">
-  </mat-card-actions> -->
+    </mat-card-actions> -->
 </mat-card>
