@@ -1,16 +1,3 @@
-@use '../../../../themes/default/mixins' as m;
-@use '../../../../themes/default/colors' as c;
-@use '../../../../themes/util' as u;
-
-.booking-title {
-  color: c.$primary-color;
-
-  h2 {
-    margin-bottom: 0.5rem;
-  }
-
-  .mat-small {
-    color: u.get-color(c.$brand-neutral, 40);
-  }
-
+.form-field {
+  @apply w-full sm:w-[45%] lg:w-[255px];
 }

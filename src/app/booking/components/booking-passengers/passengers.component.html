@@ -3,9 +3,7 @@
     <img class="inline" src="../../../../assets/passengers_icon.svg" alt="passengers icon" />
     <span color="primary" class="mat-title">Passengers</span>
   </h2>
-  <p class="mat-small color-gray">
-    We need contact details to be able to deliver the latest information regarding your flight.
-  </p>
+  <p class="mat-small color-gray">Enter the passenger's names as they appear on document (passport or ID).</p>
   <div class="booking-content passengers-cards flex flex-col gap-5">
     <app-booking-passenger-card
       *ngFor="let passenger of passengers; let i = index"

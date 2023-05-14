@@ -4,8 +4,6 @@ import { Component, Input, ViewChild, ViewEncapsulation } from '@angular/core';
   selector: 'app-booking-passenger-card',
   templateUrl: './booking-passenger-card.component.html',
   styleUrls: ['./booking-passenger-card.component.scss'],
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  encapsulation: ViewEncapsulation.None,
 })
 export class BookingPassengerCardComponent {
   @Input() public index = 1;

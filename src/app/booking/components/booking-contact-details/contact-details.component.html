@@ -6,10 +6,10 @@
   <p class="mat-small">We need contact details to be able to deliver the latest information regarding your flight.</p>
 </div>
 
-<mat-card class="booking-content w-full" formgroup="contact-details">
+<mat-card class="booking-content w-full px-7 py-4 pb-0 gap-6" formgroup="contact-details">
   <mat-card-content>
-    <div class="card-content flex gap-10">
-      <div class="phone-number flex gap-5">
+    <div class="card-content flex gap-2 lg:gap-10 flex-wrap">
+      <div class="phone-number flex flex-wrap w-full lg:w-fit gap-0 sm:gap-2 lg:gap-5">
         <mat-form-field class="form-field" appearance="fill">
           <mat-label>Country code</mat-label>
           <mat-select formControlName="countryCode" [placeholder]="this.countryCodes[0]">
@@ -30,7 +30,7 @@
         </mat-form-field>
       </div>
 
-      <mat-form-field class="form-field" appearance="fill">
+      <mat-form-field class="w-full lg:w-[418px]" appearance="fill">
         <mat-label>Email</mat-label>
         <input formControlName="email" matInput type="text" required="true" />
         <mat-error *ngIf="emailField.hasError('required')">Required</mat-error>
