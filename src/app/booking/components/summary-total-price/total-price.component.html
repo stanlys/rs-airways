@@ -8,7 +8,7 @@
   </ng-container>
   <mat-divider></mat-divider>
   <mat-card-footer class="flex justify-between py-5 px-10">
-    <span class="total">TOTAL</span>
+    <span class="total">{{ 'SUMMARY.TOTAL' | translate }}</span>
     <span class="total price"> {{ getTotalPrice() | currency : currencyService.getCurrencySymbol() }} </span>
   </mat-card-footer>
 </mat-card>

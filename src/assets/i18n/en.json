@@ -1,0 +1,90 @@
+{
+  "MAIN": {
+    "SEARCH": "Search",
+    "CART": "Cart",
+    "LOGIN": "Log In"
+  },
+  "LOGIN_FORM": {
+    "SIGN_UP": "Sign up",
+    "LOG_IN": "Log in",
+    "GOOGLE": "Continue with Google",
+    "FACEBOOK": "Continue with Facebook",
+    "PASSWORD": "Password",
+    "EMAIL": "E-mail",
+    "LOGIN_EMAIL": "or log in with your email",
+    "PROCESS": "Processing...",
+    "FORGOT": "Forgot password?",
+    "SIGNUP_EMAIL": "or sign up with your email",
+    "FIRST_NAME": "First name",
+    "LAST_NAME": "Last name",
+    "DATE": "Date",
+    "DATE_BIRTH": "Date of birth",
+    "CITIZENSHIP": "Citizenship",
+    "MOBILE_PHONE": "Mobile phone number",
+    "COUNTRY_CODE": "Country code",
+    "MALE": "Male",
+    "FEMALE": "Female",
+    "AGREE": "I agree to Airway's",
+    "AND": "and",
+    "POLICY": "Privacy Policy",
+    "TERMS": "Terms of Use"
+  },
+  "MAIN_FORM": {
+    "PASSENGER": "Passengers",
+    "ONE_WAY": "One Way",
+    "ROUND_TRIP": "Round Trip",
+    "DATES": "Dates",
+    "DATE": "Date",
+    "FROM": "FORM",
+    "LABEL_FROM": "Choose your starting from",
+    "TO": "Destination",
+    "LABEL_TO": "Choose your destination"
+  },
+  "HEADER": {
+    "SIGN_IN": "Sign in",
+    "BOOKING": "Book flights",
+    "PROFILE": "Profile",
+    "FLIGHTS": "Flights",
+    "PASSENGER": "Passengers",
+    "PAYMENT": "Review & Payment"
+  },
+  "FOOTER": {
+    "RIGHTS": "All rights reserved.",
+    "PAYS": "We accept these payment methods"
+  },
+  "PASSENGER": {
+    "Adult": "Adult",
+    "Children": "Children",
+    "Infant": "Infant"
+  },
+  "SUMMARY": {
+    "CAPTION": "Summary",
+    "BAG": "checked bag (total 23 kg) included",
+    "CABIN_BAG": "cabin bag + 1 personal item (max. 8 kg) included",
+    "SEAT": "Seat",
+    "ADULT": "Adult Fare",
+    "CHILD": "Child Fare",
+    "INFANT": "Infant Fare",
+    "FARE": "Fare",
+    "TAX": "Tax & Service Charge",
+    "TOTAL": "TOTAL",
+    "BTN_BACK": "Back",
+    "BTN_ADD": "Add to order cart",
+    "BTN_BUY": "Buy now"
+  },
+  "ERRORS": {
+    "PASSENGER_ADULT": "Choose at least 1 Adult",
+    "CORRECT_EMAIL": "Please enter correct email",
+    "LENGTH_16": "The login can't exceed 16 characters",
+    "LENGTH_32": "The login can't exceed 32 characters",
+    "EXCEED_15": "Must not exceed 15 digits",
+    "MUST_HAVE": "The password must have ",
+    "MUST": "Must have",
+    "REQUIRED": "Required",
+    "MUST_LEAST": "Must be at least {{length}} characters ",
+    "INVALID_CHARACTER": "Invalid character",
+    "INVALID_DATE": "Invalid date",
+    "SELECT_GENDER": "Must select gender",
+    "AGREE_TERMS": "Must agree with the terms"
+  }
+}

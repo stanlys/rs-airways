@@ -17,10 +17,10 @@
       <mat-card>
         <mat-card-content>
           <mat-tab-group class="px-4 py-2">
-            <mat-tab class="h-[586px]" label="Log in">
+            <mat-tab class="h-[586px]" label="{{ 'LOGIN_FORM.LOG_IN' | translate }}">
               <app-login-tab (closeModal)="close()" />
             </mat-tab>
-            <mat-tab label="Sign up">
+            <mat-tab label="{{ 'LOGIN_FORM.SIGN_UP' | translate }}">
               <app-signup-tab (closeModal)="close()" />
             </mat-tab>
           </mat-tab-group>

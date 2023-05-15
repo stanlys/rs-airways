@@ -2,6 +2,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 import { AirportForm } from '../../../shared/models/flight-search.interfaces';
 import { FlightSearchFormValue } from '../../../shared/models/flight-search.model';
@@ -16,7 +17,12 @@ import { passengersValidator } from '../../directives/passengers-validator.direc
 export class MainFormComponent {
   public searchForm: FormGroup;
 
-  constructor(fb: FormBuilder, private router: Router, private searchService: SearchService) {
+  constructor(
+    fb: FormBuilder,
+    private router: Router,
+    private searchService: SearchService,
+    public translate: TranslateService
+  ) {
     this.searchForm = fb.group({
       oneWay: fb.control<boolean>(false, Validators.required),
       airport: fb.group({

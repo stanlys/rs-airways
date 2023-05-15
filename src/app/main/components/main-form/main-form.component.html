@@ -2,18 +2,20 @@
   <mat-card-content>
     <form class="search-form" (ngSubmit)="onSubmit()" [formGroup]="searchForm">
       <mat-radio-group formControlName="oneWay" color="primary">
-        <mat-radio-button [value]="false" [checked]="true" color="primary">Round Trip</mat-radio-button>
-        <mat-radio-button [value]="true" color="primary">One Way</mat-radio-button>
+        <mat-radio-button [value]="false" [checked]="true" color="primary">{{
+          'MAIN_FORM.ROUND_TRIP' | translate
+        }}</mat-radio-button>
+        <mat-radio-button [value]="true" color="primary">{{ 'MAIN_FORM.ONE_WAY' | translate }}</mat-radio-button>
       </mat-radio-group>
 
-      <app-flight-route formGroupName="airport" class="flight-route"></app-flight-route>
+      <!-- <app-flight-route formGroupName="airport" class="flight-route"></app-flight-route> -->
 
-      <div class="date-passengers-container">
+      <!-- <div class="date-passengers-container"> -->
         <app-dates-field [name]="'dates'"></app-dates-field>
-        <app-passengers-field [name]="'passengers'"></app-passengers-field>
-      </div>
+        <!-- <app-passengers-field [name]="'passengers'"></app-passengers-field> -->
+      <!-- </div> -->
 
-      <mat-card-actions class="flex-row justify-end">
+      <!-- <mat-card-actions class="flex-row justify-end">
         <button
           mat-flat-button
           type="submit"
@@ -21,9 +23,9 @@
           [disabled]="searchForm.invalid"
           style="width: 126px; height: 60px"
         >
-          Search
+          {{ 'MAIN.SEARCH' | translate }}
         </button>
-      </mat-card-actions>
+      </mat-card-actions> -->
     </form>
   </mat-card-content>
 </mat-card>

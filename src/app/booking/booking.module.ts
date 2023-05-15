@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { SharedModule } from '../shared/shared.module';
 import { BookingRoutingModule } from './booking-routing.module';
@@ -45,7 +46,7 @@ import { FlightsComponent } from './components/flights/flights.component';
     FlightsCalendarDestinationComponent,
     FlightsComponent,
   ],
-  imports: [CommonModule, BookingRoutingModule, SharedModule, ReactiveFormsModule],
+  imports: [CommonModule, BookingRoutingModule, SharedModule, TranslateModule, ReactiveFormsModule],
   providers: [CurrencySymbolService],
 })
 export class BookingModule {}
