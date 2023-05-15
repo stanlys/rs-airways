@@ -1,10 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject, catchError, of, take, timeout } from 'rxjs';
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
 
 import { API_BASE_URL, STORAGE_KEY_PREFIX } from '../constants';
 import { defaultFlights as mockFlights } from '../mock-flights-response';
 import { FlightSearchFormValue, FlightSearchRequest, FlightSearchResponse } from '../models/flight-search.model';
+
+dayjs.extend(utc);
 
 @Injectable({
   providedIn: 'root',
@@ -66,8 +70,8 @@ export class SearchService {
     const { fromLoc, toLoc } = airport;
     const { IATA: fromKey } = fromLoc;
     const { IATA: toKey } = toLoc;
-    const forwardDate = dates.takeoffDate.toISOString();
-    const backDate = dates.landingDate?.toISOString();
+    const forwardDate = dayjs.utc(dates.takeoffDate).toISOString();
+    const backDate = dates.landingDate != null ? dayjs.utc(dates.landingDate).toISOString() : undefined;
 
     const requestData: FlightSearchRequest = {
       fromKey,
