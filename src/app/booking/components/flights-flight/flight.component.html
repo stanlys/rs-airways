@@ -1,4 +1,5 @@
 <div
+  *ngIf="flight"
   class="flight bg-white md:h-[130px] flex flex-col md:flex-row md:items-center md:justify-between rounded-lg px-4 sm:px-10"
 >
   <app-flight-details [odd]="odd" [flight]="flight" />

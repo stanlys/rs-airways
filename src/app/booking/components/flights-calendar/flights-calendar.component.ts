@@ -1,7 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
 
 import { Flight } from '../../../shared/models/flight-search.interfaces';
+
+dayjs.extend(utc);
 
 @Component({
   selector: 'app-flights-calendar',
@@ -9,21 +12,20 @@ import { Flight } from '../../../shared/models/flight-search.interfaces';
   styleUrls: ['./flights-calendar.component.scss'],
 })
 export class FlightsCalendarComponent implements OnInit {
-  @Input() public flight!: Flight;
+  @Input() public selectedFlight?: Flight;
+
+  @Input() public selectedFlightNumber?: string;
 
   @Output() public selectedFlightChange = new EventEmitter<Flight>();
 
-  public selectedFlightNumber?: string;
-
   public dates: Date[] = [];
 
-  public flights: Flight[] = [];
+  @Input() public flights!: Flight[];
 
   public ngOnInit(): void {
-    this.dates = this.generateStartingDates();
-    const { otherFlights, ...flight } = this.flight;
-    this.selectedFlightNumber = flight.flightNumber;
-    this.flights = [...Object.values(otherFlights || {}), flight];
+    if (this.selectedFlight != null) {
+      this.dates = FlightsCalendarComponent.generateStartingDates(this.selectedFlight.takeoffDate);
+    }
   }
 
   public decrementDate(): void {
@@ -46,9 +48,9 @@ export class FlightsCalendarComponent implements OnInit {
     }
   }
 
-  private generateStartingDates(): Date[] {
+  private static generateStartingDates(defaultDateStr: string): Date[] {
     return Array.from({ length: 5 }, (_, i) => {
-      return dayjs(this.flight.takeoffDate).subtract(2, 'day').add(i, 'day').toDate();
+      return dayjs(defaultDateStr).subtract(2, 'day').add(i, 'day').toDate();
     });
   }
 }

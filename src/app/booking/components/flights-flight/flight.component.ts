@@ -8,7 +8,7 @@ import { Flight } from '../../../shared/models/flight-search.interfaces';
   styleUrls: ['./flight.component.scss'],
 })
 export class FlightComponent {
-  @Input() public flight!: Flight;
+  @Input() public flight?: Flight;
 
   @Input() public odd!: boolean;
 

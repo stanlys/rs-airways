@@ -1,19 +1,17 @@
-<!-- TODO: add responsive layout -->
-<!-- TODO: disable dates in the past -->
-<!-- TODO: The "Back" button should allow the user to return to the Flight Search form with previously pre-filled data. -->
-
 <app-flights-calendar-destination [flight]="flight" [odd]="odd" />
 
 <app-flights-calendar
   *ngIf="!confirmed"
   class="justify-between flex items-end relative"
-  [flight]="flight"
-  (selectedFlightChange)="flight = $event"
+  [flights]="flights"
+  [selectedFlight]="selectedFlight"
+  [selectedFlightNumber]="selectedFlight?.flightNumber"
+  (selectedFlightChange)="selectedFlight = $event"
 />
 
 <app-flight
   [odd]="odd"
-  [flight]="selectedFlight || flight"
+  [flight]="selectedFlight"
   [confirmed]="confirmed"
   (confirmedChange)="confirmedChange.emit($event)"
 />
