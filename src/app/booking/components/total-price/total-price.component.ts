@@ -1,5 +1,6 @@
+import { TranslateService } from '@ngx-translate/core';
 import { Component, Input, OnInit } from '@angular/core';
-import { ISummaryFare, ISummaryFlight } from '../../interface/flight';
+import { ISummaryFare, ISummaryFlight, ISummaryLang } from '../../interface/flight';
 import { SummaryService } from '../../service/summary.service';
 import { CurrencySymbolService } from '../../service/currency-symbol.service';
 
@@ -13,16 +14,22 @@ export class TotalPriceComponent implements OnInit {
 
   public summaryByAge?: Array<ISummaryFare>;
 
-  private fares = ['Adult Fare', 'Child Fare', 'Infant Fare'];
-
-  constructor(public summaryService: SummaryService, public currencyService: CurrencySymbolService) {}
+  constructor(
+    public summaryService: SummaryService,
+    public currencyService: CurrencySymbolService,
+    private translate: TranslateService
+  ) {}
 
   public ngOnInit(): void {
     this.summaryByAge = this.summaryService.getSummaryByAge(this.flights);
   }
 
   public getCaption(count: number, index: number): string {
-    return `${count} x ${this.fares[index]}`;
+    let res = ['', '', ''];
+    this.translate.get('SUMMARY').subscribe((el: ISummaryLang) => {
+      res = [el['ADULT'], el['CHILD'], el['INFANT']];
+    });
+    return `${count} x ${res[index]}`;
   }
 
   public getTotalPrice(): number {

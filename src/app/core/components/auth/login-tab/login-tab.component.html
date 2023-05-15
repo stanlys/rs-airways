@@ -2,33 +2,33 @@
   <button class="btn" mat-stroked-button>
     <div class="btn-label flex gap-2">
       <img src="/assets/google_icon.svg" alt="" />
-      <span>Continue with Google</span>
+      <span>{{ 'LOGIN_FORM.GOOGLE' | translate }}</span>
     </div>
   </button>
   <button class="btn" mat-stroked-button>
     <div class="btn-label flex gap-2">
       <img src="/assets/facebook_icon.svg" alt="" />
-      <span>Continue with Facebook</span>
+      <span>{{ 'LOGIN_FORM.FACEBOOK' | translate }}</span>
     </div>
   </button>
 </div>
 
 <div class="flex items-center w-full my-6">
   <mat-divider class="flex-auto"></mat-divider>
-  <span class="px-3 text-xs">or log in with your email</span>
+  <span class="px-3 text-xs">{{ 'LOGIN_FORM.LOGIN_EMAIL' | translate }}</span>
   <mat-divider class="flex-auto"></mat-divider>
 </div>
 
 <form class="form auth-tab flex flex-col w-full" (ngSubmit)="onSubmit()" [formGroup]="form">
   <mat-form-field *ngIf="form.controls['email'] as control" class="form-field" appearance="fill">
-    <mat-label>Email</mat-label>
+    <mat-label>{{ 'LOGIN_FORM.EMAIL' | translate }}</mat-label>
     <input name="email" [formControl]="control" matInput type="text" />
-    <mat-error *ngIf="control.errors?.['email']">Please enter correct email</mat-error>
-    <mat-error *ngIf="control.errors?.['maxlength']">The login can't exceed 16 characters</mat-error>
+    <mat-error *ngIf="control.errors?.['email']">{{ 'ERROR.CORRECT_EMAIL' | translate }}</mat-error>
+    <mat-error *ngIf="control.errors?.['maxlength']">{{ 'ERROR.LENGTH_16' | translate }}</mat-error>
   </mat-form-field>
 
   <mat-form-field *ngIf="form.controls['password'] as control" class="form-field" appearance="fill">
-    <mat-label>Password</mat-label>
+    <mat-label>{{ 'LOGIN_FORM.PASSWORD' | translate }}</mat-label>
     <input
       name="password"
       [formControl]="control"
@@ -43,14 +43,16 @@
     >
       {{ hidePassword ? 'visibility' : 'visibility_off' }}
     </mat-icon>
-    <mat-error *ngIf="control.errors?.['maxlength']">The login can't exceed 32 characters</mat-error>
+    <mat-error *ngIf="control.errors?.['maxlength']">{{ 'ERROR.LENGTH_32' | translate }}</mat-error>
     <mat-error *ngIf="control.errors?.['passwordStrength'] as message" class="err strength"
-      >The password must have {{ message }}</mat-error
+      >{{ 'ERROR.MUST_HAVE' | translate }} {{ message }}</mat-error
     >
   </mat-form-field>
 
   <div class="buttons flex flex-col gap-4">
-    <button class="btn password-recovery" mat-button color="primary" type="button">Forgot password?</button>
+    <button class="btn password-recovery" mat-button color="primary" type="button">
+      {{ 'LOGIN_FORM.FORGOT' | translate }}
+    </button>
     <button
       class="btn submit"
       mat-raised-button
@@ -58,7 +60,9 @@
       type="submit"
       [disabled]="!form.valid || (isLoading$ | async)"
     >
-      <ng-container *ngIf="(isLoading$ | async) !== true; else loader">Log in</ng-container>
+      <ng-container *ngIf="(isLoading$ | async) !== true; else loader">{{
+        'LOGIN_FORM.LOG_IN' | translate
+      }}</ng-container>
     </button>
   </div>
 </form>
@@ -66,6 +70,6 @@
 <ng-template #loader>
   <div class="flex gap-4 items-center">
     <mat-spinner style="height: 20px; width: 20px" color="accent"></mat-spinner>
-    <span>Processing...</span>
+    <span>{{ 'LOGIN_FORM.PROCESS' | translate }}</span>
   </div>
 </ng-template>

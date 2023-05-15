@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { MatOption } from '@angular/material/core';
+import { TranslateService } from '@ngx-translate/core';
 import { selectRequiredOption } from '../../directives/passengers-validator.directive';
 import { PassengerInfo, PassSelectOption } from '../../model/main.interfaces';
 
@@ -43,7 +44,7 @@ export class PassengersFieldComponent implements OnInit {
 
   public trigger = '';
 
-  constructor(private parentForm: FormGroupDirective) {}
+  constructor(private parentForm: FormGroupDirective, private translate: TranslateService) {}
 
   public ngOnInit(): void {
     this.passengersForm = this.parentForm.control.get(this.formGroupName) as FormGroup;

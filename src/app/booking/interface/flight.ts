@@ -20,3 +20,7 @@ export const INIT_SUMMARY_FARE = {
   fare: 0,
   tax: 0,
 };
+
+export interface ISummaryLang {
+  [key: string]: string;
+}

@@ -1,0 +1,89 @@
+{
+  "MAIN": {
+    "SEARCH": "Szukaj",
+    "CART": "Wózek",
+    "LOGIN": "Zaloguj sie"
+  },
+  "LOGIN_FORM": {
+    "SIGN_UP": "Zapisać się",
+    "LOG_IN": "Zaloguj sie",
+    "GOOGLE": "Kontynuuj z Google",
+    "FACEBOOK": "Kontynuuj z Facebookiem",
+    "PASSWORD": "Hasło",
+    "EMAIL": "E-mail",
+    "LOGIN_EMAIL": "lub zaloguj się za pomocą swojego e-maila",
+    "PROCESS": "Przetwarzanie...",
+    "FORGOT": "Zapomniałeś hasła?",
+    "SIGNUP_EMAIL": "lub zarejestruj się za pomocą swojego e-maila",
+    "FIRST_NAME": "Imię",
+    "LAST_NAME": "Nazwisko",
+    "DATE": "Data",
+    "DATE_BIRTH": "Data urodzenia",
+    "CITIZENSHIP": "Obywatelstwo",
+    "MOBILE_PHONE": "numer telefonu komórkowego",
+    "COUNTRY_CODE": "Kod pocztowy",
+    "MALE": "Mężczyzna",
+    "FEMALE": "Kobieta",
+    "AGREE": "Zgadzam się z Airway",
+    "AND": "I",
+    "POLICY": "Polityka prywatności",
+    "TERMS": "Warunki korzystania"
+  },
+  "MAIN_FORM": {
+    "PASSENGER": "Pasażerowie",
+    "ONE_WAY": "Jednokierunkowa",
+    "ROUND_TRIP": "Podróż w obie strony",
+    "DATES": "Daktyle",
+    "FROM": "FORMULARZ",
+    "LABEL_FROM": "Wybierz początek od",
+    "TO": "Miejsce docelowe",
+    "LABEL_TO": "Wybierz miejsce docelowe"
+  },
+  "HEADER": {
+    "SIGN_IN": "Zalogować się",
+    "BOOKING": "Zarezerwuj loty",
+    "PROFILE": "Profil",
+    "FLIGHTS": "Loty",
+    "PASSENGER": "Pasażerowie",
+    "PAYMENT": "Recenzja"
+  },
+  "FOOTER": {
+    "RIGHTS": "Wszelkie prawa zastrzeżone.",
+    "PAYS": "Akceptujemy te metody płatności"
+  },
+  "PASSENGER": {
+    "Adult": "Dorosły",
+    "Children": "Dzieci",
+    "Infant": "Dziecko"
+  },
+  "SUMMARY": {
+    "CAPTION": "Streszczenie",
+    "BAG": "bagaż rejestrowany (łącznie 23 kg) w cenie",
+    "CABIN_BAG": "torba podręczna 1 przedmiot osobisty (maks. 8 kg) w cenie",
+    "SEAT": "Siedziba",
+    "ADULT": "Taryfa dla dorosłych",
+    "CHILD": "Taryfa dla dzieci",
+    "INFANT": "Taryfa dla niemowląt",
+    "FARE": "Opłata",
+    "TAX": "Podatek",
+    "TOTAL": "CAŁKOWITY",
+    "BTN_BACK": "Z powrotem",
+    "BTN_ADD": "Dodaj do koszyka zamówień",
+    "BTN_BUY": "Kup Teraz"
+  },
+  "ERRORS": {
+    "PASSENGER_ADULT": "Wybierz co najmniej 1 osobę dorosłą",
+    "CORRECT_EMAIL": "Wprowadź poprawny adres e-mail",
+    "LENGTH_16": "Login nie może przekraczać 16 znaków",
+    "LENGTH_32": "Login nie może przekraczać 32 znaków",
+    "EXCEED_15": "Nie może przekraczać 15 cyfr",
+    "MUST_HAVE": "Hasło musi mieć ",
+    "MUST": "Muszę mieć",
+    "REQUIRED": "Wymagany",
+    "MUST_LEAST": "Musi być przynajmniej {{length}} postacie ",
+    "INVALID_CHARACTER": "Nieprawidłowy znak",
+    "INVALID_DATE": "Nieprawidłowa data",
+    "SELECT_GENDER": "Musisz wybrać płeć",
+    "AGREE_TERMS": "Musisz zgodzić się z warunkami"
+  }
+}

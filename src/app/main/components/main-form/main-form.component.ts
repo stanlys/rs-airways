@@ -1,5 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import { Component } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { passengersValidator } from '../../directives/passengers-validator.directive';
@@ -14,7 +15,12 @@ import { SearchService } from '../../services/search.service';
 export class MainFormComponent {
   public searchForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: Router, private search: SearchService) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private search: SearchService,
+    public translate: TranslateService
+  ) {
     this.searchForm = fb.group({
       oneWay: fb.control<boolean>(false, Validators.required),
       airport: fb.group({

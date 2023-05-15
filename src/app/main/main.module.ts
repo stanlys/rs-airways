@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { TranslateModule } from '@ngx-translate/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MainRoutingModule } from './main-routing.module';
 import { MainPageComponent } from './pages/main-page/main-page.component';
@@ -23,6 +24,6 @@ import PassengerInputComponent from './components/passengers-field/passenger-inp
     FlightRouteComponent,
     PassengerInputComponent,
   ],
-  imports: [CommonModule, MainRoutingModule, MaterialModule, SharedModule, ReactiveFormsModule],
+  imports: [CommonModule, MainRoutingModule, MaterialModule, SharedModule, ReactiveFormsModule, TranslateModule],
 })
 export class MainModule {}

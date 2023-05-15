@@ -1,7 +1,7 @@
 <ng-container [ngSwitch]="isOneWay">
   <ng-template [ngSwitchCase]="false" ngSwitchDefault>
     <mat-form-field [formGroup]="datesForm" appearance="fill" class="flight-dates" hideRequiredMarker>
-      <mat-label>Dates</mat-label>
+      <mat-label>{{ 'MAIN_FORM.DATES' | translate }}</mat-label>
       <mat-date-range-input [rangePicker]="rangePicker" [min]="today">
         <input matStartDate placeholder="Start date" formControlName="from" />
         <input matEndDate placeholder="End date" formControlName="to" />
@@ -20,7 +20,7 @@
 
   <ng-template [ngSwitchCase]="true">
     <mat-form-field [formGroup]="datesForm" class="flight-dates" appearance="fill" hideRequiredMarker="true">
-      <mat-label>Date</mat-label>
+      <mat-label>{{ 'MAIN_FORM.DATES' | translate }}</mat-label>
       <input matInput [matDatepicker]="picker" [min]="today" formControlName="oneWay" />
       <mat-hint>{{ dateFormatHint }}</mat-hint>
       <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
