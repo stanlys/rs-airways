@@ -33,6 +33,7 @@ export class FlightsFormComponent implements OnDestroy {
         takeoffDate: fb.control<Date | null>(null, Validators.required),
         landingDate: fb.control<Date | null>(null, Validators.required),
       }),
+      // TODO: ensure passengers value is properly filled on mount
       passengers: fb.group({
         adult: fb.control<number>(0, [Validators.required, Validators.min(1), passengersValidator]),
         child: fb.control<number>(0, Validators.required),
@@ -41,6 +42,12 @@ export class FlightsFormComponent implements OnDestroy {
     });
 
     this.airportForm = this.searchForm.get('airport') as FormGroup;
+
+    const formValue = this.searchService.requestData$.getValue();
+
+    if (formValue != null) {
+      this.searchForm.setValue(formValue);
+    }
   }
 
   public ngOnDestroy(): void {

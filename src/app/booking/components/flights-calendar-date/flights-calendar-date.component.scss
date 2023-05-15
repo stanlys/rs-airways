@@ -2,11 +2,14 @@
   display: flex;
   align-items: flex-end;
   height: 87px;
+  width: 100%;
+  overflow: hidden;
 }
 
 .date-price {
   height: 70px;
-  width: 225px;
+  max-width: 225px;
+  width: 100%;
   background-color: #fff;
   border-left: 1px solid #cecece;
 }
