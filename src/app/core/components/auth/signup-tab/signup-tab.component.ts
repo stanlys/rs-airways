@@ -3,7 +3,6 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import countryList from 'country-list';
 import countryTelData from 'country-telephone-data';
-import { Subject, delay, of } from 'rxjs';
 import { passwordStrengthValidator } from '../../../directives/password-strength-validator.directive';
 import { RegistrationRequest } from '../../../models/requests.models';
 import { AuthService } from '../../../services/auth.service';
@@ -29,7 +28,7 @@ interface SignupForm {
 export class SignupTabComponent {
   public form: FormGroup<SignupForm>;
 
-  public isLoading$ = new Subject<boolean>();
+  public isLoading$ = this.authService.isLoading$;
 
   @Output() public closeModal = new EventEmitter<void>();
 
@@ -74,16 +73,13 @@ export class SignupTabComponent {
     const dateOfBirth = this.form.value.dateOfBirth?.toISOString() as string;
     const countryCode = this.form.value.countryCode?.replace(/[^+\d]/g, '') as string;
     const data = { ...this.form.value, dateOfBirth, countryCode };
+
     this.authService.signup(data as RegistrationRequest);
 
-    this.isLoading$.next(true);
-
-    // TODO: use actual signup delay
-    of(false)
-      .pipe(delay(300))
-      .subscribe(() => {
-        this.isLoading$.next(false);
+    this.authService.loggedIn$.subscribe((v) => {
+      if (v === true) {
         this.close();
-      });
+      }
+    });
   }
 }

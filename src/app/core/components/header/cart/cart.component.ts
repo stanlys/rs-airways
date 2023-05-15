@@ -7,7 +7,7 @@ import { AuthService } from '../../../services/auth.service';
   styleUrls: ['./cart.component.scss'],
 })
 export class CartComponent {
-  @Input() public loggedIn = this.authService.loggedIn;
+  @Input() public loggedIn$ = this.authService.loggedIn$;
 
   constructor(private authService: AuthService) {}
 }

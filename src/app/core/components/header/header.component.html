@@ -14,7 +14,7 @@
 
       <app-currency-menu />
 
-      <ng-container *ngIf="(loggedIn | async) === false; else account">
+      <ng-container *ngIf="(loggedIn$ | async) !== true; else account">
         <app-sign-in [authModalActive]="authModalActive" (authDisplay)="authModalActive = $event" />
       </ng-container>
 
