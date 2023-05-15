@@ -1,5 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 import { ControlService } from '../../../core/services/control.service';
 import { Flight } from '../../../shared/models/flight-search.interfaces';
@@ -21,7 +22,7 @@ export class BookingPageComponent implements OnDestroy {
 
   public isLoading$;
 
-  constructor(private controlService: ControlService, searchService: SearchService) {
+  constructor(private controlService: ControlService, searchService: SearchService, private router: Router) {
     const flightsSub = searchService.flights$.subscribe((v) => {
       if (v != null) {
         this.flights = v;
@@ -39,7 +40,13 @@ export class BookingPageComponent implements OnDestroy {
   }
 
   public back(): void {
+    const { selectedIndex } = this.controlService.stepper;
+
     this.controlService.stepper.previous();
+
+    if (selectedIndex === 0) {
+      this.router.navigate(['/main']).catch(console.error);
+    }
   }
 
   public forward(): void {

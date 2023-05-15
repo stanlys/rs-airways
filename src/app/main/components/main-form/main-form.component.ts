@@ -39,6 +39,12 @@ export class MainFormComponent {
         infant: fb.control<number>(0, Validators.required),
       }),
     });
+
+    const formValue = this.searchService.requestData$.getValue();
+
+    if (formValue != null) {
+      this.searchForm.setValue(formValue);
+    }
   }
 
   public onSubmit(): void {
