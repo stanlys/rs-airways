@@ -1,32 +1,34 @@
 <div class="booking-page">
   <app-second-menu (toggleSearchForm)="showSearchForm = !showSearchForm" />
 
-  <div *ngIf="flights" class="calendar-container flex flex-col pt-10 mb-5 mx-auto relative">
+  <div class="calendar-container flex flex-col pt-10 mb-5 mx-auto relative">
     <app-flights-form *ngIf="showSearchForm" (hideForm)="showSearchForm = false" />
 
-    <ng-container *ngIf="(isLoading$ | async) !== true; else spinner">
-      <app-flights
-        *ngFor="let flight of flights; index as i; odd as odd"
-        [odd]="odd"
-        [showSearchForm]="showSearchForm"
-        [flight]="flight"
-        [confirmed]="flightsConfirmed[i]"
-        (confirmedChange)="onFlightConfirmed(i, $event)"
-      />
+    <ng-container *ngIf="flights">
+      <ng-container *ngIf="(isLoading$ | async) !== true; else spinner">
+        <app-flights
+          *ngFor="let flight of flights; index as i; odd as odd"
+          [odd]="odd"
+          [showSearchForm]="showSearchForm"
+          [flight]="flight"
+          [confirmed]="flightsConfirmed[i]"
+          (confirmedChange)="onFlightConfirmed(i, $event)"
+        />
 
-      <div class="controls self-center md:self-end mt-5 flex gap-10">
-        <button class="btn" mat-button color="primary" (click)="back()" type="button">Back</button>
-        <button
-          [disabled]="!checkAllFlights()"
-          class="btn"
-          mat-flat-button
-          color="primary"
-          (click)="forward()"
-          type="button"
-        >
-          Continue
-        </button>
-      </div>
+        <div class="controls self-center md:self-end mt-5 flex gap-10">
+          <button class="btn" mat-button color="primary" (click)="back()" type="button">Back</button>
+          <button
+            [disabled]="!checkAllFlights()"
+            class="btn"
+            mat-flat-button
+            color="primary"
+            (click)="forward()"
+            type="button"
+          >
+            Continue
+          </button>
+        </div>
+      </ng-container>
     </ng-container>
   </div>
 </div>

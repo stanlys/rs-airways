@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject, catchError, of, take, timeout } from 'rxjs';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
+import { BehaviorSubject, Observable, Subject, catchError, of, take, timeout } from 'rxjs';
 
 import { API_BASE_URL, STORAGE_KEY_PREFIX } from '../constants';
-import { defaultFlights as mockFlights } from '../mock-flights-response';
+import { Flight } from '../models/flight-search.interfaces';
 import { FlightSearchFormValue, FlightSearchRequest, FlightSearchResponse } from '../models/flight-search.model';
 
 dayjs.extend(utc);
@@ -16,9 +16,11 @@ dayjs.extend(utc);
 export class SearchService {
   public requestData$ = new BehaviorSubject<FlightSearchFormValue | null>(null);
 
-  public flights$ = new BehaviorSubject<FlightSearchResponse | null>(mockFlights);
+  public flights$ = new BehaviorSubject<FlightSearchResponse | null>(null);
 
   private readonly searchKey = `${STORAGE_KEY_PREFIX}-searchRequest`;
+
+  private readonly flightsKey = `${STORAGE_KEY_PREFIX}-flights`;
 
   public isLoading$ = new Subject<boolean>();
 
@@ -37,6 +39,7 @@ export class SearchService {
     this.searchRequest(data).subscribe((res) => {
       if (res != null) {
         this.flights$.next(res);
+        localStorage.setItem(this.flightsKey, JSON.stringify(res));
       }
 
       this.isLoading$.next(false);
@@ -48,6 +51,12 @@ export class SearchService {
 
     if (request) {
       this.requestData$.next(JSON.parse(request) as FlightSearchFormValue);
+    }
+
+    const response = localStorage.getItem(this.flightsKey);
+
+    if (response) {
+      this.flights$.next(JSON.parse(response) as Flight[]);
     }
   }
 

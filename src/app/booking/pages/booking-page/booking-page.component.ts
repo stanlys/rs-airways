@@ -1,6 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 import { ControlService } from '../../../core/services/control.service';
 import { Flight } from '../../../shared/models/flight-search.interfaces';
@@ -12,7 +12,7 @@ import { SearchService } from '../../../shared/services/search.service';
   styleUrls: ['./booking-page.component.scss'],
 })
 export class BookingPageComponent implements OnDestroy {
-  public flights?: Flight[];
+  public flights: Flight[] | null = this.searchService.flights$.getValue();
 
   public showSearchForm = false;
 
@@ -22,7 +22,7 @@ export class BookingPageComponent implements OnDestroy {
 
   public isLoading$;
 
-  constructor(private controlService: ControlService, searchService: SearchService, private router: Router) {
+  constructor(private controlService: ControlService, private searchService: SearchService, private router: Router) {
     const flightsSub = searchService.flights$.subscribe((v) => {
       if (v != null) {
         this.flights = v;
