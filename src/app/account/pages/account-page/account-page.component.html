@@ -1,2 +1,75 @@
-<p>account-page works!</p>
-<button mat-raised-button color="primary" (click)="logout()">Logout</button>
+<div class="flex justify-end m-5 mr-7">
+  <button mat-raised-button color="primary" (click)="logout()">Logout</button>
+</div>
+<mat-divider />
+
+<mat-card class="container mx-auto my-10 border overflow-y-auto md:p-2 lg:p-4 mat-body-strong">
+  <mat-card-header>
+    <mat-card-title color="primary">{{ 'CART.HISTORY' | translate }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="md:p-29 mt-8 sm:p-0 m-0">
+    <table class="border-collapse" mat-table [dataSource]="flights" matSort>
+      <ng-container matColumnDef="checkbox">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-checkbox
+            color="primary"
+            (change)="$event ? toggleAllRows() : null"
+            [checked]="selection.hasValue() && isAllSelected()"
+          >
+          </mat-checkbox>
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <mat-checkbox
+            color="primary"
+            [checked]="selection.isSelected(element)"
+            (change)="$event ? selection.toggle(element) : null"
+          ></mat-checkbox>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="number">
+        <th mat-header-cell *matHeaderCellDef class="table_head" mat-sort-header>No.</th>
+        <td mat-cell *matCellDef="let el">{{ el.number }}</td>
+      </ng-container>
+      <ng-container matColumnDef="flights">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'CART.FLIGHT' | translate }}</th>
+        <td mat-cell *matCellDef="let el">{{ el.flights }}</td>
+      </ng-container>
+      <ng-container matColumnDef="typeTrip">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'CART.TYPE_TRIP' | translate }}</th>
+        <td mat-cell *matCellDef="let el">{{ el.typeTrip }}</td>
+      </ng-container>
+      <ng-container matColumnDef="dateTime" class="md: hidden">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'CART.DATE_TIME' | translate }}</th>
+        <td mat-cell *matCellDef="let el">{{ el.dateTime }}</td>
+      </ng-container>
+      <ng-container matColumnDef="passengers">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'CART.PASSENGER' | translate }}</th>
+        <td mat-cell *matCellDef="let el">{{ el.passengers }}</td>
+      </ng-container>
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'CART.PRICE' | translate }}</th>
+        <td mat-cell *matCellDef="let el">{{ el.price | currency : '€' }}</td>
+      </ng-container>
+      <ng-container matColumnDef="control" stickyEnd>
+        <th mat-header-cell *matHeaderCellDef>&nbsp;</th>
+        <td mat-cell *matCellDef="let el">
+          <button color="primary" mat-raised-button [routerLink]="['/', 'detail']" [queryParams]="el">
+            {{ 'CART.DETAIL' | translate }}
+          </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <mat-divider> </mat-divider>
+    <mat-card-footer>
+      <div class="mt-4 mb-4 flex justify-end align-middle flex-col md:flex-row justify-end">
+        <span *ngIf="this.selection.selected.length > 0">
+          {{ 'CART.TOTAL' | translate }}
+          <span class="totalPrice"> {{ getTotalPrice() | currency : '€' }}</span>
+        </span>
+      </div>
+      <mat-divider> </mat-divider>
+    </mat-card-footer>
+  </mat-card-content>
+</mat-card>
