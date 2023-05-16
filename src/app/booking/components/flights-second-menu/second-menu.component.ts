@@ -1,7 +1,6 @@
 import { Component, EventEmitter, OnDestroy, Output } from '@angular/core';
-import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 
-import { FlightSearchFormValue } from '../../../shared/models/flight-search.model';
 import { SearchService } from '../../../shared/services/search.service';
 
 @Component({
@@ -10,9 +9,7 @@ import { SearchService } from '../../../shared/services/search.service';
   styleUrls: ['./second-menu.component.scss'],
 })
 export class SecondMenuComponent implements OnDestroy {
-  public requestData$: BehaviorSubject<FlightSearchFormValue | null>;
-
-  public requestData?: FlightSearchFormValue;
+  public hasData = false;
 
   public fromCity = '';
 
@@ -26,18 +23,18 @@ export class SecondMenuComponent implements OnDestroy {
 
   public passengerAmount = 0;
 
-  public isOneWay = false;
+  public oneWay = false;
 
   @Output() public toggleSearchForm = new EventEmitter<void>();
 
   private destroy$ = new Subject<void>();
 
   constructor(private searchService: SearchService) {
-    this.requestData$ = this.searchService.requestData$;
     this.searchService.requestData$.pipe(takeUntil(this.destroy$)).subscribe((v) => {
+      this.hasData = v != null;
+
       if (v != null) {
-        this.requestData = v;
-        this.isOneWay = v.isOneWay;
+        this.oneWay = v.oneWay;
         this.fromCity = v.airport.fromLoc.city;
         this.toCity = v.airport.toLoc.city;
         this.fromDate = new Date(v.dates.takeoffDate);

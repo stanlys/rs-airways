@@ -14,7 +14,7 @@ export class DatesFieldComponent implements OnInit, OnDestroy {
 
   public dateFormatHint = 'MM/DD/YYYY - MM/DD/YYYY';
 
-  public isOneWay = false;
+  public oneWay = false;
 
   public datesForm!: FormGroup;
 
@@ -40,10 +40,10 @@ export class DatesFieldComponent implements OnInit, OnDestroy {
       .get('oneWay')
       ?.valueChanges.pipe(takeUntil(this.destroy$))
       .subscribe((v) => {
-        this.isOneWay = v as boolean;
+        this.oneWay = v as boolean;
 
-        this.updateValidators(this.isOneWay);
-        this.updateHint(this.isOneWay);
+        this.updateValidators(this.oneWay);
+        this.updateHint(this.oneWay);
         this.cd.detectChanges();
       });
   }

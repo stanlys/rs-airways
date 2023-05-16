@@ -1,4 +1,4 @@
-<ng-container [ngSwitch]="isOneWay">
+<ng-container [ngSwitch]="oneWay">
   <ng-template [ngSwitchCase]="false" ngSwitchDefault>
     <mat-form-field [formGroup]="datesForm" appearance="fill" class="flight-dates" hideRequiredMarker>
       <mat-label>{{ 'MAIN_FORM.DATES' | translate }}</mat-label>

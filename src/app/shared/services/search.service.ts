@@ -75,12 +75,12 @@ export class SearchService {
   }
 
   private static transformFormValueToReqScheme(v: FlightSearchFormValue): FlightSearchRequest {
-    const { airport, dates } = v;
+    const { airport, dates, oneWay } = v;
     const { fromLoc, toLoc } = airport;
     const { IATA: fromKey } = fromLoc;
     const { IATA: toKey } = toLoc;
     const forwardDate = dayjs.utc(dates.takeoffDate).toISOString();
-    const backDate = dates.landingDate != null ? dayjs.utc(dates.landingDate).toISOString() : undefined;
+    const backDate = oneWay !== true ? dayjs.utc(dates.landingDate).toISOString() : undefined;
 
     const requestData: FlightSearchRequest = {
       fromKey,

@@ -1,17 +1,17 @@
 <div
   class="second-menu py-2 sm:py-0 sm:h-[88px] bg-[#fafafa] flex items-center flex-wrap p-2 xl:pl-[156px] gap-2 sm:gap-4 xl:gap-10 z-10 relative"
 >
-  <ng-container *ngIf="requestData$ | async; else fallback">
+  <ng-container *ngIf="hasData; else fallback">
     <div class="destination flex items-center gap-4">
       <span>{{ fromCity }}</span>
-      <img [src]="toDate ? '/assets/return_trip.svg' : '/assets/one-way_trip.svg'" alt="" srcset="" />
+      <img [src]="!oneWay ? '/assets/return_trip.svg' : '/assets/one-way_trip.svg'" alt="" srcset="" />
       <span>{{ toCity }}</span>
     </div>
     <div class="return flex items-center gap-2">
-      <span>{{ toDate ? 'Return' : 'Arrive' }}</span>
+      <span>{{ !oneWay ? 'Return' : 'Arrive' }}</span>
       <span class="dot">•</span>
       <span>{{ fromDate | date : 'mediumDate' }}</span>
-      <ng-container *ngIf="toDate">
+      <ng-container *ngIf="!oneWay">
         <span>—</span>
         <span>{{ toDate | date : 'mediumDate' }}</span>
       </ng-container>
