@@ -86,5 +86,8 @@
     "INVALID_DATE": "Nieprawidłowa data",
     "SELECT_GENDER": "Musisz wybrać płeć",
     "AGREE_TERMS": "Musisz zgodzić się z warunkami"
+  },
+  "MISC": {
+    "CURRENCY": "PLN"
   }
 }

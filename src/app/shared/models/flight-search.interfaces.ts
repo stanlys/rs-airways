@@ -31,7 +31,7 @@ export interface PassSelectOption {
   amount: number;
 }
 
-interface Price {
+export interface Price {
   eur: number;
   usd: number;
   rub: number;

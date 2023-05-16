@@ -11,8 +11,7 @@
     <span class="weekday">{{ date | date : 'cccc' }}</span>
   </div>
   <ng-container *ngIf="flight; else noFlight">
-    <!-- TODO: use the appropriate currency -->
-    <span class="price h-full flex items-center">{{ flight.price.usd | currency : 'USD' }}</span>
+    <span class="price h-full flex items-center">{{ price | currency : currencyCode }}</span>
   </ng-container>
 </div>
 

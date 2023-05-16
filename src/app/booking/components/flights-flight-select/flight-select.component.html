@@ -1,4 +1,3 @@
-<!-- TODO: provide proper currency code / locale depending on the selected language -->
 <ng-container *ngIf="!confirmed; else edit">
   <div class="select flex py-4 md:py-0 md:pl-7 gap-8 relative">
     <div class="info w-[133px] font-bold">
@@ -12,7 +11,9 @@
       </div>
       <div class="price mt-[6px] flex flex-col items-center md:items-end">
         <span class="title text-[#74767a] text-xs">Price</span>
-        <span class="details text-[#11397e] text-3xl">{{ flight.price.usd | currency : 'USD' }}</span>
+        <span class="details text-[#11397e] text-3xl text-ellipsis overflow-hidden max-w-full">{{
+          price | currency : currencyCode
+        }}</span>
       </div>
     </div>
     <button class="btn select self-center" mat-stroked-button (click)="onClick()">Select</button>
@@ -22,7 +23,7 @@
 <ng-template #edit>
   <div class="select flex py-4 md:py-0 md:pl-7 gap-8 relative">
     <div class="price mt-[6px] flex flex-col items-center md:items-end">
-      <span class="details text-3xl font-bold">{{ flight.price.usd | currency : 'USD' }}</span>
+      <span class="details text-3xl font-bold">{{ price | currency : currencyCode }}</span>
     </div>
     <button class="btn edit self-center" mat-button (click)="onClick()">Edit</button>
   </div>

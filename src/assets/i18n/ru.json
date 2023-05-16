@@ -86,5 +86,8 @@
     "INVALID_DATE": "Ошибочная дата",
     "SELECT_GENDER": "Необходимо выбрать пол",
     "AGREE_TERMS": "Необходимо согласиться "
+  },
+  "MISC": {
+    "CURRENCY": "RUB"
   }
 }

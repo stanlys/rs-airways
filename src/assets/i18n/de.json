@@ -86,5 +86,8 @@
     "INVALID_DATE": "Ungültiges Datum",
     "SELECT_GENDER": "Geschlecht muss ausgewählt werden",
     "AGREE_TERMS": "Muss mit den Bedingungen einverstanden sein"
+  },
+  "MISC": {
+    "CURRENCY": "EUR"
   }
 }
