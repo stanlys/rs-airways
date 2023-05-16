@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnDestroy, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 
 import { SearchService } from '../../../shared/services/search.service';
@@ -28,6 +28,8 @@ export class SecondMenuComponent implements OnDestroy {
   @Output() public toggleSearchForm = new EventEmitter<void>();
 
   private destroy$ = new Subject<void>();
+
+  @Input() public editable = true;
 
   constructor(private searchService: SearchService) {
     this.searchService.requestData$.pipe(takeUntil(this.destroy$)).subscribe((v) => {

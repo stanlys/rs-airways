@@ -2,8 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
-import { ControlService } from '../../../core/services/control.service';
-import { Flight } from '../../../shared/models/flight-search.interfaces';
+import { ProgressControlService } from '../../../core/services/progress-control.service';
 import { SearchService } from '../../../shared/services/search.service';
 
 @Component({
@@ -12,7 +11,7 @@ import { SearchService } from '../../../shared/services/search.service';
   styleUrls: ['./booking-page.component.scss'],
 })
 export class BookingPageComponent implements OnDestroy {
-  public flights: Flight[] | null = this.searchService.flights$.getValue();
+  public flights = this.searchService.flights$.getValue();
 
   public showSearchForm = false;
 
@@ -22,7 +21,13 @@ export class BookingPageComponent implements OnDestroy {
 
   public isLoading$;
 
-  constructor(private controlService: ControlService, private searchService: SearchService, private router: Router) {
+  public selectedIndex$;
+
+  constructor(
+    private controlService: ProgressControlService,
+    private searchService: SearchService,
+    private router: Router
+  ) {
     const flightsSub = searchService.flights$.subscribe((v) => {
       if (v != null) {
         this.flights = v;
@@ -33,6 +38,8 @@ export class BookingPageComponent implements OnDestroy {
     this.subs.add(flightsSub);
 
     this.isLoading$ = searchService.isLoading$;
+
+    this.selectedIndex$ = controlService.selectedIndex$;
   }
 
   public ngOnDestroy(): void {

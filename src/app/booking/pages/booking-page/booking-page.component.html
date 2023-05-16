@@ -1,10 +1,10 @@
-<div class="booking-page">
-  <app-second-menu (toggleSearchForm)="showSearchForm = !showSearchForm" />
+<app-second-menu [editable]="(selectedIndex$ | async) === 0" (toggleSearchForm)="showSearchForm = !showSearchForm" />
 
-  <div class="calendar-container flex flex-col pt-10 mb-5 mx-auto relative">
-    <app-flights-form *ngIf="showSearchForm" (hideForm)="showSearchForm = false" />
+<div [ngSwitch]="selectedIndex$ | async" class="booking-container flex flex-col pt-10 mb-5 mx-auto relative">
+  <app-flights-form *ngIf="showSearchForm" (hideForm)="showSearchForm = false" />
 
-    <ng-container *ngIf="flights">
+  <ng-container *ngIf="flights">
+    <ng-container *ngSwitchCase="0">
       <ng-container *ngIf="(isLoading$ | async) !== true; else spinner">
         <app-flights
           *ngFor="let flight of flights; index as i; odd as odd"
@@ -14,25 +14,37 @@
           [confirmed]="flightsConfirmed[i]"
           (confirmedChange)="onFlightConfirmed(i, $event)"
         />
-
-        <div class="controls self-center md:self-end mt-5 flex gap-10">
-          <button class="btn" mat-button color="primary" (click)="back()" type="button">Back</button>
-          <button
-            [disabled]="!checkAllFlights()"
-            class="btn"
-            mat-flat-button
-            color="primary"
-            (click)="forward()"
-            type="button"
-          >
-            Continue
-          </button>
-        </div>
       </ng-container>
+      <ng-container *ngTemplateOutlet="controls" />
     </ng-container>
-  </div>
+
+    <ng-container *ngSwitchCase="1">
+      <h3>Booking</h3>
+      <ng-container *ngTemplateOutlet="controls" />
+    </ng-container>
+
+    <ng-container *ngSwitchCase="2">
+      <app-summary-page />
+    </ng-container>
+  </ng-container>
 </div>
 
 <ng-template #spinner>
   <mat-spinner class="spinner mx-auto" style="width: 48px; height: 48px"></mat-spinner>
+</ng-template>
+
+<ng-template #controls>
+  <div class="controls self-center md:self-end mt-5 flex gap-10">
+    <button class="btn" mat-button color="primary" (click)="back()" type="button">Back</button>
+    <button
+      [disabled]="!checkAllFlights()"
+      class="btn"
+      mat-flat-button
+      color="primary"
+      (click)="forward()"
+      type="button"
+    >
+      Continue
+    </button>
+  </div>
 </ng-template>

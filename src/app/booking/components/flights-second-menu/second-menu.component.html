@@ -22,7 +22,7 @@
       </div>
     </div>
   </ng-container>
-  <button class="edit btn" mat-button (click)="toggleSearchForm.emit()">Edit</button>
+  <button *ngIf="editable" class="edit btn" mat-button (click)="toggleSearchForm.emit()">Edit</button>
 </div>
 
 <ng-template #fallback>

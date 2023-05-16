@@ -12,7 +12,7 @@
     </div>
   </div>
   <div class="flex gap-5 flex-wrap mt-4 md:mt-10 flex-row justify-end">
-    <button mat-button color="primary" class="btn">{{ 'SUMMARY.BTN_BACK' | translate }}</button>
+    <button mat-button color="primary" class="btn" (click)="goBack()">{{ 'SUMMARY.BTN_BACK' | translate }}</button>
     <button mat-stroked-button color="primary" class="btn" (click)="addtoCart()">
       {{ 'SUMMARY.BTN_ADD' | translate }}
     </button>

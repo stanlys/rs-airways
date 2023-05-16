@@ -1,7 +1,8 @@
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatStepper } from '@angular/material/stepper';
-import { ControlService } from '../../../services/control.service';
+
+import { ProgressControlService } from '../../../services/progress-control.service';
 
 @Component({
   selector: 'app-progress-indicator',
@@ -15,11 +16,14 @@ import { ControlService } from '../../../services/control.service';
   ],
 })
 export class ProgressIndicatorComponent implements AfterViewInit {
-  @ViewChild('stepper') private stepper!: MatStepper;
+  @ViewChild('stepper') private stepperRef!: MatStepper;
 
-  constructor(private controlService: ControlService) {}
+  constructor(private controlService: ProgressControlService) {}
 
   public ngAfterViewInit(): void {
-    this.controlService.stepper = this.stepper;
+    this.controlService.stepper = this.stepperRef;
+    this.stepperRef.selectionChange.subscribe((selection) =>
+      this.controlService.selectedIndex$.next(selection.selectedIndex)
+    );
   }
 }
