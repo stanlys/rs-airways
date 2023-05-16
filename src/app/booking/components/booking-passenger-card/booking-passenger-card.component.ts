@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-booking-passenger-card',
@@ -11,6 +11,8 @@ export class BookingPassengerCardComponent {
   @Input() public title = 'Adult';
 
   public tooltip = `Add the passenger's name as it is written on their documents (passport or ID). Do not use any accents or special characters. Do not use a nickname.`;
+
+  public luggageAmount = 0;
 
   // public ngOnInit(): void {}
 }

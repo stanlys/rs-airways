@@ -1,9 +1,9 @@
-<mat-card class="boking-content passenger-card w-full px-7 py-4 gap-6">
+<mat-card class="boking-content passenger-card w-full sm:px-7 py-4 gap-1 sm:gap-6">
   <mat-card-header>
     <mat-card-title>{{ index }}. {{ title }} </mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <div class="passenger-card-content flex flex-wrap gap-5 lg:flex-nowrap">
+    <div class="passenger-card-content flex flex-wrap gap-1 sm:gap-5 lg:flex-nowrap">
       <mat-form-field class="form-field" appearance="fill">
         <mat-label>First name</mat-label>
         <input name="firstName" formControlName="firstName" matInput #firstNameInput="matInput" type="text" />
@@ -33,7 +33,7 @@
       </mat-form-field>
 
       <mat-button-toggle-group
-        class="gender-buttons-group w-full sm:w-[216px]"
+        class="gender-buttons-group w-full sm:w-[216px] mb-5"
         formControlName="gender"
         aria-label="Font Style"
       >
@@ -66,13 +66,30 @@
       </mat-form-field>
     </div>
 
-    <mat-slide-toggle #switchButton *ngIf="title !== 'Infant'" color="primary">
-      <div class="flex pl-2 sm:pl-5 justify-start items-center min-w-[150px] sm:min-w-[255px]">
-        <mat-icon class="min-w-[32px]">wheelchair_pickup</mat-icon>
-        <span class="pl-2">Need special assistance?</span>
+    <div class="passenger-additions relative flex flex-wrap w-full gap-2" *ngIf="title !== 'Infant'">
+      <div class="special-assistants relative w-full sm:w-[320px]">
+        <mat-slide-toggle #switchButton color="primary">
+          <div class="flex sm:pl-2 lg:pl-5 justify-start items-center min-w-[220px]">
+            <mat-icon class="min-w-[32px]">wheelchair_pickup</mat-icon>
+            <span class="sm:pl-2">Need special assistance?</span>
+          </div>
+        </mat-slide-toggle>
       </div>
-    </mat-slide-toggle>
+
+      <div class="luggage flex flex-nowrap relative">
+        <mat-slide-toggle #luggageButton color="primary" class="w-max">
+          <div class="flex sm:pl-2 lg:pl-5 justify-start items-center w-[120px] sm:w-[150px]">
+            <mat-icon class="min-w-[32px]">luggage</mat-icon>
+            <span class="sm:pl-2">Luggage</span>
+          </div>
+        </mat-slide-toggle>
+
+        <div class="luggage-input flex flex-nowrap justify-between items-center w-[60px]" *ngIf="luggageButton.checked">
+          <button class="luggage-input-button text-lg" [disabled]="luggageAmount === 0">&minus;</button>
+          <div class="input w-3 font-semibold text-lg">{{ luggageAmount }}</div>
+          <button class="luggage-input-button text-lg">&plus;</button>
+        </div>
+      </div>
+    </div>
   </mat-card-content>
-  <!-- <mat-card-actions *ngIf="title !== 'Infant'">
-    </mat-card-actions> -->
 </mat-card>
