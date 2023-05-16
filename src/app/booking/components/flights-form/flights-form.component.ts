@@ -1,9 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, OnDestroy, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
 
-import { passengersValidator } from '../../../main/directives/passengers-validator.directive';
-import { AirportForm } from '../../../shared/models/flight-search.interfaces';
 import { FlightSearchFormValue } from '../../../shared/models/flight-search.model';
 import { SearchService } from '../../../shared/services/search.service';
 
@@ -22,24 +20,8 @@ export class FlightsFormComponent implements OnDestroy {
 
   private destroy$ = new Subject<void>();
 
-  constructor(fb: FormBuilder, private searchService: SearchService) {
-    this.searchForm = fb.group({
-      oneWay: fb.control<boolean>(false, Validators.required),
-      airport: fb.group({
-        fromLoc: fb.control<AirportForm | null>(null, Validators.required),
-        toLoc: fb.control<AirportForm | null>(null, Validators.required),
-      }),
-      dates: fb.group({
-        takeoffDate: fb.control<Date | null>(null, Validators.required),
-        landingDate: fb.control<Date | null>(null, Validators.required),
-      }),
-      // TODO: ensure passengers value is properly filled on mount
-      passengers: fb.group({
-        adult: fb.control<number>(0, [Validators.required, Validators.min(1), passengersValidator]),
-        child: fb.control<number>(0, Validators.required),
-        infant: fb.control<number>(0, Validators.required),
-      }),
-    });
+  constructor(private searchService: SearchService) {
+    this.searchForm = this.searchService.searchForm;
 
     this.airportForm = this.searchForm.get('airport') as FormGroup;
 

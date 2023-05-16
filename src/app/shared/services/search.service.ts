@@ -4,8 +4,10 @@ import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import { BehaviorSubject, Observable, Subject, catchError, of, take, timeout } from 'rxjs';
 
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { passengersValidator } from '../../main/directives/passengers-validator.directive';
 import { API_BASE_URL, STORAGE_KEY_PREFIX } from '../constants';
-import { Flight } from '../models/flight-search.interfaces';
+import { AirportForm, Flight } from '../models/flight-search.interfaces';
 import { FlightSearchFormValue, FlightSearchRequest, FlightSearchResponse } from '../models/flight-search.model';
 
 dayjs.extend(utc);
@@ -24,8 +26,11 @@ export class SearchService {
 
   public isLoading$ = new Subject<boolean>();
 
-  constructor(private http: HttpClient) {
-    this.init();
+  public searchForm: FormGroup;
+
+  constructor(private fb: FormBuilder, private http: HttpClient) {
+    this.recoverStorageEntries();
+    this.searchForm = this.createSearchForm();
   }
 
   public update(v: FlightSearchFormValue): void {
@@ -46,7 +51,7 @@ export class SearchService {
     });
   }
 
-  private init(): void {
+  private recoverStorageEntries(): void {
     const request = localStorage.getItem(this.searchKey);
 
     if (request) {
@@ -58,6 +63,27 @@ export class SearchService {
     if (response) {
       this.flights$.next(JSON.parse(response) as Flight[]);
     }
+  }
+
+  private createSearchForm(): FormGroup {
+    const { fb } = this;
+    return fb.group({
+      oneWay: fb.control<boolean>(false, Validators.required),
+      airport: fb.group({
+        fromLoc: fb.control<AirportForm | null>(null, Validators.required),
+        toLoc: fb.control<AirportForm | null>(null, Validators.required),
+      }),
+      dates: fb.group({
+        takeoffDate: fb.control<Date | null>(null, Validators.required),
+        landingDate: fb.control<Date | null>(null, Validators.required),
+      }),
+      // TODO: ensure passengers value is properly filled on mount
+      passengers: fb.group({
+        adult: fb.control<number>(0, [Validators.required, Validators.min(1), passengersValidator]),
+        child: fb.control<number>(0, Validators.required),
+        infant: fb.control<number>(0, Validators.required),
+      }),
+    });
   }
 
   private static handleError<T>(operation = 'operation', result?: T) {
