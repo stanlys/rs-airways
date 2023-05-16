@@ -21,6 +21,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatBadgeModule } from '@angular/material/badge';
 
 @NgModule({
   exports: [
@@ -47,6 +48,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatAutocompleteModule,
     MatRadioModule,
     MatGridListModule,
+    MatBadgeModule,
   ],
 })
 export class MaterialModule {}

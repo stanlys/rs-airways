@@ -4,5 +4,12 @@
   mat-icon-button
   aria-label="button with cart icon"
 >
-  <mat-icon fontSet="material-icons-outlined">shopping_basket</mat-icon>
+  <mat-icon
+    fontSet="material-icons-outlined"
+    [matBadge]="inCart"
+    [matBadgeHidden]="inCart === 0"
+    matBadgePosition="after"
+    matBadgeColor="warn"
+    >shopping_basket</mat-icon
+  >
 </a>

@@ -62,10 +62,10 @@
         <button (click)="addTrip()" mat-button class="btn-addtrip">
           <span class="btn-primary-color mx-8 my-4"> + Add new trip </span>
         </button>
-        <span *ngIf="this.selection.selected.length > 0">
-          Total:
+        <div *ngIf="this.selection.selected.length > 0" class="flex gap-5 items-center pr-4">
+          <span> Total </span>
           <span class="totalPrice"> {{ getTotalPrice() | currency : '€' }}</span>
-        </span>
+        </div>
       </div>
       <mat-divider> </mat-divider>
       <div

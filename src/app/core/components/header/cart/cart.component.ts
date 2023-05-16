@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { selectFlights } from 'src/app/reducers/reducer/shopping-cart.reducer';
+import { Store } from '@ngrx/store';
 import { AuthService } from '../../../services/auth.service';
 
 @Component({
@@ -9,5 +11,12 @@ import { AuthService } from '../../../services/auth.service';
 export class CartComponent {
   @Input() public loggedIn = this.authService.loggedIn;
 
-  constructor(private authService: AuthService) {}
+  public inCart = 0;
+
+  constructor(public store: Store, private authService: AuthService) {
+    this.store.select(selectFlights).subscribe((data) => {
+      this.inCart = data.length;
+      return true;
+    });
+  }
 }
