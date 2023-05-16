@@ -45,3 +45,9 @@
   line-height: 24px;
   letter-spacing: 0.5px;
 }
+
+@mixin flex-center() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
