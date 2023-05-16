@@ -1,10 +1,10 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { SHOPPING_CART_COLUMNS } from 'src/app/shopping-cart/interfaces/columns';
 import { MatTableDataSource } from '@angular/material/table';
-import { IFlight } from 'src/app/shopping-cart/interfaces';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatSort } from '@angular/material/sort';
+import { SHOPPING_CART_COLUMNS } from 'src/app/cart/interfaces/columns';
 import { Store } from '@ngrx/store';
+import { IFlight } from 'src/app/cart/interfaces';
 import { selectFlightsToProfile } from 'src/app/reducers/reducer/user-flight-history.reducer';
 import { AuthService } from '../../../core/services/auth.service';
 

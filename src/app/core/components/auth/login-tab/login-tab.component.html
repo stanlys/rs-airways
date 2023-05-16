@@ -23,8 +23,8 @@
   <mat-form-field *ngIf="form.controls['email'] as control" class="form-field" appearance="fill">
     <mat-label>{{ 'LOGIN_FORM.EMAIL' | translate }}</mat-label>
     <input name="email" [formControl]="control" matInput type="text" />
-    <mat-error *ngIf="control.errors?.['email']">{{ 'ERROR.CORRECT_EMAIL' | translate }}</mat-error>
-    <mat-error *ngIf="control.errors?.['maxlength']">{{ 'ERROR.LENGTH_16' | translate }}</mat-error>
+    <mat-error *ngIf="control.errors?.['email']">{{ 'ERRORS.CORRECT_EMAIL' | translate }}</mat-error>
+    <mat-error *ngIf="control.errors?.['maxlength']">{{ 'ERRORS.LENGTH_16' | translate }}</mat-error>
   </mat-form-field>
 
   <mat-form-field *ngIf="form.controls['password'] as control" class="form-field" appearance="fill">
@@ -43,9 +43,9 @@
     >
       {{ hidePassword ? 'visibility' : 'visibility_off' }}
     </mat-icon>
-    <mat-error *ngIf="control.errors?.['maxlength']">{{ 'ERROR.LENGTH_32' | translate }}</mat-error>
+    <mat-error *ngIf="control.errors?.['maxlength']">{{ 'ERRORS.LENGTH_32' | translate }}</mat-error>
     <mat-error *ngIf="control.errors?.['passwordStrength'] as message" class="err strength"
-      >{{ 'ERROR.MUST_HAVE' | translate }} {{ message }}</mat-error
+      >{{ 'ERRORS.MUST_HAVE' | translate }} {{ message }}</mat-error
     >
   </mat-form-field>
 

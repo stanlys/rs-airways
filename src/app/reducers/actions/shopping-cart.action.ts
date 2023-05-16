@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { IFlight } from 'src/app/shopping-cart/interfaces';
+import { IFlight } from 'src/app/cart/interfaces';
 
 export const SHOPPING_CART = 'SHOPPING-CART';
 

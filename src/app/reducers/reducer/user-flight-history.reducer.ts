@@ -1,5 +1,5 @@
+import { IFlight } from 'src/app/cart/interfaces';
 import { createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
-import { IFlight } from 'src/app/shopping-cart/interfaces';
 import { USER_PROFILE, addFlightToProfile, deleteFlightFromProfile } from '../actions/user-flight-history.action';
 
 export interface IFlightsStore {
