@@ -1,8 +1,8 @@
 import { createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
-import { addFlightToCart, deleteFlightFromCart } from '../actions/shopping-cart.action';
-import { SHOPPING_CART } from '../actions/shopping-cart.action';
 import { FLIGHTS } from 'src/app/cart/MOCK_DATA';
 import { IFlight } from 'src/app/cart/interfaces';
+import { addFlightToCart, deleteFlightFromCart } from '../actions/shopping-cart.action';
+import { SHOPPING_CART } from '../actions/shopping-cart.action';
 
 export interface IFlightsStore {
   flights: Array<IFlight>;

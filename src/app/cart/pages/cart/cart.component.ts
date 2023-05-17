@@ -1,5 +1,4 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
 import { addFlightToCart, deleteFlightFromCart } from 'src/app/reducers/actions/shopping-cart.action';
@@ -10,6 +9,7 @@ import { MatSort } from '@angular/material/sort';
 import { addFlightToProfile } from 'src/app/reducers/actions/user-flight-history.action';
 import { SHOPPING_CART_COLUMNS } from '../../interfaces/columns';
 import { IFlight } from '../../interfaces';
+import { PassengersListService } from '../../service/passengers-list.service';
 
 @Component({
   selector: 'app-cart',
@@ -27,7 +27,7 @@ export class CartComponent implements AfterViewInit {
 
   @ViewChild(MatSort, { static: false }) public sort!: MatSort;
 
-  constructor(private store: Store, private router: Router, private liveAnnouncer: LiveAnnouncer) {
+  constructor(private store: Store, private router: Router, public passengerList: PassengersListService) {
     this.store.select(selectFlights).subscribe((data) => {
       this.flights.data = data;
       return true;
