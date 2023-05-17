@@ -1,0 +1,6 @@
+<div class="controls mt-5 flex gap-10">
+  <button class="btn" mat-button color="primary" (click)="back()" type="button">Back</button>
+  <button [disabled]="!canContinue" class="btn" mat-flat-button color="primary" (click)="forward()" type="button">
+    Continue
+  </button>
+</div>

@@ -29,7 +29,7 @@ export class SecondMenuComponent implements OnDestroy {
 
   private destroy$ = new Subject<void>();
 
-  @Input() public editable = true;
+  @Input() public editable = false;
 
   constructor(private searchService: SearchService) {
     this.searchService.requestData$.pipe(takeUntil(this.destroy$)).subscribe((v) => {

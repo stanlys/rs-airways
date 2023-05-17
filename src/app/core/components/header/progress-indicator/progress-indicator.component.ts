@@ -22,8 +22,8 @@ export class ProgressIndicatorComponent implements AfterViewInit {
 
   public ngAfterViewInit(): void {
     this.controlService.stepper = this.stepperRef;
-    this.stepperRef.selectionChange.subscribe((selection) =>
-      this.controlService.selectedIndex$.next(selection.selectedIndex)
-    );
+    this.stepperRef.selectionChange.subscribe((selection) => {
+      this.controlService.navigateToIndex(selection.selectedIndex);
+    });
   }
 }

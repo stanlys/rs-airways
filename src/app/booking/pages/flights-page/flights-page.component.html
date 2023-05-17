@@ -1,0 +1,24 @@
+<!-- TODO: add translation -->
+<app-second-menu [editable]="true" (toggleSearchForm)="showSearchForm = !showSearchForm" />
+
+<div class="booking-container flex flex-col pt-10 mb-5 mx-auto relative">
+  <app-flights-form *ngIf="showSearchForm" (hideForm)="showSearchForm = false" />
+
+  <ng-container *ngIf="flights">
+    <ng-container *ngIf="(isLoading$ | async) !== true; else spinner">
+      <app-flights
+        *ngFor="let flight of flights; index as i; odd as odd"
+        [odd]="odd"
+        [showSearchForm]="showSearchForm"
+        [flight]="flight"
+        [confirmed]="flightsConfirmed[i]"
+        (confirmedChange)="onFlightConfirmed(i, $event)"
+      />
+    </ng-container>
+    <app-progress-controls [canContinue]="checkAllFlights()" />
+  </ng-container>
+</div>
+
+<ng-template #spinner>
+  <mat-spinner class="spinner mx-auto" style="width: 48px; height: 48px"></mat-spinner>
+</ng-template>
