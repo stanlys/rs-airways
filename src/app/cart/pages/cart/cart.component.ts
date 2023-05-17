@@ -51,7 +51,17 @@ export class CartComponent implements AfterViewInit {
           dateTime: '01-05-2023',
           typeTrip: 'Round trip',
           flights: ['111'],
-          passengers: ['3333'],
+          passengers: [
+            {
+              nameFull: 'Harry Potter',
+              age: 20,
+              cabinBag: 10,
+              fare: 10,
+              luggage: 23,
+              seat: '19A',
+              tax: 12.2,
+            },
+          ],
           price: Math.round(Math.random() * 1000),
         },
       })

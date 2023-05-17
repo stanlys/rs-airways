@@ -6,7 +6,17 @@ export const FLIGHTS: IFlight[] = [
     flights: ['Dublin - Warsaw', 'Modlin - Dublin'],
     typeTrip: 'RoundTrip',
     dateTime: '1 Mar 2023, 8:40-12:00',
-    passengers: ['1 x Adult', '1 x Child'],
+    passengers: [
+      {
+        nameFull: 'Harry Potter',
+        age: 20,
+        cabinBag: 10,
+        fare: 10,
+        luggage: 23,
+        seat: '19A',
+        tax: 12.2,
+      },
+    ],
     price: 551.38,
   },
   {
@@ -14,7 +24,17 @@ export const FLIGHTS: IFlight[] = [
     flights: ['Wroclaw - Warsaw'],
     typeTrip: 'One Way',
     dateTime: '28 Mar 2023, 8:40-12:00',
-    passengers: ['1 x Adult'],
+    passengers: [
+      {
+        nameFull: 'Harry Potter',
+        age: 20,
+        cabinBag: 10,
+        fare: 10,
+        luggage: 23,
+        seat: '19A',
+        tax: 12.2,
+      },
+    ],
     price: 26.98,
   },
 ];

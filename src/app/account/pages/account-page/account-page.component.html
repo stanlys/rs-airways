@@ -44,7 +44,7 @@
       </ng-container>
       <ng-container matColumnDef="passengers">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'CART.PASSENGER' | translate }}</th>
-        <td mat-cell *matCellDef="let el">{{ el.passengers }}</td>
+        <td mat-cell *matCellDef="let el">{{ el.passengers[0].nameFull }}</td>
       </ng-container>
       <ng-container matColumnDef="price">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'CART.PRICE' | translate }}</th>

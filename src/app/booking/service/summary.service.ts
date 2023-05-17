@@ -6,9 +6,9 @@ import { IPassenger } from '../interface/passenger';
   providedIn: 'root',
 })
 export class SummaryService {
-  private adultAge = 18;
+  private adultAge = 14;
 
-  private infantAge = 7;
+  private infantAge = 2;
 
   public getSummaryByAge(flights: Array<ISummaryFlight>): Array<ISummaryFare> {
     const result: Array<ISummaryFare> = [INIT_SUMMARY_FARE, INIT_SUMMARY_FARE, INIT_SUMMARY_FARE];
