@@ -21,13 +21,13 @@ export class FlightRouteComponent implements OnInit {
   }
 
   public switchDirection(): void {
-    const fromForm = this.flightRouteForm.get('from');
-    const toForm = this.flightRouteForm.get('to');
-    if (!fromForm || !toForm) return;
+    const fromLocControl = this.flightRouteForm.get('fromLoc');
+    const toLocControl = this.flightRouteForm.get('toLoc');
+    if (!fromLocControl || !toLocControl) return;
 
     this.flightRouteForm.setValue({
-      from: toForm.value as AirportForm,
-      to: fromForm.value as AirportForm,
+      fromLoc: toLocControl.value as AirportForm,
+      toLoc: fromLocControl.value as AirportForm,
     });
   }
 
