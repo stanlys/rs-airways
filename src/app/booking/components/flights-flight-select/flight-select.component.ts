@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnDestroy, Output, SimpleChanges } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
@@ -10,7 +10,7 @@ import { PriceService } from '../../../shared/services/price.service';
   templateUrl: './flight-select.component.html',
   styleUrls: ['./flight-select.component.scss'],
 })
-export class FlightSelectComponent implements OnInit, OnDestroy {
+export class FlightSelectComponent implements OnChanges, OnDestroy {
   @Input() public flight!: Flight;
 
   @Input() public confirmed!: boolean;
@@ -27,8 +27,20 @@ export class FlightSelectComponent implements OnInit, OnDestroy {
     this.onLangChangeSub = this.translate.onLangChange.subscribe(() => this.setPrice());
   }
 
-  public ngOnInit(): void {
-    this.setPrice();
+  public ngOnChanges(changes: SimpleChanges): void {
+    const { flight } = changes;
+
+    if (flight != null) {
+      this.setPrice();
+
+      const previousValue = flight.previousValue as Flight;
+      const currentValue = flight.currentValue as Flight;
+      const { firstChange } = flight;
+
+      if (!firstChange && currentValue.price.usd !== previousValue.price.usd) {
+        this.setPrice();
+      }
+    }
   }
 
   public ngOnDestroy(): void {

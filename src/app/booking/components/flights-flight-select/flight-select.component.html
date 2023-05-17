@@ -11,9 +11,9 @@
       </div>
       <div class="price mt-[6px] flex flex-col items-center md:items-end">
         <span class="title text-[#74767a] text-xs">Price</span>
-        <span class="details text-[#11397e] text-3xl text-ellipsis overflow-hidden max-w-full">{{
-          price | currency : currencyCode
-        }}</span>
+        <span class="details text-[#11397e] text-3xl text-ellipsis overflow-hidden max-w-full">
+          {{ price | currency : currencyCode }}
+        </span>
       </div>
     </div>
     <button class="btn select self-center" mat-stroked-button (click)="onClick()">Select</button>
