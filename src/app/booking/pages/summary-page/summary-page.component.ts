@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { ActivatedRoute } from '@angular/router';
 import { SUMMART_FLIGHT, SUMMARY_PASSENGER_TEST } from './MOCK_DATA_summary_page';
 
 @Component({
@@ -12,7 +13,9 @@ export class SummaryPageComponent {
 
   public flights = SUMMART_FLIGHT;
 
-  constructor(private store: Store) {}
+  constructor(private store: Store, public router: ActivatedRoute) {
+    this.router.queryParamMap.subscribe((a) => console.log(a));
+  }
 
   public addtoCart(): void {
     // добавление в store
