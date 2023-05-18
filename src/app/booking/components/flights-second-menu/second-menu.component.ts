@@ -9,21 +9,9 @@ import { SearchService } from '../../../shared/services/search.service';
   styleUrls: ['./second-menu.component.scss'],
 })
 export class SecondMenuComponent implements OnDestroy {
-  public hasData = false;
-
-  public fromCity = '';
-
-  public toCity?: string;
-
-  public fromDate?: Date | null;
-
-  public toDate?: Date | null;
-
-  public oneWayDate?: Date | null;
+  public requestData$ = this.searchService.requestData$;
 
   public passengerAmount = 0;
-
-  public oneWay = false;
 
   @Output() public toggleSearchForm = new EventEmitter<void>();
 
@@ -33,14 +21,7 @@ export class SecondMenuComponent implements OnDestroy {
 
   constructor(private searchService: SearchService) {
     this.searchService.requestData$.pipe(takeUntil(this.destroy$)).subscribe((v) => {
-      this.hasData = v != null;
-
       if (v != null) {
-        this.oneWay = v.oneWay;
-        this.fromCity = v.airport.fromLoc.city;
-        this.toCity = v.airport.toLoc.city;
-        this.fromDate = new Date(v.dates.takeoffDate);
-        this.toDate = v.dates.landingDate ? new Date(v.dates.landingDate) : null;
         this.passengerAmount = Object.values(v.passengers).reduce((a: number, b: number) => a + b, 0) as number;
       }
     });

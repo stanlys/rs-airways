@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -9,11 +9,18 @@ import { DatesFieldComponent } from './components/dates-field/dates-field.compon
 import PassengerInputComponent from './components/passengers-field/passenger-input/passenger-input.component';
 import { PassengersFieldComponent } from './components/passengers-field/passengers-field.component';
 import { MaterialModule } from './material/material.module';
+import { LocalizedDatePipe } from './pipes/localized-date.pipe';
 
 @NgModule({
   imports: [MaterialModule, CommonModule, ReactiveFormsModule, TranslateModule],
-  declarations: [AirportFieldComponent, DatesFieldComponent, PassengersFieldComponent, PassengerInputComponent],
-  providers: [TranslatePipe],
+  declarations: [
+    AirportFieldComponent,
+    DatesFieldComponent,
+    PassengersFieldComponent,
+    PassengerInputComponent,
+    LocalizedDatePipe,
+  ],
+  providers: [TranslatePipe, DatePipe],
   exports: [
     MaterialModule,
     RouterModule,
@@ -21,6 +28,7 @@ import { MaterialModule } from './material/material.module';
     DatesFieldComponent,
     PassengersFieldComponent,
     TranslatePipe,
+    LocalizedDatePipe,
   ],
 })
 export class SharedModule {}

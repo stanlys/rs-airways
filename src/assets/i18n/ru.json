@@ -57,6 +57,22 @@
     "Children": "Дети",
     "Infant": "Младенцы"
   },
+  "BOOKING": {
+    "RETURN": "Туда и обратно",
+    "BTN_BACK": "Назад",
+    "BTN_CONTINUE": "Продолжить",
+    "NO_FLIGHTS": "Нет сохраненных рейсов"
+  },
+  "FLIGHTS": {
+    "SELECT": "Выбрать",
+    "DIRECT": "Прямой",
+    "CONNECTED": "Непрямой",
+    "SEATS": "мест",
+    "AVAILABLE": "доступно",
+    "PRICE": "Цена",
+    "NO": "Рейс №"
+  },
+  "PROCESS": {},
   "SUMMARY": {
     "CAPTION": "Общая информация",
     "BAG": "выбран багаж (общий 23 кг) включен",
@@ -88,6 +104,8 @@
     "AGREE_TERMS": "Необходимо согласиться "
   },
   "MISC": {
-    "CURRENCY": "RUB"
+    "CURRENCY": "RUB",
+    "BTN_EDIT": "Изменить",
+    "BTN_APPLY": "Применить"
   }
 }

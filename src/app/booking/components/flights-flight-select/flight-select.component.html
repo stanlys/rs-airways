@@ -6,17 +6,19 @@
         [seats]="flight.seats"
         class="seats flex flex-col items-center md:items-end rounded-sm py-1 px-2 text-xs"
       >
-        <span>{{ flight.seats.avaible }} seats&nbsp;</span>
-        <span>available</span>
+        <span>{{ flight.seats.avaible }} {{ 'FLIGHTS.SEATS' | translate }}&nbsp;</span>
+        <span>{{ 'FLIGHTS.AVAILABLE' | translate }}</span>
       </div>
       <div class="price mt-[6px] flex flex-col items-center md:items-end">
-        <span class="title text-[#74767a] text-xs">Price</span>
+        <span class="title text-[#74767a] text-xs">{{ 'FLIGHTS.PRICE' | translate }}</span>
         <span class="details text-[#11397e] text-3xl text-ellipsis overflow-hidden max-w-full">
-          {{ price | currency : currencyCode }}
+          {{ price | currency : currencyCode : undefined : undefined : locale }}
         </span>
       </div>
     </div>
-    <button class="btn select self-center" mat-stroked-button (click)="onClick()">Select</button>
+    <button class="btn select self-center" mat-stroked-button (click)="onClick()">
+      {{ 'FLIGHTS.SELECT' | translate }}
+    </button>
   </div>
 </ng-container>
 
@@ -25,6 +27,6 @@
     <div class="price mt-[6px] flex flex-col items-center md:items-end">
       <span class="details text-3xl font-bold">{{ price | currency : currencyCode }}</span>
     </div>
-    <button class="btn edit self-center" mat-button (click)="onClick()">Edit</button>
+    <button class="btn edit self-center" mat-button (click)="onClick()">{{ 'MISC.BTN_EDIT' | translate }}</button>
   </div>
 </ng-template>

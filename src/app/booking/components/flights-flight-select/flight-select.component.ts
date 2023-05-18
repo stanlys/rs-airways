@@ -23,8 +23,13 @@ export class FlightSelectComponent implements OnChanges, OnDestroy {
 
   private onLangChangeSub: Subscription;
 
-  constructor(private translate: TranslateService, private priceService: PriceService) {
-    this.onLangChangeSub = this.translate.onLangChange.subscribe(() => this.setPrice());
+  public locale = this.translateService.currentLang;
+
+  constructor(private translateService: TranslateService, private priceService: PriceService) {
+    this.onLangChangeSub = this.translateService.onLangChange.subscribe((e) => {
+      this.setPrice();
+      this.locale = e.lang;
+    });
   }
 
   public ngOnChanges(changes: SimpleChanges): void {

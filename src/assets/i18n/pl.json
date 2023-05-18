@@ -57,6 +57,23 @@
     "Children": "Dzieci",
     "Infant": "Dziecko"
   },
+  "BOOKING": {
+    "DEPARTURE": "Wyjazd",
+    "RETURN": "Powrót",
+    "BTN_BACK": "Wstecz",
+    "BTN_CONTINUE": "Kontynuuj",
+    "NO_FLIGHTS": "Nie znaleziono danych lotu"
+  },
+  "FLIGHTS": {
+    "SELECT": "Wybierz",
+    "DIRECT": "Bezpośredni",
+    "CONNECTED": "Connected",
+    "SEATS": "miejsca",
+    "AVAILABLE": "dostępne",
+    "PRICE": "Cena",
+    "NO": "Lot nr."
+  },
+  "PROCESS": {},
   "SUMMARY": {
     "CAPTION": "Streszczenie",
     "BAG": "bagaż rejestrowany (łącznie 23 kg) w cenie",
@@ -88,6 +105,8 @@
     "AGREE_TERMS": "Musisz zgodzić się z warunkami"
   },
   "MISC": {
-    "CURRENCY": "PLN"
+    "CURRENCY": "PLN",
+    "BTN_EDIT": "Edytuj",
+    "BTN_APPLY": "Zastosuj"
   }
 }

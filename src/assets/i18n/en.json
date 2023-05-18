@@ -57,6 +57,23 @@
     "Children": "Children",
     "Infant": "Infant"
   },
+  "BOOKING": {
+    "DEPARTURE": "Departure",
+    "RETURN": "Return",
+    "BTN_BACK": "Back",
+    "BTN_CONTINUE": "Continue",
+    "NO_FLIGHTS": "No flight data found"
+  },
+  "FLIGHTS": {
+    "SELECT": "Select",
+    "DIRECT": "Direct",
+    "CONNECTED": "Connected",
+    "SEATS": "seats",
+    "AVAILABLE": "available",
+    "PRICE": "Price",
+    "NO": "Flight no."
+  },
+  "PROCESS": {},
   "SUMMARY": {
     "CAPTION": "Summary",
     "BAG": "checked bag (total 23 kg) included",
@@ -88,6 +105,8 @@
     "AGREE_TERMS": "Must agree with the terms"
   },
   "MISC": {
-    "CURRENCY": "USD"
+    "CURRENCY": "USD",
+    "BTN_EDIT": "Edit",
+    "BTN_APPLY": "Apply"
   }
 }
