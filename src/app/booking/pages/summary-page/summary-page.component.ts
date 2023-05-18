@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { ActivatedRoute } from '@angular/router';
 import { SUMMART_FLIGHT, SUMMARY_PASSENGER_TEST } from './MOCK_DATA_summary_page';
+import { IPassenger } from '../../interface/passenger';
+import { SummaryService } from '../../service/summary.service';
 
 @Component({
   selector: 'app-summary-page',
@@ -9,12 +10,14 @@ import { SUMMART_FLIGHT, SUMMARY_PASSENGER_TEST } from './MOCK_DATA_summary_page
   styleUrls: ['./summary-page.component.scss'],
 })
 export class SummaryPageComponent {
-  public passengers = SUMMARY_PASSENGER_TEST;
+  // @Input() public passengers = SUMMARY_PASSENGER_TEST;
 
   public flights = SUMMART_FLIGHT;
 
-  constructor(private store: Store, public router: ActivatedRoute) {
-    this.router.queryParamMap.subscribe((a) => console.log(a));
+  constructor(private store: Store, public summaryService: SummaryService) {
+    const summary = summaryService.getSummary();
+
+    // if (summary) this.passengers = summary.passengers;
   }
 
   public addtoCart(): void {

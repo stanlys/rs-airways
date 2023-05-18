@@ -7,6 +7,7 @@ import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { MatSort } from '@angular/material/sort';
 import { addFlightToProfile } from 'src/app/reducers/actions/user-flight-history.action';
+import { ISummaryFlight, ISummaryTrip } from 'src/app/booking/interface/flight';
 import { SHOPPING_CART_COLUMNS } from '../../interfaces/columns';
 import { IFlight } from '../../interfaces';
 import { PassengersListService } from '../../service/passengers-list.service';
@@ -19,9 +20,9 @@ import { PassengersListService } from '../../service/passengers-list.service';
 export class CartComponent implements AfterViewInit {
   public displayedColumns: string[] = SHOPPING_CART_COLUMNS;
 
-  public flights = new MatTableDataSource<IFlight>([]);
+  public flights = new MatTableDataSource<ISummaryTrip>([]);
 
-  public selection = new SelectionModel<IFlight>(true, []);
+  public selection = new SelectionModel<ISummaryTrip>(true, []);
 
   public promocode = '';
 
@@ -30,6 +31,7 @@ export class CartComponent implements AfterViewInit {
   constructor(private store: Store, private router: Router, public passengerList: PassengersListService) {
     this.store.select(selectFlights).subscribe((data) => {
       this.flights.data = data;
+      console.log(data);
       return true;
     });
   }
@@ -39,7 +41,8 @@ export class CartComponent implements AfterViewInit {
   }
 
   public getTotalPrice(): number {
-    return this.selection.selected.map((flight) => flight.price).reduce((acc, value) => acc + value, 0);
+    // return this.selection.selected.map((flight) => flight.price).reduce((acc, value) => acc + value, 0);
+    return 0;
   }
 
   // временное решение для тестирования
@@ -47,22 +50,35 @@ export class CartComponent implements AfterViewInit {
     this.store.dispatch(
       addFlightToCart({
         flight: {
-          number: `FR198${Math.round(Math.random() * 20)}`,
-          dateTime: '01-05-2023',
-          typeTrip: 'Round trip',
-          flights: ['111'],
-          passengers: [
+          trip: [
             {
-              nameFull: 'Harry Potter',
-              age: 20,
-              cabinBag: 10,
-              fare: 10,
-              luggage: 23,
-              seat: '19A',
-              tax: 12.2,
+              number: 'FR 1925',
+              dates: '1 Mar 2023',
+              from: 'Dublin',
+              to: 'Berlin',
+              times: '8:40-12:00',
+              passengers: [
+                {
+                  nameFull: 'Harry Potter',
+                  age: 20,
+                  cabinBag: 10,
+                  fare: 10,
+                  luggage: 23,
+                  seat: '19A',
+                  tax: 12.2,
+                },
+                {
+                  nameFull: 'Harry Potter mini',
+                  age: 1,
+                  cabinBag: 10,
+                  fare: 10,
+                  luggage: 23,
+                  seat: '19A',
+                  tax: 12.2,
+                },
+              ],
             },
           ],
-          price: Math.round(Math.random() * 1000),
         },
       })
     );
@@ -86,7 +102,7 @@ export class CartComponent implements AfterViewInit {
     await this.router.navigate(['/edit'], { queryParams: { flight } });
   }
 
-  public deleteWithCheckbox(flight: IFlight): void {
+  public deleteWithCheckbox(flight: ISummaryTrip): void {
     this.store.dispatch(deleteFlightFromCart({ flight }));
   }
 
@@ -97,7 +113,7 @@ export class CartComponent implements AfterViewInit {
   public pay(): void {
     this.selection.selected.forEach((fligth) => {
       this.store.dispatch(deleteFlightFromCart({ flight: fligth }));
-      this.store.dispatch(addFlightToProfile({ flight: fligth }));
+      // this.store.dispatch(addFlightToProfile({ flight: fligth }));
     });
     this.selection.clear();
   }

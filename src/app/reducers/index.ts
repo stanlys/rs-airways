@@ -1,12 +1,12 @@
 import { isDevMode } from '@angular/core';
 import { ActionReducerMap, MetaReducer } from '@ngrx/store';
 import { SHOPPING_CART } from './actions/shopping-cart.action';
-import { IFlightsStore, shoppingCartReducer } from './reducer/shopping-cart.reducer';
+import { ISummaryFlightsStore, shoppingCartReducer } from './reducer/shopping-cart.reducer';
 import { USER_PROFILE } from './actions/user-flight-history.action';
-import { userProfileReducer } from './reducer/user-flight-history.reducer';
+import { IFlightsStore, userProfileReducer } from './reducer/user-flight-history.reducer';
 
 export interface State {
-  [SHOPPING_CART]: IFlightsStore;
+  [SHOPPING_CART]: ISummaryFlightsStore;
   [USER_PROFILE]: IFlightsStore;
 }
 

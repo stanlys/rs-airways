@@ -24,3 +24,7 @@ export const INIT_SUMMARY_FARE = {
 export interface ISummaryLang {
   [key: string]: string;
 }
+
+export interface ISummaryTrip {
+  trip: ISummaryFlight[];
+}

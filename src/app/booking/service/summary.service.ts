@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { IFlight } from 'src/app/cart/interfaces';
 import { INIT_SUMMARY_FARE, ISummaryFare, ISummaryFlight } from '../interface/flight';
 import { IPassenger } from '../interface/passenger';
 
@@ -9,6 +10,8 @@ export class SummaryService {
   private adultAge = 14;
 
   private infantAge = 2;
+
+  private summaryFlight?: ISummaryFlight;
 
   public getSummaryByAge(flights: Array<ISummaryFlight>): Array<ISummaryFare> {
     const result: Array<ISummaryFare> = [INIT_SUMMARY_FARE, INIT_SUMMARY_FARE, INIT_SUMMARY_FARE];
@@ -39,5 +42,20 @@ export class SummaryService {
       }
     });
     return result;
+  }
+
+  public setSummary(flight: IFlight): void {
+    this.summaryFlight = {
+      dates: flight.dateTime,
+      number: flight.number,
+      to: flight.flights[0],
+      from: flight.flights[0],
+      times: flight.dateTime,
+      passengers: flight.passengers,
+    };
+  }
+
+  public getSummary(): ISummaryFlight | undefined {
+    return this.summaryFlight;
   }
 }

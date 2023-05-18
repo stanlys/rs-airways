@@ -32,7 +32,7 @@ export class PassengersListService {
 
   public passengersByString(passengers: IPassenger[]): string {
     const result = [];
-    let passengersCount: IPassengerByAge = this.passengerByAge(passengers);
+    const passengersCount: IPassengerByAge = this.passengerByAge(passengers);
     if (passengersCount.adult > 0) result.push(`${passengersCount.adult} x Adult`);
     if (passengersCount.child > 0) result.push(`${passengersCount.child} x Child`);
     if (passengersCount.infant > 0) result.push(`${passengersCount.infant} x Infant`);

@@ -6,6 +6,8 @@ import { SHOPPING_CART_COLUMNS } from 'src/app/cart/interfaces/columns';
 import { Store } from '@ngrx/store';
 import { IFlight } from 'src/app/cart/interfaces';
 import { selectFlightsToProfile } from 'src/app/reducers/reducer/user-flight-history.reducer';
+import { Router } from '@angular/router';
+import { SummaryService } from 'src/app/booking/service/summary.service';
 import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
@@ -22,7 +24,12 @@ export class AccountPageComponent implements AfterViewInit {
 
   @ViewChild(MatSort, { static: false }) public sort!: MatSort;
 
-  constructor(private authService: AuthService, private store: Store) {
+  constructor(
+    private authService: AuthService,
+    private store: Store,
+    private route: Router,
+    private summaryService: SummaryService
+  ) {
     this.store.select(selectFlightsToProfile).subscribe((data) => {
       this.flights.data = data;
       return true;
@@ -53,5 +60,10 @@ export class AccountPageComponent implements AfterViewInit {
       return;
     }
     this.selection.select(...this.flights.data);
+  }
+
+  public viewDetail(el: IFlight): void {
+    this.summaryService.setSummary(el);
+    this.route.navigate(['/booking/summary']).finally(() => {});
   }
 }
