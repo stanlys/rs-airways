@@ -8,7 +8,7 @@ import { SearchService } from '../../../shared/services/search.service';
   styleUrls: ['./flights-page.component.scss'],
 })
 export class FlightsPageComponent implements OnDestroy {
-  public flights = this.searchService.flights$.getValue();
+  public flights = this.searchService.flights$.asObservable();
 
   public showSearchForm = false;
 
@@ -21,7 +21,6 @@ export class FlightsPageComponent implements OnDestroy {
   constructor(private searchService: SearchService) {
     const flightsSub = searchService.flights$.subscribe((v) => {
       if (v != null) {
-        this.flights = v;
         this.flightsConfirmed = <boolean[]>Array(v.length).fill(false);
       }
     });

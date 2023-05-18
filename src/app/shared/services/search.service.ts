@@ -1,12 +1,13 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import dayjs from 'dayjs';
-import utc from 'dayjs/plugin/utc';
 import isToday from 'dayjs/plugin/isToday';
+import utc from 'dayjs/plugin/utc';
 
 import { BehaviorSubject, Observable, Subject, catchError, of, take, timeout } from 'rxjs';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { passengersValidator } from '../../main/directives/passengers-validator.directive';
 import { API_BASE_URL, STORAGE_KEY_PREFIX } from '../constants';
 import { AirportForm, Flight } from '../models/flight-search.interfaces';
@@ -31,9 +32,7 @@ export class SearchService {
 
   public searchForm: FormGroup;
 
-  public timeout$ = new Subject<void>();
-
-  constructor(private fb: FormBuilder, private http: HttpClient) {
+  constructor(private fb: FormBuilder, private http: HttpClient, private snackBar: MatSnackBar) {
     this.recoverStorageEntries();
     this.searchForm = this.createSearchForm();
   }
@@ -92,12 +91,15 @@ export class SearchService {
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
-    return (error: Error | undefined): Observable<T> => {
+    return (error: HttpErrorResponse | undefined): Observable<T> => {
       console.error(operation, error);
 
-      if (error?.name === 'TimeoutError') {
-        this.timeout$.next();
-      }
+      this.flights$.next(null);
+      localStorage.removeItem(this.flightsKey);
+
+      this.snackBar.open(error?.message || 'Unknown error', 'Close', {
+        duration: 3000,
+      });
 
       return of(result as T);
     };
