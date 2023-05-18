@@ -14,22 +14,7 @@ export class ProgressControlService {
   constructor(private router: Router) {}
 
   public navigateToIndex(index: number): void {
-    let path = '';
-
-    switch (index) {
-      case 0:
-        path = 'flights';
-        break;
-      case 1:
-        path = 'process';
-        break;
-      case 2:
-        path = 'summary';
-        break;
-      default:
-        path = 'flights';
-    }
-
-    this.router.navigate(['booking', path]).catch(console.error);
+    const paths = ['flights', 'process', 'summary'];
+    this.router.navigate(['booking', paths[index]]).catch(console.error);
   }
 }
