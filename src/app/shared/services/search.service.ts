@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
+import isToday from 'dayjs/plugin/isToday';
+
 import { BehaviorSubject, Observable, Subject, catchError, of, take, timeout } from 'rxjs';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -11,6 +13,7 @@ import { AirportForm, Flight } from '../models/flight-search.interfaces';
 import { FlightSearchFormValue, FlightSearchRequest, FlightSearchResponse } from '../models/flight-search.model';
 
 dayjs.extend(utc);
+dayjs.extend(isToday);
 
 @Injectable({
   providedIn: 'root',
@@ -27,6 +30,8 @@ export class SearchService {
   public isLoading$ = new Subject<boolean>();
 
   public searchForm: FormGroup;
+
+  public timeout$ = new Subject<void>();
 
   constructor(private fb: FormBuilder, private http: HttpClient) {
     this.recoverStorageEntries();
@@ -86,9 +91,14 @@ export class SearchService {
     });
   }
 
-  private static handleError<T>(operation = 'operation', result?: T) {
+  private handleError<T>(operation = 'operation', result?: T) {
     return (error: Error | undefined): Observable<T> => {
       console.error(operation, error);
+
+      if (error?.name === 'TimeoutError') {
+        this.timeout$.next();
+      }
+
       return of(result as T);
     };
   }
@@ -97,7 +107,7 @@ export class SearchService {
     const url = `${API_BASE_URL}search/flight`;
     return this.http
       .post<FlightSearchResponse>(url, v)
-      .pipe(take(1), timeout(3000), catchError(SearchService.handleError('search', null)));
+      .pipe(take(1), timeout(6000), catchError(this.handleError('search', null)));
   }
 
   private static transformFormValueToReqScheme(v: FlightSearchFormValue): FlightSearchRequest {
@@ -105,8 +115,12 @@ export class SearchService {
     const { fromLoc, toLoc } = airport;
     const { IATA: fromKey } = fromLoc;
     const { IATA: toKey } = toLoc;
-    const forwardDate = dayjs.utc(dates.takeoffDate).toISOString();
-    const backDate = oneWay !== true ? dayjs.utc(dates.landingDate).toISOString() : undefined;
+    let forwardDate = dayjs(dates.takeoffDate).toISOString();
+    const backDate = oneWay !== true ? dayjs(dates.landingDate).toISOString() : undefined;
+
+    if (dayjs(dates.takeoffDate).isToday()) {
+      forwardDate = dayjs().add(1, 'hour').toISOString();
+    }
 
     const requestData: FlightSearchRequest = {
       fromKey,

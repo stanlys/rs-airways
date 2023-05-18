@@ -17,6 +17,8 @@ export class FlightsComponent implements OnInit {
 
   @Input() public showSearchForm!: boolean;
 
+  @Input() public first!: boolean;
+
   @Input() public odd!: boolean;
 
   @Input() public confirmed = false;
@@ -33,7 +35,7 @@ export class FlightsComponent implements OnInit {
   private determineDefaultSelectedFlight(): void {
     const nextFlight = this.flights.find(({ takeoffDate }) => Date.now() <= new Date(takeoffDate).getTime());
 
-    if (dayjs.utc().diff(dayjs.utc(this.flight.takeoffDate), 'millisecond') > 0 && nextFlight) {
+    if (dayjs().diff(dayjs(this.flight.takeoffDate), 'millisecond') > 0 && nextFlight) {
       this.selectedFlight = nextFlight;
     } else {
       this.selectedFlight = this.flight;

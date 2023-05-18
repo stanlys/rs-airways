@@ -1,6 +1,6 @@
 <app-flights-calendar-date
   *ngFor="let date of dates; index as i; last as last"
-  [flight]="flights | findFlight : date"
+  [flight]="flights | findFlight : date : firstFlight"
   [date]="date"
   [selectedFlightNumber]="selectedFlightNumber"
   [last]="last"

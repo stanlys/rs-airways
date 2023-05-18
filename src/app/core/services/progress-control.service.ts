@@ -11,7 +11,8 @@ export class ProgressControlService {
   constructor(private router: Router) {}
 
   public navigateToIndex(index: number): void {
-    const paths = ['flights', 'process', 'summary'];
-    this.router.navigate(['booking', paths[index]]).catch(console.error);
+    const pageNames = ['flights', 'process', 'summary'] as const;
+    const path = pageNames[index];
+    this.router.navigate(['booking', path]).catch(console.error);
   }
 }

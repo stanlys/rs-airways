@@ -4,6 +4,7 @@
 <app-flights-calendar
   *ngIf="!confirmed"
   class="justify-between flex items-end relative"
+  [firstFlight]="first"
   [flights]="flights"
   [selectedFlight]="selectedFlight"
   [selectedFlightNumber]="selectedFlight?.flightNumber"

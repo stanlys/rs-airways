@@ -6,7 +6,8 @@
   <ng-container *ngIf="flights">
     <ng-container *ngIf="(isLoading$ | async) !== true; else spinner">
       <app-flights
-        *ngFor="let flight of flights; index as i; odd as odd"
+        *ngFor="let flight of flights; index as i; odd as odd; first as first"
+        [first]="first"
         [odd]="odd"
         [showSearchForm]="showSearchForm"
         [flight]="flight"

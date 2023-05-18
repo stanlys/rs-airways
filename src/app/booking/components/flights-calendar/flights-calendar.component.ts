@@ -1,10 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import dayjs from 'dayjs';
-import utc from 'dayjs/plugin/utc';
 
 import { Flight } from '../../../shared/models/flight-search.interfaces';
-
-dayjs.extend(utc);
 
 @Component({
   selector: 'app-flights-calendar',
@@ -21,6 +18,8 @@ export class FlightsCalendarComponent implements OnInit {
   public dates: Date[] = [];
 
   @Input() public flights!: Flight[];
+
+  @Input() public firstFlight = false;
 
   public ngOnInit(): void {
     if (this.selectedFlight != null) {
