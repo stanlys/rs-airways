@@ -1,6 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { ProgressControlService } from '../../../core/services/progress-control.service';
 import { SearchService } from '../../../shared/services/search.service';
 
 @Component({
@@ -19,9 +18,7 @@ export class FlightsPageComponent implements OnDestroy {
 
   public isLoading$;
 
-  public selectedIndex$;
-
-  constructor(controlService: ProgressControlService, private searchService: SearchService) {
+  constructor(private searchService: SearchService) {
     const flightsSub = searchService.flights$.subscribe((v) => {
       if (v != null) {
         this.flights = v;
@@ -32,8 +29,6 @@ export class FlightsPageComponent implements OnDestroy {
     this.subs.add(flightsSub);
 
     this.isLoading$ = searchService.isLoading$;
-
-    this.selectedIndex$ = controlService.selectedIndex$;
   }
 
   public ngOnDestroy(): void {
