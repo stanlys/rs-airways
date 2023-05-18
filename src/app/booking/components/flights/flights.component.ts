@@ -35,7 +35,7 @@ export class FlightsComponent implements OnInit {
   private determineDefaultSelectedFlight(): void {
     const nextFlight = this.flights.find(({ takeoffDate }) => Date.now() <= new Date(takeoffDate).getTime());
 
-    if (dayjs().diff(dayjs(this.flight.takeoffDate), 'millisecond') > 0 && nextFlight) {
+    if (dayjs().diff(dayjs(this.flight.takeoffDate), 'day') > 0 && nextFlight) {
       this.selectedFlight = nextFlight;
     } else {
       this.selectedFlight = this.flight;
