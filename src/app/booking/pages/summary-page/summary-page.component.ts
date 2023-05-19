@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { SUMMART_FLIGHT, SUMMARY_PASSENGER_TEST } from './MOCK_DATA_summary_page';
-import { IPassenger } from '../../interface/passenger';
+import { SUMMART_TRIP } from './MOCK_DATA_summary_page';
 import { SummaryService } from '../../service/summary.service';
+import { ITrip } from '../../interface/flight';
 
 @Component({
   selector: 'app-summary-page',
@@ -10,23 +10,19 @@ import { SummaryService } from '../../service/summary.service';
   styleUrls: ['./summary-page.component.scss'],
 })
 export class SummaryPageComponent {
-  // @Input() public passengers = SUMMARY_PASSENGER_TEST;
-
-  public flights = SUMMART_FLIGHT;
+  public trip?: ITrip;
 
   constructor(private store: Store, public summaryService: SummaryService) {
-    const summary = summaryService.getSummary();
-
-    // if (summary) this.passengers = summary.passengers;
+    this.trip = summaryService.getSummary();
   }
 
   public addtoCart(): void {
     // добавление в store
-    console.log('Add to cart ', this.flights);
+    console.log('Add to cart ', this.trip);
   }
 
   public buyNow(): void {
     // добавление в store
-    console.log('Buy now ', this.flights);
+    console.log('Buy now ', this.trip);
   }
 }

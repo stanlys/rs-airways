@@ -1,6 +1,6 @@
 import { TranslateService } from '@ngx-translate/core';
 import { Component, Input, OnInit } from '@angular/core';
-import { ISummaryFare, ISummaryFlight, ISummaryLang } from '../../interface/flight';
+import { ISummaryFare, ISummaryLang, ISummaryTrip, ITrip } from '../../interface/flight';
 import { SummaryService } from '../../service/summary.service';
 import { CurrencySymbolService } from '../../service/currency-symbol.service';
 
@@ -10,7 +10,7 @@ import { CurrencySymbolService } from '../../service/currency-symbol.service';
   styleUrls: ['./total-price.component.scss'],
 })
 export class TotalPriceComponent implements OnInit {
-  @Input() public flights!: Array<ISummaryFlight>;
+  @Input() public trip!: ITrip;
 
   public summaryByAge?: Array<ISummaryFare>;
 
@@ -21,7 +21,10 @@ export class TotalPriceComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    this.summaryByAge = this.summaryService.getSummaryByAge(this.flights);
+    const arr: Array<ISummaryTrip> = [];
+    arr.push(this.trip.from);
+    if (this.trip.to) arr.push(this.trip.to);
+    this.summaryByAge = this.summaryService.getSummaryByAge(arr);
   }
 
   public getCaption(count: number, index: number): string {

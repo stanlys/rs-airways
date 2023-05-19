@@ -11,6 +11,7 @@ import { ITrip } from 'src/app/booking/interface/flight';
 import { SHOPPING_CART_COLUMNS } from '../../interfaces/columns';
 import { IFlight } from '../../interfaces';
 import { PassengersListService } from '../../service/passengers-list.service';
+import { TripListService } from '../../service/trip-list.service';
 
 @Component({
   selector: 'app-cart',
@@ -28,7 +29,12 @@ export class CartComponent implements AfterViewInit {
 
   @ViewChild(MatSort, { static: false }) public sort!: MatSort;
 
-  constructor(private store: Store, private router: Router, public passengerList: PassengersListService) {
+  constructor(
+    private store: Store,
+    private router: Router,
+    public passengerList: PassengersListService,
+    public tripList: TripListService
+  ) {
     this.store.select(selectFlights).subscribe((data) => {
       this.flights.data = data;
       return true;

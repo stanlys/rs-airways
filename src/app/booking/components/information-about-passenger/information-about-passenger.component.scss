@@ -6,3 +6,8 @@
   @include m.body-large-typography();
   color: c.$black;
 }
+
+.flex_between {
+  display: flex;
+  justify-content: space-between;
+}

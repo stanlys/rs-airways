@@ -3,12 +3,11 @@
     <img alt="Summary" src="assets/Summary.svg" />
     <span class="page_title"> {{ 'SUMMARY.CAPTION' | translate }} </span>
   </div>
-  <div class="grid justify-end grid-cols-1 gap-10 lg:grid-cols-2">
-    <ng-container *ngFor="let flight of flights">
-      <app-summary-passenger-card [flight]="flight"></app-summary-passenger-card>
-    </ng-container>
+  <div class="grid justify-end grid-cols-1 gap-10 lg:grid-cols-2" *ngIf="trip !== undefined">
+    <app-summary-passenger-card [trip]="trip.from"></app-summary-passenger-card>
+    <app-summary-passenger-card *ngIf="trip.to !== null" [trip]="trip.to"></app-summary-passenger-card>
     <div class="lg:col-start-2">
-      <app-total-price [flights]="flights"></app-total-price>
+      <app-total-price [trip]="trip"></app-total-price>
     </div>
   </div>
   <div class="flex gap-5 flex-wrap mt-4 md:mt-10 flex-row justify-end">

@@ -1,6 +1,7 @@
 <mat-card class="p-6 pb-0">
   <ng-container *ngFor="let summary of summaryByAge; let i = index">
     <app-total-price-element
+      *ngIf="summary.count > 0"
       [fare]="summary.fare"
       [tax]="summary.tax"
       [caption]="getCaption(summary.count, i)"

@@ -28,27 +28,27 @@
       </ng-container>
       <ng-container matColumnDef="number">
         <th mat-header-cell *matHeaderCellDef class="table_head" mat-sort-header>No.</th>
-        <td mat-cell *matCellDef="let el">{{ el.number }}</td>
+        <td mat-cell *matCellDef="let el">{{ tripList.getNumber(el) }}</td>
       </ng-container>
       <ng-container matColumnDef="flights">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'CART.FLIGHT' | translate }}</th>
-        <td mat-cell *matCellDef="let el">{{ el.flights }}</td>
+        <td mat-cell *matCellDef="let el">{{ tripList.getFlight(el) }}</td>
       </ng-container>
       <ng-container matColumnDef="typeTrip">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'CART.TYPE_TRIP' | translate }}</th>
-        <td mat-cell *matCellDef="let el">{{ el.typeTrip }}</td>
+        <td mat-cell *matCellDef="let el">{{ tripList.getFlightType(el) }}</td>
       </ng-container>
       <ng-container matColumnDef="dateTime" class="md: hidden">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'CART.DATE_TIME' | translate }}</th>
-        <td mat-cell *matCellDef="let el">{{ el.dateTime }}</td>
+        <td mat-cell *matCellDef="let el">{{ tripList.getDateTime(el) }}</td>
       </ng-container>
       <ng-container matColumnDef="passengers">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'CART.PASSENGER' | translate }}</th>
-        <td mat-cell *matCellDef="let el">{{ el.passengers[0].nameFull }}</td>
+        <td mat-cell *matCellDef="let el">{{ passengerList.passengersByString(el.from.passengers) }}</td>
       </ng-container>
       <ng-container matColumnDef="price">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'CART.PRICE' | translate }}</th>
-        <td mat-cell *matCellDef="let el">{{ el.price | currency : '€' }}</td>
+        <td mat-cell *matCellDef="let el">{{ tripList.getPrice(el) | currency : '€' }}</td>
       </ng-container>
       <ng-container matColumnDef="control" stickyEnd>
         <th mat-header-cell *matHeaderCellDef>&nbsp;</th>

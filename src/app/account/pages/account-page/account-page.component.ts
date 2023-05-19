@@ -8,6 +8,8 @@ import { IFlight } from 'src/app/cart/interfaces';
 import { selectFlightsToProfile } from 'src/app/reducers/reducer/user-flight-history.reducer';
 import { Router } from '@angular/router';
 import { ITrip } from 'src/app/booking/interface/flight';
+import { TripListService } from 'src/app/cart/service/trip-list.service';
+import { PassengersListService } from 'src/app/cart/service/passengers-list.service';
 import { SummaryService } from 'src/app/booking/service/summary.service';
 import { AuthService } from '../../../core/services/auth.service';
 
@@ -29,7 +31,9 @@ export class AccountPageComponent implements AfterViewInit {
     private authService: AuthService,
     private store: Store,
     private route: Router,
-    private summaryService: SummaryService
+    private summaryService: SummaryService,
+    public tripList: TripListService,
+    public passengerList: PassengersListService
   ) {
     this.store.select(selectFlightsToProfile).subscribe((data) => {
       this.flights.data = data;
@@ -46,7 +50,9 @@ export class AccountPageComponent implements AfterViewInit {
   }
 
   public getTotalPrice(): number {
-    return this.selection.selected.map((flight) => flight.from.price).reduce((acc, value) => acc + value, 0);
+    return this.selection.selected
+      .map((flight) => flight.from.price + (flight.to?.price || 0))
+      .reduce((acc, value) => acc + value, 0);
   }
 
   public isAllSelected(): boolean {
@@ -63,7 +69,7 @@ export class AccountPageComponent implements AfterViewInit {
     this.selection.select(...this.flights.data);
   }
 
-  public viewDetail(el: IFlight): void {
+  public viewDetail(el: ITrip): void {
     this.summaryService.setSummary(el);
     this.route.navigate(['/booking/summary']).finally(() => {});
   }
