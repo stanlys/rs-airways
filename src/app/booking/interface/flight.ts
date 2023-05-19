@@ -1,3 +1,4 @@
+import { IFlight } from 'src/app/cart/interfaces';
 import { IPassenger } from './passenger';
 
 export interface ISummaryFlight {
@@ -25,6 +26,21 @@ export interface ISummaryLang {
   [key: string]: string;
 }
 
+// export interface ISummaryTrip {
+//   trip: ISummaryFlight[];
+// }
+
 export interface ISummaryTrip {
-  trip: ISummaryFlight[];
+  number: string;
+  dates: string;
+  times: string;
+  from: string;
+  to: string;
+  price: number;
+  passengers: Array<IPassenger>;
+}
+
+export interface ITrip {
+  from: ISummaryTrip;
+  to: ISummaryTrip | null;
 }

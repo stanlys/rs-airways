@@ -7,6 +7,7 @@ import { Store } from '@ngrx/store';
 import { IFlight } from 'src/app/cart/interfaces';
 import { selectFlightsToProfile } from 'src/app/reducers/reducer/user-flight-history.reducer';
 import { Router } from '@angular/router';
+import { ITrip } from 'src/app/booking/interface/flight';
 import { SummaryService } from 'src/app/booking/service/summary.service';
 import { AuthService } from '../../../core/services/auth.service';
 
@@ -18,9 +19,9 @@ import { AuthService } from '../../../core/services/auth.service';
 export class AccountPageComponent implements AfterViewInit {
   public displayedColumns: string[] = SHOPPING_CART_COLUMNS;
 
-  public flights = new MatTableDataSource<IFlight>([]);
+  public flights = new MatTableDataSource<ITrip>([]);
 
-  public selection = new SelectionModel<IFlight>(true, []);
+  public selection = new SelectionModel<ITrip>(true, []);
 
   @ViewChild(MatSort, { static: false }) public sort!: MatSort;
 
@@ -45,7 +46,7 @@ export class AccountPageComponent implements AfterViewInit {
   }
 
   public getTotalPrice(): number {
-    return this.selection.selected.map((flight) => flight.price).reduce((acc, value) => acc + value, 0);
+    return this.selection.selected.map((flight) => flight.from.price).reduce((acc, value) => acc + value, 0);
   }
 
   public isAllSelected(): boolean {

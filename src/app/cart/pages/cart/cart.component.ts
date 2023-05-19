@@ -7,7 +7,7 @@ import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { MatSort } from '@angular/material/sort';
 import { addFlightToProfile } from 'src/app/reducers/actions/user-flight-history.action';
-import { ISummaryFlight, ISummaryTrip } from 'src/app/booking/interface/flight';
+import { ITrip } from 'src/app/booking/interface/flight';
 import { SHOPPING_CART_COLUMNS } from '../../interfaces/columns';
 import { IFlight } from '../../interfaces';
 import { PassengersListService } from '../../service/passengers-list.service';
@@ -20,9 +20,9 @@ import { PassengersListService } from '../../service/passengers-list.service';
 export class CartComponent implements AfterViewInit {
   public displayedColumns: string[] = SHOPPING_CART_COLUMNS;
 
-  public flights = new MatTableDataSource<ISummaryTrip>([]);
+  public flights = new MatTableDataSource<ITrip>([]);
 
-  public selection = new SelectionModel<ISummaryTrip>(true, []);
+  public selection = new SelectionModel<ITrip>(true, []);
 
   public promocode = '';
 
@@ -31,7 +31,6 @@ export class CartComponent implements AfterViewInit {
   constructor(private store: Store, private router: Router, public passengerList: PassengersListService) {
     this.store.select(selectFlights).subscribe((data) => {
       this.flights.data = data;
-      console.log(data);
       return true;
     });
   }
@@ -41,7 +40,9 @@ export class CartComponent implements AfterViewInit {
   }
 
   public getTotalPrice(): number {
-    // return this.selection.selected.map((flight) => flight.price).reduce((acc, value) => acc + value, 0);
+    return this.selection.selected
+      .map((flight) => flight.from.price + (flight.to?.price || 0))
+      .reduce((acc, value) => acc + value, 0);
     return 0;
   }
 
@@ -50,35 +51,62 @@ export class CartComponent implements AfterViewInit {
     this.store.dispatch(
       addFlightToCart({
         flight: {
-          trip: [
-            {
-              number: 'FR 1925',
-              dates: '1 Mar 2023',
-              from: 'Dublin',
-              to: 'Berlin',
-              times: '8:40-12:00',
-              passengers: [
-                {
-                  nameFull: 'Harry Potter',
-                  age: 20,
-                  cabinBag: 10,
-                  fare: 10,
-                  luggage: 23,
-                  seat: '19A',
-                  tax: 12.2,
-                },
-                {
-                  nameFull: 'Harry Potter mini',
-                  age: 1,
-                  cabinBag: 10,
-                  fare: 10,
-                  luggage: 23,
-                  seat: '19A',
-                  tax: 12.2,
-                },
-              ],
-            },
-          ],
+          from: {
+            number: 'FR 1999',
+            dates: '1 Mar 2023',
+            from: 'Dublin',
+            to: 'Berlin',
+            times: '8:40-12:00',
+            price: 200,
+            passengers: [
+              {
+                nameFull: 'Harry Potter',
+                age: 20,
+                cabinBag: 10,
+                fare: 10,
+                luggage: 23,
+                seat: '19A',
+                tax: 12.2,
+              },
+              {
+                nameFull: 'Harry Potter mini',
+                age: 1,
+                cabinBag: 10,
+                fare: 10,
+                luggage: 23,
+                seat: '19A',
+                tax: 12.2,
+              },
+            ],
+          },
+          to: {
+            number: 'FR 1926',
+            dates: '1 Mar 2023',
+            from: 'Dublin',
+            to: 'Berlin',
+            times: '8:40-12:00',
+            price: 50,
+            passengers: [
+              {
+                nameFull: 'Harry Potter',
+                age: 20,
+                cabinBag: 10,
+                fare: 10,
+                luggage: 23,
+                seat: '19A',
+                tax: 12.2,
+              },
+              {
+                nameFull: 'Harry Potter mini',
+                age: 1,
+                cabinBag: 10,
+                fare: 10,
+                luggage: 23,
+                seat: '19A',
+                tax: 12.2,
+              },
+            ],
+          },
         },
       })
     );
@@ -102,7 +130,7 @@ export class CartComponent implements AfterViewInit {
     await this.router.navigate(['/edit'], { queryParams: { flight } });
   }
 
-  public deleteWithCheckbox(flight: ISummaryTrip): void {
+  public deleteWithCheckbox(flight: ITrip): void {
     this.store.dispatch(deleteFlightFromCart({ flight }));
   }
 
@@ -113,7 +141,7 @@ export class CartComponent implements AfterViewInit {
   public pay(): void {
     this.selection.selected.forEach((fligth) => {
       this.store.dispatch(deleteFlightFromCart({ flight: fligth }));
-      // this.store.dispatch(addFlightToProfile({ flight: fligth }));
+      this.store.dispatch(addFlightToProfile({ flight: fligth }));
     });
     this.selection.clear();
   }

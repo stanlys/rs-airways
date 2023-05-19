@@ -1,8 +1,8 @@
 import { createAction, props } from '@ngrx/store';
-import { IFlight } from 'src/app/cart/interfaces';
+import { ITrip } from 'src/app/booking/interface/flight';
 
 export const USER_PROFILE = 'USER-PROFILE';
 
-export const addFlightToProfile = createAction('[USER-PROFILE Add]', props<{ flight: IFlight }>());
+export const addFlightToProfile = createAction('[USER-PROFILE Add]', props<{ flight: ITrip }>());
 
-export const deleteFlightFromProfile = createAction('[USER-PROFILE Delete]', props<{ flight: IFlight }>());
+export const deleteFlightFromProfile = createAction('[USER-PROFILE Delete]', props<{ flight: ITrip }>());
