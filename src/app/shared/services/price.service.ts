@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { Flight, Price } from '../models/flight-search.interfaces';
+import { BehaviorSubject } from 'rxjs';
+
+import { STORAGE_KEY_PREFIX } from '../constants';
+import { CurrencyCode, Flight, Price } from '../models/flight-search.interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -8,20 +10,20 @@ import { Flight, Price } from '../models/flight-search.interfaces';
 export class PriceService {
   public price?: number;
 
-  public currencyCode: Uppercase<keyof Price> = 'USD';
+  public readonly currencyItemKey = `${STORAGE_KEY_PREFIX}-currency`;
 
-  constructor(private translate: TranslateService) {
-    this.setCurrencyCode();
-    translate.onLangChange.subscribe(() => this.setCurrencyCode());
+  private defaultCode = (localStorage.getItem(this.currencyItemKey) as CurrencyCode) || 'EUR';
+
+  public currencyCode$ = new BehaviorSubject<Uppercase<keyof Price>>(this.defaultCode);
+
+  public setCurrency(code: CurrencyCode = this.defaultCode): void {
+    this.currencyCode$.next(code);
+    localStorage.setItem(this.currencyItemKey, code);
   }
 
-  private setCurrencyCode(): void {
-    this.currencyCode = <Uppercase<keyof Price>>this.translate.instant('MISC.CURRENCY');
-  }
-
-  public getPrice(flight: Flight): number | null {
-    if (this.currencyCode != null) {
-      const priceKey = <keyof Price>this.currencyCode.toLocaleLowerCase();
+  public getPrice(flight: Flight, code: CurrencyCode = this.defaultCode): number | null {
+    if (flight.price != null) {
+      const priceKey = <keyof Price>code.toLowerCase();
       const price = flight.price[priceKey];
       return price;
     }

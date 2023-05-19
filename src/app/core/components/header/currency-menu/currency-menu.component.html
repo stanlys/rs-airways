@@ -1,4 +1,4 @@
-<button class="currency btn" mat-flat-button [matMenuTriggerFor]="currencyMenu">{{ selectedCurrency }}</button>
+<button class="currency btn" mat-flat-button [matMenuTriggerFor]="currencyMenu">{{ selectedCurrency$ | async }}</button>
 <mat-menu #currencyMenu="matMenu">
   <button *ngFor="let cur of currencies" mat-menu-item (click)="selectCurrency(cur)">{{ cur }}</button>
 </mat-menu>

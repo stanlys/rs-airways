@@ -36,6 +36,8 @@ export class DatesFieldComponent implements OnInit, OnDestroy {
     this.takeoffDate = this.datesForm.get('takeoffDate') as FormControl<Date>;
     this.landingDate = this.datesForm.get('landingDate') as FormControl<Date>;
 
+    this.oneWay = this.parentForm.control.get('oneWay')?.value as boolean;
+
     this.parentForm.control
       .get('oneWay')
       ?.valueChanges.pipe(takeUntil(this.destroy$))

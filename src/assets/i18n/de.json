@@ -52,6 +52,23 @@
     "RIGHTS": "Alle Rechte vorbehalten.",
     "PAYS": "Wir akzeptieren diese Zahlungsarten"
   },
+  "BOOKING": {
+    "DEPARTURE": "Abreise",
+    "RETURN": "Zurückgeben",
+    "BTN_BACK": "Zurück",
+    "BTN_CONTINUE": "Weiterhin",
+    "NO_FLIGHTS": "Keine Flugdaten gefunden"
+  },
+  "FLIGHTS": {
+    "SELECT": "Wählen",
+    "DIRECT": "Direkt",
+    "CONNECTED": "Verbunden",
+    "SEATS": "sitzen",
+    "AVAILABLE": "verfügbar",
+    "PRICE": "Preis",
+    "NO": "Flugnr."
+  },
+  "PROCESS": {},
   "PASSENGER": {
     "Adult": "Erwachsene",
     "Children": "Kinder",
@@ -88,6 +105,8 @@
     "AGREE_TERMS": "Muss mit den Bedingungen einverstanden sein"
   },
   "MISC": {
-    "CURRENCY": "EUR"
+    "CURRENCY": "EUR",
+    "BTN_EDIT": "Bearbeiten",
+    "BTN_APPLY": "Gelten"
   }
 }

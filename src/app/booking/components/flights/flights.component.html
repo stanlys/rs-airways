@@ -1,8 +1,10 @@
+<!-- TODO: switch currency and date format using header menu -->
 <app-flights-calendar-destination [flight]="flight" [odd]="odd" />
 
 <app-flights-calendar
   *ngIf="!confirmed"
   class="justify-between flex items-end relative"
+  [isFirstFlight]="first"
   [flights]="flights"
   [selectedFlight]="selectedFlight"
   [selectedFlightNumber]="selectedFlight?.flightNumber"
@@ -11,6 +13,7 @@
 
 <app-flight
   [odd]="odd"
+  [isFirstFlight]="first"
   [flight]="selectedFlight"
   [confirmed]="confirmed"
   (confirmedChange)="confirmedChange.emit($event)"

@@ -1,3 +1,4 @@
+// TODO: use backend for getting airport
 import { AirportForm } from './models/flight-search.interfaces';
 
 export const AIRPORTS: readonly AirportForm[] = [

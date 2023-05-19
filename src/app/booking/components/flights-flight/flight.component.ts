@@ -15,4 +15,6 @@ export class FlightComponent {
   @Input() public confirmed!: boolean;
 
   @Output() public confirmedChange = new EventEmitter<boolean>();
+
+  @Input() public isFirstFlight = false;
 }

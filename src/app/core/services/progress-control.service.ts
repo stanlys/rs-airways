@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatStepper } from '@angular/material/stepper';
-import { BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -8,5 +8,11 @@ import { BehaviorSubject } from 'rxjs';
 export class ProgressControlService {
   public stepper!: MatStepper;
 
-  public selectedIndex$ = new BehaviorSubject<number>(0);
+  constructor(private router: Router) {}
+
+  public navigateToIndex(index: number): void {
+    const pageNames = ['flights', 'process', 'summary'] as const;
+    const path = pageNames[index];
+    this.router.navigate(['booking', path]).catch(console.error);
+  }
 }
