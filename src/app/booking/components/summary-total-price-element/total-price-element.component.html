@@ -1,0 +1,14 @@
+<div class="px-10 pr-18 py-4 flex gap-1 flex-col">
+  <div class="flex justify-between">
+    <span class="caption">{{ caption }}</span>
+    <span class="caption">{{ fare + tax | currency : currencyService.getCurrencySymbol() }}</span>
+  </div>
+  <div class="flex justify-between pl-10">
+    <span>{{ 'SUMMARY.FARE' | translate }} </span>
+    <span>{{ fare | number : '2.2-2' | currency : currencyService.getCurrencySymbol() }} </span>
+  </div>
+  <div class="flex justify-between pl-10">
+    <span>{{ 'SUMMARY.TAX' | translate }} </span>
+    <span> {{ tax | number : '2.2-2' | currency : currencyService.getCurrencySymbol() }} </span>
+  </div>
+</div>

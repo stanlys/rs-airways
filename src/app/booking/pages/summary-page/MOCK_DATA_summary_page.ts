@@ -1,5 +1,5 @@
-import { ISummaryFlight } from '../../interface/flight';
-import { IPassenger } from '../../interface/passenger';
+import { ISummaryFlight } from '../../interfaces/summary-flight';
+import { IPassenger } from '../../interfaces/summary-passenger';
 
 export const SUMMARY_PASSENGER_TEST: Array<IPassenger> = [
   {

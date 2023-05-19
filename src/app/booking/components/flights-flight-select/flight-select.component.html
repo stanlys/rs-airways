@@ -1,0 +1,34 @@
+<ng-container *ngIf="!confirmed; else edit">
+  <div class="select flex py-4 md:py-0 md:pl-7 gap-8 relative">
+    <div class="info w-[133px] font-bold">
+      <div
+        appSeatsColor
+        [seats]="flight.seats"
+        class="seats flex flex-col items-center md:items-end rounded-sm py-1 px-2 text-xs"
+      >
+        <span>{{ flight.seats.avaible }} {{ 'FLIGHTS.SEATS' | translate }}&nbsp;</span>
+        <span>{{ 'FLIGHTS.AVAILABLE' | translate }}</span>
+      </div>
+      <div class="price mt-[6px] flex flex-col items-center md:items-end">
+        <span class="title text-[#74767a] text-xs">{{ 'FLIGHTS.PRICE' | translate }}</span>
+        <span class="details text-[#11397e] text-3xl text-ellipsis overflow-hidden max-w-full">
+          {{ price | currency : (currencyCode$ | async) ?? 'EUR' : undefined : undefined : locale }}
+        </span>
+      </div>
+    </div>
+    <button class="btn select self-center" mat-stroked-button (click)="onClick()">
+      {{ 'FLIGHTS.SELECT' | translate }}
+    </button>
+  </div>
+</ng-container>
+
+<ng-template #edit>
+  <div class="select flex py-4 md:py-0 md:pl-7 gap-8 relative">
+    <div class="price mt-[6px] flex flex-col items-center md:items-end">
+      <span class="details text-3xl font-bold">{{
+        price | currency : (currencyCode$ | async) ?? 'EUR' : undefined : undefined : locale
+      }}</span>
+    </div>
+    <button class="btn edit self-center" mat-button (click)="onClick()">{{ 'MISC.BTN_EDIT' | translate }}</button>
+  </div>
+</ng-template>

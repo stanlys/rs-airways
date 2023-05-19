@@ -1,7 +1,9 @@
+<app-second-menu />
+
 <div class="m-10 mx-10 md:mx-20 xl:mx-40">
   <div class="flex gap-4 m-2">
     <img alt="Summary" src="assets/Summary.svg" />
-    <span class="page_title"> Summary </span>
+    <span class="page_title"> {{ 'SUMMARY.CAPTION' | translate }} </span>
   </div>
   <div class="grid justify-end grid-cols-1 gap-10 lg:grid-cols-2">
     <ng-container *ngFor="let flight of flights">
@@ -12,8 +14,12 @@
     </div>
   </div>
   <div class="flex gap-5 flex-wrap mt-4 md:mt-10 flex-row justify-end">
-    <button mat-button color="primary" class="btn">Back</button>
-    <button mat-stroked-button color="primary" class="btn" (click)="addtoCart()">Add to order cart</button>
-    <button mat-raised-button color="primary" class="btn" (click)="buyNow()">Buy now</button>
+    <button mat-button color="primary" class="btn" (click)="goBack()">{{ 'SUMMARY.BTN_BACK' | translate }}</button>
+    <button mat-stroked-button color="primary" class="btn" (click)="addtoCart()">
+      {{ 'SUMMARY.BTN_ADD' | translate }}
+    </button>
+    <button mat-raised-button color="primary" class="btn" (click)="buyNow()">
+      {{ 'SUMMARY.BTN_BUY' | translate }}
+    </button>
   </div>
 </div>

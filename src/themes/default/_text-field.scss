@@ -1,0 +1,21 @@
+@use 'mixins' as mx;
+@use 'colors' as c;
+
+.main-page,
+.booking-page {
+  .mdc-text-field {
+    @include mx.button_border;
+  }
+
+  .mdc-text-field {
+    background-color: #f4f6f9;
+  }
+
+  .mat-mdc-form-field.ng-touched.ng-invalid .mdc-text-field {
+    border-color: c.$error-color;
+  }
+
+  .mdc-line-ripple {
+    display: none;
+  }
+}

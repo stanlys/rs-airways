@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, catchError, of, timeout } from 'rxjs';
+import { Observable, Subject, catchError, of, timeout } from 'rxjs';
 
 import { API_BASE_URL, STORAGE_KEY_PREFIX } from '../../shared/constants';
 import { LoginRequest, RegistrationRequest } from '../models/requests.models';
@@ -11,13 +11,15 @@ import { LoginRequest, RegistrationRequest } from '../models/requests.models';
   providedIn: 'root',
 })
 export class AuthService {
-  public loggedIn = new BehaviorSubject<boolean>(false);
+  public loggedIn$ = new Subject<boolean>();
 
   private readonly tokenKey = `${STORAGE_KEY_PREFIX}-authToken`;
 
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
+
+  public isLoading$ = new Subject<boolean>();
 
   constructor(private router: Router, private http: HttpClient, private snackBar: MatSnackBar) {
     this.determineLoginStatus();
@@ -27,6 +29,8 @@ export class AuthService {
     const url = `${API_BASE_URL}auth/login`;
     const body = JSON.stringify(value);
 
+    this.isLoading$.next(true);
+
     this.http
       .post<{ token: string }>(url, body, this.httpOptions)
       .pipe(timeout(3000), catchError(this.handleError('login', {})))
@@ -34,7 +38,7 @@ export class AuthService {
   }
 
   public logout(): void {
-    this.loggedIn.next(false);
+    this.loggedIn$.next(false);
 
     localStorage.removeItem(this.tokenKey);
 
@@ -43,8 +47,9 @@ export class AuthService {
 
   public signup(value: RegistrationRequest): void {
     const url = `${API_BASE_URL}auth/registration`;
-
     const body = JSON.stringify(value);
+
+    this.isLoading$.next(true);
 
     this.http
       .post<{ token: string }>(url, body, this.httpOptions)
@@ -56,9 +61,9 @@ export class AuthService {
     const tokenItem = localStorage.getItem(this.tokenKey);
 
     if (tokenItem != null) {
-      this.loggedIn.next(true);
+      this.loggedIn$.next(true);
     } else {
-      this.loggedIn.next(false);
+      this.loggedIn$.next(false);
     }
   }
 
@@ -70,6 +75,8 @@ export class AuthService {
         duration: 3000,
       });
 
+      this.isLoading$.next(false);
+
       return of(result as T);
     };
   }
@@ -77,7 +84,9 @@ export class AuthService {
   private handleToken(res: { token: string } | Record<string, never>): void {
     if ('token' in res) {
       localStorage.setItem(this.tokenKey, res.token);
-      this.loggedIn.next(true);
+      this.loggedIn$.next(true);
     }
+
+    this.isLoading$.next(false);
   }
 }

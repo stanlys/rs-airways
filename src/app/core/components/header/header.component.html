@@ -1,4 +1,4 @@
-<mat-toolbar class="header sticky top-0 justify-center">
+<mat-toolbar class="header sticky top-0 justify-center z-20">
   <div class="content flex items-center max-w-[1128px] w-full justify-between">
     <a routerLink="/" routerLinkActive="router-link-active" class="logo" aria-label="button with logo">
       <img src="assets/logo.svg" alt="logo" srcset="" />
@@ -14,11 +14,13 @@
 
       <app-currency-menu />
 
-      <ng-container *ngIf="(loggedIn | async) === false; else account">
+      <ng-container *ngIf="(loggedIn$ | async) !== true; else account">
         <app-sign-in [authModalActive]="authModalActive" (authDisplay)="authModalActive = $event" />
       </ng-container>
 
       <app-cart />
+
+      <app-change-language />
     </div>
   </div>
 </mat-toolbar>

@@ -1,9 +1,8 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Subject, delay, of } from 'rxjs';
 
-import { AuthService } from '../../../services/auth.service';
 import { LoginRequest } from '../../../models/requests.models';
+import { AuthService } from '../../../services/auth.service';
 
 interface LoginForm {
   email: FormControl<string | null>;
@@ -20,7 +19,7 @@ export class LoginTabComponent {
 
   public hidePassword = true;
 
-  public isLoading$ = new Subject<boolean>();
+  public isLoading$ = this.authService.isLoading$;
 
   @Output() public closeModal = new EventEmitter<void>();
 
@@ -38,13 +37,10 @@ export class LoginTabComponent {
   public onSubmit(): void {
     this.authService.login(this.form.value as LoginRequest);
 
-    this.isLoading$.next(true);
-
-    of(false)
-      .pipe(delay(300))
-      .subscribe(() => {
-        this.isLoading$.next(false);
+    this.authService.loggedIn$.subscribe((v) => {
+      if (v === true) {
         this.close();
-      });
+      }
+    });
   }
 }

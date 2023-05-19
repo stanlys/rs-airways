@@ -11,7 +11,7 @@ import { AuthService } from '../../services/auth.service';
 export class HeaderComponent {
   public mainPage = true;
 
-  public loggedIn = this.authService.loggedIn;
+  public loggedIn$ = this.authService.loggedIn$;
 
   public authModalActive = false;
 

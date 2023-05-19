@@ -1,0 +1,22 @@
+<div
+  appSeatsColor
+  [seats]="flight?.seats"
+  [selected]="selected"
+  class="date-price flex flex-col items-center py-1"
+  [ngClass]="{ flight, selected, last }"
+  (click)="select()"
+>
+  <div class="date-container flex flex-col items-center">
+    <span class="date">{{ date | localizedDate : 'dd LLL' }}</span>
+    <span class="weekday">{{ date | localizedDate : 'cccc' }}</span>
+  </div>
+  <ng-container *ngIf="flight; else noFlight">
+    <span class="price h-full flex items-center">{{
+      price | currency : (currencyCode$ | async) ?? 'EUR' : undefined : undefined : locale
+    }}</span>
+  </ng-container>
+</div>
+
+<ng-template #noFlight>
+  <img src="/assets/no_flight.svg" alt="" srcset="" />
+</ng-template>

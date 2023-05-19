@@ -1,0 +1,4 @@
+<button class="currency btn" mat-flat-button [matMenuTriggerFor]="languageMenu">{{ selectedLanguage }}</button>
+<mat-menu #languageMenu="matMenu">
+  <button *ngFor="let lng of languages" mat-menu-item (click)="selectLanguage(lng)">{{ lng }}</button>
+</mat-menu>

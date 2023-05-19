@@ -1,0 +1,12 @@
+@use '../../../../themes/default/colors' as c;
+@use '../../../../themes/util' as u;
+
+.city {
+  font-size: 16px;
+  line-height: 24px;
+}
+.other {
+  font-size: 14px;
+  line-height: 20px;
+  color: u.get-color(c.$brand-neutral, 30);
+}

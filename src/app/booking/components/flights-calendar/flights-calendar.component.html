@@ -1,0 +1,15 @@
+<app-flights-calendar-date
+  *ngFor="let date of dates; index as i; last as last"
+  [flight]="flights | findFlight : date : isFirstFlight"
+  [date]="date"
+  [selectedFlightNumber]="selectedFlightNumber"
+  [last]="last"
+  (selectedChange)="selectDate($event)"
+/>
+
+<button class="btn prev calendar-control flex items-center justify-center" (click)="decrementDate()">
+  <img src="assets/chevron_left.svg" alt="" />
+</button>
+<button class="btn next calendar-control flex items-center justify-center" (click)="incrementDate()">
+  <img src="assets/chevron_right.svg" alt="" />
+</button>
