@@ -33,7 +33,9 @@ export class FlightsComponent implements OnInit {
 
   public ngOnInit(): void {
     const { otherFlights, ...flight } = this.flight;
-    this.flights = [flight, ...Object.values(otherFlights || {})];
+    this.flights = [...Object.values(otherFlights || {}), flight].sort((a, b) =>
+      dayjs(a.takeoffDate).diff(b.takeoffDate, 'milliseconds')
+    );
 
     this.setDefaultSelectedFlight();
   }
