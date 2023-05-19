@@ -12,7 +12,7 @@
   </div>
   <ng-container *ngIf="flight; else noFlight">
     <span class="price h-full flex items-center">{{
-      price | currency : currencyCode : undefined : undefined : locale
+      price | currency : (currencyCode$ | async) ?? 'EUR' : undefined : undefined : locale
     }}</span>
   </ng-container>
 </div>

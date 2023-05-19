@@ -38,6 +38,8 @@ export interface Price {
   pln: number;
 }
 
+export type CurrencyCode = Uppercase<keyof Price>;
+
 export interface Seats {
   total: number;
   avaible: number;

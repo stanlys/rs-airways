@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnChanges, OnDestroy, Output, SimpleChanges } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { Subscription } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 
-import { Flight, Price } from '../../../shared/models/flight-search.interfaces';
+import { CurrencyCode, Flight } from '../../../shared/models/flight-search.interfaces';
 import { PriceService } from '../../../shared/services/price.service';
 
 @Component({
@@ -17,16 +17,22 @@ export class FlightSelectComponent implements OnChanges, OnDestroy {
 
   @Output() public confirmedChange = new EventEmitter<boolean>();
 
-  public currencyCode?: Uppercase<keyof Price>;
+  public currencyCode$;
 
   public price: number | null = null;
 
-  private onLangChangeSub: Subscription;
-
   public locale = this.translateService.currentLang;
 
+  private destroy$ = new Subject<void>();
+
   constructor(private translateService: TranslateService, private priceService: PriceService) {
-    this.onLangChangeSub = this.translateService.onLangChange.subscribe((e) => {
+    this.currencyCode$ = this.priceService.currencyCode$;
+
+    this.priceService.currencyCode$.pipe(takeUntil(this.destroy$)).subscribe((code) => {
+      this.setPrice(code);
+    });
+
+    this.translateService.onLangChange.pipe(takeUntil(this.destroy$)).subscribe((e) => {
       this.setPrice();
       this.locale = e.lang;
     });
@@ -49,18 +55,17 @@ export class FlightSelectComponent implements OnChanges, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    this.onLangChangeSub.unsubscribe();
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   public onClick(): void {
     this.confirmedChange.emit(!this.confirmed);
   }
 
-  private setPrice(): void {
-    this.currencyCode = this.priceService.currencyCode;
-
+  private setPrice(code?: CurrencyCode): void {
     if (this.flight != null) {
-      this.price = this.priceService.getPrice(this.flight);
+      this.price = this.priceService.getPrice(this.flight, code);
     }
   }
 }

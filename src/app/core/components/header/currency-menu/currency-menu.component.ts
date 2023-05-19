@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { STORAGE_KEY_PREFIX } from '../../../../shared/constants';
+import { PriceService } from '../../../../shared/services/price.service';
+import { CURRENCIES } from '../../../../shared/constants';
+import { CurrencyCode } from '../../../../shared/models/flight-search.interfaces';
 
 @Component({
   selector: 'app-currency-menu',
@@ -7,14 +9,13 @@ import { STORAGE_KEY_PREFIX } from '../../../../shared/constants';
   styleUrls: ['./currency-menu.component.scss'],
 })
 export class CurrencyMenuComponent {
-  public readonly currencies = ['EUR', 'USD', 'RUB', 'PLN'];
+  public selectedCurrency$ = this.priceService.currencyCode$.asObservable();
 
-  public currencyItemKey = `${STORAGE_KEY_PREFIX}-currency`;
+  public currencies = CURRENCIES;
 
-  public selectedCurrency = localStorage.getItem(this.currencyItemKey) || this.currencies[0];
+  constructor(private priceService: PriceService) {}
 
-  public selectCurrency(v: string): void {
-    this.selectedCurrency = v;
-    localStorage.setItem(this.currencyItemKey, this.selectedCurrency);
+  public selectCurrency(v: CurrencyCode): void {
+    this.priceService.setCurrency(v);
   }
 }

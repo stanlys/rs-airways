@@ -12,7 +12,7 @@
       <div class="price mt-[6px] flex flex-col items-center md:items-end">
         <span class="title text-[#74767a] text-xs">{{ 'FLIGHTS.PRICE' | translate }}</span>
         <span class="details text-[#11397e] text-3xl text-ellipsis overflow-hidden max-w-full">
-          {{ price | currency : currencyCode : undefined : undefined : locale }}
+          {{ price | currency : (currencyCode$ | async) ?? 'EUR' : undefined : undefined : locale }}
         </span>
       </div>
     </div>
@@ -25,7 +25,9 @@
 <ng-template #edit>
   <div class="select flex py-4 md:py-0 md:pl-7 gap-8 relative">
     <div class="price mt-[6px] flex flex-col items-center md:items-end">
-      <span class="details text-3xl font-bold">{{ price | currency : currencyCode }}</span>
+      <span class="details text-3xl font-bold">{{
+        price | currency : (currencyCode$ | async) ?? 'EUR' : undefined : undefined : locale
+      }}</span>
     </div>
     <button class="btn edit self-center" mat-button (click)="onClick()">{{ 'MISC.BTN_EDIT' | translate }}</button>
   </div>
