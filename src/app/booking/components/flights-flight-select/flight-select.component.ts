@@ -4,6 +4,7 @@ import { Subject, takeUntil } from 'rxjs';
 
 import { CurrencyCode, Flight } from '../../../shared/models/flight-search.interfaces';
 import { PriceService } from '../../../shared/services/price.service';
+import { BookingService } from '../../services/booking.service';
 
 @Component({
   selector: 'app-flight-select',
@@ -25,7 +26,13 @@ export class FlightSelectComponent implements OnChanges, OnDestroy {
 
   private destroy$ = new Subject<void>();
 
-  constructor(private translateService: TranslateService, private priceService: PriceService) {
+  @Input() public isFirstFlight = false;
+
+  constructor(
+    private translateService: TranslateService,
+    private priceService: PriceService,
+    private bookingService: BookingService
+  ) {
     this.currencyCode$ = this.priceService.currencyCode$;
 
     this.priceService.currencyCode$.pipe(takeUntil(this.destroy$)).subscribe((code) => {
@@ -40,6 +47,10 @@ export class FlightSelectComponent implements OnChanges, OnDestroy {
 
   public ngOnChanges(changes: SimpleChanges): void {
     const { flight } = changes;
+
+    if (this.isFirstFlight && this.flight != null) {
+      this.bookingService.minutesOffset = this.flight.timeMins;
+    }
 
     if (flight != null) {
       this.setPrice();

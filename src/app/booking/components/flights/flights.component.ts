@@ -1,7 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import dayjs from 'dayjs';
+import isToday from 'dayjs/plugin/isToday';
 
 import { Flight } from '../../../shared/models/flight-search.interfaces';
+import { BookingService } from '../../services/booking.service';
+
+dayjs.extend(isToday);
 
 @Component({
   selector: 'app-flights',
@@ -25,20 +29,24 @@ export class FlightsComponent implements OnInit {
 
   @Output() public confirmedChange = new EventEmitter<boolean>();
 
+  constructor(private bookingService: BookingService) {}
+
   public ngOnInit(): void {
     const { otherFlights, ...flight } = this.flight;
-    this.flights = [...Object.values(otherFlights || {}), flight];
+    this.flights = [flight, ...Object.values(otherFlights || {})];
 
-    this.determineDefaultSelectedFlight();
+    this.setDefaultSelectedFlight();
   }
 
-  private determineDefaultSelectedFlight(): void {
-    const nextFlight = this.flights.find(({ takeoffDate }) => Date.now() <= new Date(takeoffDate).getTime());
+  private setDefaultSelectedFlight(): void {
+    const nextFlight = this.flights.find(({ takeoffDate }) => {
+      return this.bookingService.isRelevantFlight(takeoffDate, this.first);
+    });
 
-    if (dayjs().diff(dayjs(this.flight.takeoffDate), 'day') > 0 && nextFlight) {
-      this.selectedFlight = nextFlight;
-    } else {
-      this.selectedFlight = this.flight;
+    if (this.first && nextFlight) {
+      this.bookingService.minutesOffset = nextFlight.timeMins;
     }
+
+    this.selectedFlight = nextFlight;
   }
 }

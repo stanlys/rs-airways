@@ -4,7 +4,7 @@
 <app-flights-calendar
   *ngIf="!confirmed"
   class="justify-between flex items-end relative"
-  [firstFlight]="first"
+  [isFirstFlight]="first"
   [flights]="flights"
   [selectedFlight]="selectedFlight"
   [selectedFlightNumber]="selectedFlight?.flightNumber"
@@ -13,6 +13,7 @@
 
 <app-flight
   [odd]="odd"
+  [isFirstFlight]="first"
   [flight]="selectedFlight"
   [confirmed]="confirmed"
   (confirmedChange)="confirmedChange.emit($event)"

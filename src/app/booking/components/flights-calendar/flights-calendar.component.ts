@@ -19,7 +19,7 @@ export class FlightsCalendarComponent implements OnInit {
 
   @Input() public flights!: Flight[];
 
-  @Input() public firstFlight = false;
+  @Input() public isFirstFlight = false;
 
   public ngOnInit(): void {
     if (this.selectedFlight != null) {
