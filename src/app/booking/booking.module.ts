@@ -26,9 +26,9 @@ import { FindFlightPipe } from './pipes/find-flight.pipe';
 import { FlightTimePipe } from './pipes/flight-time.pipe';
 import { CurrencySymbolService } from './services/currency-symbol.service';
 import { ProgressControlsComponent } from './components/progress-controls/progress-controls.component';
-import { PassengersComponent } from './components/booking-passengers/passengers.component';
-import { ContactDetailsComponent } from './components/booking-contact-details/contact-details.component';
-import { BookingPassengerCardComponent } from './components/booking-passenger-card/booking-passenger-card.component';
+import { ProcessContactDetailsComponent } from './components/process-contact-details/process-contact-details.component';
+import { ProcessPassengerCardComponent } from './components/process-passenger-card/process-passenger-card.component';
+import { ProcessPassengersComponent } from './components/process-passengers/process-passengers.component';
 
 @NgModule({
   declarations: [
@@ -52,9 +52,9 @@ import { BookingPassengerCardComponent } from './components/booking-passenger-ca
     ProcessPageComponent,
     FlightsPageComponent,
     ProgressControlsComponent,
-    PassengersComponent,
-    ContactDetailsComponent,
-    BookingPassengerCardComponent,
+    ProcessPassengersComponent,
+    ProcessContactDetailsComponent,
+    ProcessPassengerCardComponent,
   ],
   imports: [CommonModule, BookingRoutingModule, SharedModule, TranslateModule, ReactiveFormsModule],
   providers: [CurrencySymbolService],

@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { FlightSearchFormValue } from '../../../main/models/flight-search.model';
-import { PassengerInfo, Passengers } from '../../../main/models/main.interfaces';
-import { SearchService } from '../../../main/services/search.service';
+import { FormArray, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FlightSearchFormValue } from '../../../shared/models/flight-search.model';
+import { SearchService } from '../../../shared/services/search.service';
 
 interface PassengerFormValue {
   firstName: FormControl<string | null>;
@@ -12,11 +11,11 @@ interface PassengerFormValue {
 }
 
 @Component({
-  selector: 'app-passengers',
-  templateUrl: './passengers.component.html',
-  styleUrls: ['./passengers.component.scss'],
+  selector: 'app-process-passengers',
+  templateUrl: './process-passengers.component.html',
+  styleUrls: ['./process-passengers.component.scss'],
 })
-export class PassengersComponent {
+export class ProcessPassengersComponent {
   public passengers: string[] = [];
 
   public passengersForm!: FormArray;

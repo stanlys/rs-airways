@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BookingPassengerCardComponent } from './booking-passenger-card.component';
+import { BookingPassengerCardComponent } from './process-passenger-card.component';
 
 describe('BookingPassengerCardComponent', () => {
   let component: BookingPassengerCardComponent;

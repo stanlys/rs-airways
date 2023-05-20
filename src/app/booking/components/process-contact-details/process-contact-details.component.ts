@@ -4,11 +4,11 @@ import countryList from 'country-list';
 import countryTelData from 'country-telephone-data';
 
 @Component({
-  selector: 'app-contact-details',
-  templateUrl: './contact-details.component.html',
-  styleUrls: ['./contact-details.component.scss'],
+  selector: 'app-process-contact-details',
+  templateUrl: './process-contact-details.component.html',
+  styleUrls: ['./process-contact-details.component.scss'],
 })
-export class ContactDetailsComponent {
+export class ProcessContactDetailsComponent {
   public contactDetailsForm!: FormGroup;
 
   public emailField!: FormControl;

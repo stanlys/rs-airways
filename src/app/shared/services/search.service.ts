@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import dayjs from 'dayjs';

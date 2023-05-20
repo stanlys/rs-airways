@@ -1,14 +1,14 @@
-<div class="booking-title flex-column gap-2">
+<div class="booking-title flex-column gap-2 mx-4 xl:mx-0">
   <h2 class="flex gap-4">
     <img class="inline" src="../../../../assets/passengers_icon.svg" alt="passengers icon" />
     <span color="primary" class="mat-title">Passengers</span>
   </h2>
   <p class="mat-small color-gray">Enter the passenger's names as they appear on document (passport or ID).</p>
   <div class="booking-content passengers-cards flex flex-col gap-5">
-    <app-booking-passenger-card
+    <app-process-passenger-card
       *ngFor="let passenger of passengers; let i = index"
       [index]="i + 1"
       [title]="passenger"
-    ></app-booking-passenger-card>
+    ></app-process-passenger-card>
   </div>
 </div>
