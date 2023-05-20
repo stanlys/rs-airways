@@ -133,7 +133,7 @@ export class CartComponent implements AfterViewInit {
   }
 
   public async editWithCheckbox(flight: IFlight): Promise<void> {
-    await this.router.navigate(['/edit'], { queryParams: { flight } });
+    await this.router.navigate(['/booking/flights'], { queryParams: { flight } });
   }
 
   public deleteWithCheckbox(flight: ITrip): void {
