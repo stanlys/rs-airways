@@ -1,4 +1,3 @@
-import { IFlight } from 'src/app/cart/interfaces';
 import { IPassenger } from './passenger';
 
 export interface ISummaryFlight {
@@ -25,10 +24,6 @@ export const INIT_SUMMARY_FARE = {
 export interface ISummaryLang {
   [key: string]: string;
 }
-
-// export interface ISummaryTrip {
-//   trip: ISummaryFlight[];
-// }
 
 export interface ISummaryTrip {
   number: string;
