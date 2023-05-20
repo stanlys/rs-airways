@@ -2,12 +2,15 @@ import { Injectable } from '@angular/core';
 import { IPassenger } from 'src/app/booking/interfaces/passenger';
 import { IPassengerByAge } from '../interfaces';
 import { ADULT_AGE, INFANT_AGE } from '../AGES';
+import { TranslatePassengersService } from './translate-passengers.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PassengersListService {
   private index = 0;
+
+  constructor(private translateService: TranslatePassengersService) {}
 
   public passengerByAge(passengers: IPassenger[]): IPassengerByAge {
     this.index += 1;
@@ -33,9 +36,9 @@ export class PassengersListService {
   public passengersByString(passengers: IPassenger[]): string {
     const result = [];
     const passengersCount: IPassengerByAge = this.passengerByAge(passengers);
-    if (passengersCount.adult > 0) result.push(`${passengersCount.adult} x Adult`);
-    if (passengersCount.child > 0) result.push(`${passengersCount.child} x Child`);
-    if (passengersCount.infant > 0) result.push(`${passengersCount.infant} x Infant`);
+    if (passengersCount.adult > 0) result.push(this.translateService.getCaption(passengersCount.adult, 0));
+    if (passengersCount.child > 0) result.push(this.translateService.getCaption(passengersCount.child, 1));
+    if (passengersCount.infant > 0) result.push(this.translateService.getCaption(passengersCount.infant, 2));
     return result.join(', ');
   }
 }

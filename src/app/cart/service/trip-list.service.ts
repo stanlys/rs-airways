@@ -1,11 +1,14 @@
 /* eslint-disable class-methods-use-this */
 import { Injectable } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { ITrip } from 'src/app/booking/interfaces/flight';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TripListService {
+  constructor(private translate: TranslateService) {}
+
   public getNumber(trip: ITrip): string {
     return trip.to !== null ? `${trip.from.number} - ${trip.to.number}` : `${trip.from.number}`;
   }
@@ -17,7 +20,13 @@ export class TripListService {
   }
 
   public getFlightType(trip: ITrip): string {
-    return trip.to !== null ? 'Round Trip' : 'One way';
+    const tripType = trip.to !== null ? 'ROUND_TRIP' : 'ONE_WAY';
+    let result = '';
+    this.translate.get(`MAIN_FORM.${tripType}`).subscribe((phrase) => {
+      result = phrase as string;
+      return true;
+    });
+    return result;
   }
 
   public getDateTime(trip: ITrip): string {
