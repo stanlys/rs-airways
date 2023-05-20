@@ -1,0 +1,32 @@
+<div
+  class="second-menu py-2 sm:py-0 sm:h-[88px] bg-[#fafafa] flex items-center flex-wrap p-2 xl:pl-[156px] gap-2 sm:gap-4 xl:gap-10 z-10 relative"
+>
+  <ng-container *ngIf="requestData$ | async as req; else fallback">
+    <div class="destination flex items-center gap-4">
+      <span>{{ req.airport.fromLoc.city }}</span>
+      <img [src]="!req.oneWay ? '/assets/return_trip.svg' : '/assets/one-way_trip.svg'" alt="" srcset="" />
+      <span>{{ req.airport.toLoc.city }}</span>
+    </div>
+    <div class="return flex items-center gap-2">
+      <span>{{ (!req.oneWay ? 'BOOKING.RETURN' : 'MAIN_FORM.ONE_WAY') | translate }}</span>
+      <span class="dot">•</span>
+      <span>{{ req.dates.takeoffDate | localizedDate }}</span>
+      <ng-container *ngIf="!req.oneWay">
+        <span>—</span>
+        <span>{{ req.dates.landingDate | localizedDate }}</span>
+      </ng-container>
+      <span class="dot">•</span>
+      <div class="passengers flex items-center">
+        <span>{{ passengerAmount }}</span>
+        <span><mat-icon fontIcon="person" /></span>
+      </div>
+    </div>
+  </ng-container>
+  <button *ngIf="editable" class="edit btn" mat-button (click)="toggleSearchForm.emit()">
+    {{ 'MISC.BTN_EDIT' | translate }}
+  </button>
+</div>
+
+<ng-template #fallback>
+  <span class="text-[#74767a] text-lg font-medium"> {{ 'BOOKING.NO_FLIGHTS' | translate }}</span>
+</ng-template>

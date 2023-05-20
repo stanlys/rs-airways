@@ -1,0 +1,15 @@
+.flights-form {
+  .mat-mdc-form-field-subscript-wrapper {
+    display: none;
+  }
+
+  .flight-dates {
+    width: 260px;
+  }
+}
+
+@media (max-width: 639px) {
+  .flights-form .mat-mdc-form-field {
+    width: 100%;
+  }
+}

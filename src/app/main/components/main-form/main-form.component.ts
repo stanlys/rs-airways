@@ -1,11 +1,11 @@
 /* eslint-disable no-underscore-dangle */
 import { Component } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { passengersValidator } from '../../directives/passengers-validator.directive';
-import { Airport, FlightSearchRequest } from '../../model/main.interfaces';
-import { SearchService } from '../../services/search.service';
+import { TranslateService } from '@ngx-translate/core';
+
+import { FlightSearchFormValue } from '../../../shared/models/flight-search.model';
+import { SearchService } from '../../../shared/services/search.service';
 
 @Component({
   selector: 'app-main-form',
@@ -15,36 +15,18 @@ import { SearchService } from '../../services/search.service';
 export class MainFormComponent {
   public searchForm: FormGroup;
 
-  constructor(
-    private fb: FormBuilder,
-    private router: Router,
-    private search: SearchService,
-    public translate: TranslateService
-  ) {
-    this.searchForm = fb.group({
-      oneWay: fb.control<boolean>(false, Validators.required),
-      airport: fb.group({
-        from: fb.control<Airport | null>(null, Validators.required),
-        to: fb.control<Airport | null>(null, Validators.required),
-      }),
-      dates: fb.group({
-        from: fb.control<Date | null>(null, Validators.required),
-        to: fb.control<Date | null>(null, Validators.required),
-        oneWay: fb.control<Date | null>(null),
-      }),
-      passengers: fb.group({
-        adult: fb.control<number>(0, [Validators.required, Validators.min(1), passengersValidator]),
-        child: fb.control<number>(0, [Validators.required]),
-        infant: fb.control<number>(0, [Validators.required]),
-      }),
-    });
+  constructor(private router: Router, private searchService: SearchService, public translate: TranslateService) {
+    this.searchForm = searchService.searchForm;
+
+    const formValue = this.searchService.requestData$.getValue();
+
+    if (formValue != null) {
+      this.searchForm.setValue(formValue);
+    }
   }
 
   public onSubmit(): void {
-    if (!this.searchForm.valid) return;
-
-    this.search.update(this.searchForm.value as FlightSearchRequest);
-
+    this.searchService.update(this.searchForm.value as FlightSearchFormValue);
     this.router.navigate(['/booking']).catch(console.error);
   }
 }

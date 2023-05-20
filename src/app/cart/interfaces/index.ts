@@ -1,4 +1,4 @@
-import { IPassenger } from 'src/app/booking/interface/passenger';
+import { IPassenger } from 'src/app/booking/interfaces/passenger';
 
 export interface IFlight {
   number: string;

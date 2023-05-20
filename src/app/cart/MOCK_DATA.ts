@@ -1,4 +1,4 @@
-import { ITrip } from '../booking/interface/flight';
+import { ITrip } from '../booking/interfaces/flight';
 import { IFlight } from './interfaces';
 
 export const FLIGHTS: ITrip[] = [

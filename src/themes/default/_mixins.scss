@@ -46,6 +46,12 @@
   letter-spacing: 0.5px;
 }
 
+@mixin flex-center() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 @mixin title-large-typography() {
   font-family: 'Roboto';
   font-style: normal;

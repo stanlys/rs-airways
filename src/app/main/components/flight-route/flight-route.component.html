@@ -1,0 +1,26 @@
+<ng-container [formGroup]="flightRouteForm">
+  <app-airport-field
+    [formName]="'fromLoc'"
+    [direction]="getTranslateLabel().FROM"
+    [placeholder]="getTranslateLabel().LABEL_FROM"
+  />
+
+  <div class="switch-direction-btn-container">
+    <button
+      type="button"
+      mat-mini-fab
+      class="switch-direction-btn"
+      color="basic"
+      aria-label="Switch-direction-icon"
+      (click)="switchDirection()"
+    >
+      <img src="/assets/switch-direction_icon.svg" alt="Switch direction icon" />
+    </button>
+  </div>
+
+  <app-airport-field
+    [formName]="'toLoc'"
+    [direction]="getTranslateLabel().TO"
+    [placeholder]="getTranslateLabel().LABEL_TO"
+  />
+</ng-container>

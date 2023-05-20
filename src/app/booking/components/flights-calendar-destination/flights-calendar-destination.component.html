@@ -1,0 +1,8 @@
+<div class="destination flex justify-center md:justify-start text-[#11397e] gap-3 px-2">
+  <img [ngClass]="['icon', odd ? 'rotate-180' : '']" src="/assets/calendar-destination_icon.svg" alt="" srcset="" />
+  <h2 class="heading">
+    <span>{{ flight.form.city }}</span>
+    <span> to </span>
+    <span>{{ flight.to.city }}</span>
+  </h2>
+</div>

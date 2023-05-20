@@ -1,0 +1,18 @@
+<div
+  *ngIf="flight"
+  class="flight bg-white md:h-[130px] flex flex-col md:flex-row md:items-center md:justify-between rounded-lg px-4 sm:px-10"
+>
+  <app-flight-details [odd]="odd" [flight]="flight" />
+  <div class="select-container flex flex-col md:flex-row items-center md:h-full">
+    <span
+      *ngIf="!confirmed"
+      class="separator border-l-slate-200 border-t-2 md:border-t-0 md:border-l-2 border-dashed w-full md:w-0 md:h-full"
+    ></span>
+    <app-flight-select
+      [isFirstFlight]="isFirstFlight"
+      [flight]="flight"
+      [confirmed]="confirmed"
+      (confirmedChange)="confirmedChange.emit($event)"
+    />
+  </div>
+</div>

@@ -1,5 +1,5 @@
 <a
-  [routerLink]="(loggedIn | async) ? ['/cart'] : []"
+  [routerLink]="(loggedIn$ | async) ? ['/cart'] : []"
   class="cart icon"
   mat-icon-button
   aria-label="button with cart icon"

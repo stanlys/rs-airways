@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { TranslatePipe } from '@ngx-translate/core';
 import { SharedModule } from '../shared/shared.module';
 import { AuthComponent } from './components/auth/auth.component';
 import { LoginTabComponent } from './components/auth/login-tab/login-tab.component';
@@ -12,12 +11,12 @@ import { FooterComponent } from './components/footer/footer.component';
 import { AccountComponent } from './components/header/account/account.component';
 import { BookingComponent } from './components/header/booking/booking.component';
 import { CartComponent } from './components/header/cart/cart.component';
+import { ChangeLanguageComponent } from './components/header/change-language/change-language.component';
 import { CurrencyMenuComponent } from './components/header/currency-menu/currency-menu.component';
 import { DateFormatSelectorComponent } from './components/header/date-format-selector/date-format-selector.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ProgressIndicatorComponent } from './components/header/progress-indicator/progress-indicator.component';
 import { SignInComponent } from './components/header/sign-in/sign-in.component';
-import { ChangeLanguageComponent } from './components/header/change-language/change-language.component';
 
 @NgModule({
   declarations: [
@@ -35,8 +34,7 @@ import { ChangeLanguageComponent } from './components/header/change-language/cha
     SignupTabComponent,
     ChangeLanguageComponent,
   ],
-  imports: [CommonModule, SharedModule, ReactiveFormsModule, TranslateModule],
-  providers: [TranslatePipe],
+  imports: [CommonModule, SharedModule, ReactiveFormsModule],
   exports: [HeaderComponent, FooterComponent],
 })
 export class CoreModule {}

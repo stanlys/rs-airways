@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { selectFlights } from 'src/app/reducers/reducer/shopping-cart.reducer';
+import { Subject } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AuthService } from '../../../services/auth.service';
 
@@ -9,7 +10,7 @@ import { AuthService } from '../../../services/auth.service';
   styleUrls: ['./cart.component.scss'],
 })
 export class CartComponent {
-  @Input() public loggedIn = this.authService.loggedIn;
+  @Input() public loggedIn$: Subject<boolean> = this.authService.loggedIn$;
 
   public inCart = 0;
 

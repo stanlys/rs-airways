@@ -1,0 +1,23 @@
+:host {
+  z-index: 100;
+}
+
+.second-menu {
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.destination {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.return {
+  color: #74767a;
+  font-weight: 500;
+  font-size: 14px;
+
+  .dot {
+    font-size: 20px;
+    color: #0090bd;
+  }
+}

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IPassenger } from 'src/app/booking/interface/passenger';
+import { IPassenger } from 'src/app/booking/interfaces/passenger';
 import { IPassengerByAge } from '../interfaces';
 import { ADULT_AGE, INFANT_AGE } from '../AGES';
 

@@ -1,8 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { SUMMART_TRIP } from './MOCK_DATA_summary_page';
-import { SummaryService } from '../../service/summary.service';
-import { ITrip } from '../../interface/flight';
+
+import { ProgressControlService } from '../../../core/services/progress-control.service';
+import { ITrip } from '../../interfaces/flight';
+import { SummaryService } from '../../services/summary.service';
 
 @Component({
   selector: 'app-summary-page',
@@ -12,17 +13,26 @@ import { ITrip } from '../../interface/flight';
 export class SummaryPageComponent {
   public trip?: ITrip;
 
-  constructor(private store: Store, public summaryService: SummaryService) {
+  constructor(
+    private store: Store,
+    public summaryService: SummaryService,
+    private controlService: ProgressControlService
+  ) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     this.trip = summaryService.getSummary();
   }
 
   public addtoCart(): void {
-    // добавление в store
+    // TODO: добавление в store
     console.log('Add to cart ', this.trip);
   }
 
   public buyNow(): void {
     // добавление в store
     console.log('Buy now ', this.trip);
+  }
+
+  public goBack(): void {
+    this.controlService.stepper.previous();
   }
 }

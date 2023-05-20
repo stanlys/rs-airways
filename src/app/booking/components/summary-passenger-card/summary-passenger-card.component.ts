@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ISummaryTrip } from '../../interface/flight';
+import { ISummaryTrip } from '../../interfaces/flight';
 
 @Component({
   selector: 'app-summary-passenger-card',

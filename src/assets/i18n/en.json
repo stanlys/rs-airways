@@ -35,7 +35,8 @@
     "ONE_WAY": "One Way",
     "ROUND_TRIP": "Round Trip",
     "DATES": "Dates",
-    "FROM": "FORM",
+    "DATE": "Date",
+    "FROM": "From",
     "LABEL_FROM": "Choose your starting from",
     "TO": "Destination",
     "LABEL_TO": "Choose your destination"
@@ -57,6 +58,23 @@
     "Children": "Children",
     "Infant": "Infant"
   },
+  "BOOKING": {
+    "DEPARTURE": "Departure",
+    "RETURN": "Return",
+    "BTN_BACK": "Back",
+    "BTN_CONTINUE": "Continue",
+    "NO_FLIGHTS": "No flight data found"
+  },
+  "FLIGHTS": {
+    "SELECT": "Select",
+    "DIRECT": "Direct",
+    "CONNECTED": "Connected",
+    "SEATS": "seats",
+    "AVAILABLE": "available",
+    "PRICE": "Price",
+    "NO": "Flight no."
+  },
+  "PROCESS": {},
   "SUMMARY": {
     "CAPTION": "Summary",
     "BAG": "checked bag (total 23 kg) included",
@@ -97,5 +115,10 @@
     "INVALID_DATE": "Invalid date",
     "SELECT_GENDER": "Must select gender",
     "AGREE_TERMS": "Must agree with the terms"
+  },
+  "MISC": {
+    "CURRENCY": "USD",
+    "BTN_EDIT": "Edit",
+    "BTN_APPLY": "Apply"
   }
 }

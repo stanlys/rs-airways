@@ -1,6 +1,6 @@
 /* eslint-disable class-methods-use-this */
 import { Injectable } from '@angular/core';
-import { ITrip } from 'src/app/booking/interface/flight';
+import { ITrip } from 'src/app/booking/interfaces/flight';
 
 @Injectable({
   providedIn: 'root',

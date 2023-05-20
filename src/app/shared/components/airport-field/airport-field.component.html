@@ -1,0 +1,28 @@
+<mat-form-field
+  [formGroup]="parentForm"
+  class="airport"
+  appearance="fill"
+  [hideRequiredMarker]="true"
+  floatLabel="always"
+>
+  <mat-label>{{ direction }}</mat-label>
+  <input
+    type="text"
+    placeholder="{{ placeholder }}"
+    aria-label="direction"
+    matInput
+    [formControl]="airportForm"
+    [matAutocomplete]="auto"
+  />
+  <mat-autocomplete
+    autoActiveFirstOption
+    #auto="matAutocomplete"
+    hideSingleSelectionIndicator="true"
+    [displayWith]="showAirport"
+  >
+    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+      <div class="city">{{ option.city }} ({{ option.IATA }})</div>
+      <div class="other">{{ option.name }} {{ option.country }}</div>
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>

@@ -4,13 +4,12 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { MatSort } from '@angular/material/sort';
 import { SHOPPING_CART_COLUMNS } from 'src/app/cart/interfaces/columns';
 import { Store } from '@ngrx/store';
-import { IFlight } from 'src/app/cart/interfaces';
 import { selectFlightsToProfile } from 'src/app/reducers/reducer/user-flight-history.reducer';
 import { Router } from '@angular/router';
-import { ITrip } from 'src/app/booking/interface/flight';
 import { TripListService } from 'src/app/cart/service/trip-list.service';
 import { PassengersListService } from 'src/app/cart/service/passengers-list.service';
-import { SummaryService } from 'src/app/booking/service/summary.service';
+import { SummaryService } from 'src/app/booking/services/summary.service';
+import { ITrip } from 'src/app/booking/interfaces/flight';
 import { AuthService } from '../../../core/services/auth.service';
 
 @Component({

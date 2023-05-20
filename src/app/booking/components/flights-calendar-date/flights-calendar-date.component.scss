@@ -1,0 +1,66 @@
+:host {
+  display: flex;
+  align-items: flex-end;
+  height: 87px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.date-price {
+  height: 70px;
+  max-width: 225px;
+  width: 100%;
+  background-color: #fff;
+  border-left: 1px solid #cecece;
+}
+
+.date-price.last {
+  border-right: 1px solid #cecece;
+}
+
+.date-price.selected {
+  height: 100%;
+}
+
+.date-price:not(.flight) *:not(.weekday) {
+  color: #d0d9df;
+}
+
+.date-price.flight {
+  cursor: pointer;
+}
+
+.date,
+.price {
+  font-weight: 700;
+}
+
+.date {
+  color: #0090bd;
+  font-size: 14px;
+}
+
+.weekday {
+  color: #74767a;
+  font-size: 12px;
+}
+
+.price {
+  color: #11397e;
+}
+
+.selected {
+  .date {
+    color: #11397e;
+    font-size: 20px;
+  }
+
+  .weekday {
+    font-weight: 400;
+    font-size: 14px;
+  }
+
+  .price {
+    font-size: 30px;
+  }
+}

@@ -34,7 +34,8 @@
     "ONE_WAY": "Jednokierunkowa",
     "ROUND_TRIP": "Podróż w obie strony",
     "DATES": "Daktyle",
-    "FROM": "FORMULARZ",
+    "DATE": "Data",
+    "FROM": "Ze strony",
     "LABEL_FROM": "Wybierz początek od",
     "TO": "Miejsce docelowe",
     "LABEL_TO": "Wybierz miejsce docelowe"
@@ -56,6 +57,23 @@
     "Children": "Dzieci",
     "Infant": "Dziecko"
   },
+  "BOOKING": {
+    "DEPARTURE": "Wyjazd",
+    "RETURN": "Powrót",
+    "BTN_BACK": "Wstecz",
+    "BTN_CONTINUE": "Kontynuuj",
+    "NO_FLIGHTS": "Nie znaleziono danych lotu"
+  },
+  "FLIGHTS": {
+    "SELECT": "Wybierz",
+    "DIRECT": "Bezpośredni",
+    "CONNECTED": "Connected",
+    "SEATS": "miejsca",
+    "AVAILABLE": "dostępne",
+    "PRICE": "Cena",
+    "NO": "Lot nr."
+  },
+  "PROCESS": {},
   "SUMMARY": {
     "CAPTION": "Streszczenie",
     "BAG": "bagaż rejestrowany (łącznie 23 kg) w cenie",
@@ -85,5 +103,10 @@
     "INVALID_DATE": "Nieprawidłowa data",
     "SELECT_GENDER": "Musisz wybrać płeć",
     "AGREE_TERMS": "Musisz zgodzić się z warunkami"
+  },
+  "MISC": {
+    "CURRENCY": "PLN",
+    "BTN_EDIT": "Edytuj",
+    "BTN_APPLY": "Zastosuj"
   }
 }

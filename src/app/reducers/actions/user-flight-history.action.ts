@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { ITrip } from 'src/app/booking/interface/flight';
+import { ITrip } from 'src/app/booking/interfaces/flight';
 
 export const USER_PROFILE = 'USER-PROFILE';
 

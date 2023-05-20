@@ -1,5 +1,5 @@
-import { ITrip } from '../../interface/flight';
-import { IPassenger } from '../../interface/passenger';
+import { ITrip } from '../../interfaces/flight';
+import { IPassenger } from '../../interfaces/passenger';
 
 export const SUMMARY_PASSENGER_TEST: Array<IPassenger> = [
   {
