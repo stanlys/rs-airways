@@ -99,7 +99,14 @@
     "TYPE_TRIP": "Wpisz podróż",
     "FLIGHT": "Lot",
     "HISTORY": "Historia",
-    "CART": "Wózek"
+    "CART": "Wózek",
+    "EDIT": "Edytować",
+    "DELETE": "Usuwać",
+    "ADD_NEW": "Dodaj nową podróż",
+    "INPUT": "Wejście",
+    "APPLY": "Stosować",
+    "SELECTED": "Wybrany",
+    "PAYMENT": "Zapłata"
   },
   "ERRORS": {
     "PASSENGER_ADULT": "Wybierz co najmniej 1 osobę dorosłą",

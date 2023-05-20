@@ -99,7 +99,14 @@
     "TYPE_TRIP": "Geben Sie Reise ein",
     "FLIGHT": "Flug",
     "HISTORY": "Geschichte",
-    "CART": "Wagen"
+    "CART": "Wagen",
+    "EDIT": "Bearbeiten",
+    "DELETE": "Löschen",
+    "ADD_NEW": "Neue Reise hinzufügen",
+    "INPUT": "Eingang",
+    "APPLY": "Anwenden",
+    "SELECTED": "Ausgewählt",
+    "PAYMENT": "Zahlung"
   },
   "ERRORS": {
     "PASSENGER_ADULT": "Wählen Sie mindestens 1 Erwachsenen",
