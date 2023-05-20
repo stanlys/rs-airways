@@ -99,7 +99,14 @@
     "TYPE_TRIP": "Type trip",
     "FLIGHT": "Flight",
     "HISTORY": "History",
-    "CART": "Cart"
+    "CART": "Cart",
+    "EDIT": "Edit",
+    "DELETE": "Delete",
+    "ADD_NEW": "Add new trip",
+    "INPUT": "Input",
+    "APPLY": "Apply",
+    "SELECTED": "Selected",
+    "PAYMENT": "Payment"
   },
   "ERRORS": {
     "PASSENGER_ADULT": "Choose at least 1 Adult",

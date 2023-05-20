@@ -1,6 +1,6 @@
 <mat-card class="container mx-auto my-10 border overflow-y-auto md:p-2 lg:p-4 mat-body-strong">
   <mat-card-header>
-    <mat-card-title color="primary">Cart</mat-card-title>
+    <mat-card-title color="primary">{{ 'CART.CART' | translate }}</mat-card-title>
   </mat-card-header>
   <mat-card-content class="md:p-29 mt-8 sm:p-0 m-0">
     <table class="border-collapse" mat-table [dataSource]="flights" matSort>
@@ -26,23 +26,23 @@
         <td mat-cell *matCellDef="let el">{{ tripList.getNumber(el) }}</td>
       </ng-container>
       <ng-container matColumnDef="flights">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Flight</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'CART.FLIGHT' | translate }}</th>
         <td mat-cell *matCellDef="let el">{{ tripList.getFlight(el) }}</td>
       </ng-container>
       <ng-container matColumnDef="typeTrip">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Type trip</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'CART.TYPE_TRIP' | translate }}</th>
         <td mat-cell *matCellDef="let el">{{ tripList.getFlightType(el) }}</td>
       </ng-container>
       <ng-container matColumnDef="dateTime" class="md: hidden">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Date & Time</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'CART.DATE_TIME' | translate }}</th>
         <td mat-cell *matCellDef="let el">{{ tripList.getDateTime(el) }}</td>
       </ng-container>
       <ng-container matColumnDef="passengers">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Passengers</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'CART.PASSENGER' | translate }}</th>
         <td mat-cell *matCellDef="let el">{{ passengerList.passengersByString(el.from.passengers) }}</td>
       </ng-container>
       <ng-container matColumnDef="price">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Price</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'CART.PRICE' | translate }}</th>
         <td mat-cell *matCellDef="let el">{{ tripList.getPrice(el) | currency : '€' }}</td>
       </ng-container>
       <ng-container matColumnDef="control" stickyEnd>
@@ -60,10 +60,10 @@
     <mat-card-footer>
       <div class="mt-4 mb-4 flex justify-between align-middle flex-col md:flex-row">
         <button (click)="addTrip()" mat-button class="btn-addtrip">
-          <span class="btn-primary-color mx-8 my-4"> + Add new trip </span>
+          <span class="btn-primary-color mx-8 my-4"> + {{ 'CART.ADD_NEW' | translate }}</span>
         </button>
         <div *ngIf="this.selection.selected.length > 0" class="flex gap-5 items-center pr-4">
-          <span> Total </span>
+          <span> {{ 'CART.TOTAL' | translate }} </span>
           <span class="totalPrice"> {{ getTotalPrice() | currency : '€' }}</span>
         </div>
       </div>
@@ -73,13 +73,17 @@
         *ngIf="this.selection.selected.length > 0"
       >
         <mat-form-field appearance="fill">
-          <mat-label>Input</mat-label>
+          <mat-label>{{ 'CART.INPUT' | translate }}</mat-label>
           <input matInput [(ngModel)]="promocode" />
-          <button mat-button matSuffix (click)="applyPromoCode()"><span class="btn-primary-color">APPLY</span></button>
+          <button mat-button matSuffix (click)="applyPromoCode()">
+            <span class="btn-primary-color">{{ 'CART.APPLY' | translate }}</span>
+          </button>
         </mat-form-field>
         <div class="payment_btn">
-          <span class="selected"> {{ this.selection.selected.length }} selected</span>
-          <button mat-raised-button class="btn" color="primary" (click)="pay()">Payment</button>
+          <span class="selected"> {{ this.selection.selected.length }} {{ 'CART.SELECTED' | translate }}</span>
+          <button mat-raised-button class="btn" color="primary" (click)="pay()">
+            {{ 'CART.PAYMENT' | translate }}
+          </button>
         </div>
       </div>
     </mat-card-footer>
@@ -89,11 +93,11 @@
 <mat-menu #menu="matMenu">
   <ng-template matMenuContent let-myobject="myobject">
     <button mat-menu-item (click)="editWithCheckbox(myobject)">
-      <span class="pl-3"> Edit </span>
+      <span class="pl-3"> {{ 'CART.EDIT' | translate }} </span>
     </button>
     <mat-divider></mat-divider>
     <button mat-menu-item (click)="deleteWithCheckbox(myobject)">
-      <span class="pl-3"> Delete </span>
+      <span class="pl-3"> {{ 'CART.DELETE' | translate }} </span>
     </button>
   </ng-template>
 </mat-menu>

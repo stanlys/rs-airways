@@ -3,6 +3,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
 import { addFlightToCart, deleteFlightFromCart } from 'src/app/reducers/actions/shopping-cart.action';
 import { selectFlights } from 'src/app/reducers/reducer/shopping-cart.reducer';
+import { TranslateService } from '@ngx-translate/core';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { MatSort } from '@angular/material/sort';
@@ -33,7 +34,8 @@ export class CartComponent implements AfterViewInit {
     private store: Store,
     private router: Router,
     public passengerList: PassengersListService,
-    public tripList: TripListService
+    public tripList: TripListService,
+    public translate: TranslateService
   ) {
     this.store.select(selectFlights).subscribe((data) => {
       this.flights.data = data;
