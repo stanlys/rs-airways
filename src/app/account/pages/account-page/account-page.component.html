@@ -8,7 +8,7 @@
     <mat-card-title color="primary">{{ 'CART.HISTORY' | translate }}</mat-card-title>
   </mat-card-header>
   <mat-card-content class="md:p-29 mt-8 sm:p-0 m-0">
-    <table class="border-collapse" mat-table [dataSource]="flights" matSort>
+    <table *ngIf="flights$ | async as DS" class="border-collapse" mat-table [dataSource]="DS" matSort>
       <ng-container matColumnDef="checkbox">
         <th mat-header-cell *matHeaderCellDef>
           <mat-checkbox

@@ -1,14 +1,15 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
-import { addFlightToCart, deleteFlightFromCart } from 'src/app/reducers/actions/shopping-cart.action';
-import { selectFlights } from 'src/app/reducers/reducer/shopping-cart.reducer';
+import { addFlightToCart, deleteFlightFromCart } from 'src/app/store/actions/shopping-cart.action';
 import { TranslateService } from '@ngx-translate/core';
 import { Store } from '@ngrx/store';
+import { selectFlights } from 'src/app/store/selectors/shopping-cart.selector';
 import { Router } from '@angular/router';
 import { MatSort } from '@angular/material/sort';
+import { Observable, map } from 'rxjs';
 import { ITrip } from 'src/app/booking/interfaces/flight';
-import { addFlightToProfile } from 'src/app/reducers/actions/user-flight-history.action';
+import { addFlightToProfile } from 'src/app/store/actions/user-flight-history.action';
 import { SHOPPING_CART_COLUMNS } from '../../interfaces/columns';
 import { IFlight } from '../../interfaces';
 import { PassengersListService } from '../../service/passengers-list.service';
@@ -28,6 +29,14 @@ export class CartComponent implements AfterViewInit {
 
   public promocode = '';
 
+  public tripInCart$: Observable<MatTableDataSource<ITrip>> = this.store.select(selectFlights).pipe(
+    map((trip) => {
+      const table = this.flights;
+      table.data = trip;
+      return table;
+    })
+  );
+
   @ViewChild(MatSort, { static: false }) public sort!: MatSort;
 
   constructor(
@@ -36,12 +45,7 @@ export class CartComponent implements AfterViewInit {
     public passengerList: PassengersListService,
     public tripList: TripListService,
     public translate: TranslateService
-  ) {
-    this.store.select(selectFlights).subscribe((data) => {
-      this.flights.data = data;
-      return true;
-    });
-  }
+  ) {}
 
   public ngAfterViewInit(): void {
     this.flights.sort = this.sort;
@@ -135,7 +139,7 @@ export class CartComponent implements AfterViewInit {
   }
 
   public async editWithCheckbox(flight: IFlight): Promise<void> {
-    await this.router.navigate(['/booking/flights'], { queryParams: { flight } });
+    await this.router.navigate(['/booking/flights'], { queryParams: { flight: JSON.stringify(flight) } });
   }
 
   public deleteWithCheckbox(flight: ITrip): void {
@@ -147,9 +151,9 @@ export class CartComponent implements AfterViewInit {
   }
 
   public pay(): void {
-    this.selection.selected.forEach((fligth) => {
-      this.store.dispatch(deleteFlightFromCart({ flight: fligth }));
-      this.store.dispatch(addFlightToProfile({ flight: fligth }));
+    this.selection.selected.forEach((flight) => {
+      this.store.dispatch(deleteFlightFromCart({ flight }));
+      this.store.dispatch(addFlightToProfile({ flight }));
     });
     this.selection.clear();
   }

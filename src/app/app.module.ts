@@ -17,7 +17,7 @@ import localeDeExtra from '@angular/common/locales/extra/de';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { reducers, metaReducers } from './reducers/index';
+import { reducers, metaReducers } from './store/index';
 import { CoreModule } from './core/core.module';
 
 registerLocaleData(localeEn, 'en');

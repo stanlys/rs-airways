@@ -1,6 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { addFlightToCart } from 'src/app/store/actions/shopping-cart.action';
 
+import { Router } from '@angular/router';
+import { addFlightToProfile } from 'src/app/store/actions/user-flight-history.action';
 import { ProgressControlService } from '../../../core/services/progress-control.service';
 import { ITrip } from '../../interfaces/flight';
 import { SummaryService } from '../../services/summary.service';
@@ -16,23 +19,22 @@ export class SummaryPageComponent {
   constructor(
     private store: Store,
     public summaryService: SummaryService,
-    private controlService: ProgressControlService
+    private controlService: ProgressControlService,
+    private router: Router
   ) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     this.trip = summaryService.getSummary();
   }
 
   public addtoCart(): void {
-    // TODO: добавление в store
-    console.log('Add to cart ', this.trip);
+    if (this.trip) this.store.dispatch(addFlightToCart({ flight: this.trip }));
   }
 
   public buyNow(): void {
-    // добавление в store
-    console.log('Buy now ', this.trip);
+    if (this.trip) this.store.dispatch(addFlightToProfile({ flight: this.trip }));
   }
 
   public goBack(): void {
-    this.controlService.stepper.previous();
+    // this.controlService.stepper.previous();
+    this.router.navigate(['/profile']).finally(() => {});
   }
 }

@@ -1,8 +1,7 @@
-import { IFlight } from 'src/app/cart/interfaces';
 import { ITrip } from 'src/app/booking/interfaces/flight';
 
-import { createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
-import { USER_PROFILE, addFlightToProfile, deleteFlightFromProfile } from '../actions/user-flight-history.action';
+import { createReducer, on } from '@ngrx/store';
+import { addFlightToProfile, deleteFlightFromProfile } from '../actions/user-flight-history.action';
 
 export interface IFlightsStore {
   flights: Array<ITrip>;
@@ -22,7 +21,3 @@ export const userProfileReducer = createReducer<IFlightsStore>(
     })
   )
 );
-
-export const selectShoppingCart = createFeatureSelector<IFlightsStore>(USER_PROFILE);
-
-export const selectFlightsToProfile = createSelector(selectShoppingCart, (state) => state.flights);

@@ -6,8 +6,8 @@
 >
   <mat-icon
     fontSet="material-icons-outlined"
-    [matBadge]="inCart"
-    [matBadgeHidden]="inCart === 0"
+    [matBadge]="tripsInCart$ | async"
+    [matBadgeHidden]="(tripsInCart$ | async) === 0"
     matBadgePosition="after"
     matBadgeColor="warn"
     >shopping_basket</mat-icon

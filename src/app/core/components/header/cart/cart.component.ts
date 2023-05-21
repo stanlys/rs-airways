@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { selectFlights } from 'src/app/reducers/reducer/shopping-cart.reducer';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Store } from '@ngrx/store';
+import { selectFlightsCount } from 'src/app/store/selectors/shopping-cart.selector';
 import { AuthService } from '../../../services/auth.service';
 
 @Component({
@@ -12,12 +12,7 @@ import { AuthService } from '../../../services/auth.service';
 export class CartComponent {
   @Input() public loggedIn$: Subject<boolean> = this.authService.loggedIn$;
 
-  public inCart = 0;
+  public tripsInCart$: Observable<number> = this.store.select(selectFlightsCount);
 
-  constructor(public store: Store, private authService: AuthService) {
-    this.store.select(selectFlights).subscribe((data) => {
-      this.inCart = data.length;
-      return true;
-    });
-  }
+  constructor(public store: Store, private authService: AuthService) {}
 }

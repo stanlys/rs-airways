@@ -1,8 +1,7 @@
-import { createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
 import { FLIGHTS } from 'src/app/cart/MOCK_DATA';
 import { ITrip } from 'src/app/booking/interfaces/flight';
 import { addFlightToCart, deleteFlightFromCart } from '../actions/shopping-cart.action';
-import { SHOPPING_CART } from '../actions/shopping-cart.action';
 
 export interface ISummaryFlightsStore {
   flights: Array<ITrip>;
@@ -22,7 +21,3 @@ export const shoppingCartReducer = createReducer<ISummaryFlightsStore>(
     })
   )
 );
-
-export const selectShoppingCart = createFeatureSelector<ISummaryFlightsStore>(SHOPPING_CART);
-
-export const selectFlights = createSelector(selectShoppingCart, (state) => state.flights);
