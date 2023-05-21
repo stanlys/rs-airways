@@ -153,6 +153,8 @@ export class CartComponent implements AfterViewInit {
   public pay(): void {
     this.selection.selected.forEach((flight) => {
       this.store.dispatch(deleteFlightFromCart({ flight }));
+    });
+    this.selection.selected.forEach((flight) => {
       this.store.dispatch(addFlightToProfile({ flight }));
     });
     this.selection.clear();
