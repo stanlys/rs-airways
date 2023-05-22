@@ -1,4 +1,4 @@
-/* eslint-disable no-underscore-dangle */
+/* eslint-disable import/no-extraneous-dependencies */
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';

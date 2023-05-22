@@ -4,11 +4,12 @@
     <span color="primary" class="mat-title">Passengers</span>
   </h2>
   <p class="mat-small color-gray">Enter the passenger's names as they appear on document (passport or ID).</p>
-  <div class="booking-content passengers-cards flex flex-col gap-5">
+  <form class="booking-content passengers-cards flex flex-col gap-5" [formGroup]="passengersForm">
     <app-process-passenger-card
-      *ngFor="let passenger of passengers; let i = index"
+      *ngFor="let passenger of passengersDescription; let i = index"
+      formGroupName="passengers"
       [index]="i + 1"
       [title]="passenger"
     ></app-process-passenger-card>
-  </div>
+  </form>
 </div>

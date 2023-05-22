@@ -28,6 +28,7 @@ interface SignupForm {
 export class SignupTabComponent {
   public form: FormGroup<SignupForm>;
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   public isLoading$ = this.authService.isLoading$;
 
   @Output() public closeModal = new EventEmitter<void>();
@@ -76,6 +77,7 @@ export class SignupTabComponent {
 
     this.authService.signup(data as RegistrationRequest);
 
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
     this.authService.loggedIn$.subscribe((v) => {
       if (v === true) {
         this.close();

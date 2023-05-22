@@ -1,13 +1,17 @@
 import { Component } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { FlightSearchFormValue } from '../../../shared/models/flight-search.model';
 import { SearchService } from '../../../shared/services/search.service';
 
 interface PassengerFormValue {
+  id: FormControl<number>;
+  type: FormControl<string>;
   firstName: FormControl<string | null>;
   lastName: FormControl<string | null>;
-  gender: FormControl<'male' | 'femail' | null>;
+  gender: FormControl<'male' | 'female' | null>;
   birthDate: FormControl<Date | null>;
+  assistance: FormControl<boolean>;
+  luggage: FormControl<number>;
 }
 
 @Component({
@@ -16,44 +20,56 @@ interface PassengerFormValue {
   styleUrls: ['./process-passengers.component.scss'],
 })
 export class ProcessPassengersComponent {
-  public passengers: string[] = [];
+  public passengersDescription: string[] = [];
 
-  public passengersForm!: FormArray;
+  public passengersForm!: FormGroup;
 
-  constructor(private search: SearchService, fb: FormBuilder) {
-    this.passengersForm = fb.array<PassengerFormValue>([], Validators.required);
+  public passengers!: FormArray;
+
+  constructor(private search: SearchService, private fb: FormBuilder) {
+    this.passengersForm = fb.group({
+      passengers: fb.array<PassengerFormValue>([]),
+    });
   }
 
   public ngOnInit(): void {
-    this.passengers = this.getPassengersArray();
+    this.passengersDescription = this.getPassengersArray();
+    this.passengers = this.passengersForm.controls['passengers'] as FormArray;
+
+    this.passengersDescription.forEach((item, index) => {
+      this.addPassenger(item, index);
+    });
+
+    this.passengers.valueChanges.subscribe((val) => {
+      console.log(val);
+    });
   }
 
   private getPassengersArray(): string[] {
-    // const result: string[] = [];
     const { passengers } = this.search.requestData$.value as FlightSearchFormValue;
     const { adult, child, infant } = passengers;
-    console.log(passengers);
 
     return [
       ...new Array<string>(adult).fill('Adult'),
       ...new Array<string>(child).fill('Child'),
       ...new Array<string>(infant).fill('Infant'),
     ];
+  }
 
-    // for (let i = 0; i < adult; i += 1) {
-    //   result.push('Adult');
-    // }
+  private addPassenger(type: string, id: number): void {
+    const { fb } = this;
+    const passenger = fb.group<PassengerFormValue>({
+      id: fb.control(id) as FormControl<number>,
+      type: fb.control(type) as FormControl<string>,
+      firstName: fb.control('', [Validators.required, Validators.pattern('[a-zA-Z]+')]),
+      lastName: fb.control('', [Validators.required, Validators.pattern('[a-zA-Z]+')]),
+      gender: fb.control(null, Validators.required),
+      birthDate: fb.control(null, Validators.required),
+      assistance: fb.control(false) as FormControl<boolean>,
+      // luggage: fb.control({ value: 0, disabled: true }) as FormControl<number>,
+      luggage: fb.control(0) as FormControl<number>,
+    });
 
-    // for (let i = 0; i < child; i += 1) {
-    //   result.push('Child');
-    // }
-
-    // for (let i = 0; i < infant; i += 1) {
-    //   result.push('Infant');
-    // }
-
-    // console.log(result);
-
-    // return result;
+    this.passengers.push(passenger);
   }
 }

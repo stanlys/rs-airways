@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { HttpClient, HttpClientModule, provideHttpClient } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
