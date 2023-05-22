@@ -45,8 +45,6 @@ export class ProcessPassengerCardComponent implements OnInit {
     this.luggageGroup = fb.group({
       isIncluded: fb.control(false),
     });
-
-    // console.log(this.passengers, this.passengers.controls);
   }
 
   public ngOnInit(): void {
@@ -107,12 +105,10 @@ export class ProcessPassengerCardComponent implements OnInit {
 
   public onToggle(): void {
     const val = this.isIncluded.value ? 1 : 0;
-    console.log(val);
-
     this.luggage.setValue(val);
-    console.log(this.luggage.value);
   }
 
+  // eslint-disable-next-line class-methods-use-this
   private getYearAgo(date: Date, years: number): Date {
     const y = date.getFullYear();
     const m = date.getMonth();

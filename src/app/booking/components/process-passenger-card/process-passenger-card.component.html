@@ -71,7 +71,8 @@
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
         <mat-error *ngIf="birthDate.hasError('required')">Required</mat-error>
-        <mat-error *ngIf="!birthDate.hasError('required')">Invalid date</mat-error>
+        <mat-error *ngIf="birthDate.hasError('matDatepickerMin')">Invalid date, too old</mat-error>
+        <mat-error *ngIf="birthDate.hasError('matDatepickerMax')">Invalid date, too young</mat-error>
       </mat-form-field>
     </div>
 

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { FlightSearchFormValue } from '../../../shared/models/flight-search.model';
 import { SearchService } from '../../../shared/services/search.service';
@@ -20,6 +20,8 @@ interface PassengerFormValue {
   styleUrls: ['./process-passengers.component.scss'],
 })
 export class ProcessPassengersComponent {
+  @Output() public filled = new EventEmitter<boolean>();
+
   public passengersDescription: string[] = [];
 
   public passengersForm!: FormGroup;
@@ -41,7 +43,7 @@ export class ProcessPassengersComponent {
     });
 
     this.passengers.valueChanges.subscribe((val) => {
-      console.log(val);
+      this.filled.emit(this.passengers.valid);
     });
   }
 
