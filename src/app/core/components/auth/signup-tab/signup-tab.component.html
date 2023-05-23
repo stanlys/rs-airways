@@ -22,7 +22,7 @@
 <form class="form auth-tab flex flex-col w-full" #ngForm="ngForm" (ngSubmit)="onSubmit()" [formGroup]="form">
   <mat-form-field *ngIf="form.controls['email'] as control" class="form-field" appearance="fill">
     <mat-label>{{ 'LOGIN_FORM.EMAIL' | translate }}</mat-label>
-    <input name="email" [formControl]="control" matInput type="text" />
+    <input name="email" autocomplete="username" [formControl]="control" matInput type="text" />
     <mat-hint *ngIf="control.errors?.['required']">{{ 'ERRORS.REQUIRED' | translate }}</mat-hint>
     <mat-error *ngIf="control.errors?.['email']">{{ 'ERRORS.CORRECT_EMAIL' | translate }}</mat-error>
     <mat-error *ngIf="control.errors?.['minlength']"> {{ 'ERRORS.MUST_LEAST' | translate : 3 }}</mat-error>
@@ -31,7 +31,14 @@
 
   <mat-form-field *ngIf="form.controls['password'] as control" class="form-field" appearance="fill">
     <mat-label>{{ 'LOGIN_FORM.PASSWORD' | translate }}</mat-label>
-    <input name="password" [formControl]="control" matInput #passwordInput="matInput" type="password" />
+    <input
+      name="password"
+      autocomplete="current-password"
+      [formControl]="control"
+      matInput
+      #passwordInput="matInput"
+      type="password"
+    />
     <mat-icon
       [ngClass]="['icon', !passwordInput.focused ? 'text-[#74767A]' : '']"
       matSuffix
@@ -48,7 +55,14 @@
 
   <mat-form-field *ngIf="form.controls['firstName'] as control" class="form-field" appearance="fill">
     <mat-label>{{ 'LOGIN_FORM.FIRST_NAME' | translate }}</mat-label>
-    <input name="firstName" [formControl]="control" matInput #firstNameInput="matInput" type="text" />
+    <input
+      name="firstName"
+      autocomplete="given-name"
+      [formControl]="control"
+      matInput
+      #firstNameInput="matInput"
+      type="text"
+    />
     <mat-icon
       [ngClass]="['icon', !firstNameInput.focused ? 'text-[#74767A]' : '']"
       matSuffix
@@ -61,7 +75,14 @@
 
   <mat-form-field *ngIf="form.controls['lastName'] as control" class="form-field" appearance="fill">
     <mat-label>{{ 'LOGIN_FORM.LAST_NAME' | translate }}</mat-label>
-    <input name="lastName" [formControl]="control" matInput #lastNameInput="matInput" type="text" />
+    <input
+      name="lastName"
+      autocomplete="family-name"
+      [formControl]="control"
+      matInput
+      #lastNameInput="matInput"
+      type="text"
+    />
     <mat-icon
       [ngClass]="['icon', !lastNameInput.focused ? 'text-[#74767A]' : '']"
       matSuffix
