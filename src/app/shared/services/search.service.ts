@@ -33,8 +33,8 @@ export class SearchService {
   public searchForm: FormGroup;
 
   constructor(private fb: FormBuilder, private http: HttpClient, private snackBar: MatSnackBar) {
-    this.recoverStorageEntries();
     this.searchForm = this.createSearchForm();
+    this.recoverStorageEntries();
   }
 
   public update(v: FlightSearchFormValue): void {
@@ -59,7 +59,9 @@ export class SearchService {
     const request = localStorage.getItem(this.searchKey);
 
     if (request) {
-      this.requestData$.next(JSON.parse(request) as FlightSearchFormValue);
+      const parsedRequest = JSON.parse(request) as FlightSearchFormValue;
+      this.requestData$.next(parsedRequest);
+      this.searchForm.setValue(parsedRequest);
     }
 
     const response = localStorage.getItem(this.flightsKey);
