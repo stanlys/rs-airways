@@ -22,7 +22,7 @@
 <form class="form auth-tab flex flex-col w-full" (ngSubmit)="onSubmit()" [formGroup]="form">
   <mat-form-field *ngIf="form.controls['email'] as control" class="form-field" appearance="fill">
     <mat-label>{{ 'LOGIN_FORM.EMAIL' | translate }}</mat-label>
-    <input name="email" [formControl]="control" matInput type="text" />
+    <input name="email" autocomplete="username" [formControl]="control" matInput type="text" />
     <mat-error *ngIf="control.errors?.['email']">{{ 'ERRORS.CORRECT_EMAIL' | translate }}</mat-error>
     <mat-error *ngIf="control.errors?.['maxlength']">{{ 'ERRORS.LENGTH_16' | translate }}</mat-error>
   </mat-form-field>
@@ -31,6 +31,7 @@
     <mat-label>{{ 'LOGIN_FORM.PASSWORD' | translate }}</mat-label>
     <input
       name="password"
+      autocomplete="current-password"
       [formControl]="control"
       matInput
       #passwordInput="matInput"
