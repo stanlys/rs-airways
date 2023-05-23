@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -17,12 +16,6 @@ export class MainFormComponent {
 
   constructor(private router: Router, private searchService: SearchService, public translate: TranslateService) {
     this.searchForm = searchService.searchForm;
-
-    const formValue = this.searchService.requestData$.getValue();
-
-    if (formValue != null) {
-      this.searchForm.setValue(formValue);
-    }
   }
 
   public onSubmit(): void {

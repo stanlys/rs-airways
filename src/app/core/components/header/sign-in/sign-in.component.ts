@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-sign-in',
@@ -14,6 +13,4 @@ export class SignInComponent {
   public toggleAuth(): void {
     this.authDisplay.emit(!this.authModalActive);
   }
-
-  constructor(public translate: TranslateService) {}
 }
