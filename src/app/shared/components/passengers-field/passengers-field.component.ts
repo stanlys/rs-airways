@@ -1,7 +1,6 @@
-import { Component, Input, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { MatOption } from '@angular/material/core';
-import { TranslateService } from '@ngx-translate/core';
 
 import { selectRequiredOption } from '../../../main/directives/passengers-validator.directive';
 import { PassengerInfo, PassSelectOption } from '../../models/flight-search.interfaces';
@@ -32,23 +31,27 @@ const PASSENGERS: PassengerInfo[] = [
   templateUrl: './passengers-field.component.html',
   styleUrls: ['./passengers-field.component.scss'],
 })
-export class PassengersFieldComponent implements OnInit {
+export class PassengersFieldComponent implements OnInit, AfterViewInit {
   @Input() public name!: string;
 
   @ViewChildren('option') public options!: QueryList<MatOption>;
 
   public passengersForm!: FormGroup;
 
-  public passSelect = new FormControl('', [Validators.required, selectRequiredOption()]);
+  public passSelect = new FormControl<PassSelectOption[]>([], [Validators.required, selectRequiredOption()]);
 
   public passengers = PASSENGERS;
 
   public trigger = '';
 
-  constructor(private parentForm: FormGroupDirective, private translate: TranslateService) {}
+  constructor(private parentForm: FormGroupDirective) {}
 
   public ngOnInit(): void {
     this.passengersForm = this.parentForm.control.get(this.name) as FormGroup;
+  }
+
+  public ngAfterViewInit(): void {
+    this.passengers.forEach((_, i) => this.onSelect(i));
   }
 
   private updateTrigger(): void {
@@ -65,13 +68,18 @@ export class PassengersFieldComponent implements OnInit {
   public onSelect(id: number): void {
     const option = this.options.get(id);
 
-    if (!option) return;
+    if (!option) {
+      return;
+    }
+
     const val = option.value as PassSelectOption;
+
     if (val.amount > 0) {
       option.select();
     } else {
       option.deselect();
     }
+
     this.updateTrigger();
   }
 }
