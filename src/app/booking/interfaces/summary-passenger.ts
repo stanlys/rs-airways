@@ -1,6 +1,4 @@
 export interface IPassenger {
-  firstName?: string;
-  lastName?: string;
   nameFull: string;
   age: number;
   luggage: number;

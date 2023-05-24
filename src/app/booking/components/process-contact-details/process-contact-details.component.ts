@@ -1,15 +1,20 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnChanges, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import countryList from 'country-list';
 import countryTelData from 'country-telephone-data';
+import { Subject, takeUntil } from 'rxjs';
+import { IContacts } from '../../interfaces/process.interface';
+import { ProgressService } from '../../services/progress.service';
 
 @Component({
   selector: 'app-process-contact-details',
   templateUrl: './process-contact-details.component.html',
   styleUrls: ['./process-contact-details.component.scss'],
 })
-export class ProcessContactDetailsComponent {
+export class ProcessContactDetailsComponent implements OnInit, OnDestroy {
   @Output() public filled = new EventEmitter<boolean>();
+
+  @Output() public valid = new EventEmitter<IContacts>();
 
   public contactDetailsForm!: FormGroup;
 
@@ -21,11 +26,13 @@ export class ProcessContactDetailsComponent {
 
   public countryNames = countryList.getNames();
 
+  public destroy$ = new Subject<void>();
+
   public countryCodes = countryTelData.allCountries.map(
     ({ name, dialCode }) => `${name.split(' (')[0]} (+${dialCode})`
   );
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private progress: ProgressService) {
     this.contactDetailsForm = fb.group({
       countryCode: fb.control('', Validators.required),
       phone: fb.control('', [Validators.required, Validators.maxLength(15), Validators.pattern('\\d+')]),
@@ -38,8 +45,25 @@ export class ProcessContactDetailsComponent {
     this.countryCodeField = this.contactDetailsForm.get('countryCode') as FormControl<string>;
     this.phoneNumberField = this.contactDetailsForm.get('phone') as FormControl<string>;
 
-    this.contactDetailsForm.valueChanges.subscribe(() => {
+    if (this.progress.contacts$.value) {
+      this.contactDetailsForm.setValue(this.progress.contacts$.value);
+    }
+
+    this.filled.emit(this.contactDetailsForm.valid);
+    this.contactDetailsForm.valueChanges.pipe(takeUntil(this.destroy$)).subscribe((v) => {
       this.filled.emit(this.contactDetailsForm.valid);
     });
+  }
+
+  // public ngOnChanges(): void {
+  //   this.filled.emit(this.contactDetailsForm.valid);
+  // }
+
+  public ngOnDestroy(): void {
+    if (this.contactDetailsForm.valid) {
+      this.valid.emit(this.contactDetailsForm.value as IContacts);
+    }
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

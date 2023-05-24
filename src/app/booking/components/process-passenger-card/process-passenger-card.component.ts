@@ -1,5 +1,6 @@
 import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, FormGroupDirective } from '@angular/forms';
+import { ProgressService } from '../../services/progress.service';
 
 @Component({
   selector: 'app-process-passenger-card',
@@ -39,7 +40,12 @@ export class ProcessPassengerCardComponent implements OnInit {
 
   public isIncluded!: FormControl;
 
-  constructor(private parentForm: FormGroupDirective, private cd: ChangeDetectorRef, private fb: FormBuilder) {
+  constructor(
+    private parentForm: FormGroupDirective,
+    private cd: ChangeDetectorRef,
+    private fb: FormBuilder,
+    private progress: ProgressService
+  ) {
     this.passengers = this.parentForm.control.get('passengers') as FormArray;
 
     this.luggageGroup = fb.group({
@@ -59,6 +65,10 @@ export class ProcessPassengerCardComponent implements OnInit {
 
     this.assistance = this.passenger.get('assistance') as FormControl;
     this.luggage = this.passenger.get('luggage') as FormControl;
+
+    if (this.luggage.value) {
+      this.isIncluded.setValue(true);
+    }
 
     this.luggage.valueChanges.subscribe((val) => {
       if (val === 0) this.isIncluded.setValue(false);
@@ -116,4 +126,8 @@ export class ProcessPassengerCardComponent implements OnInit {
 
     return new Date(y - years, m, d);
   }
+
+  // private initLuggage(): void {
+  //   if (this.progress.passengers$.value.luggage as number)
+  // }
 }
