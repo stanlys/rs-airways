@@ -2,7 +2,8 @@
   "MAIN": {
     "SEARCH": "Search",
     "CART": "Cart",
-    "LOGIN": "Log In"
+    "LOGIN": "Log In",
+    "LOGOUT": "Logout"
   },
   "LOGIN_FORM": {
     "SIGN_UP": "Sign up",
@@ -88,6 +89,24 @@
     "BTN_BACK": "Back",
     "BTN_ADD": "Add to order cart",
     "BTN_BUY": "Buy now"
+  },
+  "CART": {
+    "TOTAL": "Total",
+    "DETAIL": "Detail",
+    "PRICE": "Price",
+    "PASSENGER": "Passengers",
+    "DATE_TIME": "Date & Time",
+    "TYPE_TRIP": "Type trip",
+    "FLIGHT": "Flight",
+    "HISTORY": "History",
+    "CART": "Cart",
+    "EDIT": "Edit",
+    "DELETE": "Delete",
+    "ADD_NEW": "Add new trip",
+    "INPUT": "Promo code",
+    "APPLY": "Apply",
+    "SELECTED": "Selected",
+    "PAYMENT": "Payment"
   },
   "ERRORS": {
     "PASSENGER_ADULT": "Choose at least 1 Adult",

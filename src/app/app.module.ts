@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { HttpClient, HttpClientModule, provideHttpClient } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
@@ -15,8 +15,10 @@ import localePlExtra from '@angular/common/locales/extra/pl';
 import localeDe from '@angular/common/locales/de';
 import localeDeExtra from '@angular/common/locales/extra/de';
 
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { reducers, metaReducers } from './store/index';
 import { CoreModule } from './core/core.module';
 
 registerLocaleData(localeEn, 'en');
@@ -32,10 +34,11 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    CoreModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot({}, {}),
-    CoreModule,
+    StoreModule.forRoot(reducers, { metaReducers }),
+    StoreDevtoolsModule.instrument({ maxAge: 100, logOnly: !isDevMode() }),
     HttpClientModule,
     TranslateModule.forRoot({
       loader: {

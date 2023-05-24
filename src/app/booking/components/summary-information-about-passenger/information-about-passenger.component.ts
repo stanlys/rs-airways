@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IPassenger } from '../../interfaces/summary-passenger';
+import { IPassenger } from '../../interfaces/passenger';
 
 @Component({
   selector: 'app-information-about-passenger',

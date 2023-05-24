@@ -1,4 +1,4 @@
-import { IPassenger } from './summary-passenger';
+import { IPassenger } from './passenger';
 
 export interface ISummaryFlight {
   number: string;
@@ -23,4 +23,19 @@ export const INIT_SUMMARY_FARE = {
 
 export interface ISummaryLang {
   [key: string]: string;
+}
+
+export interface ISummaryTrip {
+  number: string;
+  dates: string;
+  times: string;
+  from: string;
+  to: string;
+  price: number;
+  passengers: Array<IPassenger>;
+}
+
+export interface ITrip {
+  from: ISummaryTrip;
+  to: ISummaryTrip | null;
 }

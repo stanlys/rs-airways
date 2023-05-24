@@ -1,8 +1,9 @@
 @use '@angular/material' as mat;
+@use 'sass:map';
 
 $button-typography: mat.define-typography-level(
   $font-family: Roboto,
-  $font-weight: 400,
+  $font-weight: 500,
   $font-size: 16px,
   $line-height: 20px,
   $letter-spacing: 0.1px,
@@ -138,4 +139,13 @@ $fontConfig: (
   button: $button-typography,
   caption: mat.define-typography-level(12px, 20px, 400, 'Roboto', 0.0333em),
   input: $body-large-typography,
+  subtitle: $body-large-typography,
+  'thead': $title-large-typography,
+);
+
+$fontConfigTest: map.merge(
+  $fontConfig,
+  (
+    'testing': $title-large-typography,
+  )
 );

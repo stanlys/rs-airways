@@ -2,7 +2,8 @@
   "MAIN": {
     "SEARCH": "Szukaj",
     "CART": "Wózek",
-    "LOGIN": "Zaloguj sie"
+    "LOGIN": "Zaloguj sie",
+    "LOGOUT": "Wyloguj"
   },
   "LOGIN_FORM": {
     "SIGN_UP": "Zapisać się",
@@ -88,6 +89,24 @@
     "BTN_BACK": "Z powrotem",
     "BTN_ADD": "Dodaj do koszyka zamówień",
     "BTN_BUY": "Kup Teraz"
+  },
+  "CART": {
+    "TOTAL": "Całkowity",
+    "DETAIL": "Szczegół",
+    "PRICE": "Cena",
+    "PASSENGER": "Pasażerowie",
+    "DATE_TIME": "Data",
+    "TYPE_TRIP": "Wpisz podróż",
+    "FLIGHT": "Lot",
+    "HISTORY": "Historia",
+    "CART": "Wózek",
+    "EDIT": "Edytować",
+    "DELETE": "Usuwać",
+    "ADD_NEW": "Dodaj nową podróż",
+    "INPUT": "Promo code",
+    "APPLY": "Stosować",
+    "SELECTED": "Wybrany",
+    "PAYMENT": "Zapłata"
   },
   "ERRORS": {
     "PASSENGER_ADULT": "Wybierz co najmniej 1 osobę dorosłą",

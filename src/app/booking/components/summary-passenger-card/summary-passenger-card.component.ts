@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ISummaryFlight } from '../../interfaces/summary-flight';
+import { ISummaryTrip } from '../../interfaces/flight';
 
 @Component({
   selector: 'app-summary-passenger-card',
@@ -7,5 +7,5 @@ import { ISummaryFlight } from '../../interfaces/summary-flight';
   styleUrls: ['./summary-passenger-card.component.scss'],
 })
 export class SummaryPassengerCardComponent {
-  @Input() public flight!: ISummaryFlight;
+  @Input() public trip!: ISummaryTrip;
 }

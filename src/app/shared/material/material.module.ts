@@ -17,8 +17,11 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatBadgeModule } from '@angular/material/badge';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
@@ -41,10 +44,13 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatNativeDateModule,
     MatCheckboxModule,
     MatButtonToggleModule,
+    MatTableModule,
+    MatSortModule,
     MatSnackBarModule,
     MatAutocompleteModule,
     MatRadioModule,
     MatGridListModule,
+    MatBadgeModule,
     MatSlideToggleModule,
     MatTooltipModule,
   ],

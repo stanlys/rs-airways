@@ -1,37 +1,7 @@
-import { ITrip } from '../../interfaces/flight';
-import { IPassenger } from '../../interfaces/passenger';
+import { ITrip } from '../booking/interfaces/flight';
+import { IFlight } from './interfaces';
 
-export const SUMMARY_PASSENGER_TEST: Array<IPassenger> = [
-  {
-    nameFull: 'Harry Potter',
-    cabinBag: 1,
-    luggage: 1,
-    seat: '19E',
-    age: 18,
-    fare: 83,
-    tax: 45.5,
-  },
-  {
-    nameFull: 'Lili Potter',
-    cabinBag: 1,
-    luggage: 1,
-    seat: '20E',
-    age: 16,
-    fare: 53,
-    tax: 45.04,
-  },
-  {
-    nameFull: 'James Potter',
-    cabinBag: 1,
-    luggage: 1,
-    seat: '21E',
-    fare: 44,
-    tax: 5.5,
-    age: 3,
-  },
-];
-
-export const SUMMART_TRIP: Array<ITrip> = [
+export const FLIGHTS: ITrip[] = [
   {
     from: {
       number: 'FR 1925',
@@ -89,5 +59,53 @@ export const SUMMART_TRIP: Array<ITrip> = [
         },
       ],
     },
+  },
+];
+
+export const FLIGHTS1111: IFlight[] = [
+  {
+    number: 'FR 1925',
+    flights: ['Dublin - Warsaw', 'Modlin - Dublin'],
+    typeTrip: 'RoundTrip',
+    dateTime: '1 Mar 2023, 8:40-12:00',
+    passengers: [
+      {
+        nameFull: 'Harry Potter',
+        age: 20,
+        cabinBag: 10,
+        fare: 10,
+        luggage: 23,
+        seat: '19A',
+        tax: 12.2,
+      },
+      {
+        nameFull: 'Harry Potter mini',
+        age: 1,
+        cabinBag: 10,
+        fare: 10,
+        luggage: 23,
+        seat: '19A',
+        tax: 12.2,
+      },
+    ],
+    price: 551.38,
+  },
+  {
+    number: 'PL 1936',
+    flights: ['Wroclaw - Warsaw'],
+    typeTrip: 'One Way',
+    dateTime: '28 Mar 2023, 8:40-12:00',
+    passengers: [
+      {
+        nameFull: 'Harry Potter',
+        age: 20,
+        cabinBag: 10,
+        fare: 10,
+        luggage: 23,
+        seat: '19A',
+        tax: 12.2,
+      },
+    ],
+    price: 26.98,
   },
 ];

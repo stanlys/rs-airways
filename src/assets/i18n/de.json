@@ -2,7 +2,8 @@
   "MAIN": {
     "SEARCH": "Suchen",
     "CART": "Wagen",
-    "LOGIN": "Anmeldung"
+    "LOGIN": "Anmeldung",
+    "LOGOUT": "Ausloggen"
   },
   "LOGIN_FORM": {
     "SIGN_UP": "Anmeldung",
@@ -34,14 +35,14 @@
     "ONE_WAY": "Einweg",
     "ROUND_TRIP": "Rundfahrt",
     "DATES": "Termine",
-    "DATE": "Termin",
-    "FROM": "From",
+    "DATE": "Datum",
+    "FROM": "Aus",
     "LABEL_FROM": "Wählen Sie Ihren Start aus",
     "TO": "Ziel",
     "LABEL_TO": "Wählen Sie Ihr Ziel"
   },
   "HEADER": {
-    "SIGN_IN": "Anmelden",
+    "SIGN_IN": "anmelden",
     "BOOKING": "Flüge buchen",
     "PROFILE": "Profil",
     "FLIGHTS": "Flüge",
@@ -52,28 +53,28 @@
     "RIGHTS": "Alle Rechte vorbehalten.",
     "PAYS": "Wir akzeptieren diese Zahlungsarten"
   },
-  "BOOKING": {
-    "DEPARTURE": "Abreise",
-    "RETURN": "Zurückgeben",
-    "BTN_BACK": "Zurück",
-    "BTN_CONTINUE": "Weiterhin",
-    "NO_FLIGHTS": "Keine Flugdaten gefunden"
-  },
-  "FLIGHTS": {
-    "SELECT": "Wählen",
-    "DIRECT": "Direkt",
-    "CONNECTED": "Verbunden",
-    "SEATS": "sitzen",
-    "AVAILABLE": "verfügbar",
-    "PRICE": "Preis",
-    "NO": "Flugnr."
-  },
-  "PROCESS": {},
   "PASSENGER": {
     "Adult": "Erwachsene",
     "Children": "Kinder",
     "Infant": "Kleinkind"
   },
+  "BOOKING": {
+    "DEPARTURE": "Abfahrt",
+    "RETURN": "Zurückkehren",
+    "BTN_BACK": "Zurück",
+    "BTN_CONTINUE": "Weitermachen",
+    "NO_FLIGHTS": "Keine Flugdaten gefunden"
+  },
+  "FLIGHTS": {
+    "SELECT": "Wählen",
+    "DIRECT": "Direkte",
+    "CONNECTED": "In Verbindung gebracht",
+    "SEATS": "Sitze",
+    "AVAILABLE": "verfügbar",
+    "PRICE": "Preis",
+    "NO": "Flug Nr."
+  },
+  "PROCESS": {},
   "SUMMARY": {
     "CAPTION": "Zusammenfassung",
     "BAG": "aufgegebenes Gepäckstück (insgesamt 23 kg) inklusive",
@@ -88,6 +89,24 @@
     "BTN_BACK": "Zurück",
     "BTN_ADD": "Zum Bestellwagen hinzufügen",
     "BTN_BUY": "Kaufe jetzt"
+  },
+  "CART": {
+    "TOTAL": "Gesamt",
+    "DETAIL": "Detail",
+    "PRICE": "Preis",
+    "PASSENGER": "Passagiere",
+    "DATE_TIME": "Datum",
+    "TYPE_TRIP": "Geben Sie Reise ein",
+    "FLIGHT": "Flug",
+    "HISTORY": "Geschichte",
+    "CART": "Wagen",
+    "EDIT": "Bearbeiten",
+    "DELETE": "Löschen",
+    "ADD_NEW": "Neue Reise hinzufügen",
+    "INPUT": "Promo code",
+    "APPLY": "Anwenden",
+    "SELECTED": "Ausgewählt",
+    "PAYMENT": "Zahlung"
   },
   "ERRORS": {
     "PASSENGER_ADULT": "Wählen Sie mindestens 1 Erwachsenen",
@@ -105,8 +124,8 @@
     "AGREE_TERMS": "Muss mit den Bedingungen einverstanden sein"
   },
   "MISC": {
-    "CURRENCY": "EUR",
+    "CURRENCY": "US Dollar",
     "BTN_EDIT": "Bearbeiten",
-    "BTN_APPLY": "Gelten"
+    "BTN_APPLY": "Anwenden"
   }
 }

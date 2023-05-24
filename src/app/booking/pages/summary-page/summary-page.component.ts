@@ -1,7 +1,12 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { addFlightToCart } from 'src/app/store/actions/shopping-cart.action';
+
+import { Router } from '@angular/router';
+import { addFlightToProfile } from 'src/app/store/actions/user-flight-history.action';
 import { ProgressControlService } from '../../../core/services/progress-control.service';
-import { SUMMART_FLIGHT, SUMMARY_PASSENGER_TEST } from './MOCK_DATA_summary_page';
+import { ITrip } from '../../interfaces/flight';
+import { SummaryService } from '../../services/summary.service';
 
 @Component({
   selector: 'app-summary-page',
@@ -9,23 +14,27 @@ import { SUMMART_FLIGHT, SUMMARY_PASSENGER_TEST } from './MOCK_DATA_summary_page
   styleUrls: ['./summary-page.component.scss'],
 })
 export class SummaryPageComponent {
-  public passengers = SUMMARY_PASSENGER_TEST;
+  public trip?: ITrip;
 
-  public flights = SUMMART_FLIGHT;
-
-  constructor(private store: Store, private controlService: ProgressControlService) {}
+  constructor(
+    private store: Store,
+    public summaryService: SummaryService,
+    private controlService: ProgressControlService,
+    private router: Router
+  ) {
+    this.trip = summaryService.getSummary();
+  }
 
   public addtoCart(): void {
-    // TODO: добавление в store
-    console.log('Add to cart ', this.flights);
+    if (this.trip) this.store.dispatch(addFlightToCart({ flight: this.trip }));
   }
 
   public buyNow(): void {
-    // TODO: добавление в store
-    console.log('Buy now ', this.flights);
+    if (this.trip) this.store.dispatch(addFlightToProfile({ flight: this.trip }));
   }
 
   public goBack(): void {
-    this.controlService.stepper.previous();
+    // this.controlService.stepper.previous();
+    this.router.navigate(['/profile']).finally(() => {});
   }
 }
