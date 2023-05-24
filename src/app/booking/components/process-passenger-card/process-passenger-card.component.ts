@@ -1,5 +1,8 @@
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, FormGroupDirective } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
+import { Subject, takeUntil } from 'rxjs';
+import { PassengersFormValue } from '../../interfaces/process.interface';
 import { ProgressService } from '../../services/progress.service';
 
 @Component({
@@ -7,12 +10,12 @@ import { ProgressService } from '../../services/progress.service';
   templateUrl: './process-passenger-card.component.html',
   styleUrls: ['./process-passenger-card.component.scss'],
 })
-export class ProcessPassengerCardComponent implements OnInit {
+export class ProcessPassengerCardComponent implements OnInit, OnDestroy {
   @Input() public index = 1;
 
   @Input() public title = 'Adult';
 
-  public tooltip = `Add the passenger's name as it is written on their documents (passport or ID). Do not use any accents or special characters. Do not use a nickname.`;
+  public passengerTitle = '';
 
   public today = new Date();
 
@@ -40,11 +43,16 @@ export class ProcessPassengerCardComponent implements OnInit {
 
   public isIncluded!: FormControl;
 
+  private destroy$ = new Subject<void>();
+
+  public locale = this.translateService.currentLang;
+
   constructor(
     private parentForm: FormGroupDirective,
     private cd: ChangeDetectorRef,
     private fb: FormBuilder,
-    private progress: ProgressService
+    private progress: ProgressService,
+    private translateService: TranslateService
   ) {
     this.passengers = this.parentForm.control.get('passengers') as FormArray;
 
@@ -58,6 +66,8 @@ export class ProcessPassengerCardComponent implements OnInit {
 
     this.firstName = this.passenger.get('firstName') as FormControl;
     this.lastName = this.passenger.get('lastName') as FormControl;
+
+    this.gender = this.passenger.get('gender') as FormControl;
 
     this.birthDate = this.passenger.get('birthDate') as FormControl;
 
@@ -74,12 +84,22 @@ export class ProcessPassengerCardComponent implements OnInit {
       if (val === 0) this.isIncluded.setValue(false);
     });
 
+    this.transformTitleForTranslate();
+
+    this.translateService.onLangChange.pipe(takeUntil(this.destroy$)).subscribe((e) => {
+      this.locale = e.lang;
+    });
+
     this.getDateValidators();
   }
 
+  public ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
   private getDateValidators(): void {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const { type } = this.passenger.value;
+    const { type } = this.passenger.value as PassengersFormValue;
 
     switch (type) {
       case 'Infant': {
@@ -118,6 +138,10 @@ export class ProcessPassengerCardComponent implements OnInit {
     this.luggage.setValue(val);
   }
 
+  private transformTitleForTranslate(): void {
+    this.passengerTitle = `PASSENGER.${this.title}`;
+  }
+
   // eslint-disable-next-line class-methods-use-this
   private getYearAgo(date: Date, years: number): Date {
     const y = date.getFullYear();
@@ -126,8 +150,4 @@ export class ProcessPassengerCardComponent implements OnInit {
 
     return new Date(y - years, m, d);
   }
-
-  // private initLuggage(): void {
-  //   if (this.progress.passengers$.value.luggage as number)
-  // }
 }

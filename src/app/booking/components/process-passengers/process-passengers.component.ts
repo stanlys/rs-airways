@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 import { Subject, takeUntil } from 'rxjs';
 import { FlightSearchFormValue } from '../../../shared/models/flight-search.model';
 import { SearchService } from '../../../shared/services/search.service';
@@ -35,7 +36,14 @@ export class ProcessPassengersComponent implements OnInit, OnDestroy {
 
   private destroy$ = new Subject<void>();
 
-  constructor(private search: SearchService, private fb: FormBuilder, private progress: ProgressService) {
+  public locale = this.translateService.currentLang;
+
+  constructor(
+    private search: SearchService,
+    private fb: FormBuilder,
+    private progress: ProgressService,
+    private translateService: TranslateService
+  ) {
     this.passengersForm = fb.group({
       passengers: fb.array<PassengerForm>([]),
     });
@@ -53,6 +61,10 @@ export class ProcessPassengersComponent implements OnInit, OnDestroy {
 
     this.passengers.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(() => {
       this.filled.emit(this.passengers.valid);
+    });
+
+    this.translateService.onLangChange.pipe(takeUntil(this.destroy$)).subscribe((e) => {
+      this.locale = e.lang;
     });
   }
 

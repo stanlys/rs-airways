@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 import countryList from 'country-list';
 import countryTelData from 'country-telephone-data';
 import { Subject, takeUntil } from 'rxjs';
@@ -32,7 +33,9 @@ export class ProcessContactDetailsComponent implements OnInit, OnDestroy {
     ({ name, dialCode }) => `${name.split(' (')[0]} (+${dialCode})`
   );
 
-  constructor(private fb: FormBuilder, private progress: ProgressService) {
+  public locale = this.translateService.currentLang;
+
+  constructor(private fb: FormBuilder, private progress: ProgressService, private translateService: TranslateService) {
     this.contactDetailsForm = fb.group({
       countryCode: fb.control('', Validators.required),
       phone: fb.control('', [Validators.required, Validators.maxLength(15), Validators.pattern('\\d+')]),
@@ -52,6 +55,10 @@ export class ProcessContactDetailsComponent implements OnInit, OnDestroy {
     this.filled.emit(this.contactDetailsForm.valid);
     this.contactDetailsForm.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(() => {
       this.filled.emit(this.contactDetailsForm.valid);
+    });
+
+    this.translateService.onLangChange.pipe(takeUntil(this.destroy$)).subscribe((e) => {
+      this.locale = e.lang;
     });
   }
 

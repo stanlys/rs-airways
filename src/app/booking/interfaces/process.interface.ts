@@ -9,7 +9,9 @@ export interface PassengersFormValue {
   firstName: string;
   lastName: string;
   birthdate: Date;
-  type: 'Adult' | 'Child' | 'Infant';
+  type: PassengerType;
   luggage: number;
   assistance: boolean;
 }
+
+export type PassengerType = 'Adult' | 'Child' | 'Infant';
