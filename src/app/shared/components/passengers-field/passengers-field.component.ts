@@ -1,9 +1,9 @@
-import { AfterViewInit, Component, Input, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { Component, Input, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { MatOption } from '@angular/material/core';
 
 import { selectRequiredOption } from '../../../main/directives/passengers-validator.directive';
-import { PassengerInfo, PassSelectOption } from '../../models/flight-search.interfaces';
+import { PassengerInfo, Passengers, PassSelectOption } from '../../models/flight-search.interfaces';
 
 const PASSENGERS: PassengerInfo[] = [
   {
@@ -31,7 +31,7 @@ const PASSENGERS: PassengerInfo[] = [
   templateUrl: './passengers-field.component.html',
   styleUrls: ['./passengers-field.component.scss'],
 })
-export class PassengersFieldComponent implements OnInit, AfterViewInit {
+export class PassengersFieldComponent implements OnInit {
   @Input() public name!: string;
 
   @ViewChildren('option') public options!: QueryList<MatOption>;
@@ -42,16 +42,30 @@ export class PassengersFieldComponent implements OnInit, AfterViewInit {
 
   public passengers = PASSENGERS;
 
-  public trigger = '';
+  public triggerValue = '';
 
   constructor(private parentForm: FormGroupDirective) {}
 
   public ngOnInit(): void {
     this.passengersForm = this.parentForm.control.get(this.name) as FormGroup;
+
+    const passengersFormValue = this.passengersForm.getRawValue() as Passengers;
+
+    const passSelectValue = this.passengers
+      .map(({ name, inputName }) => {
+        const amount = passengersFormValue[inputName as keyof Passengers];
+        return { name, amount };
+      })
+      .filter(({ amount }) => amount > 0);
+
+    this.passSelect.setValue(passSelectValue);
+
+    this.triggerValue = passSelectValue.map((item) => `${item.amount} ${item.name}`).join(', ') || '';
   }
 
-  public ngAfterViewInit(): void {
-    this.passengers.forEach((_, i) => this.onSelect(i));
+  // eslint-disable-next-line class-methods-use-this
+  public compareFn(o1: PassSelectOption, o2: PassSelectOption): boolean {
+    return o1 && o2 && o1.name === o2.name;
   }
 
   private updateTrigger(): void {
@@ -59,7 +73,7 @@ export class PassengersFieldComponent implements OnInit, AfterViewInit {
 
     if (!result) return;
 
-    this.trigger = result
+    this.triggerValue = result
       .filter((item) => !!item.amount)
       .map((item) => `${item.amount} ${item.name}`)
       .join(', ');
