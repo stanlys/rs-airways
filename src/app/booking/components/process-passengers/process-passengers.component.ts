@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subject, takeUntil } from 'rxjs';
 import { FlightSearchFormValue } from '../../../shared/models/flight-search.model';
@@ -51,13 +51,10 @@ export class ProcessPassengersComponent implements OnInit, OnDestroy {
 
     this.initPassengersForm();
 
-    this.passengers.valueChanges.pipe(takeUntil(this.destroy$)).subscribe((val) => {
+    this.passengers.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(() => {
       this.filled.emit(this.passengers.valid);
     });
   }
-
-  // public ngOnChanges(): void {
-  // }
 
   public ngOnDestroy(): void {
     if (this.passengers.valid) {

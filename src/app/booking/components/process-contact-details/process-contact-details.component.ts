@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnChanges, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import countryList from 'country-list';
 import countryTelData from 'country-telephone-data';
@@ -50,14 +50,10 @@ export class ProcessContactDetailsComponent implements OnInit, OnDestroy {
     }
 
     this.filled.emit(this.contactDetailsForm.valid);
-    this.contactDetailsForm.valueChanges.pipe(takeUntil(this.destroy$)).subscribe((v) => {
+    this.contactDetailsForm.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(() => {
       this.filled.emit(this.contactDetailsForm.valid);
     });
   }
-
-  // public ngOnChanges(): void {
-  //   this.filled.emit(this.contactDetailsForm.valid);
-  // }
 
   public ngOnDestroy(): void {
     if (this.contactDetailsForm.valid) {

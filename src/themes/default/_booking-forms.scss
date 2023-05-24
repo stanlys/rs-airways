@@ -14,7 +14,6 @@
   .mat-small {
     color: u.get-color(c.$brand-neutral, 40);
   }
-
 }
 
 .booking-content {
@@ -33,7 +32,6 @@
   .mdc-text-field {
     @include mx.button_border;
   }
-
 
   .gender-buttons-group {
     height: 56px;
@@ -72,7 +70,7 @@
 
 .mdc-tooltip__surface {
   background-color: c.$white !important;
-  color: #1C1B1F !important;
+  color: #1c1b1f !important;
   padding: 1rem 1.5rem !important;
   border-radius: 0.5rem;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
@@ -85,12 +83,12 @@
   width: 52px !important;
   height: 32px !important;
 
-  border: 2px solid #74767A;
+  border: 2px solid #74767a;
   border-radius: 16px !important;
 }
 
 .mat-mdc-slide-toggle .mdc-switch:enabled .mdc-switch__track::before {
-  background: #F4F6F9 !important;
+  background: #f4f6f9 !important;
 }
 
 .mat-mdc-slide-toggle .mdc-switch .mdc-switch__handle {
@@ -110,7 +108,6 @@
 .mat-mdc-slide-toggle,
 .mdc-switch,
 .mdc-switch__handle-track {
-
   width: 52px;
 }
 .mdc-switch--selected .mdc-switch__handle-track {
@@ -118,15 +115,15 @@
 }
 
 .mat-mdc-slide-toggle .mdc-switch.mdc-switch--unselected:enabled .mdc-switch__handle::after {
-  background: #74767A !important;
+  background: #74767a !important;
 }
 
 .mat-mdc-slide-toggle .mdc-switch.mdc-switch--selected:enabled .mdc-switch__handle::after {
-  background: #F4F6F9 !important;
+  background: #f4f6f9 !important;
 }
 
 .mdc-switch__icon {
-  fill: #74767A !important;
+  fill: #74767a !important;
   left: -1px !important;
 
   &--off {
