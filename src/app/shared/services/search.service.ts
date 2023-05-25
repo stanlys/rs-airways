@@ -5,7 +5,7 @@ import dayjs from 'dayjs';
 import isToday from 'dayjs/plugin/isToday';
 import utc from 'dayjs/plugin/utc';
 
-import { BehaviorSubject, Observable, Subject, catchError, of, take, timeout } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, catchError, of, take, timeout, takeLast, takeUntil } from 'rxjs';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -116,8 +116,8 @@ export class SearchService {
   private static transformFormValueToReqScheme(v: FlightSearchFormValue): FlightSearchRequest {
     const { airport, dates, oneWay } = v;
     const { fromLoc, toLoc } = airport;
-    const { IATA: fromKey } = fromLoc;
-    const { IATA: toKey } = toLoc;
+    const { key: fromKey } = fromLoc;
+    const { key: toKey } = toLoc;
     let forwardDate = dayjs(dates.takeoffDate).toISOString();
     const backDate = oneWay !== true ? dayjs(dates.landingDate).toISOString() : undefined;
 
@@ -133,5 +133,10 @@ export class SearchService {
     };
 
     return requestData;
+  }
+
+  public getAirports(v: string): Observable<AirportForm[]> {
+    const url = `${API_BASE_URL}search/airport?q=${v}`;
+    return this.http.get<AirportForm[]>(url);
   }
 }
