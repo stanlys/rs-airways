@@ -35,6 +35,5 @@ export class SummaryPageComponent {
 
   public goBack(): void {
     this.controlService.stepper.previous();
-    // this.router.navigate(['/profile']).finally(() => {});
   }
 }

@@ -5,7 +5,7 @@ import dayjs from 'dayjs';
 import isToday from 'dayjs/plugin/isToday';
 import utc from 'dayjs/plugin/utc';
 
-import { BehaviorSubject, Observable, Subject, catchError, of, take, timeout, takeLast, takeUntil } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, catchError, of, take, timeout } from 'rxjs';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -134,6 +134,8 @@ export class SearchService {
 
     return requestData;
   }
+
+  // private handleAirportError
 
   public getAirports(v: string): Observable<AirportForm[]> {
     const url = `${API_BASE_URL}search/airport?q=${v}`;
