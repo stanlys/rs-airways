@@ -1,5 +1,9 @@
 import { HttpClient, HttpClientModule, provideHttpClient } from '@angular/common/http';
 import { NgModule, isDevMode } from '@angular/core';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { AngularFireModule } from '@angular/fire/compat';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
@@ -19,6 +23,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { reducers, metaReducers } from './store/index';
 import { CoreModule } from './core/core.module';
+import { environment } from '../enviroments/enviroment';
 
 registerLocaleData(localeEn, 'en');
 registerLocaleData(localeRu, 'ru', localeRuExtra);
@@ -47,6 +52,9 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
       },
       defaultLanguage: 'en',
     }),
+
+    AngularFireModule.initializeApp(environment),
+    AngularFireAuthModule,
   ],
   exports: [],
   providers: [provideHttpClient()],
