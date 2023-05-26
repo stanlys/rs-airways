@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { FacebookAuthProvider, GoogleAuthProvider } from 'firebase/auth';
+import { MatSnackBar } from '@angular/material/snack-bar';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AuthService } from './auth.service';
@@ -19,7 +20,7 @@ interface IGoogleUser {
   providedIn: 'root',
 })
 export class GoogleAuthService {
-  constructor(public afAuth: AngularFireAuth, private authService: AuthService) {}
+  constructor(public afAuth: AngularFireAuth, private authService: AuthService, private snackBar: MatSnackBar) {}
 
   public GoogleAuth(): Promise<void> {
     return this.AuthLogin(new GoogleAuthProvider());
@@ -45,7 +46,9 @@ export class GoogleAuthService {
           }
         })
         .catch((error) => {
-          console.log(error);
+          this.snackBar.open('Servies does not work', 'Close', {
+            duration: 3000,
+          });
         })
     );
   }
@@ -72,52 +75,10 @@ export class GoogleAuthService {
           }
         })
         .catch((error) => {
-          console.log(error);
+          this.snackBar.open('Servies does not work', 'Close', {
+            duration: 3000,
+          });
         })
     );
   }
 }
-
-/*
-additionalUserInfo
-:
-GoogleAdditionalUserInfo
-isNewUser
-:
-false
-profile
-:
-email
-:
-"s.a.chelnakov@gmail.com"
-family_name
-:
-"Stanlys"
-given_name
-:
-"Stan"
-granted_scopes
-:
-"https://www.googleapis.com/auth/userinfo.profile openid https://www.googleapis.com/auth/userinfo.email"
-id
-:
-"115300016152742025050"
-locale
-:
-"ru"
-name
-:
-"Stan Stanlys"
-picture
-:
-"https://lh3.googleusercontent.com/a/AAcHTtdyBGP-cemsShDBEX5yOUVCz7GH8JIs7_C6bceECA=s96-c"
-verified_email
-:
-true
-[[Prototype]]
-:
-Object
-providerId
-:
-"google.com"
-*/
