@@ -5,6 +5,7 @@
       <mat-select-trigger>{{ triggerValue }}</mat-select-trigger>
 
       <mat-option
+        class="passengers-option"
         #option
         *ngFor="let p of passengers; let id = index"
         [value]="{
