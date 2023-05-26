@@ -11,7 +11,7 @@
         [odd]="odd"
         [showSearchForm]="showSearchForm"
         [flight]="flight"
-        [confirmed]="flightsConfirmed[i]"
+        [confirmed]="!!flightsConfirmed[i]"
         (confirmedChange)="onFlightConfirmed(i, $event)"
       />
     </ng-container>

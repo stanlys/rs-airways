@@ -1,6 +1,23 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { SearchService } from '../../../shared/services/search.service';
+import { Flight } from '../../../shared/models/flight-search.interfaces';
+
+// TODO: remove comment
+// export interface ISummaryTrip {
+//   number: string;
+//   dates: string;
+//   times: string;
+//   from: string;
+//   to: string;
+//   price: number;
+//   passengers: Array<IPassenger>;
+// }
+
+// export interface ITrip {
+//   from: ISummaryTrip;
+//   to: ISummaryTrip | null;
+// }
 
 @Component({
   selector: 'app-flights-page',
@@ -12,7 +29,7 @@ export class FlightsPageComponent implements OnDestroy {
 
   public showSearchForm = false;
 
-  public flightsConfirmed: boolean[] = [];
+  public flightsConfirmed: (false | Flight)[] = [];
 
   private subs = new Subscription();
 
@@ -21,7 +38,7 @@ export class FlightsPageComponent implements OnDestroy {
   constructor(private searchService: SearchService) {
     const flightsSub = searchService.flights$.subscribe((v) => {
       if (v != null) {
-        this.flightsConfirmed = <boolean[]>Array(v.length).fill(false);
+        this.flightsConfirmed = <false[]>Array(v.length).fill(false);
       }
     });
 
@@ -34,7 +51,7 @@ export class FlightsPageComponent implements OnDestroy {
     this.subs.unsubscribe();
   }
 
-  public onFlightConfirmed(i: number, v: boolean): void {
+  public onFlightConfirmed(i: number, v: Flight | false): void {
     this.flightsConfirmed[i] = v;
   }
 
