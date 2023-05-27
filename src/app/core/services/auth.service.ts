@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { Observable, Subject, catchError, of, timeout } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, catchError, of, timeout } from 'rxjs';
 
 import { API_BASE_URL, STORAGE_KEY_PREFIX } from '../../shared/constants';
 import { LoginRequest, RegistrationRequest } from '../models/requests.models';
@@ -11,7 +11,7 @@ import { LoginRequest, RegistrationRequest } from '../models/requests.models';
   providedIn: 'root',
 })
 export class AuthService {
-  public loggedIn$ = new Subject<boolean>();
+  public loggedIn$ = new BehaviorSubject<boolean>(false);
 
   private readonly tokenKey = `${STORAGE_KEY_PREFIX}-authToken`;
 

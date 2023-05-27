@@ -14,7 +14,7 @@ export default class PassengerInputComponent implements OnInit {
 
   public passengerInput!: FormControl;
 
-  public inputValue = 0;
+  @Input() public inputValue = 0;
 
   constructor(private parentForm: FormGroupDirective) {}
 

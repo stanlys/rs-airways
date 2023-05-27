@@ -5,7 +5,7 @@
   height: 24px;
   width: 24px;
   border-radius: 100%;
-  bottom: $date-height / 2;
+  bottom: calc($date-height / 2);
   transform: translateY(50%);
 }
 

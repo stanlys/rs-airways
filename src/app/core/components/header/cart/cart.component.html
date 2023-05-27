@@ -1,13 +1,8 @@
-<a
-  [routerLink]="(loggedIn$ | async) ? ['/cart'] : []"
-  class="cart icon"
-  mat-icon-button
-  aria-label="button with cart icon"
->
+<a [routerLink]="['/cart']" class="cart icon" mat-icon-button aria-label="button with cart icon">
   <mat-icon
     fontSet="material-icons-outlined"
     [matBadge]="tripsInCart$ | async"
-    [matBadgeHidden]="(tripsInCart$ | async) === 0"
+    [matBadgeHidden]="(loggedIn$ | async) !== true || (tripsInCart$ | async) === 0"
     matBadgePosition="after"
     matBadgeColor="warn"
     >shopping_basket</mat-icon

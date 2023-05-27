@@ -63,7 +63,7 @@
     </table>
     <mat-divider> </mat-divider>
     <mat-card-footer>
-      <div class="mt-4 mb-4 flex justify-end align-middle flex-col md:flex-row justify-end">
+      <div class="mt-4 mb-4 flex justify-end align-middle flex-col md:flex-row">
         <span *ngIf="this.selection.selected.length > 0">
           {{ 'CART.TOTAL' | translate }}
           <span class="totalPrice"> {{ getTotalPrice() | currency : '€' }}</span>

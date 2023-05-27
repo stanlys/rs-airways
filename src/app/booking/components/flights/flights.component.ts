@@ -27,7 +27,7 @@ export class FlightsComponent implements OnInit {
 
   @Input() public confirmed = false;
 
-  @Output() public confirmedChange = new EventEmitter<boolean>();
+  @Output() public confirmedChange = new EventEmitter<Flight | false>();
 
   constructor(private bookingService: BookingService) {}
 

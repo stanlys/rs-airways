@@ -1,6 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { Component } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -13,17 +12,9 @@ import { SearchService } from '../../../shared/services/search.service';
   styleUrls: ['./main-form.component.scss'],
 })
 export class MainFormComponent {
-  public searchForm: FormGroup;
+  public searchForm = this.searchService.searchForm;
 
-  constructor(private router: Router, private searchService: SearchService, public translate: TranslateService) {
-    this.searchForm = searchService.searchForm;
-
-    const formValue = this.searchService.requestData$.getValue();
-
-    if (formValue != null) {
-      this.searchForm.setValue(formValue);
-    }
-  }
+  constructor(private router: Router, private searchService: SearchService, public translate: TranslateService) {}
 
   public onSubmit(): void {
     this.searchService.update(this.searchForm.value as FlightSearchFormValue);

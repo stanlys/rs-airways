@@ -1,10 +1,11 @@
 <ng-container [formGroup]="passengersForm">
   <mat-form-field class="passengers-select" appearance="fill" hideRequiredMarker="true">
     <mat-label>{{ 'MAIN_FORM.PASSENGER' | translate }}</mat-label>
-    <mat-select [formControl]="passSelect" multiple [disableRipple]="true">
-      <mat-select-trigger>{{ trigger }}</mat-select-trigger>
+    <mat-select [formControl]="passSelect" [compareWith]="compareFn" multiple [disableRipple]="true">
+      <mat-select-trigger>{{ triggerValue }}</mat-select-trigger>
 
       <mat-option
+        class="passengers-option"
         #option
         *ngFor="let p of passengers; let id = index"
         [value]="{
@@ -13,7 +14,7 @@
         }"
         (onSelectionChange)="onSelect(id)"
       >
-        <app-passenger-input [passenger]="p"></app-passenger-input>
+        <app-passenger-input [inputValue]="option.value.amount" [passenger]="p"></app-passenger-input>
       </mat-option>
     </mat-select>
     <mat-error *ngIf="passSelect.hasError('required')">{{ 'ERRORS.PASSENGER_ADULT' | translate }}</mat-error>

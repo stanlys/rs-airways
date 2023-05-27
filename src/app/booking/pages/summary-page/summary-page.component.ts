@@ -1,10 +1,11 @@
+import { Location } from '@angular/common';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { addFlightToCart } from 'src/app/store/actions/shopping-cart.action';
 
-import { Router } from '@angular/router';
-import { addFlightToProfile } from 'src/app/store/actions/user-flight-history.action';
 import { ProgressControlService } from '../../../core/services/progress-control.service';
+import { NavigationService } from '../../../shared/services/navigation.service';
 import { ITrip } from '../../interfaces/flight';
 import { SummaryService } from '../../services/summary.service';
 
@@ -17,9 +18,11 @@ export class SummaryPageComponent {
   public trip?: ITrip;
 
   constructor(
-    private store: Store,
     public summaryService: SummaryService,
-    private controlService: ProgressControlService,
+    private store: Store,
+    private stepperService: ProgressControlService,
+    private location: Location,
+    private navigationService: NavigationService,
     private router: Router
   ) {
     this.trip = summaryService.getSummary();
@@ -30,10 +33,15 @@ export class SummaryPageComponent {
   }
 
   public buyNow(): void {
-    if (this.trip) this.store.dispatch(addFlightToProfile({ flight: this.trip }));
+    if (this.trip) this.store.dispatch(addFlightToCart({ flight: this.trip }));
+    this.router.navigate(['cart']).catch(console.error);
   }
 
   public goBack(): void {
-    this.controlService.stepper.previous();
+    if (this.navigationService.prevUrl.includes('process')) {
+      this.stepperService.stepper.previous();
+    }
+
+    this.location.back();
   }
 }

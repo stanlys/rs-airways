@@ -14,7 +14,7 @@ export class DatesFieldComponent implements OnInit, OnDestroy {
 
   public dateFormatHint = 'MM/DD/YYYY - MM/DD/YYYY';
 
-  public oneWay = false;
+  public oneWay?: boolean;
 
   public datesForm!: FormGroup;
 

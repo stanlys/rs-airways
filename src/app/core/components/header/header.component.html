@@ -5,7 +5,7 @@
     </a>
 
     <div class="controls flex items-center">
-      <ng-container *ngIf="mainPage; else progressIndicator">
+      <ng-container *ngIf="(mainPage | async) === true; else progressIndicator">
         <span class="spacer flex-auto"></span>
         <app-booking />
       </ng-container>

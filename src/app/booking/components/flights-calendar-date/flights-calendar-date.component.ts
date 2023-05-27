@@ -66,7 +66,7 @@ export class FlightsCalendarDateComponent implements OnChanges, OnDestroy {
 
   private setPrice(code?: CurrencyCode): void {
     if (this.flight != null) {
-      this.price = this.priceService.getPrice(this.flight, code);
+      this.price = this.priceService.getFlightPrice(this.flight, code);
     }
   }
 }

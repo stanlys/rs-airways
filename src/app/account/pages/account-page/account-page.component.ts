@@ -1,17 +1,18 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
-import { SHOPPING_CART_COLUMNS } from 'src/app/cart/interfaces/columns';
-import { Store } from '@ngrx/store';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { TripListService } from 'src/app/cart/service/trip-list.service';
+import { Store } from '@ngrx/store';
 import { Observable, map } from 'rxjs';
-import { selectFlightsToProfile } from 'src/app/store/selectors/user-flight-history.selector';
-import { PassengersListService } from 'src/app/cart/service/passengers-list.service';
-import { SummaryService } from 'src/app/booking/services/summary.service';
 import { ITrip } from 'src/app/booking/interfaces/flight';
+import { SummaryService } from 'src/app/booking/services/summary.service';
+import { SHOPPING_CART_COLUMNS } from 'src/app/cart/interfaces/columns';
+import { PassengersListService } from 'src/app/cart/service/passengers-list.service';
+import { TripListService } from 'src/app/cart/service/trip-list.service';
+import { selectFlightsToProfile } from 'src/app/store/selectors/user-flight-history.selector';
 import { AuthService } from '../../../core/services/auth.service';
+import { PriceService } from '../../../shared/services/price.service';
 
 @Component({
   selector: 'app-account-page',
@@ -41,7 +42,8 @@ export class AccountPageComponent implements AfterViewInit {
     private route: Router,
     private summaryService: SummaryService,
     public tripList: TripListService,
-    public passengerList: PassengersListService
+    public passengerList: PassengersListService,
+    private priceService: PriceService
   ) {}
 
   public logout(): void {
@@ -54,7 +56,7 @@ export class AccountPageComponent implements AfterViewInit {
 
   public getTotalPrice(): number {
     return this.selection.selected
-      .map((flight) => flight.from.price + (flight.to?.price || 0))
+      .map((flight) => this.priceService.getPrice(flight.from.price) + this.priceService.getPrice(flight.to?.price))
       .reduce((acc, value) => acc + value, 0);
   }
 
