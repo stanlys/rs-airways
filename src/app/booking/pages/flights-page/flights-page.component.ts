@@ -24,6 +24,8 @@ export class FlightsPageComponent implements OnDestroy {
 
   public isLoading$;
 
+  public canContinue = false;
+
   constructor(
     private searchService: SearchService,
     private summaryService: SummaryService,
@@ -56,6 +58,8 @@ export class FlightsPageComponent implements OnDestroy {
     if (from) {
       this.summaryService.setSummary({ from, to });
     }
+
+    this.canContinue = this.checkAllFlights();
   }
 
   public checkAllFlights(): boolean {

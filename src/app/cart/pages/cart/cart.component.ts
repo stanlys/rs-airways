@@ -1,17 +1,17 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
-import { MatTableDataSource } from '@angular/material/table';
-import { addFlightToCart, deleteFlightFromCart } from 'src/app/store/actions/shopping-cart.action';
-import { TranslateService } from '@ngx-translate/core';
-import { Store } from '@ngrx/store';
-import { selectFlights } from 'src/app/store/selectors/shopping-cart.selector';
-import { Router } from '@angular/router';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { TranslateService } from '@ngx-translate/core';
 import { Observable, map } from 'rxjs';
 import { ITrip } from 'src/app/booking/interfaces/flight';
+import { deleteFlightFromCart } from 'src/app/store/actions/shopping-cart.action';
 import { addFlightToProfile } from 'src/app/store/actions/user-flight-history.action';
-import { SHOPPING_CART_COLUMNS } from '../../interfaces/columns';
+import { selectFlights } from 'src/app/store/selectors/shopping-cart.selector';
 import { IFlight } from '../../interfaces';
+import { SHOPPING_CART_COLUMNS } from '../../interfaces/columns';
 import { PassengersListService } from '../../service/passengers-list.service';
 import { TripListService } from '../../service/trip-list.service';
 
@@ -55,73 +55,10 @@ export class CartComponent implements AfterViewInit {
     return this.selection.selected
       .map((flight) => flight.from.price + (flight.to?.price || 0))
       .reduce((acc, value) => acc + value, 0);
-    return 0;
   }
 
-  // временное решение для тестирования
   public addTrip(): void {
-    this.store.dispatch(
-      addFlightToCart({
-        flight: {
-          from: {
-            number: 'FR 1999',
-            dates: '1 Mar 2023',
-            from: 'Dublin',
-            to: 'Berlin',
-            times: '8:40-12:00',
-            price: 200,
-            passengers: [
-              {
-                nameFull: 'Harry Potter',
-                age: 20,
-                cabinBag: 10,
-                fare: 10,
-                luggage: 23,
-                seat: '19A',
-                tax: 12.2,
-              },
-              {
-                nameFull: 'Harry Potter mini',
-                age: 1,
-                cabinBag: 10,
-                fare: 10,
-                luggage: 23,
-                seat: '19A',
-                tax: 12.2,
-              },
-            ],
-          },
-          to: {
-            number: 'FR 1926',
-            dates: '1 Mar 2023',
-            from: 'Dublin',
-            to: 'Berlin',
-            times: '8:40-12:00',
-            price: 50,
-            passengers: [
-              {
-                nameFull: 'Harry Potter',
-                age: 20,
-                cabinBag: 10,
-                fare: 10,
-                luggage: 23,
-                seat: '19A',
-                tax: 12.2,
-              },
-              {
-                nameFull: 'Harry Potter mini',
-                age: 1,
-                cabinBag: 10,
-                fare: 10,
-                luggage: 23,
-                seat: '19A',
-                tax: 12.2,
-              },
-            ],
-          },
-        },
-      })
-    );
+    this.router.navigate(['booking']).catch(console.error);
   }
 
   public isAllSelected(): boolean {

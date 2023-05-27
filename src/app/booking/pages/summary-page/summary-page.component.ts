@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { addFlightToCart } from 'src/app/store/actions/shopping-cart.action';
@@ -7,6 +8,7 @@ import { addFlightToProfile } from 'src/app/store/actions/user-flight-history.ac
 import { ProgressControlService } from '../../../core/services/progress-control.service';
 import { ITrip } from '../../interfaces/flight';
 import { SummaryService } from '../../services/summary.service';
+import { NavigationService } from '../../../shared/services/navigation.service';
 
 @Component({
   selector: 'app-summary-page',
@@ -20,7 +22,9 @@ export class SummaryPageComponent {
     private store: Store,
     public summaryService: SummaryService,
     private controlService: ProgressControlService,
-    private router: Router
+    private router: Router,
+    private location: Location,
+    private navigationService: NavigationService
   ) {
     this.trip = summaryService.getSummary();
   }
@@ -34,7 +38,10 @@ export class SummaryPageComponent {
   }
 
   public goBack(): void {
-    // this.controlService.stepper.previous();
-    this.router.navigate(['/profile']).catch(console.error);
+    if (this.navigationService.prevUrl.includes('process')) {
+      this.controlService.stepper.previous();
+    }
+
+    this.location.back();
   }
 }

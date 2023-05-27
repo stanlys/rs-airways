@@ -23,6 +23,10 @@ export class ProgressControlsComponent {
   }
 
   public forward(): void {
+    if (this.controlService.stepper.selected) {
+      this.controlService.stepper.selected.completed = true;
+    }
+
     this.controlService.stepper.next();
   }
 }
