@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { addFlightToCart } from 'src/app/store/actions/shopping-cart.action';
 
-import { addFlightToProfile } from 'src/app/store/actions/user-flight-history.action';
 import { ProgressControlService } from '../../../core/services/progress-control.service';
 import { NavigationService } from '../../../shared/services/navigation.service';
 import { ITrip } from '../../interfaces/flight';
@@ -31,12 +30,10 @@ export class SummaryPageComponent {
 
   public addtoCart(): void {
     if (this.trip) this.store.dispatch(addFlightToCart({ flight: this.trip }));
-    if (this.stepperService.stepper.selected) this.stepperService.stepper.selected.completed = true;
   }
 
   public buyNow(): void {
-    if (this.trip) this.store.dispatch(addFlightToProfile({ flight: this.trip }));
-    if (this.stepperService.stepper.selected) this.stepperService.stepper.selected.completed = true;
+    if (this.trip) this.store.dispatch(addFlightToCart({ flight: this.trip }));
     this.router.navigate(['cart']).catch(console.error);
   }
 
