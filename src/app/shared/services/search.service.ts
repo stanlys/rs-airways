@@ -136,8 +136,6 @@ export class SearchService {
     return requestData;
   }
 
-  // private handleAirportError
-
   public getAirports(v: string): Observable<AirportForm[]> {
     const url = `${API_BASE_URL}search/airport?q=${v}`;
     return this.http.get<AirportForm[]>(url);

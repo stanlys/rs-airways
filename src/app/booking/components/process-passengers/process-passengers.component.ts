@@ -5,7 +5,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { FlightSearchFormValue } from '../../../shared/models/flight-search.model';
 import { SearchService } from '../../../shared/services/search.service';
 import { PassengersFormValue } from '../../interfaces/process.interface';
-import { ProgressService } from '../../services/progress.service';
+import { PassengersService } from '../../services/passengers.service';
 
 interface PassengerForm {
   id: FormControl<number>;
@@ -41,7 +41,7 @@ export class ProcessPassengersComponent implements OnInit, OnDestroy {
   constructor(
     private search: SearchService,
     private fb: FormBuilder,
-    private progress: ProgressService,
+    private progress: PassengersService,
     private translateService: TranslateService
   ) {
     this.passengersForm = fb.group({

@@ -5,7 +5,7 @@ import countryList from 'country-list';
 import countryTelData from 'country-telephone-data';
 import { Subject, takeUntil } from 'rxjs';
 import { IContacts } from '../../interfaces/process.interface';
-import { ProgressService } from '../../services/progress.service';
+import { PassengersService } from '../../services/passengers.service';
 
 @Component({
   selector: 'app-process-contact-details',
@@ -35,7 +35,11 @@ export class ProcessContactDetailsComponent implements OnInit, OnDestroy {
 
   public locale = this.translateService.currentLang;
 
-  constructor(private fb: FormBuilder, private progress: ProgressService, private translateService: TranslateService) {
+  constructor(
+    private fb: FormBuilder,
+    private progress: PassengersService,
+    private translateService: TranslateService
+  ) {
     this.contactDetailsForm = fb.group({
       countryCode: fb.control('', Validators.required),
       phone: fb.control('', [Validators.required, Validators.maxLength(15), Validators.pattern('\\d+')]),

@@ -1,6 +1,8 @@
 import { Component, OnDestroy } from '@angular/core';
+import { ITrip } from '../../interfaces/flight';
 import { IContacts, PassengersFormValue } from '../../interfaces/process.interface';
-import { ProgressService } from '../../services/progress.service';
+import { PassengersService } from '../../services/passengers.service';
+import { SummaryService } from '../../services/summary.service';
 
 @Component({
   selector: 'app-process-page',
@@ -12,14 +14,19 @@ export class ProcessPageComponent implements OnDestroy {
 
   public isContactsValid = false;
 
-  private newPassenggers!: PassengersFormValue[];
+  private newPassengers!: PassengersFormValue[];
 
   private newContacts!: IContacts;
 
-  constructor(private progress: ProgressService) {}
+  private trip!: ITrip;
+
+  constructor(private progress: PassengersService, private summary: SummaryService) {
+    this.trip = summary.getSummary() as ITrip;
+    console.log(this.trip);
+  }
 
   public ngOnDestroy(): void {
-    this.progress.updateData(this.newPassenggers, this.newContacts);
+    this.progress.updateData(this.newPassengers, this.newContacts);
   }
 
   public chechPassengers(value: boolean): void {
@@ -27,7 +34,8 @@ export class ProcessPageComponent implements OnDestroy {
   }
 
   public getPassengers(value: PassengersFormValue[]): void {
-    this.newPassenggers = value;
+    this.newPassengers = value;
+    this.updateTrip();
   }
 
   public checkContacts(value: boolean): void {
@@ -36,5 +44,17 @@ export class ProcessPageComponent implements OnDestroy {
 
   public getDetails(value: IContacts): void {
     this.newContacts = value;
+  }
+
+  public updateTrip(): void {
+    if (!this.trip.from) return;
+
+    this.trip.from.passengers = this.newPassengers.map((passenger) =>
+      this.progress.transformPassengerToTrip(passenger)
+    );
+    if (this.trip.to) {
+      this.trip.to.passengers = this.trip.from.passengers;
+    }
+    this.summary.setSummary(this.trip);
   }
 }

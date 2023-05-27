@@ -8,7 +8,7 @@ export interface PassengersFormValue {
   id: number;
   firstName: string;
   lastName: string;
-  birthdate: Date;
+  birthDate: Date;
   type: PassengerType;
   luggage: number;
   assistance: boolean;
