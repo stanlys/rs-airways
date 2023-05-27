@@ -18,6 +18,8 @@ export class NavigationService {
       if (e instanceof NavigationEnd) {
         this.setMainPage(e.urlAfterRedirects);
 
+        this.setStepperIndex(e.urlAfterRedirects);
+
         this.pagesVisited.push(e.url);
 
         this.setPrevUrl();
@@ -40,6 +42,21 @@ export class NavigationService {
       this.prevUrl = this.pagesVisited[this.pagesVisited.length - 2];
     } else if (this.pagesVisited.length) {
       [this.prevUrl] = this.pagesVisited;
+    }
+  }
+
+  private setStepperIndex(url: string): void {
+    switch (url) {
+      case '/booking/flights':
+        this.stepperService.stepper.selectedIndex = 0;
+        break;
+      case '/booking/process':
+        this.stepperService.stepper.selectedIndex = 1;
+        break;
+      case '/booking/summary':
+        this.stepperService.stepper.selectedIndex = 2;
+        break;
+      default:
     }
   }
 }

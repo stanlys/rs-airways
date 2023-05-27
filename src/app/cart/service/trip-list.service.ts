@@ -1,8 +1,9 @@
 /* eslint-disable class-methods-use-this */
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { ITrip } from 'src/app/booking/interfaces/flight';
+
 import { PriceService } from '../../shared/services/price.service';
+import { ITrip } from '../../booking/interfaces/flight';
 
 @Injectable({
   providedIn: 'root',
