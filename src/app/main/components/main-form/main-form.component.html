@@ -1,9 +1,13 @@
 <mat-card class="main-page-form">
   <mat-card-content>
     <form class="search-form" (ngSubmit)="onSubmit()" [formGroup]="searchForm">
-      <mat-radio-group formControlName="oneWay" color="primary">
-        <mat-radio-button [value]="false" color="primary">{{ 'MAIN_FORM.ROUND_TRIP' | translate }}</mat-radio-button>
-        <mat-radio-button [value]="true" color="primary">{{ 'MAIN_FORM.ONE_WAY' | translate }}</mat-radio-button>
+      <mat-radio-group *ngIf="searchForm.controls['oneWay'] as oneWay" formControlName="oneWay" color="primary">
+        <mat-radio-button [value]="false" color="primary">
+          {{ 'MAIN_FORM.ROUND_TRIP' | translate }}
+        </mat-radio-button>
+        <mat-radio-button [value]="true" color="primary">
+          {{ 'MAIN_FORM.ONE_WAY' | translate }}
+        </mat-radio-button>
       </mat-radio-group>
 
       <app-flight-route formGroupName="airport" class="flight-route"></app-flight-route>

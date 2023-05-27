@@ -83,7 +83,6 @@ export class SearchService {
         takeoffDate: fb.control<Date | null>(null, Validators.required),
         landingDate: fb.control<Date | null>(null, Validators.required),
       }),
-      // TODO: ensure passengers value is properly filled on mount
       passengers: fb.group({
         adult: fb.control<number>(0, [Validators.required, Validators.min(1), passengersValidator]),
         child: fb.control<number>(0, Validators.required),
