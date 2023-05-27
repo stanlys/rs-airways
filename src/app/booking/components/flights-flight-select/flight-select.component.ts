@@ -16,7 +16,7 @@ export class FlightSelectComponent implements OnChanges, OnDestroy {
 
   @Input() public confirmed!: boolean;
 
-  @Output() public confirmedChange = new EventEmitter<Flight | false>();
+  @Output() public confirmedChange = new EventEmitter<Flight | undefined>();
 
   public currencyCode$;
 
@@ -76,7 +76,7 @@ export class FlightSelectComponent implements OnChanges, OnDestroy {
     if (this.confirmed) {
       this.confirmedChange.emit(this.flight);
     } else {
-      this.confirmedChange.emit(false);
+      this.confirmedChange.emit();
     }
   }
 
