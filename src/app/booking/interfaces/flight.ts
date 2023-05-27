@@ -1,3 +1,4 @@
+import { Prices } from '../../shared/models/flight-search.interfaces';
 import { IPassenger } from './passenger';
 
 export interface ISummaryFlight {
@@ -31,7 +32,7 @@ export interface ISummaryTrip {
   times: string;
   from: string;
   to: string;
-  price: number;
+  price: Prices;
   passengers: Array<IPassenger>;
 }
 

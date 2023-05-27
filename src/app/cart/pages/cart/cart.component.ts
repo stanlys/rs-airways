@@ -10,10 +10,12 @@ import { ITrip } from 'src/app/booking/interfaces/flight';
 import { deleteFlightFromCart } from 'src/app/store/actions/shopping-cart.action';
 import { addFlightToProfile } from 'src/app/store/actions/user-flight-history.action';
 import { selectFlights } from 'src/app/store/selectors/shopping-cart.selector';
+import { CurrencySymbolService } from '../../../booking/services/currency-symbol.service';
 import { IFlight } from '../../interfaces';
 import { SHOPPING_CART_COLUMNS } from '../../interfaces/columns';
 import { PassengersListService } from '../../service/passengers-list.service';
 import { TripListService } from '../../service/trip-list.service';
+import { PriceService } from '../../../shared/services/price.service';
 
 @Component({
   selector: 'app-cart',
@@ -40,11 +42,13 @@ export class CartComponent implements AfterViewInit {
   @ViewChild(MatSort, { static: false }) public sort!: MatSort;
 
   constructor(
-    private store: Store,
-    private router: Router,
     public passengerList: PassengersListService,
     public tripList: TripListService,
-    public translate: TranslateService
+    public translate: TranslateService,
+    public currencySymbolService: CurrencySymbolService,
+    private store: Store,
+    private router: Router,
+    private priceService: PriceService
   ) {}
 
   public ngAfterViewInit(): void {
@@ -53,7 +57,7 @@ export class CartComponent implements AfterViewInit {
 
   public getTotalPrice(): number {
     return this.selection.selected
-      .map((flight) => flight.from.price + (flight.to?.price || 0))
+      .map((flight) => this.priceService.getPrice(flight.from.price) + this.priceService.getPrice(flight.to?.price))
       .reduce((acc, value) => acc + value, 0);
   }
 

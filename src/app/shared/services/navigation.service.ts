@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subject, filter } from 'rxjs';
+import { ProgressControlService } from '../../core/services/progress-control.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,25 +13,50 @@ export class NavigationService {
 
   public prevUrl = '';
 
-  constructor(router: Router) {
+  constructor(router: Router, private stepperService: ProgressControlService) {
     router.events.pipe(filter((e) => e instanceof NavigationEnd)).subscribe((e) => {
       if (e instanceof NavigationEnd) {
-        if (e.urlAfterRedirects.includes('main')) {
-          document.body.classList.add('main-page');
-          this.mainPage$.next(true);
-        } else {
-          document.body.classList.remove('main-page');
-          this.mainPage$.next(false);
-        }
+        this.setMainPage(e.urlAfterRedirects);
+
+        this.setStepperIndex(e.url);
 
         this.pagesVisited.push(e.url);
 
-        if (this.pagesVisited.length > 1) {
-          this.prevUrl = this.pagesVisited[this.pagesVisited.length - 2];
-        } else if (this.pagesVisited.length) {
-          [this.prevUrl] = this.pagesVisited;
-        }
+        this.setPrevUrl();
       }
     });
+  }
+
+  private setMainPage(url: string): void {
+    if (url.includes('main')) {
+      document.body.classList.add('main-page');
+      this.mainPage$.next(true);
+    } else {
+      document.body.classList.remove('main-page');
+      this.mainPage$.next(false);
+    }
+  }
+
+  private setStepperIndex(url: string): void {
+    switch (url) {
+      case '/booking/flights':
+        this.stepperService.stepper.selectedIndex = 0;
+        break;
+      case '/booking/process':
+        this.stepperService.stepper.selectedIndex = 1;
+        break;
+      case '/booking/summary':
+        this.stepperService.stepper.selectedIndex = 2;
+        break;
+      default:
+    }
+  }
+
+  private setPrevUrl(): void {
+    if (this.pagesVisited.length > 1) {
+      this.prevUrl = this.pagesVisited[this.pagesVisited.length - 2];
+    } else if (this.pagesVisited.length) {
+      [this.prevUrl] = this.pagesVisited;
+    }
   }
 }

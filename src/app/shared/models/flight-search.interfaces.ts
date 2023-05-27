@@ -31,14 +31,14 @@ export interface PassSelectOption {
   amount: number;
 }
 
-export interface Price {
+export interface Prices {
   eur: number;
   usd: number;
   rub: number;
   pln: number;
 }
 
-export type CurrencyCode = Uppercase<keyof Price>;
+export type CurrencyCode = Uppercase<keyof Prices>;
 
 export interface Seats {
   total: number;
@@ -53,6 +53,6 @@ export interface Flight {
   to: AirportRes;
   takeoffDate: string;
   landingDate: string;
-  price: Price;
+  price: Prices;
   otherFlights?: Record<string, Flight> | Record<string, never>;
 }
