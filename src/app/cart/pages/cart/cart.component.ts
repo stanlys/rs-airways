@@ -16,7 +16,7 @@ import { SHOPPING_CART_COLUMNS } from '../../interfaces/columns';
 import { PassengersListService } from '../../service/passengers-list.service';
 import { TripListService } from '../../service/trip-list.service';
 import { PriceService } from '../../../shared/services/price.service';
-import { Prices } from '../../../shared/models/flight-search.interfaces';
+import { CurrencyCode, Prices } from '../../../shared/models/flight-search.interfaces';
 
 @Component({
   selector: 'app-cart',
@@ -29,6 +29,10 @@ export class CartComponent implements AfterViewInit {
   public flights = new MatTableDataSource<ITrip>([]);
 
   public selection = new SelectionModel<ITrip>(true, []);
+
+  public currencyCode$;
+
+  public locale = this.translate.currentLang;
 
   public promocode = '';
 
@@ -50,16 +54,25 @@ export class CartComponent implements AfterViewInit {
     private store: Store,
     private router: Router,
     private priceService: PriceService
-  ) {}
+  ) {
+    this.currencyCode$ = this.priceService.currencyCode$;
+  }
 
   public ngAfterViewInit(): void {
     this.flights.sort = this.sort;
   }
 
-  public getTotalPrice(): Prices {
-    return this.selection.selected
+  public getTotalPrice(code: CurrencyCode = this.currencyCode$.getValue()): number {
+    const result = this.selection.selected
       .map((flight) => this.tripList.getPrice(flight))
       .reduce((acc, value) => this.priceService.sumPrice(acc, value), this.priceService.initPrice);
+
+    return this.priceService.getPrice(result, code);
+  }
+
+  public getNumberPrice(trip: ITrip, code: CurrencyCode = this.currencyCode$.getValue()): number {
+    const price = this.tripList.getPrice(trip);
+    return this.priceService.getPrice(price, code);
   }
 
   public addTrip(): void {

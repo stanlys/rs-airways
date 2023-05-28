@@ -44,6 +44,7 @@
       <ng-container matColumnDef="price">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'CART.PRICE' | translate }}</th>
         <td mat-cell *matCellDef="let el">
+          {{ getNumberPrice(el) | currency : (currencyCode$ | async) ?? 'EUR' : undefined : undefined : locale }}
           <!-- {{ currencySymbolService.getCurrencySymbol() }}{{ tripList.getPrice(el) | number : '1.0-2' }} -->
         </td>
       </ng-container>
@@ -67,7 +68,7 @@
         <div *ngIf="this.selection.selected.length > 0" class="flex gap-5 items-center pr-4">
           <span> {{ 'CART.TOTAL' | translate }} </span>
           <span class="totalPrice">
-            <!-- {{ currencySymbolService.getCurrencySymbol() }}{{ getTotalPrice() | number : '1.0-2' }} -->
+            {{ getTotalPrice() | currency : (currencyCode$ | async) ?? 'EUR' : undefined : undefined : locale }}
           </span>
         </div>
       </div>
