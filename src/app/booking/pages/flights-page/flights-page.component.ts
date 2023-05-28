@@ -45,7 +45,7 @@ export class FlightsPageComponent implements OnDestroy {
     this.subs.unsubscribe();
   }
 
-  public onFlightConfirmed(i: number, v: Flight | undefined): void {
+  public onFlightConfirmed(i: number, v?: Flight): void {
     this.flightsConfirmed[i] = v;
 
     const [fromFlight, toFlight] = this.flightsConfirmed;
@@ -64,7 +64,7 @@ export class FlightsPageComponent implements OnDestroy {
     return this.flightsConfirmed.every(Boolean);
   }
 
-  private transformToSummaryTrip(flight: Flight | false | undefined): ISummaryTrip | null {
+  private transformToSummaryTrip(flight?: Flight | false): ISummaryTrip | null {
     if (flight) {
       const { flightNumber: number, takeoffDate, landingDate, form: fromLoc, to: toLoc, price } = flight;
       const { city: from } = fromLoc;
@@ -81,7 +81,6 @@ export class FlightsPageComponent implements OnDestroy {
         from,
         to,
         price,
-        // TODO: add passengers to summary
         passengers: [],
       };
 

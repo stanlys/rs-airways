@@ -1,7 +1,7 @@
 <app-second-menu />
 
 <div class="booking-container flex flex-col pt-10 mb-5 relative mx-auto">
-  <app-process-passengers (filled)="chechPassengers($event)" (valid)="getPassengers($event)"></app-process-passengers>
+  <app-process-passengers (filled)="checkPassengers($event)" (valid)="getPassengers($event)"></app-process-passengers>
   <app-process-contact-details
     (filled)="checkContacts($event)"
     (valid)="getDetails($event)"

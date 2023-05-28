@@ -9,7 +9,12 @@ export const FLIGHTS: ITrip[] = [
       from: 'Dublin',
       to: 'Berlin',
       times: '8:40-12:00',
-      price: 200,
+      price: {
+        usd: 200,
+        rub: 200,
+        eur: 200,
+        pln: 200,
+      },
       passengers: [
         {
           nameFull: 'Harry Potter',
@@ -37,7 +42,12 @@ export const FLIGHTS: ITrip[] = [
       from: 'Dublin',
       to: 'Berlin',
       times: '8:40-12:00',
-      price: 350,
+      price: {
+        usd: 350,
+        rub: 350,
+        eur: 350,
+        pln: 350,
+      },
       passengers: [
         {
           nameFull: 'Harry Potter',
