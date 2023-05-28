@@ -10,6 +10,8 @@
   <mat-divider></mat-divider>
   <mat-card-footer class="flex justify-between py-5 px-10">
     <span class="total">{{ 'SUMMARY.TOTAL' | translate }}</span>
-    <span class="total price"> {{ getTotalPrice() | currency : currencyService.getCurrencySymbol() }} </span>
+    <span class="total price">
+      {{ getTotalPrice() | currency : (currencyCode$ | async) ?? 'EUR' : undefined : undefined : locale }}
+    </span>
   </mat-card-footer>
 </mat-card>

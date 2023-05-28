@@ -10,6 +10,8 @@ import { CurrencyCode, Flight, Prices } from '../models/flight-search.interfaces
 export class PriceService {
   public price?: number;
 
+  public readonly initPrice = { eur: 0, usd: 0, rub: 0, pln: 0 };
+
   public readonly currencyItemKey = `${STORAGE_KEY_PREFIX}-currency`;
 
   private defaultCode = (localStorage.getItem(this.currencyItemKey) as CurrencyCode) || 'EUR';
@@ -29,6 +31,16 @@ export class PriceService {
     }
 
     return null;
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  public sumPrice(a: Prices, b = this.initPrice, c = this.initPrice): Prices {
+    return {
+      eur: a.eur + b.eur + c.eur,
+      usd: a.usd + b.usd + c.usd,
+      rub: a.rub + b.rub + c.rub,
+      pln: a.usd + b.pln + c.pln,
+    };
   }
 
   public getPrice(prices?: Prices, code: CurrencyCode = this.currencyCode$.getValue()): number {

@@ -16,6 +16,7 @@ import { SHOPPING_CART_COLUMNS } from '../../interfaces/columns';
 import { PassengersListService } from '../../service/passengers-list.service';
 import { TripListService } from '../../service/trip-list.service';
 import { PriceService } from '../../../shared/services/price.service';
+import { Prices } from '../../../shared/models/flight-search.interfaces';
 
 @Component({
   selector: 'app-cart',
@@ -55,10 +56,10 @@ export class CartComponent implements AfterViewInit {
     this.flights.sort = this.sort;
   }
 
-  public getTotalPrice(): number {
+  public getTotalPrice(): Prices {
     return this.selection.selected
       .map((flight) => this.tripList.getPrice(flight))
-      .reduce((acc, value) => acc + value, 0);
+      .reduce((acc, value) => this.priceService.sumPrice(acc, value), this.priceService.initPrice);
   }
 
   public addTrip(): void {

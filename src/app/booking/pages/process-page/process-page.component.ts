@@ -2,7 +2,6 @@ import { Component, OnDestroy } from '@angular/core';
 import dayjs from 'dayjs';
 import { TripListService } from '../../../cart/service/trip-list.service';
 import { Prices } from '../../../shared/models/flight-search.interfaces';
-import { PriceService } from '../../../shared/services/price.service';
 import { ITrip } from '../../interfaces/flight';
 
 import type { IPassenger } from '../../interfaces/passenger';
@@ -71,7 +70,16 @@ export class ProcessPageComponent implements OnDestroy {
     return `${num}${letter}`;
   };
 
-  private static transformPassengersFormValueToIPassenger(passenger: PassengersFormValue, price: number): IPassenger {
+  private static transformPrice(price: Prices, val: number): Prices {
+    return {
+      eur: val * price.eur,
+      usd: val * price.usd,
+      rub: val * price.rub,
+      pln: val * price.pln,
+    };
+  }
+
+  private static transformPassengersFormValueToIPassenger(passenger: PassengersFormValue, price: Prices): IPassenger {
     const { firstName, lastName, luggage, birthDate, type } = passenger;
     const fares = {
       Infant: 0.35,
@@ -89,10 +97,10 @@ export class ProcessPageComponent implements OnDestroy {
       nameFull: `${firstName} ${lastName}`,
       age: dayjs().diff(dayjs(birthDate), 'year'),
       cabinBag: 1,
-      fare: fares[type] * price,
+      fare: ProcessPageComponent.transformPrice(price, fares[type]),
       luggage,
       seat: ProcessPageComponent.generateSeat(),
-      tax: tax[type] * price,
+      tax: ProcessPageComponent.transformPrice(price, tax[type]),
     };
     return summaryPassenger;
   }
