@@ -84,7 +84,8 @@
   },
   "SUMMARY": {
     "CAPTION": "Zusammenfassung",
-    "BAG": "aufgegebenes Gepäckstück (insgesamt 23 kg) inklusive",
+    "BAG_START": "aufgegebenes Gepäckstück (insgesamt",
+    "BAG_END": "kg) inklusive",
     "CABIN_BAG": "Handgepäck 1 persönlicher Gegenstand (max. 8 kg) inklusive",
     "SEAT": "Sitz",
     "ADULT": "Erwachsenentarif",

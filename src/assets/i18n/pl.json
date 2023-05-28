@@ -84,7 +84,8 @@
   },
   "SUMMARY": {
     "CAPTION": "Streszczenie",
-    "BAG": "bagaż rejestrowany (łącznie 23 kg) w cenie",
+    "BAG_START": "bagaż rejestrowany (łącznie ",
+    "BAG_END": " kg) w cenie",
     "CABIN_BAG": "torba podręczna 1 przedmiot osobisty (maks. 8 kg) w cenie",
     "SEAT": "Siedziba",
     "ADULT": "Taryfa dla dorosłych",
