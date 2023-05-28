@@ -1,0 +1,15 @@
+<div class="booking-title flex-column gap-2 mx-4 xl:mx-0">
+  <h2 class="flex gap-4">
+    <img class="inline" src="../../../../assets/passengers_icon.svg" alt="passengers icon" />
+    <span color="primary" class="mat-title">{{ 'MAIN_FORM.PASSENGER' | translate }}</span>
+  </h2>
+  <p class="mat-small color-gray">{{ 'PROCESS.PASSENGERS_HINT' | translate }}</p>
+  <form class="booking-content passengers-cards flex flex-col gap-5" [formGroup]="passengersForm">
+    <app-process-passenger-card
+      *ngFor="let passenger of passengersDescription; let i = index"
+      formGroupName="passengers"
+      [index]="i + 1"
+      [title]="passenger"
+    ></app-process-passenger-card>
+  </form>
+</div>

@@ -1,7 +1,11 @@
 <app-second-menu />
 
 <div class="booking-container flex flex-col pt-10 mb-5 relative mx-auto">
-  <p>process-page works!</p>
+  <app-process-passengers (filled)="chechPassengers($event)" (valid)="getPassengers($event)"></app-process-passengers>
+  <app-process-contact-details
+    (filled)="checkContacts($event)"
+    (valid)="getDetails($event)"
+  ></app-process-contact-details>
 
-  <app-progress-controls [canContinue]="true" />
+  <app-progress-controls [canContinue]="isPassengersValid && isContactsValid" />
 </div>

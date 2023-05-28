@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { CommonModule, DatePipe } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';

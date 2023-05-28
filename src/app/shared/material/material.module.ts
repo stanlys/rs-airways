@@ -22,6 +22,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   exports: [
@@ -49,6 +51,8 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatRadioModule,
     MatGridListModule,
     MatBadgeModule,
+    MatSlideToggleModule,
+    MatTooltipModule,
   ],
 })
 export class MaterialModule {}

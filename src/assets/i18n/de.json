@@ -55,7 +55,7 @@
   },
   "PASSENGER": {
     "Adult": "Erwachsene",
-    "Children": "Kinder",
+    "Child": "Kinder",
     "Infant": "Kleinkind"
   },
   "BOOKING": {
@@ -74,7 +74,14 @@
     "PRICE": "Preis",
     "NO": "Flug Nr."
   },
-  "PROCESS": {},
+  "PROCESS": {
+    "CONTACT_DETAILS": "Kontaktdaten“",
+    "CONTACT_DETAILS_HINT": "Wir benötigen Kontaktdaten, um Ihnen die neuesten Informationen zu Ihrem Flug liefern zu können.",
+    "PASSENGERS_HINT": "Geben Sie die Namen des Passagiers ein, wie sie im Dokument (Reisepass oder Personalausweis) erscheinen.",
+    "TOOLTIP": "Fügen Sie den Namen des Passagiers so ein, wie er auf seinen Dokumenten (Reisepass oder Personalausweis) steht. Verwenden Sie keine Akzente oder Sonderzeichen. Verwenden Sie keinen Spitznamen.",
+    "ASSISTANCE": "Benötigen Sie besondere Hilfe?",
+    "LUGGAGE": "Gepäck"
+  },
   "SUMMARY": {
     "CAPTION": "Zusammenfassung",
     "BAG": "aufgegebenes Gepäckstück (insgesamt 23 kg) inklusive",

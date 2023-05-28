@@ -1,0 +1,18 @@
+@use '../../../../themes/util' as u;
+@use '../../../../themes/default/colors' as c;
+
+.form-field {
+  @apply w-full  sm:w-[45%] lg:w-[255px];
+}
+
+.luggage-input-button {
+  color: u.get-color(c.$brand-neutral, 30);
+
+  &:hover {
+    color: c.$primary-color;
+  }
+
+  &:disabled {
+    color: u.get-color(c.$brand-neutral, 60);
+  }
+}

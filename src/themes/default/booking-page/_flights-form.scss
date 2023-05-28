@@ -1,3 +1,5 @@
+@use '../mixins' as mx;
+
 .flights-form {
   .mat-mdc-form-field-subscript-wrapper {
     display: none;
@@ -6,6 +8,23 @@
   .flight-dates {
     width: 260px;
   }
+}
+
+.mat-pseudo-checkbox.mat-mdc-option-pseudo-checkbox.mat-pseudo-checkbox-full {
+  display: none;
+}
+
+.mat-mdc-option .mdc-list-item__primary-text {
+  width: 100%;
+}
+
+.mdc-line-ripple {
+  display: none;
+}
+
+.mdc-text-field {
+  @include mx.button_border;
+  background-color: #f4f6f9;
 }
 
 @media (max-width: 639px) {

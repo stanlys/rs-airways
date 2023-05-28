@@ -55,7 +55,7 @@
   },
   "PASSENGER": {
     "Adult": "Dorosły",
-    "Children": "Dzieci",
+    "Child": "Dzieci",
     "Infant": "Dziecko"
   },
   "BOOKING": {
@@ -74,7 +74,14 @@
     "PRICE": "Cena",
     "NO": "Lot nr."
   },
-  "PROCESS": {},
+  "PROCESS": {
+    "CONTACT_DETAILS": "Dane kontaktowe",
+    "CONTACT_DETAILS_HINT": "Potrzebujemy danych kontaktowych, aby móc dostarczyć najnowsze informacje dotyczące Twojego lotu.",
+    "PASSENGERS_HINT": "Wprowadź nazwiska pasażerów tak, jak widnieją na dokumencie (paszport lub dowód osobisty).",
+    "TOOLTIP": "Dodaj nazwisko pasażera w takiej postaci, w jakiej jest zapisane w jego dokumentach (paszporcie lub dowodzie osobistym). Nie używaj żadnych akcentów ani znaków specjalnych. Nie używaj pseudonimu.",
+    "ASSISTANCE": "Potrzebujesz specjalnej pomocy?",
+    "LUGGAGE": "Bagaż”"
+  },
   "SUMMARY": {
     "CAPTION": "Streszczenie",
     "BAG": "bagaż rejestrowany (łącznie 23 kg) w cenie",

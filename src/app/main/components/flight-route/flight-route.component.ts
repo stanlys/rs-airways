@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { TranslateService } from '@ngx-translate/core';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormGroupDirective } from '@angular/forms';
@@ -33,6 +34,7 @@ export class FlightRouteComponent implements OnInit {
 
   public getTranslateLabel(): IFlightRouteTranslation {
     let result: IFlightRouteTranslation = { FROM: '', TO: '', LABEL_FROM: '', LABEL_TO: '' };
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
     this.translate.get('MAIN_FORM').subscribe((data: IFlightRouteTranslation) => {
       result = { ...data };
     });

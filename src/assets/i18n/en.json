@@ -55,7 +55,7 @@
   },
   "PASSENGER": {
     "Adult": "Adult",
-    "Children": "Children",
+    "Child": "Child",
     "Infant": "Infant"
   },
   "BOOKING": {
@@ -74,7 +74,14 @@
     "PRICE": "Price",
     "NO": "Flight no."
   },
-  "PROCESS": {},
+  "PROCESS": {
+    "CONTACT_DETAILS": "Contact details",
+    "CONTACT_DETAILS_HINT": "We need contact details to be able to deliver the latest information regarding your flight.",
+    "PASSENGERS_HINT": "Enter the passenger's names as they appear on document (passport or ID).",
+    "TOOLTIP": "Add the passenger's name as it is written on their documents (passport or ID). Do not use any accents or special characters. Do not use a nickname.",
+    "ASSISTANCE": "Need special assistance?",
+    "LUGGAGE": "Luggage"
+  },
   "SUMMARY": {
     "CAPTION": "Summary",
     "BAG": "checked bag (total 23 kg) included",
@@ -121,7 +128,9 @@
     "INVALID_CHARACTER": "Invalid character",
     "INVALID_DATE": "Invalid date",
     "SELECT_GENDER": "Must select gender",
-    "AGREE_TERMS": "Must agree with the terms"
+    "AGREE_TERMS": "Must agree with the terms",
+    "DATE_MIN": "Invalid date, must be later",
+    "DATE_MAX": "Invalid date, must be earlier"
   },
   "MISC": {
     "CURRENCY": "USD",

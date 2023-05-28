@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import dayjs from 'dayjs';
@@ -116,8 +117,8 @@ export class SearchService {
   private static transformFormValueToReqScheme(v: FlightSearchFormValue): FlightSearchRequest {
     const { airport, dates, oneWay } = v;
     const { fromLoc, toLoc } = airport;
-    const { IATA: fromKey } = fromLoc;
-    const { IATA: toKey } = toLoc;
+    const { key: fromKey } = fromLoc;
+    const { key: toKey } = toLoc;
     let forwardDate = dayjs(dates.takeoffDate).toISOString();
     const backDate = oneWay !== true ? dayjs(dates.landingDate).toISOString() : undefined;
 
@@ -133,5 +134,12 @@ export class SearchService {
     };
 
     return requestData;
+  }
+
+  // private handleAirportError
+
+  public getAirports(v: string): Observable<AirportForm[]> {
+    const url = `${API_BASE_URL}search/airport?q=${v}`;
+    return this.http.get<AirportForm[]>(url);
   }
 }

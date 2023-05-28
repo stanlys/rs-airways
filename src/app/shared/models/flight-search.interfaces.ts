@@ -1,8 +1,9 @@
 export interface AirportForm {
   city: string;
-  IATA: string;
-  name?: string;
+  key: string;
+  name: string;
   country: string;
+  gmt?: string;
 }
 
 interface AirportRes {

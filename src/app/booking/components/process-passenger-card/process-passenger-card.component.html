@@ -1,0 +1,125 @@
+<mat-card class="boking-content passenger-card w-full sm:px-7 py-4 gap-1 sm:gap-6" [formGroup]="passenger">
+  <mat-card-header>
+    <mat-card-title>{{ index }}. {{ passengerTitle | translate }} </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="passenger-card-content flex flex-wrap gap-1 sm:gap-5 lg:flex-nowrap">
+      <mat-form-field class="form-field" appearance="fill">
+        <mat-label>{{ 'LOGIN_FORM.FIRST_NAME' | translate }}</mat-label>
+        <input formControlName="firstName" matInput #firstNameInput="matInput" type="text" />
+        <mat-icon
+          matSuffix
+          [ngClass]="['icon', !firstNameInput.focused ? 'text-[#74767A]' : '']"
+          [matTooltip]="'PROCESS.TOOLTIP' | translate"
+          [color]="firstName.touched && firstName.errors ? 'warn' : firstName.valid && 'accent'"
+          >{{ firstName.touched && firstName.errors ? 'info' : 'info_outline' }}</mat-icon
+        >
+        <mat-error *ngIf="firstName.hasError('required')">{{ 'ERRORS.REQUIRED' | translate }}</mat-error>
+        <mat-error *ngIf="firstName.hasError('pattern')">{{ 'ERRORS.INVALID_CHARACTER' | translate }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-field" appearance="fill">
+        <mat-label>{{ 'LOGIN_FORM.LAST_NAME' | translate }}</mat-label>
+        <input formControlName="lastName" matInput #lastNameInput="matInput" type="text" />
+        <mat-icon
+          [ngClass]="['icon', !lastNameInput.focused ? 'text-[#74767A]' : '']"
+          matSuffix
+          [matTooltip]="'PROCESS.TOOLTIP' | translate"
+          matTooltipPosition="right"
+          [color]="lastName.touched && lastName.errors ? 'warn' : lastName.valid && 'accent'"
+          >{{ lastName.touched && lastName.errors ? 'info' : 'info_outline' }}</mat-icon
+        >
+        <mat-error *ngIf="lastName.hasError('required')">{{ 'ERRORS.REQUIRED' | translate }}</mat-error>
+        <mat-error *ngIf="lastName.hasError('pattern')">{{ 'ERRORS.INVALID_CHARACTER' | translate }}</mat-error>
+      </mat-form-field>
+
+      <mat-button-toggle-group
+        class="gender-buttons-group w-full sm:w-[216px] mb-5"
+        formControlName="gender"
+        aria-label="Font Style"
+      >
+        <mat-button-toggle #genderButtonMale class="gender-toggle-button" value="male">
+          <mat-icon
+            class="gender-button-checked-icon"
+            *ngIf="genderButtonMale.checked"
+            color="primary"
+            fontIcon="check"
+          ></mat-icon>
+          <span [ngClass]="genderButtonMale.checked ? 'gender-button-checked' : ''">
+            {{ 'LOGIN_FORM.MALE' | translate }}
+          </span>
+        </mat-button-toggle>
+        <mat-button-toggle #genderButtonFemale class="gender-toggle-button" value="female" color="primary">
+          <mat-icon
+            *ngIf="genderButtonFemale.checked"
+            class="gender-button-checked-icon"
+            color="primary"
+            fontIcon="check"
+          ></mat-icon>
+          <span [ngClass]="genderButtonFemale.checked ? 'gender-button-checked' : ''">
+            {{ 'LOGIN_FORM.FEMALE' | translate }}
+          </span>
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+
+      <mat-form-field class="form-field" appearance="fill">
+        <mat-label>{{ 'LOGIN_FORM.DATE_BIRTH' | translate }}</mat-label>
+        <input
+          matInput
+          formControlName="birthDate"
+          [matDatepicker]="picker"
+          placeholder="MM/DD/YYYY"
+          [min]="minDate"
+          [max]="maxDate"
+        />
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="birthDate.hasError('required')">{{ 'ERRORS.REQUIRED' | translate }}</mat-error>
+        <mat-error *ngIf="birthDate.hasError('matDatepickerMin')">{{ 'ERRORS.DATE_MIN' | translate }}</mat-error>
+        <mat-error *ngIf="birthDate.hasError('matDatepickerMax')">{{ 'ERRORS.DATE_MAX' | translate }}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="passenger-additions relative flex flex-wrap w-full gap-2 pt-5" *ngIf="title !== 'Infant'">
+      <div class="special-assistants relative w-full sm:w-[320px]">
+        <mat-slide-toggle #switchButton color="primary" formControlName="assistance">
+          <div class="flex sm:pl-2 lg:pl-5 justify-start items-center min-w-[220px]">
+            <mat-icon class="min-w-[32px]">wheelchair_pickup</mat-icon>
+            <span class="sm:pl-2 lg:min-w-[180px]">{{ 'PROCESS.ASSISTANCE' | translate }}</span>
+          </div>
+        </mat-slide-toggle>
+      </div>
+
+      <div class="luggage flex flex-nowrap relative">
+        <ng-container [formGroup]="luggageGroup">
+          <mat-slide-toggle
+            #luggageButton
+            color="primary"
+            class="w-max"
+            (change)="onToggle()"
+            formControlName="isIncluded"
+          >
+            <div class="flex sm:pl-2 lg:pl-5 justify-start items-center w-[120px] sm:w-[150px]">
+              <mat-icon class="min-w-[32px]">luggage</mat-icon>
+              <span class="sm:pl-2">{{ 'PROCESS.LUGGAGE' | translate }}</span>
+            </div>
+          </mat-slide-toggle>
+        </ng-container>
+
+        <ng-container>
+          <div
+            class="luggage-input flex flex-nowrap justify-between items-center w-[60px]"
+            *ngIf="luggageButton.checked"
+          >
+            <button class="luggage-input-button text-lg" [disabled]="luggage.value === 0" (click)="substract()">
+              &minus;
+            </button>
+            <input formControlName="luggage" class="w-0" />
+            <div class="input w-6 font-semibold text-lg text-center">{{ luggage.value }}</div>
+            <button class="luggage-input-button text-lg" (click)="add()">&plus;</button>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
