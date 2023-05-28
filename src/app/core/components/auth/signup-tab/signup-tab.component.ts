@@ -78,7 +78,6 @@ export class SignupTabComponent {
 
     this.authService.signup(data as RegistrationRequest);
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
     this.authService.loggedIn$.subscribe((v) => {
       if (v === true) {
         this.close();
@@ -86,11 +85,12 @@ export class SignupTabComponent {
     });
   }
 
+  // eslint-disable-next-line class-methods-use-this
   public async google(): Promise<void> {
-    try {
-      await this.googleAuth.GoogleSignUp();
-    } finally {
-      this.close();
-    }
+    //   try {
+    //     await this.googleAuth.GoogleSignUp();
+    //   } finally {
+    //     this.close();
+    //   }
   }
 }

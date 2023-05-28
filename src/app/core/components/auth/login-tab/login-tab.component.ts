@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { GoogleAuthService } from 'src/app/core/services/google.service';
@@ -46,16 +47,16 @@ export class LoginTabComponent {
   }
 
   public async google(): Promise<void> {
-    try {
-      await this.googleAuth.GoogleAuth();
-    } finally {
-      this.close();
-    }
+    //   try {
+    //     await this.googleAuth.GoogleAuth();
+    //   } finally {
+    //     this.close();
+    //   }
   }
 
   public facebook(): void {
-    this.googleAuth.FacebookAuth().finally(() => {
-      this.close();
-    });
+    //   this.googleAuth.FacebookAuth().finally(() => {
+    //     this.close();
+    //   });
   }
 }
