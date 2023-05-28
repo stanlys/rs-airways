@@ -1,19 +1,15 @@
 <div class="m-5 body_large">
   <div>{{ passenger.nameFull | uppercase }}</div>
   <div class="mt-3 ml-7 mb-5 flex gap-1 flex-col">
-    <div class="body_large flex_between">
-      <span>
-        {{ 'SUMMARY.FARE' | translate }}
-      </span>
-      <span>
-        {{ passenger.fare }}
-      </span>
+    <div *ngIf="passenger.luggage" class="body_large">
+      <span> {{ passenger.luggage }} {{ 'SUMMARY.BAG_START' | translate }} </span>
+      <span>{{ passenger.luggage * 23 }}</span>
+      <span>{{ 'SUMMARY.BAG_END' | translate }} </span>
     </div>
-    <div class="body_large flex_between">
-      <span>{{ 'SUMMARY.TAX' | translate }}</span
-      ><span>{{ passenger.fare }}</span>
+    <div class="body_large">
+      <span>{{ passenger.cabinBag }} {{ 'SUMMARY.CABIN_BAG' | translate }}</span>
     </div>
-    <div class="body_large flex_between">
+    <div class="body_large">
       <span>{{ 'SUMMARY.SEAT' | translate }} </span><span>{{ passenger.seat }}</span>
     </div>
   </div>

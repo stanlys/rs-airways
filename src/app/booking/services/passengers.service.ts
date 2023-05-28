@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { STORAGE_KEY_PREFIX } from '../../shared/constants';
+import { IPassenger } from '../interfaces/passenger';
 import { IContacts, PassengersFormValue } from '../interfaces/process.interface';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ProgressService {
+export class PassengersService {
   private readonly passengersKey = `${STORAGE_KEY_PREFIX}-passengers`;
 
   private readonly contactsKey = `${STORAGE_KEY_PREFIX}-contacts`;

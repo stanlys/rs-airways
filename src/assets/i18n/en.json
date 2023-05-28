@@ -84,7 +84,8 @@
   },
   "SUMMARY": {
     "CAPTION": "Summary",
-    "BAG": "checked bag (total 23 kg) included",
+    "BAG_START": "checked bag (total ",
+    "BAG_END": " kg) included",
     "CABIN_BAG": "cabin bag + 1 personal item (max. 8 kg) included",
     "SEAT": "Seat",
     "ADULT": "Adult Fare",

@@ -3,7 +3,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup, FormGroupDirective } fr
 import { TranslateService } from '@ngx-translate/core';
 import { Subject, takeUntil } from 'rxjs';
 import { PassengersFormValue } from '../../interfaces/process.interface';
-import { ProgressService } from '../../services/progress.service';
+import { PassengersService } from '../../services/passengers.service';
 
 @Component({
   selector: 'app-process-passenger-card',
@@ -51,7 +51,7 @@ export class ProcessPassengerCardComponent implements OnInit, OnDestroy {
     private parentForm: FormGroupDirective,
     private cd: ChangeDetectorRef,
     private fb: FormBuilder,
-    private progress: ProgressService,
+    private progress: PassengersService,
     private translateService: TranslateService
   ) {
     this.passengers = this.parentForm.control.get('passengers') as FormArray;

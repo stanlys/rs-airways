@@ -1,9 +1,11 @@
 import { Component, OnDestroy } from '@angular/core';
 import dayjs from 'dayjs';
 
+import { TripListService } from '../../../cart/service/trip-list.service';
+import { ITrip } from '../../interfaces/flight';
 import type { IPassenger } from '../../interfaces/passenger';
 import { IContacts, PassengersFormValue } from '../../interfaces/process.interface';
-import { ProgressService } from '../../services/progress.service';
+import { PassengersService } from '../../services/passengers.service';
 import { SummaryService } from '../../services/summary.service';
 
 @Component({
@@ -20,7 +22,11 @@ export class ProcessPageComponent implements OnDestroy {
 
   private newContacts?: IContacts;
 
-  constructor(private progress: ProgressService, private summaryService: SummaryService) {}
+  private trip!: ITrip;
+
+  constructor(private progress: PassengersService, private summary: SummaryService, private tripList: TripListService) {
+    this.trip = summary.getSummary() as ITrip;
+  }
 
   public ngOnDestroy(): void {
     if (this.newPassengers.length && this.newContacts != null) {
@@ -45,24 +51,15 @@ export class ProcessPageComponent implements OnDestroy {
     this.newContacts = value;
   }
 
-  private updateTrip(): void {
-    const trip = this.summaryService.getSummary();
+  public updateTrip(): void {
+    if (!this.trip) return;
 
-    if (trip) {
-      const { from } = trip;
+    const price = this.tripList.getTripPrice(this.trip);
+    this.trip.passengers = this.newPassengers.map((passenger) =>
+      ProcessPageComponent.transformPassengersFormValueToIPassenger(passenger, price)
+    );
 
-      from.passengers = this.newPassengers.map((passenger) =>
-        ProcessPageComponent.transformPassengersFormValueToIPassenger(passenger)
-      );
-    }
-
-    if (trip?.to) {
-      const { to } = trip;
-
-      to.passengers = this.newPassengers.map((passenger) =>
-        ProcessPageComponent.transformPassengersFormValueToIPassenger(passenger)
-      );
-    }
+    this.summary.setSummary(this.trip);
   }
 
   private static generateSeat = (): string => {
@@ -71,23 +68,28 @@ export class ProcessPageComponent implements OnDestroy {
     return `${num}${letter}`;
   };
 
-  private static generateCabinBag = (): number => Math.ceil(Math.random() * 2 ** 6);
-
-  private static transformPassengersFormValueToIPassenger(passenger: PassengersFormValue): IPassenger {
+  private static transformPassengersFormValueToIPassenger(passenger: PassengersFormValue, price: number): IPassenger {
     const { firstName, lastName, luggage, birthDate, type } = passenger;
     const fares = {
-      Infant: 5,
-      Child: 10,
-      Adult: 20,
+      Infant: 0.35,
+      Child: 0.41,
+      Adult: 0.645,
     };
+
+    const tax = {
+      Infant: 0.04,
+      Child: 0.35,
+      Adult: 0.355,
+    };
+
     const summaryPassenger = {
       nameFull: `${firstName} ${lastName}`,
       age: dayjs().diff(dayjs(birthDate), 'year'),
-      cabinBag: ProcessPageComponent.generateCabinBag(),
-      fare: fares[type],
+      cabinBag: 1,
+      fare: fares[type] * price,
       luggage,
       seat: ProcessPageComponent.generateSeat(),
-      tax: 12.2,
+      tax: tax[type] * price,
     };
     return summaryPassenger;
   }

@@ -11,9 +11,9 @@
     >
   </mat-card-header>
   <mat-card-content>
-    <ng-container *ngFor="let passenger of trip.passengers; let i = index">
+    <ng-container *ngFor="let passenger of passengers; let i = index">
       <app-information-about-passenger [passenger]="passenger"> </app-information-about-passenger>
-      <mat-divider *ngIf="i + 1 !== trip.passengers.length"></mat-divider>
+      <mat-divider *ngIf="i + 1 !== passengers.length"></mat-divider>
     </ng-container>
   </mat-card-content>
 </mat-card>

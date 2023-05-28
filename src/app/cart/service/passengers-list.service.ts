@@ -20,7 +20,7 @@ export class PassengersListService {
     passengers.forEach((p) => {
       if (p.age >= ADULT_AGE) {
         adult += 1;
-      } else if (p.age <= INFANT_AGE) {
+      } else if (p.age < INFANT_AGE) {
         infant += 1;
       } else {
         child += 1;

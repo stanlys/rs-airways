@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ISummaryTrip } from '../../interfaces/flight';
+import { IPassenger } from '../../interfaces/passenger';
 
 @Component({
   selector: 'app-summary-passenger-card',
@@ -8,4 +9,6 @@ import { ISummaryTrip } from '../../interfaces/flight';
 })
 export class SummaryPassengerCardComponent {
   @Input() public trip!: ISummaryTrip;
+
+  @Input() public passengers!: IPassenger[];
 }
