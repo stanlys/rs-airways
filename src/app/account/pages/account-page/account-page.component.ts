@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, map } from 'rxjs';
+
 import { ITrip } from 'src/app/booking/interfaces/flight';
 import { SummaryService } from 'src/app/booking/services/summary.service';
 import { SHOPPING_CART_COLUMNS } from 'src/app/cart/interfaces/columns';
@@ -13,6 +14,7 @@ import { TripListService } from 'src/app/cart/service/trip-list.service';
 import { selectFlightsToProfile } from 'src/app/store/selectors/user-flight-history.selector';
 import { AuthService } from '../../../core/services/auth.service';
 import { PriceService } from '../../../shared/services/price.service';
+import { CurrencySymbolService } from '../../../booking/services/currency-symbol.service';
 
 @Component({
   selector: 'app-account-page',
@@ -37,12 +39,13 @@ export class AccountPageComponent implements AfterViewInit {
   @ViewChild(MatSort, { static: false }) public sort!: MatSort;
 
   constructor(
+    public currencySymbolService: CurrencySymbolService,
+    public tripList: TripListService,
+    public passengerList: PassengersListService,
     private authService: AuthService,
     private store: Store,
     private route: Router,
     private summaryService: SummaryService,
-    public tripList: TripListService,
-    public passengerList: PassengersListService,
     private priceService: PriceService
   ) {}
 

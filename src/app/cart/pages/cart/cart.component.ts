@@ -16,7 +16,6 @@ import { IFlight } from '../../interfaces';
 import { SHOPPING_CART_COLUMNS } from '../../interfaces/columns';
 import { PassengersListService } from '../../service/passengers-list.service';
 import { TripListService } from '../../service/trip-list.service';
-import { PriceService } from '../../../shared/services/price.service';
 
 @Component({
   selector: 'app-cart',
@@ -48,8 +47,7 @@ export class CartComponent implements AfterViewInit {
     public translate: TranslateService,
     public currencySymbolService: CurrencySymbolService,
     private store: Store,
-    private router: Router,
-    private priceService: PriceService
+    private router: Router
   ) {}
 
   public ngAfterViewInit(): void {
