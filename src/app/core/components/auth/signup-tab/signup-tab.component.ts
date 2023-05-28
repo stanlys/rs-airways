@@ -2,6 +2,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import countryList from 'country-list';
+import { GoogleAuthService } from 'src/app/core/services/google.service';
 import countryTelData from 'country-telephone-data';
 import { passwordStrengthValidator } from '../../../directives/password-strength-validator.directive';
 import { RegistrationRequest } from '../../../models/requests.models';
@@ -41,7 +42,7 @@ export class SignupTabComponent {
     ({ name, dialCode }) => `${name.split(' (')[0]} (+${dialCode})`
   );
 
-  constructor(fb: FormBuilder, private authService: AuthService) {
+  constructor(fb: FormBuilder, private authService: AuthService, private googleAuth: GoogleAuthService) {
     this.form = fb.group<SignupForm>({
       email: new FormControl('', [
         Validators.required,
@@ -82,6 +83,12 @@ export class SignupTabComponent {
       if (v === true) {
         this.close();
       }
+    });
+  }
+
+  public google(): void {
+    this.googleAuth.GoogleSignUp().finally(() => {
+      this.close();
     });
   }
 }

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { GoogleAuthService } from 'src/app/core/services/google.service';
 
 import { LoginRequest } from '../../../models/requests.models';
 import { AuthService } from '../../../services/auth.service';
@@ -23,7 +24,7 @@ export class LoginTabComponent {
 
   @Output() public closeModal = new EventEmitter<void>();
 
-  constructor(fb: FormBuilder, private authService: AuthService) {
+  constructor(fb: FormBuilder, private authService: AuthService, private googleAuth: GoogleAuthService) {
     this.form = fb.group({
       email: new FormControl('', [Validators.maxLength(16)]),
       password: new FormControl('', [Validators.maxLength(32)]),
@@ -41,6 +42,18 @@ export class LoginTabComponent {
       if (v === true) {
         this.close();
       }
+    });
+  }
+
+  public google(): void {
+    this.googleAuth.GoogleAuth().finally(() => {
+      this.close();
+    });
+  }
+
+  public facebook(): void {
+    this.googleAuth.FacebookAuth().finally(() => {
+      this.close();
     });
   }
 }
