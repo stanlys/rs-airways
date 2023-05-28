@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable, map } from 'rxjs';
+
 import { ITrip } from 'src/app/booking/interfaces/flight';
 import { deleteFlightFromCart } from 'src/app/store/actions/shopping-cart.action';
 import { addFlightToProfile } from 'src/app/store/actions/user-flight-history.action';
@@ -99,5 +100,6 @@ export class CartComponent implements AfterViewInit {
       this.store.dispatch(addFlightToProfile({ flight }));
     });
     this.selection.clear();
+    this.router.navigate(['profile']).catch(console.error);
   }
 }

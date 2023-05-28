@@ -18,7 +18,12 @@ export class TripListService {
   public getFlight(trip: ITrip): string {
     const flightFrom = `${trip.from.from} - ${trip.from.to}`;
     const flightTo = trip.to !== null ? `${trip.to.from} - ${trip.to.to}` : '';
-    return [flightFrom, flightTo].join(', ');
+
+    if (trip.to != null) {
+      return [flightFrom, flightTo].join(', ');
+    }
+
+    return flightFrom;
   }
 
   public getFlightType(trip: ITrip): string {

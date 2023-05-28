@@ -1,8 +1,8 @@
-import { TranslateService } from '@ngx-translate/core';
 import { Component, Input, OnInit } from '@angular/core';
-import { SummaryService } from '../../services/summary.service';
-import { CurrencySymbolService } from '../../services/currency-symbol.service';
+import { TranslateService } from '@ngx-translate/core';
 import { ISummaryFare, ISummaryLang, ISummaryTrip, ITrip } from '../../interfaces/flight';
+import { CurrencySymbolService } from '../../services/currency-symbol.service';
+import { SummaryService } from '../../services/summary.service';
 
 @Component({
   selector: 'app-total-price',
