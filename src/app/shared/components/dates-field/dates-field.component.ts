@@ -64,8 +64,7 @@ export class DatesFieldComponent implements OnInit, OnDestroy {
     this.takeoffDate = this.datesForm.get('takeoffDate') as FormControl<Date>;
     this.landingDate = this.datesForm.get('landingDate') as FormControl<Date>;
 
-    const oneWay = !!this.parentForm.control.get('oneWay')?.value;
-    this.oneWay = oneWay;
+    this.oneWay = !!this.parentForm.control.get('oneWay')?.value;
 
     this.parentForm.control
       .get('oneWay')
@@ -79,7 +78,7 @@ export class DatesFieldComponent implements OnInit, OnDestroy {
       });
 
     this.dateFormatService.dateFormat$.pipe(takeUntil(this.destroy$)).subscribe((v) => {
-      this.updateHint(oneWay, v);
+      this.updateHint(this.oneWay ?? false, v);
       MY_FORMATS.display.dateInput = v.replace('/', '-');
     });
   }
