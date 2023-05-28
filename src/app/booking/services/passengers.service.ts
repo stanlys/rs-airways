@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { STORAGE_KEY_PREFIX } from '../../shared/constants';
-import { IPassenger } from '../interfaces/passenger';
 import { IContacts, PassengersFormValue } from '../interfaces/process.interface';
 
 @Injectable({

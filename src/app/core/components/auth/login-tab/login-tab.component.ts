@@ -45,10 +45,12 @@ export class LoginTabComponent {
     });
   }
 
-  public google(): void {
-    this.googleAuth.GoogleAuth().finally(() => {
+  public async google(): Promise<void> {
+    try {
+      await this.googleAuth.GoogleAuth();
+    } finally {
       this.close();
-    });
+    }
   }
 
   public facebook(): void {

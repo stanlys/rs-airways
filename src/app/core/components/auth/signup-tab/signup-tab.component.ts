@@ -86,9 +86,11 @@ export class SignupTabComponent {
     });
   }
 
-  public google(): void {
-    this.googleAuth.GoogleSignUp().finally(() => {
+  public async google(): Promise<void> {
+    try {
+      await this.googleAuth.GoogleSignUp();
+    } finally {
       this.close();
-    });
+    }
   }
 }
