@@ -1,11 +1,11 @@
 <div class="social-network-buttons flex flex-col gap-4 mt-9 mb-8">
-  <button class="btn" mat-stroked-button>
+  <button class="btn" mat-stroked-button (click)="google()">
     <div class="btn-label flex gap-2">
       <img src="/assets/google_icon.svg" alt="" />
       <span>{{ 'LOGIN_FORM.GOOGLE' | translate }}</span>
     </div>
   </button>
-  <button class="btn" mat-stroked-button>
+  <button class="btn" mat-stroked-button (click)="facebook()">
     <div class="btn-label flex gap-2">
       <img src="/assets/facebook_icon.svg" alt="" />
       <span>{{ 'LOGIN_FORM.FACEBOOK' | translate }}</span>
