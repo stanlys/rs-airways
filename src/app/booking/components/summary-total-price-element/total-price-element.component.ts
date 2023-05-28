@@ -34,8 +34,8 @@ export class TotalPriceElementComponent {
 
   public ngOnInit(): void {
     this.priceService.currencyCode$.pipe().subscribe((code) => {
-      this.passengersFare = this.priceService.getPrice(this.fare);
-      this.passengersTax = this.priceService.getPrice(this.tax);
+      this.passengersFare = this.priceService.getPrice(this.fare, code);
+      this.passengersTax = this.priceService.getPrice(this.tax, code);
     });
   }
 }

@@ -4,7 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { PriceService } from '../../shared/services/price.service';
 import { ITrip } from '../../booking/interfaces/flight';
-import { Prices } from '../../shared/models/flight-search.interfaces';
+import { CurrencyCode, Prices } from '../../shared/models/flight-search.interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -55,11 +55,6 @@ export class TripListService {
   }
 
   public getTripPrice(trip: ITrip): Prices {
-    // const priceFrom = this.priceService.getPrice(trip.from.price);
-    // const priceTo = this.priceService.getPrice(trip.to?.price);
-
-    // const price = priceFrom + priceTo;
-
     return this.priceService.sumPrice(trip.from.price, trip.to?.price);
   }
 }

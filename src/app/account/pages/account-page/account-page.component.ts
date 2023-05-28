@@ -4,6 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { TranslateService } from '@ngx-translate/core';
 import { Observable, map } from 'rxjs';
 import { ITrip } from 'src/app/booking/interfaces/flight';
 import { SummaryService } from 'src/app/booking/services/summary.service';
@@ -11,7 +12,9 @@ import { SHOPPING_CART_COLUMNS } from 'src/app/cart/interfaces/columns';
 import { PassengersListService } from 'src/app/cart/service/passengers-list.service';
 import { TripListService } from 'src/app/cart/service/trip-list.service';
 import { selectFlightsToProfile } from 'src/app/store/selectors/user-flight-history.selector';
+import { CurrencySymbolService } from '../../../booking/services/currency-symbol.service';
 import { AuthService } from '../../../core/services/auth.service';
+import { CurrencyCode } from '../../../shared/models/flight-search.interfaces';
 import { PriceService } from '../../../shared/services/price.service';
 
 @Component({
@@ -23,6 +26,10 @@ export class AccountPageComponent implements AfterViewInit {
   public displayedColumns: string[] = SHOPPING_CART_COLUMNS;
 
   public flights = new MatTableDataSource<ITrip>([]);
+
+  public currencyCode$;
+
+  public locale = this.translateService.currentLang;
 
   public flights$: Observable<MatTableDataSource<ITrip>> = this.store.select(selectFlightsToProfile).pipe(
     map((trip) => {
@@ -43,8 +50,12 @@ export class AccountPageComponent implements AfterViewInit {
     private summaryService: SummaryService,
     public tripList: TripListService,
     public passengerList: PassengersListService,
-    private priceService: PriceService
-  ) {}
+    private priceService: PriceService,
+    public currency: CurrencySymbolService,
+    private translateService: TranslateService
+  ) {
+    this.currencyCode$ = this.priceService.currencyCode$;
+  }
 
   public logout(): void {
     this.authService.logout();
@@ -54,10 +65,17 @@ export class AccountPageComponent implements AfterViewInit {
     this.flights.sort = this.sort;
   }
 
-  public getTotalPrice(): number {
-    return this.selection.selected
-      .map((flight) => this.priceService.getPrice(flight.from.price) + this.priceService.getPrice(flight.to?.price))
-      .reduce((acc, value) => acc + value, 0);
+  public getTotalPrice(code: CurrencyCode = this.currencyCode$.getValue()): number {
+    const result = this.selection.selected
+      .map((flight) => this.tripList.getPrice(flight))
+      .reduce((acc, value) => this.priceService.sumPrice(acc, value), this.priceService.initPrice);
+
+    return this.priceService.getPrice(result, code);
+  }
+
+  public getNumberPrice(trip: ITrip, code: CurrencyCode = this.currencyCode$.getValue()): number {
+    const price = this.tripList.getPrice(trip);
+    return this.priceService.getPrice(price, code);
   }
 
   public isAllSelected(): boolean {

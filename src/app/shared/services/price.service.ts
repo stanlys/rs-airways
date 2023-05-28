@@ -39,7 +39,7 @@ export class PriceService {
       eur: a.eur + b.eur + c.eur,
       usd: a.usd + b.usd + c.usd,
       rub: a.rub + b.rub + c.rub,
-      pln: a.usd + b.pln + c.pln,
+      pln: a.pln + b.pln + c.pln,
     };
   }
 
