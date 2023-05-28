@@ -57,7 +57,7 @@ export class CartComponent implements AfterViewInit {
 
   public getTotalPrice(): number {
     return this.selection.selected
-      .map((flight) => this.priceService.getPrice(flight.from.price) + this.priceService.getPrice(flight.to?.price))
+      .map((flight) => this.tripList.getPrice(flight))
       .reduce((acc, value) => acc + value, 0);
   }
 

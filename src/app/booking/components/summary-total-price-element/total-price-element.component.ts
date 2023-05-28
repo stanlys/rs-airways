@@ -25,7 +25,6 @@ export class TotalPriceElementComponent {
     private translateService: TranslateService
   ) {
     this.currencyCode$ = this.priceService.currencyCode$;
-    console.log(this.fare, this.tax);
   }
 
   public ngOnInit(): void {
