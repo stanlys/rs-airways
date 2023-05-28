@@ -33,10 +33,10 @@ export interface ISummaryTrip {
   from: string;
   to: string;
   price: Prices;
-  passengers: Array<IPassenger>;
 }
 
 export interface ITrip {
   from: ISummaryTrip;
   to: ISummaryTrip | null;
+  passengers: Array<IPassenger>;
 }

@@ -13,10 +13,12 @@ export class SummaryService {
 
   private summaryFlight?: ITrip;
 
-  public getSummaryByAge(flights: Array<ISummaryTrip>): Array<ISummaryFare> {
+  public getSummaryByAge(allPassengers: Array<IPassenger>): Array<ISummaryFare> {
     const result: Array<ISummaryFare> = [INIT_SUMMARY_FARE, INIT_SUMMARY_FARE, INIT_SUMMARY_FARE];
-    const allPassengers: Array<IPassenger> = [];
-    flights.forEach((flight) => allPassengers.push(...flight.passengers));
+    // const allPassengers: Array<IPassenger> = [];
+    // flights.forEach((flight) => allPassengers.push(...flight.passengers));
+    if (!allPassengers) return [];
+
     allPassengers.forEach((passenger) => {
       if (passenger.age >= this.adultAge) {
         const currentValue = result[0];

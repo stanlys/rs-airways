@@ -54,7 +54,7 @@ export class FlightsPageComponent implements OnDestroy {
     const to = this.transformToSummaryTrip(toFlight);
 
     if (from) {
-      this.summaryService.setSummary({ from, to });
+      this.summaryService.setSummary({ from, to, passengers: [] });
     }
 
     this.canContinue = this.checkAllFlights();
@@ -82,7 +82,7 @@ export class FlightsPageComponent implements OnDestroy {
         to,
         price,
         // TODO: add passengers to summary
-        passengers: [],
+        // passengers: [],
       };
 
       return summaryTrip;

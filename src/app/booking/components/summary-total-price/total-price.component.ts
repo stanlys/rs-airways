@@ -3,6 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { SummaryService } from '../../services/summary.service';
 import { CurrencySymbolService } from '../../services/currency-symbol.service';
 import { ISummaryFare, ISummaryLang, ISummaryTrip, ITrip } from '../../interfaces/flight';
+import { IPassenger } from '../../interfaces/passenger';
 
 @Component({
   selector: 'app-total-price',
@@ -21,10 +22,10 @@ export class TotalPriceComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    const arr: Array<ISummaryTrip> = [];
-    arr.push(this.trip.from);
-    if (this.trip.to) arr.push(this.trip.to);
-    this.summaryByAge = this.summaryService.getSummaryByAge(arr);
+    // const arr: Array<ISummaryTrip> = [];
+    // arr.push(this.trip.from);
+    // if (this.trip.to) arr.push(this.trip.to);
+    this.summaryByAge = this.summaryService.getSummaryByAge(this.trip.passengers);
   }
 
   public getCaption(count: number, index: number): string {

@@ -47,14 +47,12 @@ export class ProcessPageComponent implements OnDestroy {
   }
 
   public updateTrip(): void {
-    if (!this.trip.from) return;
+    if (!this.trip) return;
 
-    this.trip.from.passengers = this.newPassengers.map((passenger) =>
-      this.progress.transformPassengerToTrip(passenger)
-    );
-    if (this.trip.to) {
-      this.trip.to.passengers = this.trip.from.passengers;
-    }
+    this.trip.passengers = this.newPassengers.map((passenger) => this.progress.transformPassengerToTrip(passenger));
+
+    console.log(this.trip);
+
     this.summary.setSummary(this.trip);
   }
 }
