@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { STORAGE_KEY_PREFIX } from '../../../../shared/constants';
+import { DateFormatService } from '../../../../shared/services/date-format.service';
 
 @Component({
   selector: 'app-date-format-selector',
@@ -7,14 +7,14 @@ import { STORAGE_KEY_PREFIX } from '../../../../shared/constants';
   styleUrls: ['./date-format-selector.component.scss'],
 })
 export class DateFormatSelectorComponent {
-  public readonly dateOpts = ['MM/DD/YYYY', 'DD/MM/YYYY', 'YYYY/DD/MM', 'YYYY/MM/DD'];
+  public readonly dateOpts = this.dateFormatService.dateOpts;
 
-  public dateFormatItemKey = `${STORAGE_KEY_PREFIX}-dateFormat`;
+  public selectedDateFormat = this.dateFormatService.getDateFormat();
 
-  public selectedDateFormat = localStorage.getItem(this.dateFormatItemKey) || this.dateOpts[0];
+  constructor(private dateFormatService: DateFormatService) {}
 
   public selectDateFormat(v: string): void {
     this.selectedDateFormat = v;
-    localStorage.setItem(this.dateFormatItemKey, this.selectedDateFormat);
+    this.dateFormatService.setDateFormat(v);
   }
 }
