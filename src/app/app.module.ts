@@ -1,29 +1,27 @@
+import { registerLocaleData } from '@angular/common';
 import { HttpClient, HttpClientModule, provideHttpClient } from '@angular/common/http';
+import localeDe from '@angular/common/locales/de';
+import localeEn from '@angular/common/locales/en';
+import localeDeExtra from '@angular/common/locales/extra/de';
+import localePlExtra from '@angular/common/locales/extra/pl';
+import localeRuExtra from '@angular/common/locales/extra/ru';
+import localePl from '@angular/common/locales/pl';
+import localeRu from '@angular/common/locales/ru';
 import { NgModule, isDevMode } from '@angular/core';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { AngularFireModule } from '@angular/fire/compat';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { registerLocaleData } from '@angular/common';
-import localeEn from '@angular/common/locales/en';
-import localeRu from '@angular/common/locales/ru';
-import localeRuExtra from '@angular/common/locales/extra/ru';
-import localePl from '@angular/common/locales/pl';
-import localePlExtra from '@angular/common/locales/extra/pl';
-import localeDe from '@angular/common/locales/de';
-import localeDeExtra from '@angular/common/locales/extra/de';
 
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../enviroments/enviroment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { reducers, metaReducers } from './store/index';
 import { CoreModule } from './core/core.module';
-import { environment } from '../enviroments/enviroment';
+import { metaReducers, reducers } from './store/index';
 
 registerLocaleData(localeEn, 'en');
 registerLocaleData(localeRu, 'ru', localeRuExtra);
