@@ -17,7 +17,7 @@ export class FlightsPageComponent implements OnDestroy {
 
   public showSearchForm = false;
 
-  public flightsConfirmed: (false | Flight)[] = [];
+  public flightsConfirmed: (undefined | Flight)[] = [];
 
   private subs = new Subscription();
 
@@ -32,7 +32,7 @@ export class FlightsPageComponent implements OnDestroy {
   ) {
     const flightsSub = searchService.flights$.subscribe((v) => {
       if (v != null) {
-        this.flightsConfirmed = <false[]>Array(v.length).fill(false);
+        this.flightsConfirmed = <undefined[]>Array(v.length).fill(undefined);
       }
     });
 
@@ -45,7 +45,7 @@ export class FlightsPageComponent implements OnDestroy {
     this.subs.unsubscribe();
   }
 
-  public onFlightConfirmed(i: number, v: Flight | false): void {
+  public onFlightConfirmed(i: number, v?: Flight): void {
     this.flightsConfirmed[i] = v;
 
     const [fromFlight, toFlight] = this.flightsConfirmed;
@@ -64,7 +64,7 @@ export class FlightsPageComponent implements OnDestroy {
     return this.flightsConfirmed.every(Boolean);
   }
 
-  private transformToSummaryTrip(flight: Flight | false | undefined): ISummaryTrip | null {
+  private transformToSummaryTrip(flight?: Flight | false): ISummaryTrip | null {
     if (flight) {
       const { flightNumber: number, takeoffDate, landingDate, form: fromLoc, to: toLoc, price } = flight;
       const { city: from } = fromLoc;
