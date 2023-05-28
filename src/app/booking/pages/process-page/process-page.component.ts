@@ -1,6 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
-import { ITrip } from '../../interfaces/flight';
 import dayjs from 'dayjs';
+import { ITrip } from '../../interfaces/flight';
 
 import type { IPassenger } from '../../interfaces/passenger';
 import { IContacts, PassengersFormValue } from '../../interfaces/process.interface';
@@ -23,7 +23,7 @@ export class ProcessPageComponent implements OnDestroy {
 
   private trip!: ITrip;
 
-  constructor(private progress: PassengersService, private summary: SummaryService, private summaryService: SummaryService) {
+  constructor(private progress: PassengersService, private summary: SummaryService) {
     this.trip = summary.getSummary() as ITrip;
     console.log(this.trip);
   }
@@ -54,31 +54,13 @@ export class ProcessPageComponent implements OnDestroy {
   public updateTrip(): void {
     if (!this.trip) return;
 
-    this.trip.passengers = this.newPassengers.map((passenger) => this.progress.transformPassengerToTrip(passenger));
+    this.trip.passengers = this.newPassengers.map((passenger) =>
+      ProcessPageComponent.transformPassengersFormValueToIPassenger(passenger)
+    );
 
     console.log(this.trip);
 
     this.summary.setSummary(this.trip);
-  }
-
-  private updateTrip(): void {
-    const trip = this.summaryService.getSummary();
-
-    if (trip) {
-      const { from } = trip;
-
-      from.passengers = this.newPassengers.map((passenger) =>
-        ProcessPageComponent.transformPassengersFormValueToIPassenger(passenger)
-      );
-    }
-
-    if (trip?.to) {
-      const { to } = trip;
-
-      to.passengers = this.newPassengers.map((passenger) =>
-        ProcessPageComponent.transformPassengersFormValueToIPassenger(passenger)
-      );
-    }
   }
 
   private static generateSeat = (): string => {
@@ -87,23 +69,28 @@ export class ProcessPageComponent implements OnDestroy {
     return `${num}${letter}`;
   };
 
-  private static generateCabinBag = (): number => Math.ceil(Math.random() * 2 ** 6);
-
   private static transformPassengersFormValueToIPassenger(passenger: PassengersFormValue): IPassenger {
-    const { firstName, lastName, luggage, birthdate, type } = passenger;
+    const { firstName, lastName, luggage, birthDate, type } = passenger;
     const fares = {
-      Infant: 5,
-      Child: 10,
-      Adult: 20,
+      Infant: 0.38,
+      Child: 0.77,
+      Adult: 1,
     };
+
+    const tax = {
+      Infant: 0.102,
+      Child: 0.459,
+      Adult: 0.355,
+    };
+
     const summaryPassenger = {
       nameFull: `${firstName} ${lastName}`,
-      age: dayjs().diff(dayjs(birthdate), 'year'),
-      cabinBag: ProcessPageComponent.generateCabinBag(),
+      age: dayjs().diff(dayjs(birthDate), 'year'),
+      cabinBag: 1,
       fare: fares[type],
       luggage,
       seat: ProcessPageComponent.generateSeat(),
-      tax: 12.2,
+      tax: tax[type],
     };
     return summaryPassenger;
   }

@@ -7,6 +7,7 @@ import { addFlightToCart } from 'src/app/store/actions/shopping-cart.action';
 import { ProgressControlService } from '../../../core/services/progress-control.service';
 import { NavigationService } from '../../../shared/services/navigation.service';
 import { ITrip } from '../../interfaces/flight';
+import { PassengersService } from '../../services/passengers.service';
 import { SummaryService } from '../../services/summary.service';
 
 @Component({
@@ -23,17 +24,22 @@ export class SummaryPageComponent {
     private stepperService: ProgressControlService,
     private location: Location,
     private navigationService: NavigationService,
-    private router: Router
+    private router: Router,
+    private passengers: PassengersService
   ) {
     this.trip = summaryService.getSummary();
   }
 
   public addtoCart(): void {
     if (this.trip) this.store.dispatch(addFlightToCart({ flight: this.trip }));
+    // this.passengers.deletePassengers();
+    // this.passengers.deleteContacts();
   }
 
   public buyNow(): void {
     if (this.trip) this.store.dispatch(addFlightToCart({ flight: this.trip }));
+    // this.passengers.deletePassengers();
+    // this.passengers.deleteContacts();
     this.router.navigate(['cart']).catch(console.error);
   }
 

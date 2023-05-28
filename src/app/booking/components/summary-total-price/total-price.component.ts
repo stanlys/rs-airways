@@ -22,9 +22,6 @@ export class TotalPriceComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    // const arr: Array<ISummaryTrip> = [];
-    // arr.push(this.trip.from);
-    // if (this.trip.to) arr.push(this.trip.to);
     this.summaryByAge = this.summaryService.getSummaryByAge(this.trip.passengers);
   }
 

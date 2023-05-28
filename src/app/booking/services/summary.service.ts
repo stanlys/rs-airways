@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { IPassenger } from '../interfaces/passenger';
-import { INIT_SUMMARY_FARE, ISummaryFare, ISummaryTrip, ITrip } from '../interfaces/flight';
+import { INIT_SUMMARY_FARE, ISummaryFare, ITrip } from '../interfaces/flight';
 
 @Injectable({
   providedIn: 'root',
@@ -15,8 +15,7 @@ export class SummaryService {
 
   public getSummaryByAge(allPassengers: Array<IPassenger>): Array<ISummaryFare> {
     const result: Array<ISummaryFare> = [INIT_SUMMARY_FARE, INIT_SUMMARY_FARE, INIT_SUMMARY_FARE];
-    // const allPassengers: Array<IPassenger> = [];
-    // flights.forEach((flight) => allPassengers.push(...flight.passengers));
+
     if (!allPassengers) return [];
 
     allPassengers.forEach((passenger) => {
@@ -27,7 +26,7 @@ export class SummaryService {
           fare: currentValue.fare + passenger.fare,
           tax: currentValue.tax + passenger.tax,
         };
-      } else if (passenger.age <= this.infantAge) {
+      } else if (passenger.age < this.infantAge) {
         const currentValue = result[2];
         result[2] = {
           count: currentValue.count + 1,
@@ -43,6 +42,8 @@ export class SummaryService {
         };
       }
     });
+    console.log(result);
+
     return result;
   }
 

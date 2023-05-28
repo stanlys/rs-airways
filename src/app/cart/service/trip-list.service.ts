@@ -45,6 +45,12 @@ export class TripListService {
   public getPrice(trip: ITrip): number {
     const priceFrom = this.priceService.getPrice(trip.from.price);
     const priceTo = this.priceService.getPrice(trip.to?.price);
-    return priceFrom + priceTo;
+
+    const { passengers } = trip;
+    const price = priceFrom + priceTo;
+
+    const result = passengers.reduce((acc, value) => value.fare * price + acc, 0);
+
+    return result;
   }
 }
