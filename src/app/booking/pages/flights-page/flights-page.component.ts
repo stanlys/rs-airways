@@ -81,8 +81,6 @@ export class FlightsPageComponent implements OnDestroy {
         from,
         to,
         price,
-        // TODO: add passengers to summary
-        // passengers: [],
       };
 
       return summaryTrip;

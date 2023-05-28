@@ -12,6 +12,8 @@ import { deleteFlightFromCart } from 'src/app/store/actions/shopping-cart.action
 import { addFlightToProfile } from 'src/app/store/actions/user-flight-history.action';
 import { selectFlights } from 'src/app/store/selectors/shopping-cart.selector';
 import { CurrencySymbolService } from '../../../booking/services/currency-symbol.service';
+import { CurrencyCode } from '../../../shared/models/flight-search.interfaces';
+import { PriceService } from '../../../shared/services/price.service';
 import { IFlight } from '../../interfaces';
 import { SHOPPING_CART_COLUMNS } from '../../interfaces/columns';
 import { PassengersListService } from '../../service/passengers-list.service';
@@ -28,6 +30,10 @@ export class CartComponent implements AfterViewInit {
   public flights = new MatTableDataSource<ITrip>([]);
 
   public selection = new SelectionModel<ITrip>(true, []);
+
+  public currencyCode$;
+
+  public locale = this.translate.currentLang;
 
   public promocode = '';
 
@@ -47,17 +53,27 @@ export class CartComponent implements AfterViewInit {
     public translate: TranslateService,
     public currencySymbolService: CurrencySymbolService,
     private store: Store,
-    private router: Router
-  ) {}
+    private router: Router,
+    private priceService: PriceService
+  ) {
+    this.currencyCode$ = this.priceService.currencyCode$;
+  }
 
   public ngAfterViewInit(): void {
     this.flights.sort = this.sort;
   }
 
-  public getTotalPrice(): number {
-    return this.selection.selected
+  public getTotalPrice(code: CurrencyCode = this.currencyCode$.getValue()): number {
+    const result = this.selection.selected
       .map((flight) => this.tripList.getPrice(flight))
-      .reduce((acc, value) => acc + value, 0);
+      .reduce((acc, value) => this.priceService.sumPrice(acc, value), this.priceService.initPrice);
+
+    return this.priceService.getPrice(result, code);
+  }
+
+  public getNumberPrice(trip: ITrip, code: CurrencyCode = this.currencyCode$.getValue()): number {
+    const price = this.tripList.getPrice(trip);
+    return this.priceService.getPrice(price, code);
   }
 
   public addTrip(): void {

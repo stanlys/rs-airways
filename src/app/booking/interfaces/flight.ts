@@ -12,8 +12,8 @@ export interface ISummaryFlight {
 
 export interface ISummaryFare {
   count: number;
-  fare: number;
-  tax: number;
+  fare: Prices;
+  tax: Prices;
 }
 
 export const INIT_SUMMARY_FARE = {
