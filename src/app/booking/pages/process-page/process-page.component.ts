@@ -74,7 +74,7 @@ export class ProcessPageComponent implements OnDestroy {
   private static generateCabinBag = (): number => Math.ceil(Math.random() * 2 ** 6);
 
   private static transformPassengersFormValueToIPassenger(passenger: PassengersFormValue): IPassenger {
-    const { firstName, lastName, luggage, birthdate, type } = passenger;
+    const { firstName, lastName, luggage, birthDate, type } = passenger;
     const fares = {
       Infant: 5,
       Child: 10,
@@ -82,7 +82,7 @@ export class ProcessPageComponent implements OnDestroy {
     };
     const summaryPassenger = {
       nameFull: `${firstName} ${lastName}`,
-      age: dayjs().diff(dayjs(birthdate), 'year'),
+      age: dayjs().diff(dayjs(birthDate), 'year'),
       cabinBag: ProcessPageComponent.generateCabinBag(),
       fare: fares[type],
       luggage,
